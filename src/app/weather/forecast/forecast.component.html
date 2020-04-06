@@ -1,0 +1,8 @@
+<div class="field is-grouped is-grouped-multiline">
+    <div class="control" *ngFor="let forecast of forecast$ | async">
+        <div class="tags has-addons">
+            <span class="tag">{{forecast.date | date: 'E'}}</span>
+            <span class="tag is-primary">{{forecast.temp | number: '1.0-0'}}&#8451;</span>
+        </div>
+    </div>
+</div>
