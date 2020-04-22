@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { map, switchMap, pluck, mergeMap, filter, toArray, share } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { map, switchMap, pluck, mergeMap, filter, toArray, share, tap, catchError, retry } from 'rxjs/operators';
 import { HttpParams, HttpClient } from '@angular/common/http';
+import { NotificationService } from '../notifications/notification.service';
 
 export interface IOpenWeatherResponse {
   list: {
@@ -18,7 +19,7 @@ export interface IOpenWeatherResponse {
 export class ForecastService {
 
   private url = "https://api.openweathermap.org/data/2.5/forecast";
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private notificationService: NotificationService) { }
 
   getForecast() {
     return this.getCurrentLocation()
@@ -51,8 +52,37 @@ export class ForecastService {
       return window.navigator.geolocation.getCurrentPosition(
         (position) => {
           observer.next(position.coords)
+          console.log("get current locations");
           observer.complete();
-        }, err => observer.error(err))
-    });
+        }, (err) => {
+          observer.error(err)
+        });
+    })
+      .pipe(
+        retry(1), // retry would re-subsribe to the observable by executing it again..
+        // here arrow function with observer argument with be re executed. hence you will get two console in case an error occurs 
+        tap(() => {
+          this.notificationService.showSuccessMessage("Got your location...");
+        }
+          // tap has 3 argumnet- first is execued when next() is executed on observable
+          // second in case error occurs
+          // third when observable completes 
+          // used to catch error from observable but not favored over catchError
+          // , (err) => {
+          //   console.log("error", err);
+          // }
+        ),
+        catchError((err) => {
+          //  #1 Handle the error 
+          this.notificationService.showErrorMessage("Some error occured...");
+          //  #2 Return a new observable -- which can maybe pass default coordinates in case user denied location
+          // unlike tap operator second argument; it DOES return an observable and pass something to pipe operator
+          return throwError(err);
+          /* is equivalent to 
+          return new Observable((observer)=>{
+              observer.error(err);
+          }) */
+        })
+      )
   }
 }

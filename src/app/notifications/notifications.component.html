@@ -1,0 +1,7 @@
+<div *ngFor="let notif of notifications$| async">
+    <div class="notification is-narrow is-flex" [ngClass]="{'is-success': notif.type === 'success', 
+    'is-danger': notif.type === 'error'}">
+        <button class="delete" (click)="clearNotification(notif)"></button>
+        {{notif.text}}
+    </div>
+</div>
