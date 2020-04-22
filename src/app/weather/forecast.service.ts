@@ -21,7 +21,10 @@ export class ForecastService {
   private url = "https://api.openweathermap.org/data/2.5/forecast";
   constructor(private httpClient: HttpClient, private notificationService: NotificationService) { }
 
-  getForecast() {
+  getForecast(): Observable<{
+    temp: number;
+    date: string;
+  }[]> {
     return this.getCurrentLocation()
       .pipe(
         map(coords => {

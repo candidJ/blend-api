@@ -4,11 +4,17 @@ import { DashboardComponent } from './dashboard.component';
 
 const routeChild = [{
     path: "",
-    component:DashboardComponent,
-    children: [{
-        path: "",
-        loadChildren: () => import('../weather/weather.module').then(m => m.WeatherModule)
-    }]
+    component: DashboardComponent,
+    children: [
+        {
+            path: "weather",
+            loadChildren: () => import('../weather/weather.module').then(m => m.WeatherModule)
+        },
+        {
+            path: "news",
+            loadChildren: () => import('../news-api/news-api.module').then(m => m.NewsApiModule)
+        }
+    ]
 }];
 
 @NgModule({
