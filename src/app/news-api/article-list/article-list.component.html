@@ -1,3 +1,4 @@
-<p>article-list works!</p>
-
-<app-paginator [noOfPages$]="noOfPages$"> </app-paginator>
+<div class="vw-100">
+    <app-grid [gridData]="articles" [gridColumns]="articleColumns" [noOfPages$]="noOfPages$"></app-grid>
+    <app-paginator [noOfPages$]="noOfPages$" (onPaginatorChange)="onPaginatorChange($event)"></app-paginator>
+</div>

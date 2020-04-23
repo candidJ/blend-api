@@ -1,0 +1,28 @@
+<div class="ma4 table-container">
+    <table class="table is-hovered is-fullwidth is-bordered">
+        <thead>
+            <tr>
+                <ng-container *ngFor="let column of gridColumns">
+                    <th>{{column.title}}</th>
+                </ng-container>
+            </tr>
+        </thead>
+
+        <tbody>
+            <!-- <tr class="striped--near-white">
+                <ng-container *ngFor="let column of gridColumns">
+                    <th>{{column}}</th>
+                </ng-container>
+            </tr> -->
+            <ng-container *ngFor="let grid of gridData">
+                <tr>
+                    <td>{{grid.author}}</td>
+                    <td>{{grid.title}}</td>
+                    <td>{{grid.publishedAt}}</td>
+                </tr>
+            </ng-container>
+        </tbody>
+
+    </table>
+
+</div>

@@ -14,7 +14,7 @@ export class NewsApiService {
   private newsOutput$ = this.newsInput.asObservable();
   private noOfPagesInput = new Subject<number>();
   private noOfPages$ = this.noOfPagesInput.asObservable();
-  private config = AppConfig.NEWS_API_CONFIG;
+  private readonly config = AppConfig.NEWS_API_CONFIG;
 
   constructor(private httpClient: HttpClient) { }
   // : Observable<INewsArticles[]>
@@ -34,7 +34,7 @@ export class NewsApiService {
         }),
         tap((response) => {
           console.log("the news feed:", response);
-          const totalResults = response.totalResults;
+          const totalResults = response.articles.length;
           const noOfPagesPaginator = Math.ceil(totalResults / this.config.PAGE_SIZE);
           this.noOfPagesInput.next(noOfPagesPaginator);
         }),

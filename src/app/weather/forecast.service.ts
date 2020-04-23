@@ -3,6 +3,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { map, switchMap, pluck, mergeMap, filter, toArray, share, tap, catchError, retry } from 'rxjs/operators';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { NotificationService } from '../notifications/notification.service';
+import { AppConfig } from '../utils/config.constant';
 
 export interface IOpenWeatherResponse {
   list: {
@@ -18,7 +19,7 @@ export interface IOpenWeatherResponse {
 })
 export class ForecastService {
 
-  private url = "https://api.openweathermap.org/data/2.5/forecast";
+  private readonly config = AppConfig.WEATHER_API_CONFIG;
   constructor(private httpClient: HttpClient, private notificationService: NotificationService) { }
 
   getForecast(): Observable<{
@@ -32,13 +33,13 @@ export class ForecastService {
           return new HttpParams()
             .set('lat', String(coords.latitude))
             .set('lon', String(coords.longitude))
-            .set('units', 'imperial')
-            .set('appid', "eff556784983bcac5c6d749bad8e1090")
+            .set('units', this.config.UNITS)
+            .set('appid', this.config.API_KEY)
         }),
         // create a new observable with the last emitted value from previous operator
         switchMap(params => {
           console.log(params);
-          return this.httpClient.get<IOpenWeatherResponse>(this.url, { params });
+          return this.httpClient.get<IOpenWeatherResponse>(this.config.URL, { params });
         }
         ),
         pluck('list'), // pluck out the list property
