@@ -1,0 +1,9 @@
+<nav class="pagination" role="navigation" aria-label="pagination">
+    <!-- <a class="pagination-previous" title="This is the first page" disabled>Previous</a>
+    <a class="pagination-next">Next page</a> -->
+    <ul class="pagination-list" *ngFor="let page of noOfPages$| async">
+        <li>
+            <a class="pagination-link" (click)="onPageNumber(page)" aria-current="page">{{page}}</a>
+        </li>
+    </ul>
+</nav>
