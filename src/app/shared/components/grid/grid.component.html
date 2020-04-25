@@ -3,22 +3,19 @@
         <thead>
             <tr>
                 <ng-container *ngFor="let column of gridColumns">
-                    <th>{{column.title}}</th>
+                    <th>{{column}}</th>
                 </ng-container>
             </tr>
         </thead>
 
         <tbody>
-            <!-- <tr class="striped--near-white">
-                <ng-container *ngFor="let column of gridColumns">
-                    <th>{{column}}</th>
-                </ng-container>
-            </tr> -->
-            <ng-container *ngFor="let grid of gridData">
+            <ng-container *ngFor="let grid of gridData; let  i = index;">
                 <tr>
-                    <td>{{grid.author}}</td>
-                    <td>{{grid.title}}</td>
-                    <td>{{grid.publishedAt}}</td>
+                    <td>
+                        <ng-container *ngTemplateOutlet="view, context: {$implicit: grid}">
+                        </ng-container>
+                    </td>
+                    <ng-template [ngTemplateOutlet]="items" [ngTemplateOutletContext]="{$implicit: grid}"></ng-template>
                 </tr>
             </ng-container>
         </tbody>

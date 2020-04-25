@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { INewsArticles } from 'src/app/utils/interface';
 import { Observable } from 'rxjs';
 import { NewsApiService } from '../news-api.service';
@@ -15,33 +15,18 @@ export class ArticleListComponent implements OnInit {
   public news$: Observable<INewsArticles[]>;
   public noOfPages$: Observable<number[]>;
   public articles: INewsArticles[];
-  public articleColumns: Array<any>;
+  public articleColumns: Array<string>;
 
   private articlesClone: INewsArticles[];
   private noOfPages: number;
+  @ViewChild("actions")
+  actionsTemp: TemplateRef<any>;
 
   constructor(private newsApiServie: NewsApiService) { }
 
   // <T, K extends keyof T>(obj: T, key: K)
   private defineGridColumns() {
-    this.articleColumns = [
-      {
-        title: 'Author',
-        key: 'author'
-      },
-      {
-        title: 'Title',
-        key: 'title'
-      },
-      // {
-      //   title: 'Content',
-      //   key: 'content'
-      // },
-      {
-        title: 'Published At',
-        key: 'publishedAt'
-      }
-    ];
+    this.articleColumns = ['Actions', 'Headline', 'Author', 'Published At'];
   }
 
   public onPaginatorChange(page: number): INewsArticles[] {
@@ -54,6 +39,9 @@ export class ArticleListComponent implements OnInit {
     return [...this.articles];
   }
 
+  public onView(gridRow) {
+    console.log(gridRow, "grid row");
+  }
 
   ngOnInit(): void {
     // this.news$ = 

@@ -1,4 +1,12 @@
-<div class="vw-100">
-    <app-grid [gridData]="articles" [gridColumns]="articleColumns" [noOfPages$]="noOfPages$"></app-grid>
-    <app-paginator [noOfPages$]="noOfPages$" (onPaginatorChange)="onPaginatorChange($event)"></app-paginator>
-</div>
+<app-grid [gridData]="articles" [gridColumns]="articleColumns" [noOfPages$]="noOfPages$">
+    <ng-template #view let-gridRowData>
+        <a (click)="onView(gridRowData)">View</a>
+    </ng-template>
+    <ng-template #gridItems let-gridRowData>
+        <td>{{gridRowData.title}}</td>
+        <td>{{gridRowData.author }}</td>
+        <td>{{gridRowData.publishedAt | date: 'medium'}}</td>
+    </ng-template>
+</app-grid>
+
+<app-paginator [noOfPages$]="noOfPages$" (onPaginatorChange)="onPaginatorChange($event)"></app-paginator>
