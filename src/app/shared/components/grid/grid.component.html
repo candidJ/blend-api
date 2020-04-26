@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 <ng-container *ngFor="let column of gridColumns">
-                    <th>{{column}}</th>
+                    <th>{{column.header}}</th>
                 </ng-container>
             </tr>
         </thead>
@@ -11,10 +11,10 @@
         <tbody>
             <ng-container *ngFor="let grid of gridData; let  i = index;">
                 <tr>
-                    <td>
+                    <!-- <td>
                         <ng-container *ngTemplateOutlet="view, context: {$implicit: grid}">
                         </ng-container>
-                    </td>
+                    </td> -->
                     <ng-template [ngTemplateOutlet]="items" [ngTemplateOutletContext]="{$implicit: grid}"></ng-template>
                 </tr>
             </ng-container>

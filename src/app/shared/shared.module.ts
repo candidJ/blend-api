@@ -2,14 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { GridComponent } from './components/grid/grid.component';
+import { IconsModule } from './utils/icons.module';
 
 const SharedComponent = [PaginatorComponent, GridComponent];
 
 @NgModule({
   declarations: [...SharedComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    IconsModule
   ],
-  exports: [...SharedComponent]
+  exports: [...SharedComponent, IconsModule]
 })
 export class SharedModule { }

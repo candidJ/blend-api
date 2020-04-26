@@ -1,11 +1,16 @@
 <app-grid [gridData]="articles" [gridColumns]="articleColumns" [noOfPages$]="noOfPages$">
-    <ng-template #view let-gridRowData>
+    <!-- <ng-template #view let-gridRowData>
         <a (click)="onView(gridRowData)">View</a>
-    </ng-template>
+    </ng-template> -->
     <ng-template #gridItems let-gridRowData>
-        <td>{{gridRowData.title}}</td>
-        <td>{{gridRowData.author }}</td>
-        <td>{{gridRowData.publishedAt | date: 'medium'}}</td>
+        <td>
+            <a class="flex justify-center align-center" (click)="onView(gridRowData)">
+                <i-feather name="eye"></i-feather>
+            </a>
+        </td>
+        <ng-container *ngFor="let item of dataSource">
+            <td>{{gridRowData[item.property]}}</td>
+        </ng-container>
     </ng-template>
 </app-grid>
 

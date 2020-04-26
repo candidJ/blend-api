@@ -11,8 +11,8 @@ export class GridComponent implements OnInit, AfterContentInit {  //TODO: implem
   @Input() gridColumns: Array<any>;
   @Input() noOfPages$: Observable<number[]>;
 
-  @ContentChild("view")
-  view: TemplateRef<any>;
+  // @ContentChild("view")
+  // view: TemplateRef<any>;
   @ContentChild("gridItems")
   items: TemplateRef<any>;
 

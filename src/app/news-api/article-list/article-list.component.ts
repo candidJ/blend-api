@@ -1,5 +1,5 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { INewsArticles } from 'src/app/utils/interface';
+import { Component, OnInit, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
+import { INewsArticles, IGridColumnsDef } from 'src/app/utils/interface';
 import { Observable } from 'rxjs';
 import { NewsApiService } from '../news-api.service';
 import { AppConfig } from 'src/app/utils/config.constant';
@@ -15,7 +15,8 @@ export class ArticleListComponent implements OnInit {
   public news$: Observable<INewsArticles[]>;
   public noOfPages$: Observable<number[]>;
   public articles: INewsArticles[];
-  public articleColumns: Array<string>;
+  public dataSource: IGridColumnsDef[];
+  public articleColumns: Array<IGridColumnsDef>;
 
   private articlesClone: INewsArticles[];
   private noOfPages: number;
@@ -25,8 +26,27 @@ export class ArticleListComponent implements OnInit {
   constructor(private newsApiServie: NewsApiService) { }
 
   // <T, K extends keyof T>(obj: T, key: K)
-  private defineGridColumns() {
-    this.articleColumns = ['Actions', 'Headline', 'Author', 'Published At'];
+  private defineGridColumns(): Array<IGridColumnsDef> {
+    this.articleColumns = [
+      {
+        header: 'Actions',
+        property: 'actions'
+      },
+      {
+        header: 'Headline',
+        property: 'title'
+      },
+      {
+        header: 'Author',
+        property: 'author'
+      },
+      {
+        header: 'Published At',
+        property: 'publishedAt'
+      }
+    ];
+
+    return this.dataSource = this.articleColumns.slice(1);
   }
 
   public onPaginatorChange(page: number): INewsArticles[] {

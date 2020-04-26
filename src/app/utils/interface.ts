@@ -13,3 +13,9 @@ export interface INewsFeed {
     articles: INewsArticles[]
     totalResults: number;
 }
+
+
+export interface IGridColumnsDef {
+    header: string;
+    property: string;
+}
