@@ -1,5 +1,5 @@
 <app-grid [gridData]="articles" [gridColumns]="articleColumns" [noOfPages$]="noOfPages$">
-    <!-- <ng-template #view let-gridRowData>
+    <!-- <ng-template #view let-gridRowData="grid">
         <a (click)="onView(gridRowData)">View</a>
     </ng-template> -->
     <ng-template #gridItems let-gridRowData>

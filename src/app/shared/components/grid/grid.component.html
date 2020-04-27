@@ -11,11 +11,15 @@
         <tbody>
             <ng-container *ngFor="let grid of gridData; let  i = index;">
                 <tr>
+                    <!-- alternative syntax for passing context -->
                     <!-- <td>
-                        <ng-container *ngTemplateOutlet="view, context: {$implicit: grid}">
+                        <ng-container *ngTemplateOutlet="view, context: {grid:grid}">
                         </ng-container>
                     </td> -->
-                    <ng-template [ngTemplateOutlet]="items" [ngTemplateOutletContext]="{$implicit: grid}"></ng-template>
+                    
+                    <!-- <ng-template [ngTemplateOutlet]="items" [ngTemplateOutletContext]="{$implicit: grid}"></ng-template> -->
+                    <!-- alternative syntax -->
+                    <ng-template *ngTemplateOutlet="items, context: {$implicit: grid}"></ng-template>
                 </tr>
             </ng-container>
         </tbody>

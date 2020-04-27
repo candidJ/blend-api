@@ -81,7 +81,7 @@ export class ArticleListComponent implements OnInit {
         this.noOfPages = pages.length;
       });
 
-    // Emit value via subject But firsr subscribe to the observable
+    // Emit value via subject But first subscribe to the observable
     this.newsApiServie.getNewsByPage(1);
     this.defineGridColumns();
   }
