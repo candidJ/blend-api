@@ -8,8 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class GridComponent implements OnInit, AfterContentInit {  //TODO: implement generics
   @Input() gridData;
-  @Input() gridColumns: Array<any>;
-  @Input() noOfPages$: Observable<number[]>;
+  @Input() gridColumns: Array<string>;
 
   // @ContentChild("view")
   // view: TemplateRef<any>;

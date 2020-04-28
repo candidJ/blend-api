@@ -1,0 +1,12 @@
+<div class="card">
+    <div class="card-content" *ngFor="let quote of quotes">
+        <p class="title">
+            {{quote.en}}
+        </p>
+        <p>
+            {{quote.author}}
+        </p>
+    </div>
+</div>
+
+<app-paginator [noOfPages$]="noOfPages$" (onPaginatorChange)="onPaginationChange($event)"></app-paginator>

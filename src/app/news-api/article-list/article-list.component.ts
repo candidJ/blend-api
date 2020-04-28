@@ -49,14 +49,15 @@ export class ArticleListComponent implements OnInit {
     return this.dataSource = this.articleColumns.slice(1);
   }
 
-  public onPaginatorChange(page: number): INewsArticles[] {
-    this.articles = [];
-    const pageSize = AppConfig.NEWS_API_CONFIG.PAGE_SIZE
-    const start = (pageSize * (page - 1));
-    let end = start === 0 ? pageSize : (pageSize * page);
-    this.articles = this.articlesClone.slice(start, end);
-    console.log(this.articles, "on paginator change");
-    return [...this.articles];
+  public onPaginatorChange(page: number) {
+    // this.articles = [];
+    // const pageSize = AppConfig.NEWS_API_CONFIG.PAGE_SIZE
+    // const start = (pageSize * (page - 1));
+    // let end = start === 0 ? pageSize : (pageSize * page);
+    // this.articles = this.articlesClone.slice(start, end);
+    // console.log(this.articles, "on paginator change");
+    // return [...this.articles];
+    return this.newsApiServie.getNewsByPage(page);
   }
 
   public onView(gridRow) {
@@ -68,11 +69,12 @@ export class ArticleListComponent implements OnInit {
     this.newsApiServie.fetchNewsFeed()
       .subscribe((response) => {
         console.log("news api fetched", response);
-        this.articlesClone = LodashUtils.cloneDeep(response);
-        const noOfRecords = response.length;
-        const recordsToShow = Math.ceil(noOfRecords / this.noOfPages);
-        this.articles = response.splice(0, recordsToShow);
-        console.log(this.articles, "show first article chunk");
+        this.articles = LodashUtils.cloneDeep(response);
+        // this.articlesClone = LodashUtils.cloneDeep(response);
+        // const noOfRecords = response.length;
+        // const recordsToShow = Math.ceil(noOfRecords / this.noOfPages);
+        // this.articles = response.splice(0, recordsToShow);
+        // console.log(this.articles, "show first article chunk");
       });
 
     this.noOfPages$ = this.newsApiServie.getNoOfPages();

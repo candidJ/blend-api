@@ -1,10 +1,11 @@
-<app-grid [gridData]="articles" [gridColumns]="articleColumns" [noOfPages$]="noOfPages$">
+<app-grid [gridData]="articles" [gridColumns]="articleColumns">
     <!-- <ng-template #view let-gridRowData="grid">
         <a (click)="onView(gridRowData)">View</a>
     </ng-template> -->
     <ng-template #gridItems let-gridRowData>
         <td>
-            <a class="flex justify-center align-center" (click)="onView(gridRowData)">
+            <a [href]="gridRowData.url" target="_blank" class="flex justify-center align-center"
+                (click)="onView(gridRowData)">
                 <i-feather name="eye"></i-feather>
             </a>
         </td>

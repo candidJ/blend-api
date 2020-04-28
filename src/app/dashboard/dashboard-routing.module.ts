@@ -7,6 +7,10 @@ const routeChild = [{
     component: DashboardComponent,
     children: [
         {
+            path: "",
+            loadChildren: () => import('../quotes/quotes.module').then(m => m.QuotesModule)
+        },
+        {
             path: "weather",
             loadChildren: () => import('../weather/weather.module').then(m => m.WeatherModule)
         },

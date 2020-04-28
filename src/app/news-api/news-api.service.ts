@@ -24,17 +24,17 @@ export class NewsApiService {
         map((pagesToFetch) => {
           return new HttpParams()
             .set('apiKey', this.config.API_KEY)
-            .set('pageSize', this.config.API_KEY)
+            .set('pageSize', String(this.config.PAGE_SIZE))
             .set('country', this.config.COUNTRY)
             .set('page', pagesToFetch.toString())
         }),
         switchMap((params) => {
-          console.log(params)
+          // console.log(params, "news api params")
           return this.httpClient.get<INewsFeed>(this.config.NEWS_API_URL, { params });
         }),
         tap((response) => {
           console.log("the news feed:", response);
-          const totalResults = response.articles.length;
+          const totalResults = response.totalResults;
           const noOfPagesPaginator = Math.ceil(totalResults / this.config.PAGE_SIZE);
           this.noOfPagesInput.next(noOfPagesPaginator);
         }),

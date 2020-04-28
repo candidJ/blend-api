@@ -14,8 +14,21 @@ export interface INewsFeed {
     totalResults: number;
 }
 
-
 export interface IGridColumnsDef {
     header: string;
     property: string;
+}
+
+export interface IProgrammingQuotes {
+    _id: string;
+    en: string;
+    author: string;
+    rating: number;
+    id: string;
+}
+
+export interface ILifeQuotes {
+    id: string;
+    quoteText: string;
+    quoteAuthor: string;
 }
