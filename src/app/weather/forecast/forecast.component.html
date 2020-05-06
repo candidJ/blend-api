@@ -1,6 +1,8 @@
-<div class="w-10 flex flex-column wrap" *ngFor="let forecast of forecast$ | async">
-    <div class="mb1 flex-row flex-auto control">
-        <span class="tag w-40">{{forecast.date | date: 'E'}}</span>
-        <span class="tag w-60 is-primary">{{forecast.temp | number: '1.0-0'}}&#8451;</span>
+<section class="container-fluid">
+    <div class="w-10 flex flex-column wrap" *ngFor="let forecast of forecast$ | async">
+        <div class="mb1 flex-row flex-auto control">
+            <span class="tag w-40">{{forecast.date | date: 'E'}}</span>
+            <span class="tag w-60 is-primary">{{forecast.temp | number: '1.0-0'}}&#8451;</span>
+        </div>
     </div>
-</div>
+</section>

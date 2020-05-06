@@ -1,9 +1,9 @@
 <div class="ma4 table-container">
-    <table class="table is-hovered is-fullwidth is-bordered">
+    <table class="table is-hoverable is-fullwidth is-bordered">
         <thead>
             <tr>
                 <ng-container *ngFor="let column of gridColumns">
-                    <th>{{column.header}}</th>
+                    <th class="is-primary">{{column.header}}</th>
                 </ng-container>
             </tr>
         </thead>

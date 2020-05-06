@@ -58,14 +58,14 @@ export class ProgrammingQuotesService extends API<IProgrammingQuotes> {
   }
 
   protected fetchData = (params: any): Observable<IProgrammingQuotes[]> => {
-    console.log(params);
+    // console.log(params);
     return this.httpClient.get<IProgrammingQuotes[]>(AppConfig.PROGAMMIN_QUOTES.URL + `${params.updates[0].value}`);
   }
 
   protected mapResponse = (data: any): IProgrammingQuotes[] => {
     console.log(data, "programming quotes data");
     const page = Math.ceil(data.length / AppConfig.PROGAMMIN_QUOTES.PAGE_SIZE);
-    console.log(this);
+    // console.log(this);
     this.getByPageNumber(page);
     return data.map((quote: IProgrammingQuotes) => quote);
   }

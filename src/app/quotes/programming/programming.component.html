@@ -1,11 +1,13 @@
-<div class="card">
-    <div class="card-content" *ngFor="let quote of quotes">
-        <p class="title">
-            {{quote.en}}
-        </p>
-        <p>
-            {{quote.author}}
-        </p>
+<div class="flex flex-wrap justify-between">
+    <div class="w-20 pa3" *ngFor="let quote of quotes">
+        <article class="message is-primary">
+            <div class="message-header">
+                <p> {{quote.author}}</p>
+            </div>
+            <div class="message-body">
+                {{quote.en}}
+            </div>
+        </article>
     </div>
 </div>
 
