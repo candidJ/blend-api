@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, InjectionToken } from '@angular/core';
 import { ILifeQuotes, IProgrammingQuotes } from '../utils/interface';
 import { API } from '../shared/utils/api.class';
 import { AppConfig } from '../utils/config.constant';
@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { pluck, map, tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class LifeQuotesService extends API<ILifeQuotes> {
 
@@ -16,14 +16,13 @@ export class LifeQuotesService extends API<ILifeQuotes> {
   }
 
   configureParams(page: number): HttpParams {
-    console.log(page, "page number in params");
+    // console.log(page, "page number in params");
     return new HttpParams()
       .set('page', String(page));
   }
 
   fetchData = (params: any): Observable<ILifeQuotes[]> => {
-    console.log(params);
-    console.log(this, "strange");
+    // console.log(params);
     return this.httpClient.get<ILifeQuotes[]>(AppConfig.LIFE_QUOTES.URL, { params });
   }
 
@@ -39,10 +38,13 @@ export class LifeQuotesService extends API<ILifeQuotes> {
 
 }
 
+export function ProgrammingQuotesFactory(http: HttpClient): ProgrammingQuotesService {
+  return new ProgrammingQuotesService(http);
+}
 
-@Injectable({
-  providedIn: 'root'
-})
+export const QUOTES_SERVICE_TOKEN = new InjectionToken<ProgrammingQuotesService>("QUOTES_SERVICE_TOKEN");
+
+@Injectable()
 export class ProgrammingQuotesService extends API<IProgrammingQuotes> {
 
   constructor(private httpClient: HttpClient) {

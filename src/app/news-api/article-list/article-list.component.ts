@@ -8,7 +8,8 @@ import { LodashUtils } from 'src/app/utils/lodash-utils';
 @Component({
   selector: 'app-article-list',
   templateUrl: './article-list.component.html',
-  styleUrls: ['./article-list.component.scss']
+  styleUrls: ['./article-list.component.scss'],
+  providers: [NewsApiService] // equivalent to [{provide: NewsApiService, useClass: NewsApiService}]
 })
 export class ArticleListComponent implements OnInit {
 

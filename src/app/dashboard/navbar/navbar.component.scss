@@ -1,4 +1,5 @@
 :host {
+
     a.navbar-item:focus,
     a.navbar-item:focus-within,
     a.navbar-item:hover,
@@ -8,5 +9,19 @@
     .navbar-link:hover,
     .navbar-link.is-active {
         background-color: transparent !important;
+    }
+
+    .navbar-item img {
+        max-height: unset !important;
+    }
+
+    .navbar-item,
+    .navbar-link {
+        padding: 0.25rem 0.5rem !important;
+    }
+
+    .navbar__img {
+        height: auto;
+        width: 6rem;
     }
 }

@@ -5,9 +5,7 @@ import { AppConfig } from '../utils/config.constant';
 import { map, switchMap, tap, share, pluck, scan } from 'rxjs/operators';
 import { INewsFeed, INewsArticles } from '../utils/interface';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class NewsApiService {
 
   private newsInput = new Subject<number>();

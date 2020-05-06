@@ -1,13 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { QuotesComponent, QuotesBase } from '../quotes.component';
-import { ProgrammingQuotesService } from '../quotes.service';
+import { Component, OnInit, InjectionToken, Inject } from '@angular/core';
+
+import { ProgrammingQuotesService, QUOTES_SERVICE_TOKEN, ProgrammingQuotesFactory } from '../quotes.service';
 import { IProgrammingQuotes, ILifeQuotes } from 'src/app/utils/interface';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-programming',
   templateUrl: './programming.component.html',
-  styleUrls: ['./programming.component.scss']
+  styleUrls: ['./programming.component.scss'],
+  providers: [{
+    provide: QUOTES_SERVICE_TOKEN,
+    useFactory: ProgrammingQuotesFactory,
+    deps: [HttpClient]
+  }]
 })
 export class ProgrammingComponent implements OnInit {
 
@@ -15,7 +21,7 @@ export class ProgrammingComponent implements OnInit {
   public quotes: IProgrammingQuotes[];
   public noOfPages$: Observable<number[]>;
 
-  constructor(private programmingQuotesService: ProgrammingQuotesService) { }
+  constructor(@Inject(QUOTES_SERVICE_TOKEN) private programmingQuotesService: ProgrammingQuotesService) { }
 
   public onPaginationChange(page: number) {
     this.programmingQuotesService.fetchByPageNumber(page);

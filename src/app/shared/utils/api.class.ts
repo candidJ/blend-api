@@ -1,5 +1,4 @@
 import { Observable, Subject } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, switchMap, share } from 'rxjs/operators';
 
 export interface IAPIModel<T> {
