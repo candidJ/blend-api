@@ -1,9 +1,8 @@
 import { Component, OnInit, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
-import { INewsArticles, IGridColumnsDef } from 'src/app/utils/interface';
 import { Observable } from 'rxjs';
 import { NewsApiService } from '../news-api.service';
-import { AppConfig } from 'src/app/utils/config.constant';
-import { LodashUtils } from 'src/app/utils/lodash-utils';
+import { INewsArticles, IGridColumnsDef } from '../../shared/interface/interface';
+import { LodashUtils } from '../../shared/helpers/lodash';
 
 @Component({
   selector: 'app-article-list',
@@ -58,7 +57,7 @@ export class ArticleListComponent implements OnInit {
     // this.articles = this.articlesClone.slice(start, end);
     // console.log(this.articles, "on paginator change");
     // return [...this.articles];
-    return this.newsApiServie.getNewsByPage(page);
+    return this.newsApiServie.fetchByPageNumber(page);
   }
 
   public onView(gridRow) {
@@ -67,7 +66,7 @@ export class ArticleListComponent implements OnInit {
 
   ngOnInit(): void {
     // this.news$ = 
-    this.newsApiServie.fetchNewsFeed()
+    this.newsApiServie.fetch()
       .subscribe((response) => {
         console.log("news api fetched", response);
         this.articles = LodashUtils.cloneDeep(response);
@@ -85,7 +84,7 @@ export class ArticleListComponent implements OnInit {
       });
 
     // Emit value via subject But first subscribe to the observable
-    this.newsApiServie.getNewsByPage(1);
+    this.newsApiServie.fetchByPageNumber(1);
     this.defineGridColumns();
   }
 

@@ -1,9 +1,9 @@
 import { Component, OnInit, InjectionToken, Inject } from '@angular/core';
 
 import { ProgrammingQuotesService, QUOTES_SERVICE_TOKEN, ProgrammingQuotesFactory } from '../quotes.service';
-import { IProgrammingQuotes, ILifeQuotes } from 'src/app/utils/interface';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { IProgrammingQuotes } from '../../shared/interface/interface';
 
 @Component({
   selector: 'app-programming',

@@ -10,7 +10,7 @@ export interface INewsArticles {
 }
 
 export interface INewsFeed {
-    articles: INewsArticles[]
+    articles: INewsArticles[];
     totalResults: number;
 }
 

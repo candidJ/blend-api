@@ -1,5 +1,6 @@
 import { Observable, Subject } from 'rxjs';
-import { map, switchMap, share } from 'rxjs/operators';
+import { map, switchMap, share, pluck, tap } from 'rxjs/operators';
+import { HttpParams } from '@angular/common/http';
 
 export interface IAPIModel<T> {
     fetch(key: string): Observable<T[]>;
@@ -14,9 +15,9 @@ export abstract class API<T> implements IAPIModel<T>{
     private noOfPagesSubject: Subject<number> = new Subject<number>();
     private noOfPages$: Observable<number> = this.noOfPagesSubject.asObservable();;
 
-    protected abstract mapResponse(data: any): T[];
-    protected abstract configureParams(data: any): any;
-    protected abstract fetchData(params: any): Observable<T[]>;
+    protected abstract mapResponse(data: T | T[]): any[];
+    protected abstract configureParams(page: number): HttpParams;
+    protected abstract fetchData(params: HttpParams): Observable<T[]> | Observable<T>;
 
     fetchByPageNumber(page: number): void {
         this.apiSubject.next(page);
@@ -25,17 +26,16 @@ export abstract class API<T> implements IAPIModel<T>{
     fetch(): Observable<T[]> {
         return this.api$
             .pipe(
-                map((page) => this.configureParams(page)),
-                switchMap(this.fetchData),
+                map((page: number) => this.configureParams(page)),
+                switchMap((params: HttpParams) => this.fetchData(params)),
                 map(this.mapResponse),
                 share()
             )
     }
 
-    getByPageNumber(page: number){
+    getByPageNumber(page: number) {
         return this.noOfPagesSubject.next(page);
     }
-
 
     getNoOfPages(): Observable<number[]> {
         return this.noOfPages$

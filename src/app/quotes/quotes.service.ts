@@ -1,10 +1,9 @@
 import { Injectable, InjectionToken } from '@angular/core';
-import { ILifeQuotes, IProgrammingQuotes } from '../utils/interface';
-import { API } from '../shared/utils/api.class';
-import { AppConfig } from '../utils/config.constant';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { pluck, map, tap } from 'rxjs/operators';
+import { ILifeQuotes, IProgrammingQuotes } from '../shared/interface/interface';
+import { AppConfig } from '../shared/constant/config';
+import { API } from '../shared/class/api';
 
 @Injectable({
   providedIn: "root"
@@ -62,10 +61,9 @@ export class ProgrammingQuotesService extends API<IProgrammingQuotes> {
     return this.httpClient.get<IProgrammingQuotes[]>(AppConfig.PROGAMMIN_QUOTES.URL + `${params.updates[0].value}`);
   }
 
-  protected mapResponse = (data: any): IProgrammingQuotes[] => {
+  protected mapResponse = (data: IProgrammingQuotes[]): IProgrammingQuotes[] => {
     console.log(data, "programming quotes data");
     const page = Math.ceil(data.length / AppConfig.PROGAMMIN_QUOTES.PAGE_SIZE);
-    // console.log(this);
     this.getByPageNumber(page);
     return data.map((quote: IProgrammingQuotes) => quote);
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AppConfig } from 'src/app/utils/config.constant';
 import { SafeStyle } from '@angular/platform-browser';
+import { AppConfig } from 'src/app/shared/constant/config';
 
 @Component({
   selector: 'app-navbar',

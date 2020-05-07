@@ -3,7 +3,8 @@ import { Observable, of, throwError } from 'rxjs';
 import { map, switchMap, pluck, mergeMap, filter, toArray, share, tap, catchError, retry } from 'rxjs/operators';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { NotificationService } from '../notifications/notification.service';
-import { AppConfig } from '../utils/config.constant';
+import { AppConfig } from '../shared/constant/config';
+
 
 export interface IOpenWeatherResponse {
   list: {
