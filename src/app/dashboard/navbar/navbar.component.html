@@ -16,7 +16,7 @@
         <div class="navbar-start">
             <ng-container *ngFor="let item of navbarItems.navbarMenu">
                 <ng-container *ngIf="!item.hasSubMenu; else hasMenuItems">
-                    <a class="navbar-item" [routerLink]="item.routerLink" routerLinkActive="active">
+                    <a class="navbar-item" [routerLink]="item.routerLink" routerLinkActive="is-active">
                         <i-feather [name]="item.icon"></i-feather>
                         <span class="ml2">{{item.title}}</span>
                     </a>
@@ -31,7 +31,7 @@
                         <div class="navbar-dropdown">
                             <ng-container *ngFor="let sub of item.subMenu">
                                 <a class="navbar-item" [routerLink]="[item.routerLink, sub.routerLink]"
-                                    routerLinkActive="active">
+                                    routerLinkActive="is-active">
                                     <i-feather [name]="sub.icon"></i-feather>
                                     <span class="ml2">{{sub.title}}</span>
                                 </a>

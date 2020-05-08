@@ -19,6 +19,10 @@ import { LifeComponent } from './life/life.component';
         {
           path: "programming",
           component: ProgrammingComponent
+        },
+        {
+          path: "life",
+          component: LifeComponent
         }
       ]
     }]),
