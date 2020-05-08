@@ -14,18 +14,18 @@ export class LifeQuotesService extends API<ILifeQuotes> {
     super();
   }
 
-  configureParams(page: number): HttpParams {
+  protected configureParams(page: number): HttpParams {
     // console.log(page, "page number in params");
     return new HttpParams()
       .set('page', String(page));
   }
 
-  fetchData = (params: any): Observable<ILifeQuotes[]> => {
+  protected fetchData = (params: any): Observable<ILifeQuotes[]> => {
     // console.log(params);
     return this.httpClient.get<ILifeQuotes[]>(AppConfig.LIFE_QUOTES.URL, { params });
   }
 
-  mapResponse(data: any): ILifeQuotes[] {
+  protected mapResponse(data: any): ILifeQuotes[] {
     console.log(data, "life quote mapped data");
     // pluck('quotes'),
     return data.quotes.map((quote: ILifeQuotes) => {

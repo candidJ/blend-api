@@ -1,8 +1,11 @@
 <div class="flex flex-wrap justify-between">
-    <div class="w-20 pa3" *ngFor="let quote of quotes">
-        <article class="message is-primary">
-            <div class="message-header">
+    <div class="w-25 pa3" *ngFor="let quote of quotes">
+        <article class="message is-primary h-100">
+            <div class="message-header flex justify-between">
                 <p> {{quote.author}}</p>
+                <a (click)="tweet(quote);">
+                    <i-feather name="twitter"></i-feather>
+                </a>
             </div>
             <div class="message-body">
                 {{quote.en}}

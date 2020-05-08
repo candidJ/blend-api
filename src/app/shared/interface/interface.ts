@@ -1,3 +1,5 @@
+import { SafeStyle } from '@angular/platform-browser';
+
 export interface INewsArticles {
     author: string;
     content: string;
@@ -20,7 +22,6 @@ export interface IGridColumnsDef {
 }
 
 export interface IProgrammingQuotes {
-    _id: string;
     en: string;
     author: string;
     rating: number;
@@ -31,4 +32,24 @@ export interface ILifeQuotes {
     id: string;
     quoteText: string;
     quoteAuthor: string;
+}
+
+export interface INavbarMenu {
+    icon: string;
+    title: string;
+    hasSubMenu: boolean;
+    routerLink: string;
+    subMenu?: INavbarMenu[];
+}
+
+export interface INavbar {
+    logo: SafeStyle;
+    routerLink: string;
+    navbarMenu: INavbarMenu[];
+}
+
+export interface ISubMenu {
+    icon: string;
+    title: string;
+    subMenuItems: INavbarMenu[];
 }

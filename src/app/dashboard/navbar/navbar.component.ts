@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SafeStyle } from '@angular/platform-browser';
 import { AppConfig } from 'src/app/shared/constant/config';
+import { INavbarMenu, INavbar } from 'src/app/shared/interface/interface';
 
 @Component({
   selector: 'app-navbar',
@@ -9,12 +10,14 @@ import { AppConfig } from 'src/app/shared/constant/config';
 })
 export class NavbarComponent implements OnInit {
 
-  public logo: SafeStyle;
+  // public logo: SafeStyle;
+
+  @Input('navbarItems') navbarItems: INavbar;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.logo = AppConfig.IMAGES.LOGO;
+    // this.logo = AppConfig.IMAGES.LOGO;
   }
 
 }

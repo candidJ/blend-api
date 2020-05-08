@@ -7,7 +7,10 @@ const routeChild = [{
     component: DashboardComponent,
     children: [
         {
-            path: "",
+            path: '', redirectTo: 'news', pathMatch: 'full'
+        },
+        {
+            path: "quotes",
             loadChildren: () => import('../quotes/quotes.module').then(m => m.QuotesModule)
         },
         {

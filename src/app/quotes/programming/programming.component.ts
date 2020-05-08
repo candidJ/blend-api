@@ -27,6 +27,10 @@ export class ProgrammingComponent implements OnInit {
     this.programmingQuotesService.fetchByPageNumber(page);
   }
 
+  tweet(quote: IProgrammingQuotes) {
+    return window.open("https://www.twitter.com/intent/tweet?hashtags=Quotes&text=" + "\"" + quote.en + "\" ~ " + quote.author);
+  }
+
   private fetchQuotes() {
     // return this.quotes$ =
     this.programmingQuotesService.fetch()

@@ -1,7 +1,7 @@
-<nav class="flex wrap bt-ns bb-ns b--blue" role="navigation" aria-label="main navigation">
+<nav class="flex flex-wrap bt-ns bb-ns b--blue navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" routerLink="/dashboard">
-            <img [src]="logo" class="navbar__img">
+        <a class="navbar-item" [routerLink]="navbarItems.routerLink">
+            <img [src]="navbarItems.logo" class="navbar__img">
         </a>
 
         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
@@ -14,13 +14,33 @@
 
     <div id="appNavBarMenu" class="navbar-menu">
         <div class="navbar-start">
-            <a class="navbar-item" routerLink="/news">
-                News
-            </a>
+            <ng-container *ngFor="let item of navbarItems.navbarMenu">
+                <ng-container *ngIf="!item.hasSubMenu; else hasMenuItems">
+                    <a class="navbar-item" [routerLink]="item.routerLink" routerLinkActive="active">
+                        <i-feather [name]="item.icon"></i-feather>
+                        <span class="ml2">{{item.title}}</span>
+                    </a>
+                </ng-container>
+                <ng-template #hasMenuItems>
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            <i-feather [name]="item.icon"></i-feather>
+                            <span class="ml2">{{item.title}}</span>
+                        </a>
 
-            <a class="navbar-item" routerLink="/weather">
-                Weather
-            </a>
+                        <div class="navbar-dropdown">
+                            <ng-container *ngFor="let sub of item.subMenu">
+                                <a class="navbar-item" [routerLink]="[item.routerLink, sub.routerLink]"
+                                    routerLinkActive="active">
+                                    <i-feather [name]="sub.icon"></i-feather>
+                                    <span class="ml2">{{sub.title}}</span>
+                                </a>
+                                <hr class="navbar-divider">
+                            </ng-container>
+                        </div>
+                    </div>
+                </ng-template>
+            </ng-container>
         </div>
 
     </div>

@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
- 
+
 import { FeatherModule } from 'angular-feather';
-import { Camera, Heart, Github, Eye } from 'angular-feather/icons';
- 
+import {
+  Camera, Heart, Github, Eye, Twitter, Bell, ExternalLink, Linkedin, XCircle, Calendar, BookOpen, Search, Facebook, Instagram, Book, Star, Code, Info, List, Loader, Grid, Clipboard,
+  Cloud, CloudLightning, CloudRain, CloudSnow, CloudOff
+} from 'angular-feather/icons';
+
 // Select some icons (use an object, not an array)
 const icons = {
-  Camera,
-  Heart,
-  Github,
-  Eye 
+  Camera, Heart, Github, Eye, Twitter, Bell, ExternalLink, Linkedin, XCircle, Calendar, BookOpen, Search, Facebook, Instagram, Book, Star, Code, Info, List, Loader, Grid, Clipboard,
+  Cloud, CloudLightning, CloudRain, CloudSnow, CloudOff
 };
- 
+
 @NgModule({
   imports: [
     FeatherModule.pick(icons)
