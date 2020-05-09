@@ -9,7 +9,7 @@
         </thead>
 
         <tbody>
-            <ng-container *ngFor="let grid of gridData; let  i = index;">
+            <ng-container *ngFor="let grid of (gridData$| async); let  i = index;">
                 <tr>
                     <!-- alternative syntax for passing context -->
                     <!-- <td>

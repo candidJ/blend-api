@@ -1,13 +1,15 @@
-import { Component, OnInit, Input, TemplateRef, ContentChild, AfterContentInit, ContentChildren, QueryList } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef, ContentChild, AfterContentInit,
+  Attribute, ContentChildren, QueryList, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
-  styleUrls: ['./grid.component.scss']
+  styleUrls: ['./grid.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GridComponent implements OnInit, AfterContentInit {  //TODO: implement generics
-  @Input() gridData;
+  @Input("gridData") gridData$: Observable<any[]>;
   @Input() gridColumns: Array<string>;
 
   // @ContentChild("view")
@@ -15,14 +17,15 @@ export class GridComponent implements OnInit, AfterContentInit {  //TODO: implem
   @ContentChild("gridItems")
   items: TemplateRef<any>;
 
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit(): void {
-    console.log(this.gridData, "this.grid data");
+    // console.log(this.gridData, "this.grid data");
   }
 
   ngAfterContentInit(): void {
-    console.log("view", this.items);
+    // console.log("view", this.items);
   }
 
 }
