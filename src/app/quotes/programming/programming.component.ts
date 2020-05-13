@@ -5,49 +5,50 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { IProgrammingQuotes } from '../../shared/interface/interface';
 import { MessageBoxComponent } from 'src/app/shared/components/message-box/message-box.component';
-import { AppConfig } from 'src/app/shared/constant/config';
+import { Quote } from 'src/app/shared/class/quote';
 
 @Component({
-  selector: 'app-programming',
-  templateUrl: './programming.component.html',
-  styleUrls: ['./programming.component.scss'],
-  providers: [{
-    provide: QUOTES_SERVICE_TOKEN,
-    useFactory: ProgrammingQuotesFactory,
-    deps: [HttpClient]
-  }]
+    selector: 'app-programming',
+    templateUrl: './programming.component.html',
+    styleUrls: ['./programming.component.scss'],
+    providers: [{
+        provide: QUOTES_SERVICE_TOKEN,
+        useFactory: ProgrammingQuotesFactory,
+        deps: [HttpClient]
+    }]
 })
-export class ProgrammingComponent implements OnInit {
+export class ProgrammingComponent extends Quote<IProgrammingQuotes> implements OnInit {
 
-  public quotes$: Observable<IProgrammingQuotes[]>;
-  public quotes: IProgrammingQuotes[];
-  public noOfPages$: Observable<number[]>;
-  @ViewChild('messageBox') messageBox: MessageBoxComponent<IProgrammingQuotes>;
+    public quotes$: Observable<IProgrammingQuotes[]>;
+    public quotes: IProgrammingQuotes[];
+    public noOfPages$: Observable<number[]>;
+    protected programmingQuotesService: ProgrammingQuotesService;
 
-  constructor(@Inject(QUOTES_SERVICE_TOKEN) private programmingQuotesService: ProgrammingQuotesService) { }
+    @ViewChild('messageBox') messageBox: MessageBoxComponent<IProgrammingQuotes>;
 
-  public onPaginationChange(page: number) {
-    this.programmingQuotesService.fetchByPageNumber(page);
-  }
+    constructor(@Inject(QUOTES_SERVICE_TOKEN) programmingQuotesService: ProgrammingQuotesService) {
+        super(programmingQuotesService)
+    }
 
-  tweet(quote: IProgrammingQuotes) {
-    return window.open(`${AppConfig.TWITTER.URL}=${AppConfig.TWITTER.HASHTAGS}&text=${quote.en}~${quote.author}`);
-  }
+    public onPaginationChange(page: number) {
+        this.onPaginationChange(page);
+    }
 
-  private fetchQuotes() {
-    // return this.quotes$ =
-    this.programmingQuotesService.fetch()
-      .subscribe((response: IProgrammingQuotes[]) => {
-        // console.log(response, "fetch programming quotes");
-        this.quotes = response;
-      });
-  }
+    public onClick(obj: IProgrammingQuotes) {
+        this.tweet(obj);
+    }
 
-  ngOnInit(): void {
-    this.fetchQuotes();
-    this.noOfPages$ = this.programmingQuotesService.getNoOfPages();
-    // console.log("programming quotes", this.quotes$, this.noOfPages$);
-    this.programmingQuotesService.fetchByPageNumber(1);
-  }
+    ngOnInit(): void {
+        // TODO: passing observable as Inputs
+
+        // this.quotes$ = this.fetchQuotes();
+        this.fetchQuotes().subscribe(quotes => {
+            console.log(quotes);
+            this.quotes = quotes;
+        })
+        this.noOfPages$ = this.getNoOfPages();
+        this.fetchQuotesByPageNumber(1);
+    }
 
 }
+

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-message-box',
@@ -17,7 +18,6 @@ export class MessageBoxComponent<T> implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log(this.data, "data in message box component");
   }
 
 }

@@ -15,26 +15,3 @@ export class QuotesComponent implements OnInit {
   }
 
 }
-
-export class QuotesBase {
-  protected quotesApiService: LifeQuotesService | ProgrammingQuotesService;
-  constructor(quotesApiService: LifeQuotesService | ProgrammingQuotesService) {
-    this.quotesApiService = quotesApiService;
-  }
-
-  protected fetchQuotesByPageNumber(page: number) {
-    return this.quotesApiService.fetchByPageNumber(page);
-  }
-
-  protected fetchQuotes() {
-    return this.quotesApiService.fetch();
-    // .subscribe((response) => {
-    //   console.log(response, "fetch life quotes");
-    // });
-  }
-
-  protected getNoOfPages() {
-    return this.quotesApiService.getNoOfPages();
-  }
-
-}
