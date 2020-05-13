@@ -1,0 +1,16 @@
+<section class="is-flex is-multiline columns">
+    <div class="column is-full-mobile is-one-third-tablet is-one-quarter-desktop is-one-fifth-widescreen"
+        *ngFor="let obj of data">
+        <article class="message is-primary h-100">
+            <div class="message-header flex justify-between">
+                <p class="is-family-monospace"> {{obj.author}}</p>
+                <a (click)="tweet(obj);">
+                    <i-feather name="twitter"></i-feather>
+                </a>
+            </div>
+            <div class="message-body">
+                {{obj.en}}
+            </div>
+        </article>
+    </div>
+</section>

@@ -1,18 +1,3 @@
-<section class="flex flex-wrap justify-between columns is-mobile">
-    <div class="column is-narrow-mobile is-full-mobile is-one-third-tablet is-one-quarter-desktop is-one-fifth-widescreen"
-        *ngFor="let quote of quotes">
-        <article class="message is-primary h-100">
-            <div class="message-header flex justify-between">
-                <p class="is-family-monospace"> {{quote.author}}</p>
-                <a (click)="tweet(quote);">
-                    <i-feather name="twitter"></i-feather>
-                </a>
-            </div>
-            <div class="message-body">
-                {{quote.en}}
-            </div>
-        </article>
-    </div>
-</section>
+<app-message-box [data]="quotes" (onClick)="tweet($event)" #messageBox></app-message-box>
 
 <app-paginator [noOfPages$]="noOfPages$" (onPaginatorChange)="onPaginationChange($event)"></app-paginator>

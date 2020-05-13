@@ -2,7 +2,7 @@
     <nav class="pagination" role="navigation" aria-label="pagination">
         <ul class="pagination-list">
             <li *ngFor="let page of noOfPages$| async">
-                <a class="pagination-link" [ngClass]="{'is-current': (page === activePage)}"
+                <a class="pagination-link br-100" [ngClass]="{'is-current': (page === activePage)}"
                     (click)="onPageNumber(page)" aria-current="page">{{page}}</a>
             </li>
         </ul>

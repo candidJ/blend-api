@@ -21,6 +21,10 @@ export const AppConfig = {
     PROGAMMIN_QUOTES: {
         URL: "https://programming-quotes-api.herokuapp.com/quotes/page/",
         PAGE_SIZE: 5
+    },
+    TWITTER: {
+        URL: "https://www.twitter.com/intent/tweet?hashtags",
+        HASHTAGS: 'programmingquotes, quotes'
     }
 
 };
