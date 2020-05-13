@@ -1,8 +1,7 @@
-<div class="vh-100">
-    <app-navbar [navbarItems]="navbarItems"></app-navbar>
-    <router-outlet></router-outlet>
-    <div>
-        <app-notifications></app-notifications>
-    </div>
+<app-navbar [navbarItems]="navbarItems"></app-navbar>
 
+<div class="ma3">
+    <router-outlet></router-outlet>
 </div>
+
+<app-notifications></app-notifications>

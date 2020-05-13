@@ -1,4 +1,4 @@
-<div class="ma4 table-container">
+<div class="table-container">
     <table class="table is-hoverable is-fullwidth is-bordered">
         <thead>
             <tr>
@@ -9,17 +9,19 @@
         </thead>
 
         <tbody>
-            <ng-container *ngFor="let grid of (gridData$| async); let  i = index;">
-                <tr>
-                    <!-- alternative syntax for passing context -->
-                    <!-- <td>
+            <ng-container *ngIf="(gridData$| async) as grids">
+                <ng-container *ngFor="let grid of grids; let  i = index;">
+                    <tr>
+                        <!-- alternative syntax for passing context -->
+                        <!-- <td>
                         <ng-container *ngTemplateOutlet="view, context: {grid:grid}">
                         </ng-container>
                     </td> -->
-                    <!-- <ng-template [ngTemplateOutlet]="items" [ngTemplateOutletContext]="{$implicit: grid}"></ng-template> -->
-                    <!-- alternative syntax -->
-                    <ng-template *ngTemplateOutlet="items, context: {$implicit: grid}"></ng-template>
-                </tr>
+                        <!-- <ng-template [ngTemplateOutlet]="items" [ngTemplateOutletContext]="{$implicit: grid}"></ng-template> -->
+                        <!-- alternative syntax -->
+                        <ng-template *ngTemplateOutlet="items, context: {$implicit: grid}"></ng-template>
+                    </tr>
+                </ng-container>
             </ng-container>
         </tbody>
 
