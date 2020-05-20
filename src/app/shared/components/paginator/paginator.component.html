@@ -1,8 +1,10 @@
-<div class="ma4">
-    <nav class="pagination" role="navigation" aria-label="pagination">
+<div class="mt4 mb4">
+    <nav class="pagination is-rounded is-small" role="navigation" aria-label="pagination">
+        <!-- <a class="pagination-previous">Previous</a>
+    <a class="pagination-next">Next page</a> -->
         <ul class="pagination-list">
             <li *ngFor="let page of noOfPages$| async">
-                <a class="pagination-link br-100" [ngClass]="{'is-current': (page === activePage)}"
+                <a class="pagination-link" [ngClass]="{'is-current': (page === activePage)}" aria-label="activePage"
                     (click)="onPageNumber(page)" aria-current="page">{{page}}</a>
             </li>
         </ul>
