@@ -22,6 +22,8 @@ export class ProgrammingComponent extends Quote<IProgrammingQuotes> implements O
     public quotes$: Observable<IProgrammingQuotes[]>;
     public quotes: IProgrammingQuotes[];
     public noOfPages$: Observable<number[]>;
+    public props = { first: 'author', second: 'en' };
+
     protected programmingQuotesService: ProgrammingQuotesService;
 
     @ViewChild('messageBox') messageBox: MessageBoxComponent<IProgrammingQuotes>;
@@ -31,7 +33,7 @@ export class ProgrammingComponent extends Quote<IProgrammingQuotes> implements O
     }
 
     public onPaginationChange(page: number) {
-        this.onPaginationChange(page);
+        this.fetchQuotesByPageNumber(page);
     }
 
     public onClick(obj: IProgrammingQuotes) {

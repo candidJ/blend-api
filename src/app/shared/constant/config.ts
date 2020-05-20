@@ -16,11 +16,12 @@ export const AppConfig = {
     },
     LIFE_QUOTES: {
         URL: "https://quote-garden.herokuapp.com/api/v2/quotes/all",
-        PAGE_SIZE: 5
+        LIMIT: 12
     },
     PROGAMMIN_QUOTES: {
         URL: "https://programming-quotes-api.herokuapp.com/quotes/page/",
-        PAGE_SIZE: 5
+        PAGE_SIZE: 20,
+        TOTAL_PAGES: 501
     },
     TWITTER: {
         URL: "https://www.twitter.com/intent/tweet?hashtags",

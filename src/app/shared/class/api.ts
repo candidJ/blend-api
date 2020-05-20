@@ -13,7 +13,7 @@ export abstract class API<T> implements IAPIModel<T>{
     private apiSubject: Subject<number> = new Subject<number>();
     private api$: Observable<number> = this.apiSubject.asObservable();
     private noOfPagesSubject: Subject<number> = new Subject<number>();
-    private noOfPages$: Observable<number> = this.noOfPagesSubject.asObservable();;
+    private noOfPages$: Observable<number> = this.noOfPagesSubject.asObservable();
 
     protected abstract mapResponse(data: T | T[]): any[];
     protected abstract configureParams(page: number): HttpParams;

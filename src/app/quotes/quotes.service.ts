@@ -5,9 +5,7 @@ import { ILifeQuotes, IProgrammingQuotes } from '../shared/interface/interface';
 import { AppConfig } from '../shared/constant/config';
 import { API } from '../shared/class/api';
 
-@Injectable({
-  providedIn: "root"
-})
+@Injectable()
 export class LifeQuotesService extends API<ILifeQuotes> {
 
   constructor(private httpClient: HttpClient) {
@@ -17,7 +15,8 @@ export class LifeQuotesService extends API<ILifeQuotes> {
   protected configureParams(page: number): HttpParams {
     // console.log(page, "page number in params");
     return new HttpParams()
-      .set('page', String(page));
+      .set('page', String(page))
+      .set('limit', String(AppConfig.LIFE_QUOTES.LIMIT))
   }
 
   protected fetchData = (params: any): Observable<ILifeQuotes[]> => {
@@ -25,14 +24,18 @@ export class LifeQuotesService extends API<ILifeQuotes> {
     return this.httpClient.get<ILifeQuotes[]>(AppConfig.LIFE_QUOTES.URL, { params });
   }
 
-  protected mapResponse(data: any): ILifeQuotes[] {
+  protected mapResponse = (data: any): ILifeQuotes[] => {
     console.log(data, "life quote mapped data");
     // pluck('quotes'),
+    const noOfPaginationLinks = Math.ceil(data.totalPages / AppConfig.LIFE_QUOTES.LIMIT);
+    console.log(noOfPaginationLinks);
+    this.getByPageNumber(noOfPaginationLinks);
+    return data.quotes;
     return data.quotes.map((quote: ILifeQuotes) => {
       if (quote.quoteAuthor) {
         return quote;
       }
-    })
+    });
   }
 
 }
@@ -63,7 +66,9 @@ export class ProgrammingQuotesService extends API<IProgrammingQuotes> {
 
   protected mapResponse = (data: IProgrammingQuotes[]): IProgrammingQuotes[] => {
     console.log(data, "programming quotes data");
-    const page = Math.ceil(data.length / AppConfig.PROGAMMIN_QUOTES.PAGE_SIZE);
+    // As api doesn't return the totalQuotes, hard coded to actual quotes in api by calculation = 25 pages *20 quotes + 1 page *1 quote;
+    //  TOTAL PAGE SIZE IS 501;
+    const page = Math.ceil(AppConfig.PROGAMMIN_QUOTES.TOTAL_PAGES / AppConfig.PROGAMMIN_QUOTES.PAGE_SIZE);
     this.getByPageNumber(page);
     return data.map((quote: IProgrammingQuotes) => quote);
   }

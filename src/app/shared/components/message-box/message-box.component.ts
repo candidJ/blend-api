@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class MessageBoxComponent<T> implements OnInit {
   @Input('data') data: T[];
+  @Input('props') props;
   @Output('onClick') onClick = new EventEmitter();
 
   constructor() { }
