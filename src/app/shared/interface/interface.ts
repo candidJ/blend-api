@@ -19,6 +19,7 @@ export interface INewsFeed {
 export interface IGridColumnsDef {
     header: string;
     property: string;
+    type: 'text' | 'date' | 'template';
 }
 
 export interface IProgrammingQuotes {

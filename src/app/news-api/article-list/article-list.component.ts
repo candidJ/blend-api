@@ -31,19 +31,23 @@ export class ArticleListComponent implements OnInit {
     this.articleColumns = [
       {
         header: 'Actions',
-        property: 'actions'
+        property: 'actions',
+        type: 'template'
       },
       {
         header: 'Headline',
-        property: 'title'
+        property: 'title',
+        type: 'text'
       },
       {
         header: 'Author',
-        property: 'author'
+        property: 'author',
+        type: 'text'
       },
       {
         header: 'Published At',
-        property: 'publishedAt'
+        property: 'publishedAt',
+        type: 'date'
       }
     ];
 

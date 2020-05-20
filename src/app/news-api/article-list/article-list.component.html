@@ -10,7 +10,16 @@
             </a>
         </td>
         <ng-container *ngFor="let item of dataSource">
-            <td>{{gridRowData[item.property]}}</td>
+            <ng-container *ngIf="item.type !== 'date'; else dateTimeTemplate">
+                <td>{{gridRowData[item.property]}}</td>
+            </ng-container>
+            <ng-template #dateTimeTemplate>
+                <td>
+                    <time datetime="gridRowData[item.property]"></time>
+                    {{gridRowData[item.property] | date: 'medium'}}
+                </td>
+            </ng-template>
+
         </ng-container>
     </ng-template>
 </app-grid>
