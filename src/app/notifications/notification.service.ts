@@ -15,16 +15,16 @@ export type IClearNotification = Omit<INotification, 'type'>;
 })
 export class NotificationService {
 
-  private notif = new Subject<INotification>();
-  // public notif$: Observable<INotification> = this.notif.asObservable();
-  public notif$: Observable<INotification> = this.notif.asObservable();
+  private notificationPublisher = new Subject<INotification>();
+  // public notif$: Observable<INotification> = this.notificationPublisher.asObservable();
+  public notif$: Observable<INotification> = this.notificationPublisher.asObservable();
 
   constructor() {
   }
 
-  addMessageToQueue(message: string, type: 'success' | 'error') {
+  addMessageToQueue(message: string, type: 'success' | 'error'): void {
     const id = this.generateRandomId();
-    this.notif.next({
+    this.notificationPublisher.next({
       text: message,
       type: type,
       id
@@ -40,21 +40,21 @@ export class NotificationService {
     this.addMessageToQueue(message, 'success');
   }
 
-  showErrorMessage(message: string) {
+  showErrorMessage(message: string): void {
     this.addMessageToQueue(message, 'error');
   }
 
-  clearNotification(notif: INotification) {
-    this.notif.next({
-      text: notif.text,
-      id: notif.id
+  clearNotification(notification: INotification): void {
+    this.notificationPublisher.next({
+      text: notification.text,
+      id: notification.id
     })
   }
 
-  retrieveMessageFromQueque() {
+  retrieveMessageFromQueque(): Observable<INotification[]> {
     return this.notif$
       .pipe(
-        scan((messages, message) => {
+        scan((messages: any[], message: INotification) => {
           console.log("message", message);
           if (message.type === 'success' || message.type === 'error') {
             return [...messages, message];

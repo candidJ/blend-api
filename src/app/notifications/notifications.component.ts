@@ -16,7 +16,7 @@ export class NotificationsComponent implements OnInit {
   constructor(private notificationService: NotificationService) { }
 
   watchForNotifications() {
-    console.log("watch notifications");
+    // console.log("watch notifications");
     this.notifications$ = this.notificationService.retrieveMessageFromQueque()
     // .subscribe(notifications => {
     //   this.notifications = notifications;
@@ -24,12 +24,11 @@ export class NotificationsComponent implements OnInit {
     // })
   }
 
-  clearNotification(notif: INotification): void {
-    return this.notificationService.clearNotification(notif);
+  clearNotification(notification: INotification): void {
+    return this.notificationService.clearNotification(notification);
   }
 
   ngOnInit(): void {
-    console.log("notifications");
     this.watchForNotifications();
   }
 
