@@ -16,7 +16,7 @@ export const AppConfig = {
     },
     LIFE_QUOTES: {
         URL: "https://quote-garden.herokuapp.com/api/v2/quotes/all",
-        LIMIT: 12
+        LIMIT: 60
     },
     PROGAMMIN_QUOTES: {
         URL: "https://programming-quotes-api.herokuapp.com/quotes/page/",
