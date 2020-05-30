@@ -49,7 +49,7 @@ export class ForecastService {
         map(value => { return { temp: value.main.temp, date: value.dt_txt } }),
         toArray(), // converts into array - here as array (of objects )
         share() // single network request - even if multiple subscription
-      )
+      );
   }
 
   getCurrentLocation() {
@@ -60,6 +60,7 @@ export class ForecastService {
           console.log("get current locations");
           observer.complete();
         }, (err) => {
+          // console.log("err", err);
           observer.error(err)
         });
     })
@@ -79,9 +80,16 @@ export class ForecastService {
         ),
         catchError((err) => {
           //  #1 Handle the error 
-          this.notificationService.showErrorMessage("Some error occured...");
+          this.notificationService.showErrorMessage("Location denied...");
           //  #2 Return a new observable -- which can maybe pass default coordinates in case user denied location
           // unlike tap operator second argument; it DOES return an observable and pass something to pipe operator
+
+          /* this.notificationService.showSuccessMessage("Showing weather of Doha,Qatar...");
+          {
+            longitude: 51.534817,
+            latitude: 25.286106,
+          }
+          */
           return throwError(err);
           /* is equivalent to 
           return new Observable((observer)=>{

@@ -3,15 +3,14 @@ import { HttpInterceptor, HttpRequest, HttpEvent, HttpResponse, HttpHandler, Htt
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LoaderService } from './loader.service';
+import { NotificationService } from 'src/app/notifications/notification.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoaderInterceptorService implements HttpInterceptor {
 
-  constructor(private _loaderService: LoaderService) {
-
-  }
+  constructor(private _loaderService: LoaderService, private _notificationService: NotificationService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.setLoadingState(true);
@@ -24,12 +23,13 @@ export class LoaderInterceptorService implements HttpInterceptor {
         }, (err: any) => {
           if (err instanceof HttpErrorResponse) {
             this.setLoadingState(false);
+            this._notificationService.showErrorMessage("Some error occured...");
           }
         })
       );
   }
 
-  setLoadingState(isLoading: boolean): void {
+  private setLoadingState(isLoading: boolean): void {
     this._loaderService.showLoader(isLoading);
   }
 

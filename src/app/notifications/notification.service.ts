@@ -16,13 +16,12 @@ export type IClearNotification = Omit<INotification, 'type'>;
 export class NotificationService {
 
   private notificationPublisher = new Subject<INotification>();
-  // public notif$: Observable<INotification> = this.notificationPublisher.asObservable();
-  public notif$: Observable<INotification> = this.notificationPublisher.asObservable();
+  // public notification$: Observable<INotification> = this.notificationPublisher.asObservable();
+  private notification$: Observable<INotification> = this.notificationPublisher.asObservable();
 
-  constructor() {
-  }
+  constructor() { }
 
-  addMessageToQueue(message: string, type: 'success' | 'error'): void {
+  private addMessageToQueue(message: string, type: 'success' | 'error'): void {
     const id = this.generateRandomId();
     this.notificationPublisher.next({
       text: message,
@@ -52,7 +51,7 @@ export class NotificationService {
   }
 
   retrieveMessageFromQueque(): Observable<INotification[]> {
-    return this.notif$
+    return this.notification$
       .pipe(
         scan((messages: any[], message: INotification) => {
           console.log("message", message);

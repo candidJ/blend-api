@@ -16,11 +16,7 @@ import { LoaderInterceptorService } from './shared/services/loader-interceptor.s
     AppRoutingModule,
     DashboardModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: LoaderInterceptorService,
-    multi: true
-  }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
