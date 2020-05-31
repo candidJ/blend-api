@@ -1,5 +1,5 @@
 import { Observable, Subject } from 'rxjs';
-import { map, switchMap, share, pluck, tap } from 'rxjs/operators';
+import { map, switchMap, share, pluck, tap, shareReplay } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 
 export interface IAPIModel<T> {
@@ -30,7 +30,7 @@ export abstract class API<T> implements IAPIModel<T>{
                 switchMap((params: HttpParams) => this.fetchData(params)),
                 map(this.mapResponse),
                 share()
-            )
+            );
     }
 
     getByPageNumber(page: number) {

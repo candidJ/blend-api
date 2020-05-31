@@ -56,12 +56,12 @@ export class ForecastService {
     return new Observable<Coordinates>((observer) => {
       return window.navigator.geolocation.getCurrentPosition(
         (position) => {
-          observer.next(position.coords)
-          console.log("get current locations");
+          observer.next(position.coords);
+          this.notificationService.showSuccessMessage("Weather information fetched");
           observer.complete();
         }, (err) => {
           // console.log("err", err);
-          observer.error(err)
+          observer.error(err);
         });
     })
       .pipe(
@@ -84,13 +84,15 @@ export class ForecastService {
           //  #2 Return a new observable -- which can maybe pass default coordinates in case user denied location
           // unlike tap operator second argument; it DOES return an observable and pass something to pipe operator
 
-          /* this.notificationService.showSuccessMessage("Showing weather of Doha,Qatar...");
-          {
-            longitude: 51.534817,
-            latitude: 25.286106,
-          }
-          */
-          return throwError(err);
+          this.notificationService.showSuccessMessage("Showing weather of Muktsar, Punjab, IN");
+
+          return of({
+            longitude: 74.5122,
+            latitude: 30.4762,
+          });
+
+          // throwError(err);
+
           /* is equivalent to 
           return new Observable((observer)=>{
               observer.error(err);
