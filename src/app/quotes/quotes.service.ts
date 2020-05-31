@@ -4,12 +4,21 @@ import { Observable } from 'rxjs';
 import { ILifeQuotes, IProgrammingQuotes } from '../shared/interface/interface';
 import { AppConfig } from '../shared/constant/config';
 import { API } from '../shared/class/api';
+import { NotificationService } from '../notifications/notification.service';
 
 @Injectable()
 export class LifeQuotesService extends API<ILifeQuotes> {
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private _notificationService: NotificationService) {
     super();
+  }
+
+  protected showErrorMessage = () => {
+    this._notificationService.showErrorMessage("Technical error occured");
+  }
+
+  protected showSuccessMessage = () => {
+    this._notificationService.showSuccessMessage("Life quotes are fetched");
   }
 
   protected configureParams(page: number): HttpParams {
@@ -25,7 +34,7 @@ export class LifeQuotesService extends API<ILifeQuotes> {
   }
 
   protected mapResponse = (data: any): ILifeQuotes[] => {
-    console.log(data, "life quote mapped data");
+    // console.log(data, "life quote mapped data");
     // pluck('quotes'),
     const noOfPaginationLinks = Math.ceil(data.totalPages / AppConfig.LIFE_QUOTES.LIMIT);
     console.log(noOfPaginationLinks);
@@ -40,17 +49,27 @@ export class LifeQuotesService extends API<ILifeQuotes> {
 
 }
 
-export function ProgrammingQuotesFactory(http: HttpClient): ProgrammingQuotesService {
-  return new ProgrammingQuotesService(http);
+export function ProgrammingQuotesFactory(http: HttpClient, _notificationService: NotificationService): ProgrammingQuotesService {
+  return new ProgrammingQuotesService(http, _notificationService);
 }
 
 export const QUOTES_SERVICE_TOKEN = new InjectionToken<ProgrammingQuotesService>("QUOTES_SERVICE_TOKEN");
 
 @Injectable()
 export class ProgrammingQuotesService extends API<IProgrammingQuotes> {
-
-  constructor(private httpClient: HttpClient) {
+  private httpClient: HttpClient;
+  
+  constructor(httpClient: HttpClient, private _notificationService: NotificationService) {
     super();
+    this.httpClient = httpClient;
+  }
+
+  protected showErrorMessage = () => {
+    this._notificationService.showErrorMessage("Technical error occured");
+  }
+
+  protected showSuccessMessage = () => {
+    this._notificationService.showSuccessMessage("Programming quotes are fetched");
   }
 
   protected configureParams(page: number): HttpParams {

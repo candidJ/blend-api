@@ -84,7 +84,7 @@ export class ForecastService {
           //  #2 Return a new observable -- which can maybe pass default coordinates in case user denied location
           // unlike tap operator second argument; it DOES return an observable and pass something to pipe operator
 
-          this.notificationService.showSuccessMessage("Showing weather of Muktsar, Punjab, IN");
+          this.notificationService.showGeneralInfo("Fetching weather of Muktsar, IN");
 
           return of({
             longitude: 74.5122,

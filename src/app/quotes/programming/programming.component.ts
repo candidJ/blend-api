@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { IProgrammingQuotes } from '../../shared/interface/interface';
 import { MessageBoxComponent } from 'src/app/shared/components/message-box/message-box.component';
 import { Quote } from 'src/app/shared/class/quote';
+import { NotificationService } from 'src/app/notifications/notification.service';
 
 @Component({
     selector: 'app-programming',
@@ -14,7 +15,7 @@ import { Quote } from 'src/app/shared/class/quote';
     providers: [{
         provide: QUOTES_SERVICE_TOKEN,
         useFactory: ProgrammingQuotesFactory,
-        deps: [HttpClient]
+        deps: [HttpClient, NotificationService]
     }]
 })
 export class ProgrammingComponent extends Quote<IProgrammingQuotes> implements OnInit {

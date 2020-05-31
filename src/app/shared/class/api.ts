@@ -1,5 +1,5 @@
-import { Observable, Subject } from 'rxjs';
-import { map, switchMap, share, pluck, tap, shareReplay } from 'rxjs/operators';
+import { Observable, Subject, throwError } from 'rxjs';
+import { map, switchMap, share, pluck, tap, shareReplay, catchError } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 
 export interface IAPIModel<T> {
@@ -18,6 +18,8 @@ export abstract class API<T> implements IAPIModel<T>{
     protected abstract mapResponse(data: T | T[]): any[];
     protected abstract configureParams(page: number): HttpParams;
     protected abstract fetchData(params: HttpParams): Observable<T[]> | Observable<T>;
+    protected abstract showErrorMessage(): void;
+    protected abstract showSuccessMessage(): void;
 
     fetchByPageNumber(page: number): void {
         this.apiSubject.next(page);
@@ -29,7 +31,12 @@ export abstract class API<T> implements IAPIModel<T>{
                 map((page: number) => this.configureParams(page)),
                 switchMap((params: HttpParams) => this.fetchData(params)),
                 map(this.mapResponse),
-                share()
+                tap(this.showSuccessMessage),
+                share(),
+                catchError(err => {
+                    this.showErrorMessage;
+                    return throwError(err);
+                })
             );
     }
 

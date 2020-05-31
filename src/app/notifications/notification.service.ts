@@ -3,7 +3,7 @@ import { Subject, Observable, BehaviorSubject } from 'rxjs';
 import { scan } from 'rxjs/operators';
 
 export interface INotification {
-  type?: 'success' | 'error';
+  type?: 'success' | 'error' | 'info' | 'clear';
   text: string;
   id: number;
 }
@@ -21,7 +21,7 @@ export class NotificationService {
 
   constructor() { }
 
-  private addMessageToQueue(message: string, type: 'success' | 'error'): void {
+  private addMessageToQueue(message: string, type: 'success' | 'error' | 'info'): void {
     const id = this.generateRandomId();
     this.notificationPublisher.next({
       text: message,
@@ -39,6 +39,10 @@ export class NotificationService {
     this.addMessageToQueue(message, 'success');
   }
 
+  showGeneralInfo(message: string): void {
+    this.addMessageToQueue(message, 'info');
+  }
+
   showErrorMessage(message: string): void {
     this.addMessageToQueue(message, 'error');
   }
@@ -46,23 +50,24 @@ export class NotificationService {
   clearNotification(notification: INotification): void {
     this.notificationPublisher.next({
       text: notification.text,
-      id: notification.id
+      id: notification.id,
+      type: 'clear'
     })
   }
 
   retrieveMessageFromQueque(): Observable<INotification[]> {
     return this.notification$
       .pipe(
-        scan((messages: any[], message: INotification) => {
-          console.log("message", message);
-          if (message.type === 'success' || message.type === 'error') {
+        scan((messages = [], message: INotification) => {
+          // console.log("message", message);
+          if (message.type === 'success' || message.type === 'error' || message.type === 'info') {
             return [...messages, message];
           }
           else if (message.type === 'clear') {
             return messages.filter(data => data.id !== message.id);
           }
         }, [])
-      )
+      );
   }
 
   generateRandomId(): number {

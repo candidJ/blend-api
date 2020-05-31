@@ -9,7 +9,7 @@
         </thead>
 
         <tbody>
-            <ng-container *ngIf="(gridData$| async) as grids">
+            <ng-container *ngIf="(gridData$| async) as grids; else noGridData">
                 <ng-container *ngFor="let grid of grids; let  i = index;">
                     <tr>
                         <!-- alternative syntax for passing context -->
@@ -23,6 +23,11 @@
                     </tr>
                 </ng-container>
             </ng-container>
+
+            <ng-template #noGridData>
+                <!-- <p>No data to show</p> -->
+            </ng-template>
+
         </tbody>
 
     </table>
