@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MessageBoxComponent<T> implements OnInit {
-  @Input('data') data: T[];
+  @Input('data') messages: T[];
   @Input('props') props;
   @Output('onClick') onClick = new EventEmitter();
 

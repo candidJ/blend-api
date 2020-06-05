@@ -5,8 +5,9 @@ import { GridComponent } from './components/grid/grid.component';
 import { IconsModule } from './other/icons.module';
 import { MessageBoxComponent } from './components/message-box/message-box.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { HighlightedDirective } from './directive/highlighted.directive';
 
-const SharedComponent = [PaginatorComponent, GridComponent, MessageBoxComponent, LoaderComponent];
+const SharedComponent = [PaginatorComponent, GridComponent, MessageBoxComponent, LoaderComponent, HighlightedDirective];
 
 @NgModule({
   declarations: [...SharedComponent],
