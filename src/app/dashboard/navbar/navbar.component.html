@@ -1,4 +1,4 @@
-<nav class="flex flex-wrap bt-ns bb-ns b--blue navbar" role="navigation" aria-label="main navigation">
+<nav class="container-fluid navbar is-transparent" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" [routerLink]="navbarItems.routerLink">
             <img [src]="navbarItems.logo" alt="logo" width="96" height="auto" class="navbar__img">
@@ -28,14 +28,14 @@
                             <span class="ml2">{{item.title}}</span>
                         </a>
 
-                        <div class="navbar-dropdown">
+                        <div class="navbar-dropdown is-boxed">
                             <ng-container *ngFor="let sub of item.subMenu">
                                 <a class="navbar-item" [routerLink]="[item.routerLink, sub.routerLink]"
                                     routerLinkActive="is-active">
                                     <i-feather [name]="sub.icon"></i-feather>
                                     <span class="ml2">{{sub.title}}</span>
                                 </a>
-                                <hr class="navbar-divider">
+                                <!-- <hr class="navbar-divider"> -->
                             </ng-container>
                         </div>
                     </section>

@@ -1,16 +1,20 @@
 <article class="is-flex is-multiline columns">
     <ul class="column is-full-mobile is-one-third-tablet is-one-quarter-desktop is-one-fifth-widescreen"
         *ngFor="let message of messages">
-        <li class="message is-primary h-100">
-            <p class="message-header flex justify-between">
-                <cite highlighted #highlighter="hl" (dblclick)="highlighter.toggle();">
-                    {{message[props.first]}}</cite>
-                <a (click)="tweet(message);">
-                    <i-feather name="twitter"></i-feather>
-                </a>
-            </p>
-            <blockquote class="message-body">
-                {{message[props.second]}}
+        <!-- <li class="message h-100 has-background-primary-light"> -->
+        <li class="message h-100 is-primary">
+            <blockquote class="message-body h-100">
+
+                <p class="flex justify-between">
+                    <!-- <cite highlighted #highlighter="hl" (dblclick)="highlighter.toggle();"></cite> -->
+                    {{message[props.first]}}
+                    <a (click)="tweet(message);">
+                        <i-feather name="twitter"></i-feather>
+                    </a>
+                </p>
+
+                <p> {{message[props.second]}}</p>
+
             </blockquote>
         </li>
     </ul>

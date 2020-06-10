@@ -1,9 +1,9 @@
 <div class="table-container">
-    <table class="table is-hoverable is-fullwidth is-bordered">
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
         <thead>
             <tr>
                 <ng-container *ngFor="let column of gridColumns">
-                    <th class="is-primary">{{column.header}}</th>
+                    <th class="has-background-primary-light is-capitalized">{{column.header}}</th>
                 </ng-container>
             </tr>
         </thead>
@@ -13,12 +13,14 @@
                 <ng-container *ngFor="let grid of grids; let  i = index;">
                     <tr>
                         <!-- alternative syntax for passing context -->
+                        <!-- 1st syntax -->
                         <!-- <td>
-                        <ng-container *ngTemplateOutlet="view, context: {grid:grid}">
-                        </ng-container>
-                    </td> -->
+                            <ng-container *ngTemplateOutlet="view, context: {grid:grid}">
+                            </ng-container>
+                        </td> -->
+                        <!-- 2nd syntax -->
                         <!-- <ng-template [ngTemplateOutlet]="items" [ngTemplateOutletContext]="{$implicit: grid}"></ng-template> -->
-                        <!-- alternative syntax -->
+
                         <ng-template *ngTemplateOutlet="items, context: {$implicit: grid}"></ng-template>
                     </tr>
                 </ng-container>
