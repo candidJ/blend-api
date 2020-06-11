@@ -3,12 +3,6 @@
         <a (click)="onView(gridRowData)">View</a>
     </ng-template> -->
     <ng-template #gridItems let-gridRowData>
-        <td>
-            <a [href]="gridRowData.url" target="_blank" class="flex justify-center align-center"
-                (click)="onView(gridRowData)">
-                <i-feather name="eye"></i-feather>
-            </a>
-        </td>
         <ng-container *ngFor="let item of dataSource">
             <ng-container *ngIf="item.type !== 'date'; else dateTimeTemplate">
                 <td>{{gridRowData[item.property]}}</td>
@@ -19,8 +13,13 @@
                     {{gridRowData[item.property] | date: 'medium'}}
                 </td>
             </ng-template>
-
         </ng-container>
+        <td>
+            <a [href]="gridRowData.url" target="_blank" class="flex justify-center align-center"
+                (click)="onView(gridRowData)">
+                <i-feather name="external-link"></i-feather>
+            </a>
+        </td>
     </ng-template>
 </app-grid>
 

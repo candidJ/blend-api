@@ -30,11 +30,6 @@ export class ArticleListComponent implements OnInit {
   private defineGridColumns(): Array<IGridColumnsDef> {
     this.articleColumns = [
       {
-        header: 'Actions',
-        property: 'actions',
-        type: 'template'
-      },
-      {
         header: 'Headline',
         property: 'title',
         type: 'text'
@@ -48,10 +43,15 @@ export class ArticleListComponent implements OnInit {
         header: 'Published At',
         property: 'publishedAt',
         type: 'date'
+      },
+      {
+        header: 'View',
+        property: 'actions',
+        type: 'template'
       }
     ];
 
-    return this.dataSource = this.articleColumns.slice(1);
+    return this.dataSource = this.articleColumns.slice(0,3);
   }
 
   public onPaginatorChange(page: number) {

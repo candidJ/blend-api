@@ -1,0 +1,18 @@
+:host {
+
+    main {
+        display: grid;
+        grid-template-areas: "header"
+            "article";
+        gap: 2rem 0;
+    }
+
+    header {
+        grid-area: header;
+    }
+
+    article {
+        grid-area: article;
+        margin: 0 calc(2rem + 3vw);
+    }
+}

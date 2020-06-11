@@ -1,9 +1,12 @@
-<header>
-    <app-navbar [navbarItems]="navbarItems"></app-navbar>
-</header>
+<main>
+    <header>
+        <app-navbar [navbarItems]="navbarItems"></app-navbar>
+    </header>
 
-<main class="ma3">
-    <router-outlet></router-outlet>
+    <article>
+        <router-outlet></router-outlet>
+    </article>
+
+    <app-loader></app-loader>
+    <app-notifications></app-notifications>
 </main>
-<app-loader></app-loader>
-<app-notifications></app-notifications>
