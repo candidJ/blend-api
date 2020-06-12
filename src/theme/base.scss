@@ -4,8 +4,13 @@
     box-sizing: border-box;
 }
 
+::selection {
+    background: aquamarine;
+    color: black;
+}
+
 ::-webkit-scrollbar {
-   width: 0.6rem;
+    width: 0.6rem;
 }
 
 *::-webkit-scrollbar-track {
