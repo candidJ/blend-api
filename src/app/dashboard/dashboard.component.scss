@@ -9,10 +9,11 @@
 
     header {
         grid-area: header;
+        height: 3.25rem;
     }
 
     article {
         grid-area: article;
-        margin: 0 calc(2rem + 3vw);
+        margin: calc(1rem + 1vh) calc(2rem + 3vw);
     }
 }

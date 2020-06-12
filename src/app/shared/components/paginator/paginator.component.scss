@@ -2,4 +2,18 @@
     .br-100 {
         border-radius: 100% !important;
     }
+
+    .pagination-link {
+        border: 0;
+    }
+
+    .pagination-link.is-current {
+        font-weight: bold;
+        background-color: #dd75351c;
+        border-color: #dd7535;
+        color: #dd7535;
+        border: 0 !important;
+    }
+
+
 }

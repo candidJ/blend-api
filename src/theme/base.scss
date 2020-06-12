@@ -1,6 +1,24 @@
+@import './bulma-custom';
+
 * {
     box-sizing: border-box;
 }
+
+::-webkit-scrollbar {
+   width: 0.6rem;
+}
+
+*::-webkit-scrollbar-track {
+    // -webkit-box-shadow: inset 0 0 0.3rem #00449E;
+    // box-shadow: inset 0 0 0.3rem #00449E;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #00449E;
+    border-radius: 0.5rem;
+    height: 0.3rem;
+}
+
 
 html,
 body {

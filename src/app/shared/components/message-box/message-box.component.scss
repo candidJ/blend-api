@@ -1,6 +1,15 @@
 :host {
     p:nth-child(1) {
-        margin-bottom: calc(1rem + 1vh);
+       
         font-weight: 600;
+    }
+
+    blockquote p:nth-of-type(1) >a{
+        float: right;
+        margin-bottom: calc(1rem + 1vh);
+    }
+
+    blockquote p:last-of-type{
+        clear: both;
     }
 }
