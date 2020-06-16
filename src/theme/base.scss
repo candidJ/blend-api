@@ -1,9 +1,3 @@
-@import './bulma-custom';
-
-* {
-    box-sizing: border-box;
-}
-
 ::selection {
     background: aquamarine;
     color: black;
@@ -32,4 +26,13 @@ body {
 
 th {
     font-weight: 600 !important;
+}
+
+
+h1{
+    font-size: 2rem;
+}
+
+h2{
+    font-size: 1.5rem;
 }

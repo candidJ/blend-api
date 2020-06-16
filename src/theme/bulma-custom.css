@@ -2594,8 +2594,9 @@ a.tag:hover {
   .input:hover, .textarea:hover, .select select:hover, .is-hovered.input, .is-hovered.textarea, .select select.is-hovered {
     border-color: #b5b5b5; }
   .input:focus, .textarea:focus, .select select:focus, .is-focused.input, .is-focused.textarea, .select select.is-focused, .input:active, .textarea:active, .select select:active, .is-active.input, .is-active.textarea, .select select.is-active {
-    border-color: #dd7535;
-    box-shadow: 0 0 0 0.125em rgba(221, 117, 53, 0.25); }
+    /* border-color: #dd7535; */
+    /* box-shadow: 0 0 0 0.125em rgba(221, 117, 53, 0.25);  */
+  }
   .input[disabled], .textarea[disabled], .select select[disabled],
   fieldset[disabled] .input,
   fieldset[disabled] .textarea,

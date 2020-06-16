@@ -52,7 +52,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/tachyons/css/tachyons.min.css",
               "src/styles.scss"
             ],
             "scripts": []

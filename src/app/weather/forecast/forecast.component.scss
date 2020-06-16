@@ -1,0 +1,26 @@
+:host {
+
+    input {
+        background: #fff;
+        border: 0;
+        border-radius: 0.5rem;
+        box-shadow: 0 10px 35px rgba(0, 0, 0, .1);
+        color: #6c757d;
+        outline: none;
+        padding: 1rem 1rem 1rem 3rem;
+    }
+
+    ul {
+
+        li {
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+
+            i {
+                font-size: 1.5rem;
+                margin: 1rem auto;
+            }
+        }
+    }
+
+}

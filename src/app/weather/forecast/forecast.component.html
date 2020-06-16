@@ -1,10 +1,16 @@
-<section class="container-fluid">
+<article class="container-fluid">
   <!-- <div class="w-10 flex flex-column wrap" *ngFor="let forecast of forecast$ | async">
         <div class="mb1 flex-row flex-auto control">
             <span class="tag w-40">{{forecast.date | date: 'E'}}</span>
             <span class="tag w-60 is-primary">{{forecast.temp | number: '1.0-0'}}&#8451;</span>
         </div>
     </div> -->
+
+  <aside class="guideline">
+    <p class="is-size-7">Search for city name. For accurate results, append
+      <a>country code</a>. For eg: Seattle,US
+    </p>
+  </aside>
 
   <div class="control has-icons-left has-icons-right">
     <input class="input" type="text" placeholder="Search">
@@ -16,4 +22,17 @@
     </span>
   </div>
 
-</section>
+  <h2 class="tablet">5 day/3 hour Forecast</h2>
+
+  <ul *ngFor="let forecast of forecast$ |async">
+    <li class="has-background-info-light">
+      <p>
+        {{forecast.date | date: 'EEEE'}}
+      </p>
+      <i class="wi" [ngClass]="forecast.class"></i>
+      {{forecast.currentTemp | number: '1.0-0'}} <i class="wi wi-celsius"></i>
+
+    </li>
+  </ul>
+
+</article>
