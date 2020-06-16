@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ForecastService } from '../forecast.service';
 import { Observable } from 'rxjs';
+import { WeatherDefinition } from 'src/app/shared/interface/interface';
 
 @Component({
   selector: 'app-forecast',
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class ForecastComponent implements OnInit {
 
-  public forecast$: Observable<{ date: string; temp: number }[]>;
+  public forecast$: Observable<WeatherDefinition[]>;
   constructor(private forecastService: ForecastService) { }
 
   private getUserCoordinates() {

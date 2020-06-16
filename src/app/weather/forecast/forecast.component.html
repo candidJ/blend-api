@@ -1,14 +1,13 @@
 <section class="container-fluid">
-    <div class="w-10 flex flex-column wrap" *ngFor="let forecast of forecast$ | async">
+  <!-- <div class="w-10 flex flex-column wrap" *ngFor="let forecast of forecast$ | async">
         <div class="mb1 flex-row flex-auto control">
             <span class="tag w-40">{{forecast.date | date: 'E'}}</span>
             <span class="tag w-60 is-primary">{{forecast.temp | number: '1.0-0'}}&#8451;</span>
         </div>
-    </div>
-</section>
+    </div> -->
 
-<div class="control has-icons-left has-icons-right">
-    <input class="input" type="text" placeholder="Enter city name">
+  <div class="control has-icons-left has-icons-right">
+    <input class="input" type="text" placeholder="Search">
     <span class="icon is-small is-left">
       <i-feather name="search"></i-feather>
     </span>
@@ -16,3 +15,5 @@
       <i-feather name="delete"></i-feather>
     </span>
   </div>
+
+</section>

@@ -4,16 +4,8 @@ import { map, switchMap, pluck, mergeMap, filter, toArray, share, tap, catchErro
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { NotificationService } from '../notifications/notification.service';
 import { AppConfig } from '../shared/constant/config';
+import { IOpenWeatherResponse, WeatherDefinition } from '../shared/interface/interface';
 
-
-export interface IOpenWeatherResponse {
-  list: {
-    dt_txt: string;
-    main: {
-      temp: number
-    }
-  }[]
-}
 
 @Injectable({
   providedIn: 'root'
@@ -21,12 +13,11 @@ export interface IOpenWeatherResponse {
 export class ForecastService {
 
   private readonly config = AppConfig.WEATHER_API_CONFIG;
+  private dataClone: IOpenWeatherResponse;
   constructor(private httpClient: HttpClient, private notificationService: NotificationService) { }
 
-  getForecast(): Observable<{
-    temp: number;
-    date: string;
-  }[]> {
+
+  getForecast(): Observable<WeatherDefinition[]> {
     return this.getCurrentLocation()
       .pipe(
         map(coords => {
@@ -43,10 +34,27 @@ export class ForecastService {
           return this.httpClient.get<IOpenWeatherResponse>(this.config.URL, { params });
         }
         ),
+        tap(value => { this.dataClone = Object.assign({}, value); }),
         pluck('list'), // pluck out the list property
         mergeMap(value => of(...value)), // take array record and create a stream of data -observable; of single list
         filter((value, index) => index % 8 === 0), // only concerned with every 8th value 
-        map(value => { return { temp: value.main.temp, date: value.dt_txt } }),
+        map(value => {
+          return {
+            currentTemp: value.main.temp,
+            feelsLike: value.main.feels_like,
+            minTemp: value.main.temp_min,
+            maxTemp: value.main.temp_max,
+            humidity: value.main.humidity,
+            title: value.weather[0].main,
+            description: value.weather[0].description,
+            id: value.weather[0].id,
+            date: value.dt_txt,
+            city: this.dataClone.city,
+            country: this.dataClone.country,
+            sunrise: this.dataClone.sunrise,
+            sunset: this.dataClone.sunset
+          }
+        }),
         toArray(), // converts into array - here as array (of objects )
         share() // single network request - even if multiple subscription
       );
