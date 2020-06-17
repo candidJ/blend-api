@@ -75,11 +75,13 @@ export interface IOpenWeatherResponse {
         ]
     }[],
     city: {
-        name: string
-    },
-    country: string,
-    sunrise: number,
-    sunset: number
+        name: string,
+        country: string,
+        sunrise: number,
+        sunset: number,
+        id: number,
+        timezone: number
+    }
 }
 
 
@@ -93,8 +95,9 @@ export interface WeatherDefinition {
     description: string,
     date: string,
     id: number,
-    // city: string,
-    // country: string,
-    // sunrise: number,
-    // sunset: number
+    city: string,
+    country: string,
+    sunrise: number,
+    sunset: number,
+    icon?: string
 }

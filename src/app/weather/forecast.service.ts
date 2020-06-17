@@ -34,12 +34,17 @@ export class ForecastService {
           return this.httpClient.get<IOpenWeatherResponse>(this.config.URL, { params });
         }
         ),
-        tap(value => { this.dataClone = Object.assign({}, value); }),
+        tap(value => {
+          this.dataClone = Object.assign({}, value);
+          return value;
+        }),
         pluck('list'), // pluck out the list property
         mergeMap(value => of(...value)), // take array record and create a stream of data -observable; of single list
         filter((value, index) => index % 8 === 0), // only concerned with every 8th value 
         map(value => {
-          return {
+          // console.log(value, "weather info");
+          // console.log(this.dataClone, "dataclone");
+          let forecast: WeatherDefinition = {
             currentTemp: value.main.temp,
             feelsLike: value.main.feels_like,
             minTemp: value.main.temp_min,
@@ -49,11 +54,28 @@ export class ForecastService {
             description: value.weather[0].description,
             id: value.weather[0].id,
             date: value.dt_txt,
-            city: this.dataClone.city,
-            country: this.dataClone.country,
-            sunrise: this.dataClone.sunrise,
-            sunset: this.dataClone.sunset
+            city: this.dataClone.city.name,
+            country: this.dataClone.city.country,
+            sunrise: this.dataClone.city.sunrise,
+            sunset: this.dataClone.city.sunset
+          };
+
+          const date = new Date();
+          const sunrise = new Date(forecast.sunrise * 1000); //Convert a Unix timestamp to time
+          const sunset = new Date(forecast.sunset * 1000);
+          let weatherIcon: string;
+
+          /* Get suitable icon for weather */
+          if (date.getHours() >= sunrise.getHours() && date.getHours() < sunset.getHours()) {
+            weatherIcon = `wi wi-owm-day-${forecast.id}`;
           }
+          else if (date.getHours() >= sunset.getHours()) {
+            weatherIcon = `wi wi-owm-night-${forecast.id}`;
+          }
+
+          console.log(weatherIcon);
+          forecast.icon = weatherIcon;
+          return forecast;
         }),
         toArray(), // converts into array - here as array (of objects )
         share() // single network request - even if multiple subscription

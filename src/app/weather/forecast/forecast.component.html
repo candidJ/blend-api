@@ -29,9 +29,13 @@
       <p>
         {{forecast.date | date: 'EEEE'}}
       </p>
-      <i class="wi" [ngClass]="forecast.class"></i>
-      {{forecast.currentTemp | number: '1.0-0'}} <i class="wi wi-celsius"></i>
-
+      <p>
+        <i [ngClass]="forecast.icon"></i>
+        {{forecast.description | titlecase}}
+      </p>
+      <p>
+        {{forecast.currentTemp | number: '1.0-0'}} <i class="wi wi-celsius"></i>
+      </p>
     </li>
   </ul>
 
