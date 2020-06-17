@@ -72,7 +72,11 @@ export interface IOpenWeatherResponse {
                 description: string,
                 icon: string
             }
-        ]
+        ],
+        wind: {
+            speed: number
+            deg: number
+        }
     }[],
     city: {
         name: string,
@@ -99,5 +103,7 @@ export interface WeatherDefinition {
     country: string,
     sunrise: number,
     sunset: number,
+    windSpeed: number,
+    windDeg: number,
     icon?: string
 }

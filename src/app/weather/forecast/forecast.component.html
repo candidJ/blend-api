@@ -7,29 +7,43 @@
     </div> -->
 
   <aside class="guideline">
-    <p class="is-size-7">Search for city name. For accurate results, append
-      <a>country code</a>. For eg: Seattle,US
+    <p class="is-size-7">Search for city name. For accurate results, choose country as well.
     </p>
   </aside>
 
-  <div class="control has-icons-left has-icons-right">
-    <form autocomplete="off" [formGroup]="userInputForm">
-      <input name="userInput" formControlName="userInput" class="input" type="text" >
+
+  <form autocomplete="off" [formGroup]="userInputForm">
+    <div class="control has-icons-left has-icons-right">
+      <input name="city" formControlName="city" class="input" type="text" placeholder="Enter city name">
       <span class="icon is-small is-left">
         <i-feather name="search"></i-feather>
       </span>
       <span class="icon is-small is-right" (click)="userInputForm.reset()">
         <i-feather name="delete"></i-feather>
       </span>
-    </form>
-  </div>
+    </div>
+    <div class="control has-icons-left has-icons-right">
+      <input list="browsers" name="country" formControlName="country" class="input" type="text"
+        placeholder="Enter country name">
+      <datalist id="browsers">
+        <option *ngFor="let country of countries" [value]="country.name"></option>
+      </datalist>
+      <span class="icon is-small is-left">
+        <i-feather name="globe"></i-feather>
+      </span>
+      <span class="icon is-small is-right" (click)="userInputForm.reset()">
+        <i-feather name="delete"></i-feather>
+      </span>
+    </div>
+  </form>
 
-  <h2 class="tablet">5 day/3 hour Forecast</h2>
+  <h2 clas s="tablet">5 day/3 hour Forecast</h2>
 
   <b>
     <i-feather name="map-pin"></i-feather>
     <ng-container *ngIf="(forecast$ |async)[0] as forecast">
       {{forecast.city}}, {{forecast.country}}
+      <!-- {{forecast | json}} -->
     </ng-container>
   </b>
 

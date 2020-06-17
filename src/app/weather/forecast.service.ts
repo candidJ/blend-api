@@ -57,7 +57,9 @@ export class ForecastService {
             city: this.dataClone.city.name,
             country: this.dataClone.city.country,
             sunrise: this.dataClone.city.sunrise,
-            sunset: this.dataClone.city.sunset
+            sunset: this.dataClone.city.sunset,
+            windSpeed: value.wind.speed,
+            windDeg: value.wind.deg
           };
 
           const date = new Date();
@@ -69,7 +71,7 @@ export class ForecastService {
           if (date.getHours() >= sunrise.getHours() && date.getHours() < sunset.getHours()) {
             weatherIcon = `wi wi-owm-day-${forecast.id}`;
           }
-          else if (date.getHours() >= sunset.getHours()) {
+          else {
             weatherIcon = `wi wi-owm-night-${forecast.id}`;
           }
 
