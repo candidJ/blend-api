@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ForecastService } from '../forecast.service';
 import { Observable } from 'rxjs';
 import { WeatherDefinition } from 'src/app/shared/interface/interface';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-forecast',
@@ -11,7 +12,8 @@ import { WeatherDefinition } from 'src/app/shared/interface/interface';
 export class ForecastComponent implements OnInit {
 
   public forecast$: Observable<WeatherDefinition[]>;
-  constructor(private forecastService: ForecastService) { }
+  public userInputForm: FormGroup;
+  constructor(private forecastService: ForecastService, private _fg: FormBuilder) { }
 
   private getUserCoordinates() {
     return this.forecast$ = this.forecastService.getForecast();
@@ -19,6 +21,9 @@ export class ForecastComponent implements OnInit {
 
   ngOnInit() {
     this.getUserCoordinates();
+    this.userInputForm = this._fg.group({
+      userInput: new FormControl(null)
+    })
   }
 
 }

@@ -13,16 +13,25 @@
   </aside>
 
   <div class="control has-icons-left has-icons-right">
-    <input class="input" type="text" placeholder="Search">
-    <span class="icon is-small is-left">
-      <i-feather name="search"></i-feather>
-    </span>
-    <span class="icon is-small is-right">
-      <i-feather name="delete"></i-feather>
-    </span>
+    <form autocomplete="off" [formGroup]="userInputForm">
+      <input name="userInput" formControlName="userInput" class="input" type="text" >
+      <span class="icon is-small is-left">
+        <i-feather name="search"></i-feather>
+      </span>
+      <span class="icon is-small is-right" (click)="userInputForm.reset()">
+        <i-feather name="delete"></i-feather>
+      </span>
+    </form>
   </div>
 
   <h2 class="tablet">5 day/3 hour Forecast</h2>
+
+  <b>
+    <i-feather name="map-pin"></i-feather>
+    <ng-container *ngIf="(forecast$ |async)[0] as forecast">
+      {{forecast.city}}, {{forecast.country}}
+    </ng-container>
+  </b>
 
   <ul *ngFor="let forecast of forecast$ |async">
     <li class="has-background-info-light">
