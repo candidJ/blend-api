@@ -1,3 +1,5 @@
-<div class="spinner-wrapper" *ngIf="isLoading" role="alert" aria-live="assertive">
-  <div class="spinner"></div>
-</div>
+<ng-container *ngIf="loaderService.currentLoadingState() | async">
+  <div class="spinner-wrapper" role="alert" aria-live="assertive">
+    <div class="spinner"></div>
+  </div>
+</ng-container>

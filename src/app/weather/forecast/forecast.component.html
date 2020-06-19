@@ -24,7 +24,7 @@
     </div>
     <div class="control has-icons-left has-icons-right">
       <input list="browsers" name="country" formControlName="country" class="input" type="text"
-        placeholder="Enter country name">
+        placeholder="Enter country name(optional)">
       <datalist id="browsers">
         <option *ngFor="let country of countries" [value]="country.name"></option>
       </datalist>
@@ -41,8 +41,8 @@
 
   <b>
     <i-feather name="map-pin"></i-feather>
-    <ng-container *ngIf="(forecast$ |async)[0] as forecast">
-      {{forecast.city}}, {{forecast.country}}
+    <ng-container *ngIf="forecast$ |async as forecast">
+      {{forecast[0].city}}, {{forecast[0].country}}
       <!-- {{forecast | json}} -->
     </ng-container>
   </b>

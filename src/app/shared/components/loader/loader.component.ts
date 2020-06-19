@@ -8,11 +8,15 @@ import { Subject } from 'rxjs';
   templateUrl: './loader.component.html',
   styleUrls: ['./loader.component.scss']
 })
-export class LoaderComponent implements OnInit, OnDestroy {
+export class LoaderComponent {
+  constructor(public loaderService: LoaderService) { }
+}
+
+export class LoaderComponentWithState implements OnInit, OnDestroy {
 
   public isLoading: boolean;
   private destroy$: Subject<boolean> = new Subject();
-  constructor(private _loaderService: LoaderService) { }
+  constructor(public _loaderService: LoaderService) { }
 
 
   private watchForLoadingStateChange() {
