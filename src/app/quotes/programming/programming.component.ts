@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { IProgrammingQuotes } from '../../shared/interface/interface';
 import { MessageBoxComponent } from 'src/app/shared/components/message-box/message-box.component';
-import { Quote } from 'src/app/shared/class/quote';
+import { Quote, Quotes } from 'src/app/shared/class/quote';
 import { NotificationService } from 'src/app/notifications/notification.service';
 
 @Component({
@@ -18,10 +18,9 @@ import { NotificationService } from 'src/app/notifications/notification.service'
         deps: [HttpClient, NotificationService]
     }]
 })
-export class ProgrammingComponent extends Quote<IProgrammingQuotes> implements OnInit {
+export class ProgrammingComponent extends Quotes<IProgrammingQuotes> implements OnInit {
 
     public quotes$: Observable<IProgrammingQuotes[]>;
-    public quotes: IProgrammingQuotes[];
     public noOfPages$: Observable<number[]>;
     public props = { first: 'author', second: 'en' };
 
@@ -30,27 +29,23 @@ export class ProgrammingComponent extends Quote<IProgrammingQuotes> implements O
     @ViewChild('messageBox') messageBox: MessageBoxComponent<IProgrammingQuotes>;
 
     constructor(@Inject(QUOTES_SERVICE_TOKEN) programmingQuotesService: ProgrammingQuotesService) {
-        super(programmingQuotesService)
+        super();
+        this.programmingQuotesService = programmingQuotesService;
     }
 
     public onPaginationChange(page: number) {
-        this.fetchQuotesByPageNumber(page);
+        this.programmingQuotesService.fetchByPageNumber(page);
     }
 
-    public onClick(obj: IProgrammingQuotes) {
-        this.tweet(obj);
+    tweet(obj: IProgrammingQuotes): void {
+        this.sendTweet(obj);
     }
 
     ngOnInit(): void {
-        // TODO: passing observable as Inputs
-
-        // this.quotes$ = this.fetchQuotes();
-        this.fetchQuotes().subscribe(quotes => {
-            console.log(quotes);
-            this.quotes = quotes;
-        })
-        this.noOfPages$ = this.getNoOfPages();
-        this.fetchQuotesByPageNumber(1);
+        this.quotes$ = this.programmingQuotesService.data$;
+        this.programmingQuotesService.fetch().subscribe();
+        this.noOfPages$ = this.programmingQuotesService.getNoOfPages();
+        this.programmingQuotesService.fetchByPageNumber(1);
     }
 
 }

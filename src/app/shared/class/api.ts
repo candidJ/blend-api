@@ -52,10 +52,11 @@ export abstract class API<T> implements IAPIModel<T>{
                     for (let i = 1; i <= response; i++) {
                         numbers.push(i);
                     }
-                    console.log(numbers, "API get of of pages");
+                    // console.log(numbers, "API get of of pages");
                     return numbers;
-                }
+                },
+                    shareReplay()
                 )
-            )
+            );
     }
 }

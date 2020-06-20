@@ -1,6 +1,6 @@
 import { Injectable, InjectionToken } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { ILifeQuotes, IProgrammingQuotes } from '../shared/interface/interface';
 import { AppConfig } from '../shared/constant/config';
 import { API } from '../shared/class/api';
@@ -8,6 +8,8 @@ import { NotificationService } from '../notifications/notification.service';
 
 @Injectable()
 export class LifeQuotesService extends API<ILifeQuotes> {
+  private dataPublisher = new Subject<ILifeQuotes[]>();
+  data$ = this.dataPublisher.asObservable();
 
   constructor(private httpClient: HttpClient, private _notificationService: NotificationService) {
     super();
@@ -39,14 +41,9 @@ export class LifeQuotesService extends API<ILifeQuotes> {
     const noOfPaginationLinks = Math.ceil(data.totalPages / AppConfig.LIFE_QUOTES.LIMIT);
     console.log(noOfPaginationLinks);
     this.getByPageNumber(noOfPaginationLinks);
-    return data.quotes;
-    return data.quotes.map((quote: ILifeQuotes) => {
-      if (quote.quoteAuthor) {
-        return quote;
-      }
-    });
+    this.dataPublisher.next(data['quotes']);
+    return data['quotes'];
   }
-
 }
 
 export function ProgrammingQuotesFactory(http: HttpClient, _notificationService: NotificationService): ProgrammingQuotesService {
@@ -58,7 +55,9 @@ export const QUOTES_SERVICE_TOKEN = new InjectionToken<ProgrammingQuotesService>
 @Injectable()
 export class ProgrammingQuotesService extends API<IProgrammingQuotes> {
   private httpClient: HttpClient;
-  
+  private dataPublisher = new BehaviorSubject<IProgrammingQuotes[]>([]);
+  data$ = this.dataPublisher.asObservable();
+
   constructor(httpClient: HttpClient, private _notificationService: NotificationService) {
     super();
     this.httpClient = httpClient;
@@ -89,6 +88,7 @@ export class ProgrammingQuotesService extends API<IProgrammingQuotes> {
     //  TOTAL PAGE SIZE IS 501;
     const page = Math.ceil(AppConfig.PROGAMMIN_QUOTES.TOTAL_PAGES / AppConfig.PROGAMMIN_QUOTES.PAGE_SIZE);
     this.getByPageNumber(page);
-    return data.map((quote: IProgrammingQuotes) => quote);
+    this.dataPublisher.next(data);
+    return data;
   }
 }

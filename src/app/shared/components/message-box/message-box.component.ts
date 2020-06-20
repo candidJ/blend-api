@@ -10,15 +10,17 @@ import { Observable } from 'rxjs';
 export class MessageBoxComponent<T> implements OnInit {
   @Input('data') messages: T[];
   @Input('props') props;
-  @Output('onClick') onClick = new EventEmitter();
+  @Output('tweet') 
+  private emitTweet = new EventEmitter();
 
   constructor() { }
 
-  tweet(obj: T): void {
-    this.onClick.emit(obj);
+  onTweet(obj: T): void {
+    this.emitTweet.emit(obj);
   }
 
   ngOnInit(): void {
+    console.log(this.messages);
   }
 
 }

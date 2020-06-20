@@ -1,3 +1,4 @@
-<app-message-box [data]="quotes" [props]="props" (onClick)="onClick($event)" #messageBox></app-message-box>
+<app-message-box [data]="quotes$ | async" [props]="props" (tweet)="tweet($event)" #messageBox>
+</app-message-box>
 
 <app-paginator [noOfPages$]="noOfPages$" (onPaginatorChange)="onPaginationChange($event)"></app-paginator>

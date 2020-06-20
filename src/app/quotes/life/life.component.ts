@@ -3,7 +3,7 @@ import { ILifeQuotes } from 'src/app/shared/interface/interface';
 import { Observable } from 'rxjs';
 import { LifeQuotesService } from '../quotes.service';
 import { MessageBoxComponent } from 'src/app/shared/components/message-box/message-box.component';
-import { Quote } from 'src/app/shared/class/quote';
+import { Quote, Quotes } from 'src/app/shared/class/quote';
 
 @Component({
     selector: 'app-life',
@@ -11,39 +11,35 @@ import { Quote } from 'src/app/shared/class/quote';
     styleUrls: ['./life.component.scss'],
     providers: [LifeQuotesService]
 })
-export class LifeComponent extends Quote<ILifeQuotes> implements OnInit {
+export class LifeComponent extends Quotes<ILifeQuotes> implements OnInit {
 
     public quotes$: Observable<ILifeQuotes[]>;
-    public quotes: ILifeQuotes[];
     public noOfPages$: Observable<number[]>;
     public props = { first: 'quoteAuthor', second: 'quoteText' };
 
-    protected quotesService: LifeQuotesService;
+    public quotesService: LifeQuotesService;
 
     @ViewChild('messageBox') messageBox: MessageBoxComponent<ILifeQuotes>;
 
     constructor(quotesService: LifeQuotesService) {
-        super(quotesService)
+        super();
+        this.quotesService = quotesService;
     }
 
     public onPaginationChange(page: number) {
-        this.fetchQuotesByPageNumber(page);
+        this.quotesService.fetchByPageNumber(page);
     }
 
-    public onClick(obj: ILifeQuotes) {
-        this.tweet(obj);
+    public tweet(obj: ILifeQuotes) {
+        this.sendTweet(obj);
     }
 
     ngOnInit(): void {
-        // TODO: passing observable as Inputs
+        this.quotes$ = this.quotesService.data$;
+        this.quotesService.fetch().subscribe();
 
-        // this.quotes$ = this.fetchQuotes();
-        this.fetchQuotes().subscribe(quotes => {
-            console.log(quotes);
-            this.quotes = quotes;
-        })
-        this.noOfPages$ = this.getNoOfPages();
-        this.fetchQuotesByPageNumber(1);
+        this.noOfPages$ = this.quotesService.getNoOfPages();
+        this.quotesService.fetchByPageNumber(1);
     }
 
 }

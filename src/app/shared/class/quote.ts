@@ -1,6 +1,14 @@
 import { LifeQuotesService, ProgrammingQuotesService } from 'src/app/quotes/quotes.service';
 import { AppConfig } from '../constant/config';
 
+export abstract class Quotes<T> {
+    sendTweet(quote: T) {
+        return window.open(`${AppConfig.TWITTER.URL}=${AppConfig.TWITTER.HASHTAGS}&text=${quote['en']}~${quote['author']}`);
+    }
+
+    abstract onPaginationChange(page: number): void;
+}
+
 export abstract class Quote<T> {
     protected quotesApiService: LifeQuotesService | ProgrammingQuotesService;
 
