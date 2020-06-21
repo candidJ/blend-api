@@ -4,10 +4,11 @@ import { ForecastComponent } from './forecast/forecast.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ForecastDetailsComponent } from './forecast-details/forecast-details.component';
 
 
 @NgModule({
-  declarations: [ForecastComponent],
+  declarations: [ForecastComponent, ForecastDetailsComponent],
   imports: [
     CommonModule,
     FormsModule,

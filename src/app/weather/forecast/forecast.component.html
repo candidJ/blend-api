@@ -35,7 +35,7 @@
     <i-feather name="map-pin"></i-feather>
     <ng-container *ngIf="forecast$ |async as forecast">
       {{forecast[0].city}}, {{forecast[0].country}}
-      {{forecast | json}}
+      <!-- {{forecast | json}} -->
     </ng-container>
   </b>
 
@@ -55,5 +55,10 @@
       </a>
     </li>
   </ul>
+
+
+  <ng-container *ngIf="forecastDetails">
+    <app-forecast-details [details]="forecastDetails"></app-forecast-details>
+  </ng-container>
 
 </article>

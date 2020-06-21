@@ -15,6 +15,7 @@ export class ForecastComponent implements OnInit {
   public forecast$: Observable<WeatherDefinition[]>;
   public userInputForm: FormGroup;
   public countries: { "name": string; "code-en": string }[] = COUNTRIES;
+  public forecastDetails: WeatherDefinition;
   constructor(private forecastService: ForecastService, private _fg: FormBuilder) { }
 
   private getUserCoordinates() {
@@ -23,6 +24,8 @@ export class ForecastComponent implements OnInit {
 
   public showWeatherDetails(forecast: WeatherDefinition) {
     console.log(forecast);
+    this.forecastDetails = forecast;
+    return { ...this.forecastDetails };
   }
 
   ngOnInit() {
