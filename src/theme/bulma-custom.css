@@ -33,7 +33,8 @@
 
 .title:not(:last-child),
 .subtitle:not(:last-child), .notification:not(:last-child), .table:not(:last-child), .table-container:not(:last-child), .block:not(:last-child), .highlight:not(:last-child), .message:not(:last-child), .pagination:not(:last-child) {
-  margin-bottom: 1.5rem; }
+  /* margin-bottom: 1.5rem; */
+ }
 
 .delete {
   -moz-appearance: none;
@@ -3904,8 +3905,9 @@ a.tag:hover {
   .message strong {
     color: currentColor; }
   .message a:not(.button):not(.tag):not(.dropdown-item) {
-    color: currentColor;
-    text-decoration: underline; }
+    /* color: currentColor; */
+    /* text-decoration: underline;  */
+  }
   .message.is-small {
     font-size: 0.75rem; }
   .message.is-medium {

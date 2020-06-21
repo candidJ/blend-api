@@ -11,7 +11,7 @@ export class HighlightedDirective {
   @Input('highlighted')
   isHighlighted = false;
 
-  @HostBinding('class.is-family-monospace')
+  @HostBinding('class.h-hover')
   get cssClass() {
     return this.isHighlighted;
   }

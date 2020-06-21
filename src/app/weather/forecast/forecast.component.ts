@@ -21,6 +21,10 @@ export class ForecastComponent implements OnInit {
     return this.forecast$ = this.forecastService.getForecast();
   }
 
+  public showWeatherDetails(forecast: WeatherDefinition) {
+    console.log(forecast);
+  }
+
   ngOnInit() {
     this.getUserCoordinates();
     this.userInputForm = this._fg.group({
