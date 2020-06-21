@@ -4,7 +4,7 @@
     </p>
   </h5>
 
-  <form autocomplete="off" [formGroup]="userInputForm">
+  <form id="search" autocomplete="off" [formGroup]="userInputForm">
     <div class="control has-icons-left has-icons-right">
       <input name="city" formControlName="city" class="input" type="text" placeholder="Enter city name">
       <span class="icon is-small is-left">
@@ -39,7 +39,7 @@
     </ng-container>
   </b>
 
-  <ul class="five-day-forecast-list">
+  <ul class="five-day-fl">
     <li highlighted *ngFor="let forecast of forecast$ | async" class="message is-primary">
       <a class="message-body" (click)="showWeatherDetails(forecast)">
         <p>
@@ -47,10 +47,12 @@
         </p>
         <p>
           <i [ngClass]="forecast.icon"></i>
-          {{forecast.description | titlecase}}
+        </p>
+        <p> 
+          {{forecast.currentTemp | number: '1.0-0'}} <i class="wi wi-celsius"></i>
         </p>
         <p>
-          {{forecast.currentTemp | number: '1.0-0'}} <i class="wi wi-celsius"></i>
+          {{forecast.description | titlecase}}
         </p>
       </a>
     </li>
