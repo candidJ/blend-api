@@ -19,7 +19,7 @@ export class ForecastComponent implements OnInit {
   constructor(private forecastService: ForecastService, private _fg: FormBuilder) { }
 
   private getUserCoordinates() {
-    return this.forecast$ = this.forecastService.getForecast();
+    return this.forecast$ = this.forecastService.getForecastByLatLong();
   }
 
   public showWeatherDetails(forecast: WeatherDefinition) {

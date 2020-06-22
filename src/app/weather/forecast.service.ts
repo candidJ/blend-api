@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, of, throwError, pipe } from 'rxjs';
 import { map, switchMap, pluck, mergeMap, filter, toArray, share, tap, catchError, retry } from 'rxjs/operators';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { NotificationService } from '../notifications/notification.service';
@@ -14,11 +14,24 @@ export class ForecastService {
 
   private readonly config = AppConfig.WEATHER_API_CONFIG;
   private dataClone: IOpenWeatherResponse;
+  private httpParams$: Observable<HttpParams>;
   constructor(private httpClient: HttpClient, private notificationService: NotificationService) { }
 
 
-  getForecast(): Observable<WeatherDefinition[]> {
-    return this.getCurrentLocation()
+  getForecastByCityName(city: string) {
+    this.httpParams$ = of(city)
+      .pipe(map(city => {
+        //api.openweathermap.org/data/2.5/forecast?q={cityName}
+        return new HttpParams()
+          .set('q', city)
+          .set('units', this.config.UNITS)
+          .set('appid', this.config.API_KEY)
+      }));
+    return this.getForecast();
+  }
+
+  getForecastByLatLong() {
+    this.httpParams$ = this.getCurrentLocation()
       .pipe(
         map(coords => {
           // use to convert the coords to query params : -api.openweathermap.org/data/2.5/forecast?lat=25&long=125
@@ -27,7 +40,14 @@ export class ForecastService {
             .set('lon', String(coords.longitude))
             .set('units', this.config.UNITS)
             .set('appid', this.config.API_KEY)
-        }),
+        }));
+    return this.getForecast();
+  }
+
+  private getForecast(): Observable<WeatherDefinition[]> {
+
+    return this.httpParams$
+      .pipe(
         // create a new observable with the last emitted value from previous operator
         switchMap(params => {
           console.log(params);
@@ -83,7 +103,7 @@ export class ForecastService {
       );
   }
 
-  getCurrentLocation() {
+  private getCurrentLocation() {
     return new Observable<Coordinates>((observer) => {
       return window.navigator.geolocation.getCurrentPosition(
         (position) => {
