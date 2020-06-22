@@ -3906,8 +3906,8 @@ a.tag:hover {
   .message strong {
     color: currentColor; }
   .message a:not(.button):not(.tag):not(.dropdown-item) {
-    /* color: currentColor; */
-    /* text-decoration: underline;  */
+    color: currentColor;
+    text-decoration: underline; 
   }
   .message.is-small {
     font-size: 0.75rem; }

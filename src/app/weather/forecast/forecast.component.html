@@ -1,8 +1,4 @@
 <article class="container-fluid">
-  <h5 class="search-guideline">
-    <p class="is-size-7">Search for city name. For accurate results, choose country as well.
-    </p>
-  </h5>
 
   <form id="search" autocomplete="off" [formGroup]="userInputForm">
     <div class="control has-icons-left has-icons-right">
@@ -10,9 +6,9 @@
       <span class="icon is-small is-left">
         <i-feather name="search"></i-feather>
       </span>
-      <span class="icon is-small is-right" (click)="userInputForm.reset()">
+      <!-- <span class="icon is-small is-right" (click)="userInputForm.reset()">
         <i-feather name="delete"></i-feather>
-      </span>
+      </span> -->
     </div>
     <div class="control has-icons-left has-icons-right">
       <input list="browsers" name="country" formControlName="country" class="input" type="text"
@@ -23,44 +19,77 @@
       <span class="icon is-small is-left">
         <i-feather name="globe"></i-feather>
       </span>
-      <span class="icon is-small is-right" (click)="userInputForm.reset()">
+      <!-- <span class="icon is-small is-right" (click)="userInputForm.reset()">
         <i-feather name="delete"></i-feather>
-      </span>
+      </span> -->
     </div>
   </form>
 
-  <h2 class="forecast-header">5 day/3 hour Forecast</h2>
+  <h5 class="search-guideline">
+    <p class="is-size-7">Search for city name. For more accurate results, choose country as well.
+    </p>
+  </h5>
 
-  <b class="location">
-    <i-feather name="map-pin"></i-feather>
-    <ng-container *ngIf="forecast$ |async as forecast">
-      {{forecast[0].city}}, {{forecast[0].country}}
-      <!-- {{forecast | json}} -->
-    </ng-container>
-  </b>
+  <section class="forecast-header">
+    <h2>5 day/3 hour Forecast</h2>
+
+    <b class="location">
+      <i-feather name="map-pin"></i-feather>
+      <ng-container *ngIf="forecast$ |async as forecast">
+        {{forecast[0].city}}, {{forecast[0].country}}
+        <!-- {{forecast | json}} -->
+      </ng-container>
+    </b>
+  </section>
 
   <ul class="five-day-fl">
-    <li highlighted *ngFor="let forecast of forecast$ | async" class="message is-primary">
-      <a class="message-body" (click)="showWeatherDetails(forecast)">
+    <li *ngFor="let forecast of forecast$ | async" class="message is-primary">
+      <div class="message-body" (click)="showWeatherDetails(forecast)">
         <p>
           {{forecast.date | date: 'EEEE'}}
         </p>
         <p>
           <i [ngClass]="forecast.icon"></i>
         </p>
-        <p> 
+        <p>
           {{forecast.currentTemp | number: '1.0-0'}} <i class="wi wi-celsius"></i>
         </p>
         <p>
           {{forecast.description | titlecase}}
         </p>
-      </a>
+        <dl>
+          <dt>Min/Max
+            <i class="wi wi-barometer"></i>
+          </dt>
+          <dd>{{forecast.minTemp}}/{{forecast.maxTemp}}</dd>
+          <dt>Humidity
+            <i class="wi wi-humidity"></i>
+          </dt>
+          <dd>{{forecast.humidity}}</dd>
+          <dt>Sunrise
+            <i class="wi wi-sunrise"></i>
+          </dt>
+          <dd>{{forecast.sunrise | date : 'mediumTime'}}</dd>
+          <dt>Sunset
+            <i class="wi wi-sunset"></i>
+          </dt>
+          <dd>{{forecast.sunset | date : 'mediumTime'}}</dd>
+          <dt>Wind speed
+            <i class="wi wi-windy"></i>
+          </dt>
+          <dd>{{forecast.windSpeed}}</dd>
+          <dt>Wind degree
+            <i class="wi wi-degrees"></i>
+          </dt>
+          <dd>{{forecast.windDeg}}</dd>
+        </dl>
+      </div>
     </li>
   </ul>
 
 
-  <ng-container *ngIf="forecastDetails">
+  <!-- <ng-container *ngIf="forecastDetails">
     <app-forecast-details [details]="forecastDetails"></app-forecast-details>
-  </ng-container>
+  </ng-container> -->
 
 </article>
