@@ -30,63 +30,64 @@
     </p>
   </h5>
 
-  <section class="forecast-header">
-    <h2>5 day/3 hour Forecast</h2>
+  <ng-container *ngIf="forecast$ |async as forecast">
+    <section class="forecast-header">
+      <h2>5 day/3 hour Forecast</h2>
 
-    <b class="location">
-      <i-feather name="map-pin"></i-feather>
-      <ng-container *ngIf="forecast$ |async as forecast">
+      <b class="location">
+        <i-feather name="map-pin"></i-feather>
+        <!-- <ng-container *ngIf="forecast$ |async as forecast"> -->
         {{forecast[0].city}}, {{forecast[0].country}}
         <!-- {{forecast | json}} -->
-      </ng-container>
-    </b>
-  </section>
+        <!-- </ng-container> -->
+      </b>
+    </section>
 
-  <ul class="five-day-fl">
-    <li *ngFor="let forecast of forecast$ | async" class="message is-primary">
-      <div class="message-body" (click)="showWeatherDetails(forecast)">
-        <p>
-          {{forecast.date | date: 'EEEE'}}
-        </p>
-        <p>
-          <i [ngClass]="forecast.icon"></i>
-        </p>
-        <p>
-          {{forecast.currentTemp | number: '1.0-0'}} <i class="wi wi-celsius"></i>
-        </p>
-        <p>
-          {{forecast.description | titlecase}}
-        </p>
-        <dl>
-          <dt>Min/Max
-            <i class="wi wi-barometer"></i>
-          </dt>
-          <dd>{{forecast.minTemp}}/{{forecast.maxTemp}}</dd>
-          <dt>Humidity
-            <i class="wi wi-humidity"></i>
-          </dt>
-          <dd>{{forecast.humidity}}</dd>
-          <dt>Sunrise
-            <i class="wi wi-sunrise"></i>
-          </dt>
-          <dd>{{forecast.sunrise | date : 'mediumTime'}}</dd>
-          <dt>Sunset
-            <i class="wi wi-sunset"></i>
-          </dt>
-          <dd>{{forecast.sunset | date : 'mediumTime'}}</dd>
-          <dt>Wind speed
-            <i class="wi wi-windy"></i>
-          </dt>
-          <dd>{{forecast.windSpeed}}</dd>
-          <dt>Wind degree
-            <i class="wi wi-degrees"></i>
-          </dt>
-          <dd>{{forecast.windDeg}}</dd>
-        </dl>
-      </div>
-    </li>
-  </ul>
-
+    <ul class="five-day-fl">
+      <li *ngFor="let forecast of forecast$ | async" class="message is-primary">
+        <div class="message-body" (click)="showWeatherDetails(forecast)">
+          <p>
+            {{forecast.date | date: 'EEEE'}}
+          </p>
+          <p>
+            <i [ngClass]="forecast.icon"></i>
+          </p>
+          <p>
+            {{forecast.currentTemp | number: '1.0-0'}} <i class="wi wi-celsius"></i>
+          </p>
+          <p>
+            {{forecast.description | titlecase}}
+          </p>
+          <dl>
+            <dt>Min/Max
+              <i class="wi wi-barometer"></i>
+            </dt>
+            <dd>{{forecast.minTemp}}/{{forecast.maxTemp}}</dd>
+            <dt>Humidity
+              <i class="wi wi-humidity"></i>
+            </dt>
+            <dd>{{forecast.humidity}}</dd>
+            <dt>Sunrise
+              <i class="wi wi-sunrise"></i>
+            </dt>
+            <dd>{{forecast.sunrise | date : 'mediumTime'}}</dd>
+            <dt>Sunset
+              <i class="wi wi-sunset"></i>
+            </dt>
+            <dd>{{forecast.sunset | date : 'mediumTime'}}</dd>
+            <dt>Wind speed
+              <i class="wi wi-windy"></i>
+            </dt>
+            <dd>{{forecast.windSpeed}}</dd>
+            <dt>Wind degree
+              <i class="wi wi-degrees"></i>
+            </dt>
+            <dd>{{forecast.windDeg}}</dd>
+          </dl>
+        </div>
+      </li>
+    </ul>
+  </ng-container>
 
   <!-- <ng-container *ngIf="forecastDetails">
     <app-forecast-details [details]="forecastDetails"></app-forecast-details>

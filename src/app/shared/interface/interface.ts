@@ -101,8 +101,8 @@ export interface WeatherDefinition {
     id: number,
     city: string,
     country: string,
-    sunrise: number,
-    sunset: number,
+    sunrise: Date,
+    sunset: Date,
     windSpeed: number,
     windDeg: number,
     icon?: string

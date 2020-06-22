@@ -56,19 +56,18 @@ export class ForecastService {
             date: value.dt_txt,
             city: this.dataClone.city.name,
             country: this.dataClone.city.country,
-            sunrise: this.dataClone.city.sunrise,
-            sunset: this.dataClone.city.sunset,
+            //Convert a Unix timestamp to time
+            sunrise: new Date(this.dataClone.city.sunrise * 1000),
+            sunset: new Date(this.dataClone.city.sunset * 1000),
             windSpeed: value.wind.speed,
             windDeg: value.wind.deg
           };
 
           const date = new Date();
-          const sunrise = new Date(forecast.sunrise * 1000); //Convert a Unix timestamp to time
-          const sunset = new Date(forecast.sunset * 1000);
           let weatherIcon: string;
 
           /* Get suitable icon for weather */
-          if (date.getHours() >= sunrise.getHours() && date.getHours() < sunset.getHours()) {
+          if (date.getHours() >= forecast.sunrise.getHours() && date.getHours() < forecast.sunset.getHours()) {
             weatherIcon = `wi wi-owm-day-${forecast.id}`;
           }
           else {

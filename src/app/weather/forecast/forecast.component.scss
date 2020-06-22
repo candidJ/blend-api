@@ -8,27 +8,30 @@
             // "location"
             "five-day-fl";
         // "app-forecast-details";
-        grid-gap: 2vw 0;
+        grid-gap: 1vw 0;
     }
 
     h5.search-guideline {
         grid-area: guideline;
+        color: #888888;
     }
 
     #search {
         grid-area: search;
         display: flex;
+
         // justify-content: space-between;
+        div {
+            width: 35vw;
+            margin-right: 3vw;
+        }
     }
 
     section.forecast-header {
         grid-area: forecast-header;
         display: flex;
         justify-content: space-between;
-    }
-
-    b.location {
-        grid-area: location;
+        margin-top: calc(1rem + 1vh);
     }
 
     app-forecast-details {
