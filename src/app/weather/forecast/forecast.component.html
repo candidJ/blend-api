@@ -2,7 +2,7 @@
 
   <form id="search" autocomplete="off" [formGroup]="userInputForm">
     <div class="control has-icons-left has-icons-right">
-      <input name="city" formControlName="city" class="input" type="text" placeholder="Enter city name">
+      <input name="city" formControlName="city" class="input is-primary" type="text" placeholder="Enter city name">
       <span class="icon is-small is-left">
         <i-feather name="search"></i-feather>
       </span>
@@ -11,7 +11,7 @@
       </span> -->
     </div>
     <div class="control has-icons-left has-icons-right">
-      <input list="browsers" name="country" formControlName="country" class="input" type="text"
+      <input list="browsers" name="country" formControlName="country" class="input is-primary" type="text"
         placeholder="Enter country name(optional)">
       <datalist id="browsers">
         <option *ngFor="let country of countries" [value]="country.name"></option>
@@ -23,6 +23,19 @@
         <i-feather name="delete"></i-feather>
       </span> -->
     </div>
+
+    <div class="control" id="radio">
+      <label class="radio">
+        <input type="radio" name="metric">
+        Fahrenheit&nbsp;<i class="wi wi-fahrenheit"></i>
+      </label>
+      <label class="radio">
+        <input type="radio" name="metric" class="celcius">
+        Celcius&nbsp;<i class="wi wi-celsius"></i>
+      </label>
+    </div>
+
+    <button class="button is-primary is-outlined" type="submit" (click)="onSubmit()">Search</button>
   </form>
 
   <h5 class="search-guideline">
@@ -53,7 +66,7 @@
             <i [ngClass]="forecast.icon"></i>
           </p>
           <p>
-            {{forecast.currentTemp | number: '1.0-0'}} <i class="wi wi-celsius"></i>
+            <span> {{forecast.currentTemp | number: '1.0-0'}}</span> <i class="wi wi-celsius"></i>
           </p>
           <p>
             {{forecast.description | titlecase}}

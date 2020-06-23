@@ -32,7 +32,7 @@ export abstract class API<T> implements IAPIModel<T>{
                 switchMap((params: HttpParams) => this.fetchData(params)),
                 map(this.mapResponse),
                 tap(this.showSuccessMessage),
-                share(),
+                shareReplay(),
                 catchError(err => {
                     this.showErrorMessage;
                     return throwError(err);
