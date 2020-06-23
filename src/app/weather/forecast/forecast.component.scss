@@ -8,7 +8,7 @@
             // "location"
             "five-day-fl";
         // "app-forecast-details";
-        grid-gap: 1vw 0;
+        grid-gap: 2vw 0;
     }
 
     h5.search-guideline {
@@ -19,14 +19,10 @@
     #search {
         grid-area: search;
         display: flex;
-
-        // justify-content: space-between;
-        div:not(#radio) {
-            width: 20vw;
-        }
+        flex-direction: column;
 
         div {
-            margin-right: 3vw;
+            margin: 0 0 3vw;
         }
 
         div#radio {
@@ -40,6 +36,12 @@
         display: flex;
         justify-content: space-between;
         margin-top: calc(1rem + 1vh);
+
+        b.location {
+            display: flex;
+            flex-direction: column;
+        }
+
     }
 
     app-forecast-details {
@@ -62,8 +64,8 @@
         flex-flow: column wrap;
 
         li {
-            margin-bottom: 2vw;
-            padding: 1vw;
+            margin: 0 0 5vw;
+            padding: 5vw;
             display: grid;
             grid-gap: 0.5rem 1rem;
             grid-template-rows: 1fr 3fr 1fr min-content;
@@ -90,7 +92,7 @@
                 grid-column: 1/2;
 
                 i {
-                    font-size: calc(3vw + 1rem);
+                    font-size: calc(5vw + 1rem);
                 }
             }
 
@@ -100,7 +102,7 @@
                 grid-column: 2/3;
 
                 span {
-                    font-size: calc(3vw + 1rem);
+                    font-size: calc(5vw + 1rem);
                 }
 
                 i {
@@ -135,11 +137,54 @@
 
 
     @supports(grid-area: auto) {
-        @media screen and (min-width: 25em) {
+        @media screen and (min-width: 50em) {
             ul.five-day-fl {
                 display: grid;
                 grid-template-columns: repeat(5, 1fr);
                 grid-gap: 0 2vw;
+
+                li {
+                    padding: 2vw;
+                    margin: 0;
+
+                    // weather icon
+                    p:nth-child(2) {
+                        i {
+                            font-size: calc(3vw + 1rem);
+                        }
+                    }
+
+                    // main temperature
+                    p:nth-child(3) {
+                        span {
+                            font-size: calc(3vw + 1rem);
+                        }
+
+                        i {
+                            font-size: calc(1vw + 1rem);
+                        }
+                    }
+                }
+            }
+
+            #search {
+                flex-direction: row;
+
+                div:not(#radio) {
+                    width: 20vw;
+                }
+
+                div {
+                    margin: 0 3vw 0 0;
+                }
+            }
+
+            section.forecast-header {
+                b.location {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: baseline;
+                }
             }
         }
     }
