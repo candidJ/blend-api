@@ -59,9 +59,9 @@
     }
 
     ul.five-day-fl {
-        grid-area: five-day-fl;
-        display: flex;
-        flex-flow: column wrap;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-gap: 0 2vw;
 
         li {
             margin: 0 0 5vw;
@@ -139,9 +139,7 @@
     @supports(grid-area: auto) {
         @media screen and (min-width: 50em) {
             ul.five-day-fl {
-                display: grid;
-                grid-template-columns: repeat(5, 1fr);
-                grid-gap: 0 2vw;
+                grid-gap: 5vw 3vw;
 
                 li {
                     padding: 2vw;

@@ -8,7 +8,7 @@
                 <p>
                     <!-- <cite highlighted #highlighter="hl" (dblclick)="highlighter.toggle();"></cite> -->
                     {{message[props.first]}}
-                    <a (click)="onTweet(message);">
+                    <a target="_blank" rel="noopener noreferrer" title="Send tweet" (click)="onTweet(message);">
                         <i-feather name="twitter"></i-feather>
                     </a>
                 </p>
