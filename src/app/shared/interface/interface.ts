@@ -107,3 +107,9 @@ export interface WeatherDefinition {
     windDeg: number,
     icon?: string
 }
+
+export interface CityPayload {
+    city: string;
+    unit: 'celcius' | 'metric';
+    country: string;
+}

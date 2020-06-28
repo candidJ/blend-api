@@ -2,7 +2,8 @@
 
   <form id="search" autocomplete="off" [formGroup]="userInputForm">
     <div class="control has-icons-left has-icons-right">
-      <input name="city" formControlName="city" class="input is-primary" type="text" placeholder="Enter city name">
+      <input name="city" formControlName="city" class="input is-primary" type="text" placeholder="Enter city name"
+        required>
       <span class="icon is-small is-left">
         <i-feather name="search"></i-feather>
       </span>
@@ -12,7 +13,7 @@
     </div>
     <div class="control has-icons-left has-icons-right">
       <input list="browsers" name="country" formControlName="country" class="input is-primary" type="text"
-        placeholder="Enter country name(optional)">
+        placeholder="Enter country name">
       <datalist id="browsers">
         <option *ngFor="let country of countries" [value]="country.name"></option>
       </datalist>
@@ -26,16 +27,17 @@
 
     <div class="control" id="radio">
       <label class="radio">
-        <input type="radio" name="metric">
+        <input type="radio" name="unit" formControlName="unit" value="imperial">
         Fahrenheit&nbsp;<i class="wi wi-fahrenheit"></i>
       </label>
       <label class="radio">
-        <input type="radio" name="metric" class="celcius">
+        <input type="radio" name="unit" formControlName="unit" value="metric">
         Celcius&nbsp;<i class="wi wi-celsius"></i>
       </label>
     </div>
 
-    <button class="button is-primary is-outlined" type="submit" (click)="onSubmit()">Search</button>
+    <button class="button is-primary is-outlined" type="submit" (click)="onSubmit()"
+      [disabled]="userInputForm.invalid">Search</button>
   </form>
 
   <h5 class="search-guideline">
@@ -50,7 +52,7 @@
       <b class="location">
         <i-feather name="map-pin"></i-feather>
         {{forecasts[0].city}}, {{forecasts[0].country}}
-        <!-- {{forecast | json}} -->
+        <!-- {{forecasts[0] | json}} -->
       </b>
     </section>
 
@@ -64,7 +66,14 @@
             <i [ngClass]="forecast.icon"></i>
           </p>
           <p>
-            <span> {{forecast.currentTemp | number: '1.0-0'}}</span> <i class="wi wi-celsius"></i>
+            <span> {{forecast.currentTemp | number: '1.0-0'}}</span>
+            <ng-container *ngIf="userInputForm.value.unit === 'metric';  else fahrenheit">
+              <i class="wi wi-celsius"></i>
+            </ng-container>
+            <ng-template #fahrenheit>
+              <i class="wi wi-fahrenheit"></i>
+            </ng-template>
+
           </p>
           <p>
             {{forecast.description | titlecase}}
