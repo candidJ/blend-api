@@ -4,23 +4,31 @@ import { Observable, throwError } from 'rxjs';
 import { WeatherDefinition } from 'src/app/shared/interface/interface';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { COUNTRIES } from './country.const';
-import { debounceTime, distinctUntilChanged, switchMap, catchError, combineLatest } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap, catchError, combineLatest, tap } from 'rxjs/operators';
+import { WeatherForecast } from '../weather-forecast';
+import { ForecastStrategy } from '../forecast-strategy.interface';
+import { ForecastByLatLong } from '../forecast-by-latlong';
+import { ForecastByCityName } from '../forecast-by-cityname';
 
 @Component({
   selector: 'app-forecast',
   templateUrl: './forecast.component.html',
   styleUrls: ['./forecast.component.scss']
 })
-export class ForecastComponent implements OnInit {
+export class ForecastComponent extends WeatherForecast implements OnInit {
 
   public forecast$: Observable<WeatherDefinition[]>;
   public userInputForm: FormGroup;
   public countries: { "name": string; "code-en": string }[] = COUNTRIES;
   public forecastDetails: WeatherDefinition;
-  constructor(private forecastService: ForecastService, private _fg: FormBuilder) { }
+  private forecastStrategy: ForecastStrategy;
+
+  constructor(private forecastService: ForecastService, private _fg: FormBuilder) {
+    super();
+  }
 
   private getUserCoordinates() {
-    return this.forecast$ = this.forecastService.getForecastByLatLong();
+    // return this.forecast$ = this.forecastService.getForecastByLatLong();
   }
 
   public showWeatherDetails(forecast: WeatherDefinition) {
@@ -29,25 +37,25 @@ export class ForecastComponent implements OnInit {
     return { ...this.forecastDetails };
   }
 
-  private watchUserInput() {
-    return this.forecast$ = this.userInputForm.controls['city'].valueChanges
-      .pipe(
-        debounceTime(1000),
-        // distinctUntilChanged(),
-        switchMap((value) => {
-          console.log(value);
-          const payload = value;
-          // value.country ? value.
-          return this.forecastService.getForecastByCityName(payload);
-        }),
-        
-        catchError(err => throwError(err))
-      );
+
+  onSubmit() {
+    const payload = this.userInputForm.value.city;
+    // return this.forecastService.getForecastByCityName(payload);
+    this.determineForecastStrategy("cityname");
+    // this.forecastService.getForecast();
   }
 
-  onSubmit(){
-    const payload = this.userInputForm.value.city;
-    return this.forecastService.getForecastByCityName(payload);
+  private determineForecastStrategy(type: string) {
+    switch (type) {
+      case "latlong":
+        this.forecastStrategy = new ForecastByLatLong();
+        console.log(new ForecastByLatLong());
+        break;
+      case "cityname":
+        this.forecastStrategy = new ForecastByCityName("delhi");
+        break;
+      default: "latlong";
+    }
   }
 
   ngOnInit() {
@@ -55,11 +63,12 @@ export class ForecastComponent implements OnInit {
       city: new FormControl(null),
       country: new FormControl(null)
     });
-    // this.watchUserInput();
-    this.getUserCoordinates();
-    console.log(this.userInputForm.controls['city']);
-
-
+    this.determineForecastStrategy("latlong");
+    this.setForecastStrategy(this.forecastStrategy);
+    this.forecast$ = this.forecastService.getForecast(this.getForecastByStrategy());
   }
 
 }
+
+
+

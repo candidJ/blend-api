@@ -43,21 +43,19 @@
     </p>
   </h5>
 
-  <ng-container *ngIf="forecast$ |async as forecast">
+  <ng-container *ngIf="forecast$ |async as forecasts">
     <section class="forecast-header">
       <h2>5 day/3 hour Forecast</h2>
 
       <b class="location">
         <i-feather name="map-pin"></i-feather>
-        <!-- <ng-container *ngIf="forecast$ |async as forecast"> -->
-        {{forecast[0].city}}, {{forecast[0].country}}
+        {{forecasts[0].city}}, {{forecasts[0].country}}
         <!-- {{forecast | json}} -->
-        <!-- </ng-container> -->
       </b>
     </section>
 
     <ul class="five-day-fl">
-      <li *ngFor="let forecast of forecast$ | async" class="message is-primary">
+      <li *ngFor="let forecast of forecasts" class="message is-primary">
         <div class="message-body" (click)="showWeatherDetails(forecast)">
           <p>
             {{forecast.date | date: 'EEEE'}}
