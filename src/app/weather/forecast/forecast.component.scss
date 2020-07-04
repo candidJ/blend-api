@@ -2,8 +2,8 @@
     article.container-fluid {
         display: grid;
         grid-template-areas:
-            "search"
             "guideline"
+            "search"
             "forecast-header"
             // "location"
             "five-day-fl"
@@ -169,7 +169,7 @@
                 flex-direction: row;
 
                 div:not(#radio) {
-                    width: 20vw;
+                    width: 22vw;
                 }
 
                 div {

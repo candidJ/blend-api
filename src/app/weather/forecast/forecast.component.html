@@ -2,18 +2,23 @@
 
   <form id="search" autocomplete="off" [formGroup]="userInputForm">
     <div class="control has-icons-left has-icons-right">
-      <input name="city" formControlName="city" class="input is-primary" type="text" placeholder="Enter city name"
-        required>
+      <input name="city" formControlName="city" class="input" type="text" placeholder="Enter city name" required>
       <span class="icon is-small is-left">
         <i-feather name="search"></i-feather>
       </span>
+
+      <ng-container *ngIf="userInputForm.get('city').errors && userInputForm.get('city').touched">
+        <p class="help is-danger">
+          City name is required.
+        </p>
+      </ng-container>
       <!-- <span class="icon is-small is-right" (click)="userInputForm.reset()">
         <i-feather name="delete"></i-feather>
       </span> -->
     </div>
     <div class="control has-icons-left has-icons-right">
-      <input list="browsers" name="country" formControlName="country" class="input is-primary" type="text"
-        placeholder="Enter country name">
+      <input list="browsers" name="country" formControlName="country" class="input" type="text"
+        placeholder="Enter country name(optional)">
       <datalist id="browsers">
         <option *ngFor="let country of countries" [value]="country.name"></option>
       </datalist>
@@ -36,7 +41,7 @@
       </label>
     </div>
 
-    <button class="button is-primary is-outlined" type="submit" (click)="onSubmit(userInputForm.value)"
+    <button class="button is-link is-light" type="submit" (click)="onSubmit(userInputForm.value)"
       [disabled]="userInputForm.invalid">Search</button>
   </form>
 
