@@ -15,6 +15,38 @@ export class LifeQuotesService extends API<ILifeQuotes> {
 
   constructor(private httpClient: HttpClient, private _notificationService: NotificationService) {
     super();
+    this.fetchFootballVideos();
+    this.fetchGuardianNews();
+    this.hackernewsApi();
+  }
+
+
+
+  private fetchFootballVideos() {
+    fetch('https://www.scorebat.com/video-api/v1/')
+      .then((data) => {
+        console.log(data);
+      }).catch((error) => {
+        console.log(error, "football api");
+      });
+  }
+
+  private hackernewsApi() {
+    fetch('https://hacker-news.firebaseio.com/v0/item/8863.json?print=pretty')
+      .then((data) => {
+        console.log(data, "hackner news api");
+      }).catch((error) => {
+        console.log(error, "hacker news api");
+      });
+  }
+
+  private fetchGuardianNews() {
+    fetch('https://content.guardianapis.com/search?api-key=f04a2cbd-3074-4214-8343-a59436eb2f42')
+      .then((data) => {
+        console.log(data, "guardian api");
+      }).catch((error) => {
+        console.log(error, "guardian api");
+      });
   }
 
   protected showErrorMessage = () => {
@@ -81,14 +113,14 @@ export class ProgrammingQuotesService extends API<IProgrammingQuotes> {
 
   protected fetchData = (params: any): Observable<IProgrammingQuotes[]> => {
     // console.log(params);
-    return this.httpClient.get<IProgrammingQuotes[]>(AppConfig.PROGAMMIN_QUOTES.URL + `${params.updates[0].value}`);
+    return this.httpClient.get<IProgrammingQuotes[]>(AppConfig.PROGAMMING_QUOTES.URL + `${params.updates[0].value}`);
   }
 
   protected mapResponse = (data: IProgrammingQuotes[]): IProgrammingQuotes[] => {
     console.log(data, "programming quotes data");
     // As api doesn't return the totalQuotes, hard coded to actual quotes in api by calculation = 25 pages *20 quotes + 1 page *1 quote;
     //  TOTAL PAGE SIZE IS 501;
-    const page = Math.ceil(AppConfig.PROGAMMIN_QUOTES.TOTAL_PAGES / AppConfig.PROGAMMIN_QUOTES.PAGE_SIZE);
+    const page = Math.ceil(AppConfig.PROGAMMING_QUOTES.TOTAL_PAGES / AppConfig.PROGAMMING_QUOTES.PAGE_SIZE);
     this.getByPageNumber(page);
     // this.dataPublisher.next(data);
     return data;
