@@ -6,6 +6,7 @@ import { of } from 'rxjs';
 import { AppConfig } from '../shared/constant/config';
 import { CityPayload } from '../shared/interface/interface';
 
+// Implementation of strategy
 export class ForecastByCityName implements ForecastStrategy {
 
     constructor(private config: Partial<CityPayload>) { }

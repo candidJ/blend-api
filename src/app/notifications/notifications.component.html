@@ -2,6 +2,6 @@
     <p class="notification is-narrow is-flex is-light" [ngClass]="{'is-success': notif.type === 'success', 
     'is-danger': notif.type === 'error', 'is-info': notif.type ==='info'}">
         <button class="delete" (click)="clearNotification(notif)"></button>
-        {{notif.text}}
+        {{notif.text | titlecase}}
     </p>
 </div>

@@ -28,7 +28,9 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
   }
 
   private getUserCoordinates() {
+    // sets the active strategy to get forecase i.e by city name or lat long
     this.setForecastStrategy(this.forecastStrategy);
+    // gets the active strategy and pass it to service to be consumed
     this.forecast$ = this.forecastService.getForecast(this.getForecastByStrategy());
   }
 
@@ -45,7 +47,10 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
   private determineForecastStrategy(type: string) {
     switch (type) {
       case "latlong":
-        this.forecastStrategy = new ForecastByLatLong();
+        this.forecastService.getCurrentLocation().subscribe((config) => {
+          this.forecastStrategy = new ForecastByLatLong(config);
+          this.getUserCoordinates();
+        });
         break;
       case "cityname":
         const config: Partial<CityPayload> = this.userPayload();
@@ -75,7 +80,6 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
       unit: new FormControl(null)
     });
     this.determineForecastStrategy("latlong");
-    this.getUserCoordinates();
   }
 
 }

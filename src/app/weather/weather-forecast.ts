@@ -1,5 +1,6 @@
 import { ForecastStrategy } from './forecast-strategy.interface';
 
+// Strategy pattern - create a base class which sets and gets the strategy of concrete classes
 export class WeatherForecast {
 
     private stratergy: ForecastStrategy;

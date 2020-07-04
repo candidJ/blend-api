@@ -20,7 +20,7 @@ export const AppConfig = {
     },
     PROGAMMING_QUOTES: {
         URL: "https://programming-quotes-api.herokuapp.com/quotes/page/",
-        PAGE_SIZE: 100,
+        PAGE_SIZE: 20,
         TOTAL_PAGES: 501
     },
     TWITTER: {

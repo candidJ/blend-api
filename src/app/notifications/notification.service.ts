@@ -70,7 +70,7 @@ export class NotificationService {
       );
   }
 
-  generateRandomId(): number {
+  private generateRandomId(): number {
     return Math.round(Math.random() * 10000);
   }
 }
