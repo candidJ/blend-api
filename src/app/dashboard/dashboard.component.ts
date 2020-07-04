@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
         {
           title: "Quotes",
           hasSubMenu: true,
-          icon: "book",
+          icon: "clipboard",
           routerLink: "/quotes",
           subMenu: [{
             icon: "code",
@@ -30,23 +30,23 @@ export class DashboardComponent implements OnInit {
             hasSubMenu: false,
             routerLink: "programming"
           }, {
-            icon: "clipboard",
+            icon: "award",
             title: "Life",
             hasSubMenu: false,
             routerLink: "life"
           }]
         },
         {
-          title: "News",
-          hasSubMenu: false,
-          icon: "book-open",
-          routerLink: "/news"
-        },
-        {
           title: "Weather",
           hasSubMenu: false,
-          icon: "cloud",
+          icon: "cloud-lightning",
           routerLink: "/weather"
+        },
+        {
+          title: "News",
+          hasSubMenu: false,
+          icon: "file-text",
+          routerLink: "/news"
         }
       ]
     };
