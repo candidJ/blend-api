@@ -42,8 +42,16 @@ export class DashboardComponent implements OnInit {
           icon: "cloud-lightning",
           routerLink: "/weather"
         },
+
+        // NEWS API org api only works in Developer mode. Uncomment to access when running locally.
+        // {
+        //   title: "News",
+        //   hasSubMenu: false,
+        //   icon: "file-text",
+        //   routerLink: "/news"
+        // },
         {
-          title: "News",
+          title: "Hacker News",
           hasSubMenu: false,
           icon: "file-text",
           routerLink: "/news"

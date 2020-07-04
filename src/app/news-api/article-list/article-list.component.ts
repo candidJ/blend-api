@@ -19,8 +19,6 @@ export class ArticleListComponent implements OnInit {
   public dataSource: IGridColumnsDef[];
   public articleColumns: Array<IGridColumnsDef>;
 
-  private articlesClone: INewsArticles[];
-  private noOfPages: number;
   @ViewChild("actions")
   actionsTemp: TemplateRef<any>;
 
