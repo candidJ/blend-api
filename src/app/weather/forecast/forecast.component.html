@@ -36,7 +36,7 @@
       </label>
     </div>
 
-    <button class="button is-primary is-outlined" type="submit" (click)="onSubmit()"
+    <button class="button is-primary is-outlined" type="submit" (click)="onSubmit(userInputForm.value)"
       [disabled]="userInputForm.invalid">Search</button>
   </form>
 
@@ -45,7 +45,7 @@
     </p>
   </h5>
 
-  <ng-container *ngIf="forecast$ |async as forecasts">
+  <ng-container *ngIf="forecast$ |async as forecasts; else showRandomCities">
     <section class="forecast-header">
       <h2>5 day/3 hour Forecast</h2>
 
@@ -109,8 +109,8 @@
     </ul>
   </ng-container>
 
-  <!-- <ng-container *ngIf="forecastDetails">
-    <app-forecast-details [details]="forecastDetails"></app-forecast-details>
-  </ng-container> -->
+  <ng-template #showRandomCities>
+    <app-forecast-details (cityInfo)=onSubmit($event)></app-forecast-details>
+  </ng-template>
 
 </article>

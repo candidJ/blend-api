@@ -29,6 +29,7 @@ export class ForecastService {
         ),
         tap(value => {
           this.dataClone = Object.assign({}, value);
+          this.notificationService.showSuccessMessage(`Forecast fetched for ${this.dataClone.city.name}`);
           return value;
         }),
         pluck('list'), // pluck out the list property

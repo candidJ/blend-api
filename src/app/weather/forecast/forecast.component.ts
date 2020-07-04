@@ -19,9 +19,11 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
 
   public forecast$: Observable<WeatherDefinition[]>;
   public userInputForm: FormGroup;
-  public countries: { "name": string; "code-en": string }[] = COUNTRIES;
+  public countries: { "name": string; "code": string }[] = COUNTRIES;
   public forecastDetails: WeatherDefinition;
+
   private forecastStrategy: ForecastStrategy;
+  private cityInfo: Partial<CityPayload>;
 
   constructor(private forecastService: ForecastService, private _fg: FormBuilder) {
     super();
@@ -36,9 +38,9 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
 
   private userPayload(): Partial<CityPayload> {
 
-    const formValue = this.userInputForm.value;
+    const formValue = this.cityInfo;
     return {
-      city: formValue.country ? `${formValue.city},${this.countries.filter(country => country.name === formValue.country)[0]["code-en"]}`
+      city: formValue.country ? `${formValue.city},${this.countries.filter(country => country.name === formValue.country)[0]["code"]}`
         : formValue.city,
       unit: formValue.unit // Temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.
     };
@@ -67,7 +69,8 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
   }
 
 
-  onSubmit() {
+  onSubmit(value: Partial<CityPayload>) {
+    this.cityInfo = value;
     this.determineForecastStrategy("cityname");
     this.getUserCoordinates();
   }
