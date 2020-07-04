@@ -8,6 +8,8 @@ import { NotificationService } from '../notifications/notification.service';
 
 @Injectable()
 export class LifeQuotesService extends API<ILifeQuotes> {
+  // When Subject is used in instead of behavior subject in API-
+  //  using subscribers - publish method for stateless components 
   private dataPublisher = new Subject<ILifeQuotes[]>();
   data$ = this.dataPublisher.asObservable();
 
@@ -23,7 +25,7 @@ export class LifeQuotesService extends API<ILifeQuotes> {
     this._notificationService.showSuccessMessage("Life quotes are fetched");
   }
 
-  protected configureParams(page: number): HttpParams {
+  protected configureParams = (page: number): HttpParams => {
     // console.log(page, "page number in params");
     return new HttpParams()
       .set('page', String(page))
@@ -41,7 +43,7 @@ export class LifeQuotesService extends API<ILifeQuotes> {
     const noOfPaginationLinks = Math.ceil(data.totalPages / AppConfig.LIFE_QUOTES.LIMIT);
     console.log(noOfPaginationLinks);
     this.getByPageNumber(noOfPaginationLinks);
-    this.dataPublisher.next(data['quotes']);
+    // this.dataPublisher.next(data['quotes']);
     return data['quotes'];
   }
 }
@@ -71,7 +73,7 @@ export class ProgrammingQuotesService extends API<IProgrammingQuotes> {
     this._notificationService.showSuccessMessage("Programming quotes are fetched");
   }
 
-  protected configureParams(page: number): HttpParams {
+  protected configureParams = (page: number): HttpParams => {
     // console.log(page, "page number in params");
     return new HttpParams()
       .set('page', String(page));
@@ -88,7 +90,7 @@ export class ProgrammingQuotesService extends API<IProgrammingQuotes> {
     //  TOTAL PAGE SIZE IS 501;
     const page = Math.ceil(AppConfig.PROGAMMIN_QUOTES.TOTAL_PAGES / AppConfig.PROGAMMIN_QUOTES.PAGE_SIZE);
     this.getByPageNumber(page);
-    this.dataPublisher.next(data);
+    // this.dataPublisher.next(data);
     return data;
   }
 }

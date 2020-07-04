@@ -1,16 +1,17 @@
-import { Observable, Subject, throwError } from 'rxjs';
+import { Observable, Subject, throwError, BehaviorSubject } from 'rxjs';
 import { map, switchMap, share, pluck, tap, shareReplay, catchError } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 
 export interface IAPIModel<T> {
-    fetch(key: string): Observable<T[]>;
+    fetch(): Observable<T[]>;
     fetchByPageNumber(page: number): void;
     getNoOfPages(): Observable<number[]>;
 }
 
 
 export abstract class API<T> implements IAPIModel<T>{
-    private apiSubject: Subject<number> = new Subject<number>();
+    // using behavior subject rather than subject
+    private apiSubject: BehaviorSubject<number> = new BehaviorSubject<number>(1);
     private api$: Observable<number> = this.apiSubject.asObservable();
     private noOfPagesSubject: Subject<number> = new Subject<number>();
     private noOfPages$: Observable<number> = this.noOfPagesSubject.asObservable();
@@ -28,8 +29,8 @@ export abstract class API<T> implements IAPIModel<T>{
     fetch(): Observable<any[]> {
         return this.api$
             .pipe(
-                map((page: number) => this.configureParams(page)),
-                switchMap((params: HttpParams) => this.fetchData(params)),
+                map(this.configureParams),
+                switchMap(this.fetchData),
                 map(this.mapResponse),
                 tap(this.showSuccessMessage),
                 shareReplay(),

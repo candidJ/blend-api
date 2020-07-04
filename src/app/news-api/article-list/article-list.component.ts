@@ -15,7 +15,7 @@ export class ArticleListComponent implements OnInit {
 
   public articles$: Observable<INewsArticles[]>;
   public noOfPages$: Observable<number[]>;
-  public articles: INewsArticles[];
+
   public dataSource: IGridColumnsDef[];
   public articleColumns: Array<IGridColumnsDef>;
 
@@ -51,7 +51,7 @@ export class ArticleListComponent implements OnInit {
       }
     ];
 
-    return this.dataSource = this.articleColumns.slice(0,3);
+    return this.dataSource = this.articleColumns.slice(0, 3);
   }
 
   public onPaginatorChange(page: number) {
@@ -64,19 +64,9 @@ export class ArticleListComponent implements OnInit {
 
   ngOnInit(): void {
     this.articles$ = this.newsApiServie.fetch();
-    this.articles$.subscribe((response) => {
-      console.log("news api fetched", response);
-      this.articles = LodashUtils.cloneDeep(response);
-    });
-
     this.noOfPages$ = this.newsApiServie.getNoOfPages();
-    // this.newsApiServie.getNoOfPages()
-    //   .subscribe((pages) => {
-    //     this.noOfPages = pages.length;
-    //   });
-
     // Emit value via subject But first subscribe to the observable
-    this.newsApiServie.fetchByPageNumber(1);
+    // this.newsApiServie.fetchByPageNumber(1);
     this.defineGridColumns();
   }
 

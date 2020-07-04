@@ -35,11 +35,9 @@ export class LifeComponent extends Quotes<ILifeQuotes> implements OnInit {
     }
 
     ngOnInit(): void {
-        this.quotes$ = this.quotesService.data$;
-        this.quotesService.fetch().subscribe();
-
+        this.quotes$ = this.quotesService.fetch();
         this.noOfPages$ = this.quotesService.getNoOfPages();
-        this.quotesService.fetchByPageNumber(1);
+        // this.quotesService.fetchByPageNumber(1);
     }
 
 }

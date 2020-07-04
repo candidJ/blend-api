@@ -42,10 +42,9 @@ export class ProgrammingComponent extends Quotes<IProgrammingQuotes> implements 
     }
 
     ngOnInit(): void {
-        this.quotes$ = this.programmingQuotesService.data$;
-        this.programmingQuotesService.fetch().subscribe();
+        this.quotes$ = this.programmingQuotesService.fetch();
         this.noOfPages$ = this.programmingQuotesService.getNoOfPages();
-        this.programmingQuotesService.fetchByPageNumber(1);
+        // this.programmingQuotesService.fetchByPageNumber(1);
     }
 
 }
