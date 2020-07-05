@@ -4,11 +4,15 @@ import { ArticleListComponent } from './article-list/article-list.component';
 import { NewsApiRoutingModule } from './news-api-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { HackerNewsComponent } from './hacker-news/hacker-news.component';
+import { JobsComponent } from './hacker-news/jobs/jobs.component';
+import { FeedComponent } from './hacker-news/feed/feed.component';
 
 @NgModule({
   declarations: [
     ArticleListComponent,
-    HackerNewsComponent
+    HackerNewsComponent,
+    JobsComponent,
+    FeedComponent
   ],
   imports: [
     CommonModule,

@@ -3,7 +3,7 @@
   <form id="search" autocomplete="off" [formGroup]="userInputForm">
     <div class="control has-icons-left has-icons-right">
       <input name="city" formControlName="city" class="input" type="text" placeholder="Enter city name" required>
-      <span class="icon is-small is-left">
+      <span class="icon is-small is-left flex items-center">
         <i-feather name="search"></i-feather>
       </span>
 
@@ -22,7 +22,7 @@
       <datalist id="browsers">
         <option *ngFor="let country of countries" [value]="country.name"></option>
       </datalist>
-      <span class="icon is-small is-left">
+      <span class="icon is-small is-left flex items-center">
         <i-feather name="globe"></i-feather>
       </span>
       <!-- <span class="icon is-small is-right" (click)="userInputForm.reset()">

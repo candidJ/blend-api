@@ -52,9 +52,29 @@ export class DashboardComponent implements OnInit {
         // },
         {
           title: "Hacker News",
-          hasSubMenu: false,
+          hasSubMenu: true,
           icon: "file-text",
-          routerLink: "/news"
+          routerLink: "/news",
+          subMenu: [
+            {
+              title: "Popular",
+              routerLink: "feed",
+              icon: "",
+              hasSubMenu: false
+            },
+            {
+              title: "Latest",
+              routerLink: "newest",
+              icon: "",
+              hasSubMenu: false
+            },
+            {
+              title: "Jobs",
+              routerLink: "jobs",
+              icon: "",
+              hasSubMenu: false
+            }
+          ]
         }
       ]
     };
