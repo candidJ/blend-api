@@ -12,41 +12,53 @@ export class FeedComponent implements OnInit {
 
   public feed$: Observable<HackerNewsFeed[]>;
   public dataSource: IGridColumnsDef[];
-  public feedColumns: Array<IGridColumnsDef>;
+  // public feedColumns: Array<IGridColumnsDef>;
+  public feedColumns: Array<any>;
   public noOfPages$: Observable<number[]>;
 
   constructor(private hackerNewsService: HackerNewsApiService) { }
 
-  private defineGridColumns(): Array<IGridColumnsDef> {
+  private defineGridColumns() {
     this.feedColumns = [
       {
         header: 'Headline',
         property: 'title',
-        type: 'text'
+        type: 'text',
+        hasDetails: true,
+        details: [
+          {
+            property: 'user',
+            type: 'text',
+            preposition: 'by'
+          },
+          {
+            property: 'time_ago',
+            type: 'text',
+            preposition: ''
+          },
+          {
+            property: 'points',
+            type: 'text',
+            preposition: 'points'
+          }
+        ]
+
       },
       {
         header: 'Comment count',
         property: 'comments_count',
-        type: 'text'
-      },
-      {
-        header: 'Author',
-        property: 'user',
-        type: 'text'
-      },
-      {
-        header: 'Published',
-        property: 'time_ago',
-        type: 'text'
+        type: 'text',
+        hasDetails: false
       },
       {
         header: 'View',
         property: 'actions',
-        type: 'template'
+        type: 'template',
+        hasDetails: false
       }
     ];
 
-    return this.dataSource = this.feedColumns.slice(0, 4);
+    return this.dataSource = this.feedColumns.slice(0, 2);
   }
 
 

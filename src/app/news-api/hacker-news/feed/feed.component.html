@@ -2,7 +2,16 @@
     <ng-template #gridItems let-gridRowData>
         <ng-container *ngFor="let item of dataSource">
             <ng-container>
-                <td>{{gridRowData[item.property]}}</td>
+                <td>{{gridRowData[item.property]}}
+                    <ng-container *ngIf="item.hasDetails">
+                        <p class="is-size-7 mt-2">
+                            <span *ngFor="let detail of item.details">
+                                {{detail.preposition}} {{gridRowData[detail.property]}}&nbsp;
+                            </span>
+                        </p>
+                    </ng-container>
+
+                </td>
             </ng-container>
         </ng-container>
         <td>
