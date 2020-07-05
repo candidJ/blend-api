@@ -1,1 +1,16 @@
-<p>feed works!</p>
+<app-grid [gridData]="feed$" [gridColumns]="feedColumns">
+    <ng-template #gridItems let-gridRowData>
+        <ng-container *ngFor="let item of dataSource">
+            <ng-container>
+                <td>{{gridRowData[item.property]}}</td>
+            </ng-container>
+        </ng-container>
+        <td>
+            <a [href]="gridRowData.url" target="_blank" class="flex justify-center align-center">
+                <i-feather name="external-link"></i-feather>
+            </a>
+        </td>
+    </ng-template>
+</app-grid>
+
+<app-paginator [noOfPages$]="noOfPages$" (onPaginatorChange)="onPaginatorChange($event)"></app-paginator>
