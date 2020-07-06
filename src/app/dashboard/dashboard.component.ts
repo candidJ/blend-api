@@ -57,14 +57,14 @@ export class DashboardComponent implements OnInit {
           routerLink: "/news",
           subMenu: [
             {
-              title: "Popular",
+              title: "Feed",
               routerLink: "feed",
               icon: "",
               hasSubMenu: false
             },
             {
               title: "Latest",
-              routerLink: "newest",
+              routerLink: "latest",
               icon: "",
               hasSubMenu: false
             },

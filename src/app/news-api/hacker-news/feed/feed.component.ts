@@ -20,10 +20,11 @@ export class FeedComponent implements OnInit {
   private defineGridColumns() {
     this.feedColumns = [
       {
-        header: 'Headline',
+        header: 'Title',
         property: 'title',
         type: 'text',
         hasDetails: true,
+        isHideSm: false,
         details: [
           {
             property: 'points',
@@ -50,19 +51,20 @@ export class FeedComponent implements OnInit {
             icon: 'message-square'
           }
         ]
-
       },
       {
         header: 'Domain',
         property: 'domain',
         type: 'link',
-        hasDetails: false
+        hasDetails: false,
+        isHideSm: true
       },
       {
         header: 'View',
         property: 'actions',
         type: 'template',
-        hasDetails: false
+        hasDetails: false,
+        isHideSm: false
       }
     ];
 

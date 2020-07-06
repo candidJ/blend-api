@@ -1,19 +1,16 @@
 <app-grid [gridData]="feed$" [gridColumns]="feedColumns">
     <ng-template #gridItems let-gridRowData>
         <ng-container *ngFor="let item of dataSource">
-            <ng-container>
-                <td>{{gridRowData[item.property]}}
-                    <ng-container *ngIf="item.hasDetails">
-                        <p class="is-size-7 mt-2">
-                            <span class="details" *ngFor="let detail of item.details">
-                                <i-feather [name]="detail.icon"></i-feather>
-                                {{gridRowData[detail.property]}}&nbsp;&nbsp;
-                            </span>
-                        </p>
-                    </ng-container>
-
-                </td>
-            </ng-container>
+            <td [ngClass]="{'hide-sm': item.isHideSm}">{{gridRowData[item.property]}}
+                <ng-container *ngIf="item.hasDetails">
+                    <p class="is-size-7 mt-2">
+                        <span class="details" *ngFor="let detail of item.details">
+                            <i-feather [name]="detail.icon"></i-feather>
+                            {{gridRowData[detail.property]}}&nbsp;&nbsp;
+                        </span>
+                    </p>
+                </ng-container>
+            </td>
         </ng-container>
         <td>
             <a [href]="gridRowData.url" target="_blank" class="flex justify-center align-center">

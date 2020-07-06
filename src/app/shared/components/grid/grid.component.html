@@ -3,7 +3,8 @@
         <thead>
             <tr>
                 <ng-container *ngFor="let column of gridColumns">
-                    <th class="has-background-primary-light is-capitalized">{{column.header}}</th>
+                    <th class="has-background-primary-light is-capitalized" [ngClass]="{'hide-sm': column.isHideSm}">
+                        {{column.header}}</th>
                 </ng-container>
             </tr>
         </thead>

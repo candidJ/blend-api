@@ -32,6 +32,7 @@ export interface HackerNewsDetails {
 export interface HackerNews extends IGridColumnsDef {
     hasDetails: boolean;
     details?: HackerNewsDetails[];
+    isHideSm: boolean;
 }
 
 export interface IProgrammingQuotes {
