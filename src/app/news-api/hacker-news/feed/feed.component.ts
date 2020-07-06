@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HackerNewsApiService } from '../hacker-news-api.service';
-import { HackerNewsFeed, IGridColumnsDef } from 'src/app/shared/interface/interface';
+import { HackerNewsFeed, IGridColumnsDef, HackerNews } from 'src/app/shared/interface/interface';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,9 +11,8 @@ import { Observable } from 'rxjs';
 export class FeedComponent implements OnInit {
 
   public feed$: Observable<HackerNewsFeed[]>;
-  public dataSource: IGridColumnsDef[];
-  // public feedColumns: Array<IGridColumnsDef>;
-  public feedColumns: Array<any>;
+  public dataSource: HackerNews[];
+  public feedColumns: HackerNews[];
   public noOfPages$: Observable<number[]>;
 
   constructor(private hackerNewsService: HackerNewsApiService) { }
@@ -27,27 +26,36 @@ export class FeedComponent implements OnInit {
         hasDetails: true,
         details: [
           {
+            property: 'points',
+            type: 'text',
+            preposition: 'points',
+            icon: 'thumbs-up'
+          },
+          {
             property: 'user',
             type: 'text',
-            preposition: 'by'
+            preposition: 'by',
+            icon: 'user'
           },
           {
             property: 'time_ago',
             type: 'text',
-            preposition: ''
+            preposition: '',
+            icon: 'watch'
           },
           {
-            property: 'points',
+            property: 'comments_count',
             type: 'text',
-            preposition: 'points'
+            preposition: 'comment',
+            icon: 'message-square'
           }
         ]
 
       },
       {
-        header: 'Comment count',
-        property: 'comments_count',
-        type: 'text',
+        header: 'Domain',
+        property: 'domain',
+        type: 'link',
         hasDetails: false
       },
       {

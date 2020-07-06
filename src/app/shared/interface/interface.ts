@@ -19,7 +19,19 @@ export interface INewsFeed {
 export interface IGridColumnsDef {
     header: string;
     property: string;
-    type: 'text' | 'date' | 'template';
+    type: 'text' | 'date' | 'template'| 'link';
+}
+
+export interface HackerNewsDetails {
+    icon: string;
+    preposition: string;
+    type: string;
+    property: string;
+}
+
+export interface HackerNews extends IGridColumnsDef {
+    hasDetails: boolean;
+    details?: HackerNewsDetails[];
 }
 
 export interface IProgrammingQuotes {
