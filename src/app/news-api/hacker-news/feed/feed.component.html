@@ -5,8 +5,10 @@
                 <ng-container *ngIf="item.hasDetails">
                     <p class="is-size-7 mt-2">
                         <span class="details" *ngFor="let detail of item.details">
-                            <i-feather [name]="detail.icon"></i-feather>
-                            {{gridRowData[detail.property]}}&nbsp;&nbsp;
+                            <ng-container *ngIf="gridRowData[detail.property]">
+                                <i-feather [name]="detail.icon"></i-feather>
+                                {{gridRowData[detail.property]}}&nbsp;&nbsp;
+                            </ng-container>
                         </span>
                     </p>
                 </ng-container>
