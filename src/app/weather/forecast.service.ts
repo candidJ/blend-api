@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError, pipe } from 'rxjs';
+import { Observable, of, throwError, pipe, Subject } from 'rxjs';
 import { map, switchMap, pluck, mergeMap, filter, toArray, share, tap, catchError, retry, shareReplay } from 'rxjs/operators';
 import { HttpParams, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { NotificationService } from '../notifications/notification.service';
@@ -13,8 +13,12 @@ export class ForecastService {
 
   private readonly config = AppConfig.WEATHER_API_CONFIG;
   private dataClone: IOpenWeatherResponse;
+  private cityPublisher = new Subject<boolean>();
+  public showRandomCities$ = this.cityPublisher.asObservable();
 
-  constructor(private httpClient: HttpClient, private notificationService: NotificationService) { }
+  constructor(private httpClient: HttpClient, private notificationService: NotificationService) {
+    this.cityPublisher.next(false);
+  }
 
 
   public getForecast(forecastHttpParams: Observable<HttpParams>): Observable<WeatherDefinition[]> {
@@ -77,6 +81,7 @@ export class ForecastService {
         catchError((err: HttpErrorResponse) => {
           console.log(err);
           if (err.status == 404) {
+            this.cityPublisher.next(true);
             this.notificationService.showErrorMessage(err.error.message);
           }
           return throwError(err);

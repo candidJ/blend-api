@@ -12,6 +12,14 @@ export const CITIES = [
         city: "Miami"
     },
     {
+        country: "United States of America",
+        city: "Chicago"
+    },
+    {
+        country: "United States of America",
+        city: "Yuba City"
+    },
+    {
         country: "India",
         city: "Chandigarh"
     },
@@ -25,7 +33,7 @@ export const CITIES = [
     },
     {
         country: "Singapore",
-        city: "Pulau Ujong "
+        city: "Pulau Ujong"
     },
     {
         country: "Japan",
@@ -41,11 +49,23 @@ export const CITIES = [
     },
     {
         country: "Pakistan",
-        city: "Peshawar"
+        city: "Lahore"
+    },
+    {
+        country: "Ukraine",
+        city: "Kiev"
     },
     {
         country: "United Kingdom",
         city: "London"
+    },
+    {
+        country: "Czech Republic",
+        city: "Prague"
+    },
+    {
+        country: "United Kingdom",
+        city: "Birmingham"
     },
     {
         country: "United Kingdom",
@@ -80,8 +100,20 @@ export const CITIES = [
         city: "Monterrey"
     },
     {
+        country: "Belarus",
+        city: "Minsk"
+    },
+    {
         country: "Brazil",
         city: "Flamengo"
+    },
+    {
+        country: "Brazil",
+        city: "São Paulo"
+    },
+    {
+        country: "Brazil",
+        city: "rio de janeiro"
     },
     {
         country: "Canada",
@@ -92,8 +124,16 @@ export const CITIES = [
         city: "Calgary"
     },
     {
+        country: "Canada",
+        city: "Montreal"
+    },
+    {
         country: "Germany",
         city: "Dortmund"
+    },
+    {
+        country: "Germany",
+        city: "Hamburg"
     },
     {
         country: "India",
@@ -175,4 +215,20 @@ export const CITIES = [
         country: "Philippines",
         city: "Manilla"
     },
+    {
+        country: "Zimbabwe",
+        city: "Harare"
+    },
+    {
+        country: "Armenia",
+        city: "Yerevan"
+    },
+    {
+        country: "Cuba",
+        city: "Havana"
+    },
+    {
+        country: "Uruguay",
+        city: "Montevideo"
+    }
 ];

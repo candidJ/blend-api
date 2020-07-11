@@ -50,7 +50,7 @@
     </p>
   </h5>
 
-  <ng-container *ngIf="forecast$ |async as forecasts; else showRandomCities">
+  <ng-container *ngIf="forecast$ |async as forecasts">
     <section class="forecast-header">
       <h2>5 day/3 hour Forecast</h2>
 
@@ -114,8 +114,8 @@
     </ul>
   </ng-container>
 
-  <ng-template #showRandomCities>
+  <ng-container *ngIf="forecastService.showRandomCities$ |async">
     <app-forecast-details (cityInfo)=onSubmit($event)></app-forecast-details>
-  </ng-template>
+  </ng-container>
 
 </article>

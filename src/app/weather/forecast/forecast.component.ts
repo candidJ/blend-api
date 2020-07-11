@@ -25,7 +25,7 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
   private forecastStrategy: ForecastStrategy;
   private cityInfo: Partial<CityPayload>;
 
-  constructor(private forecastService: ForecastService, private _fg: FormBuilder) {
+  constructor(public forecastService: ForecastService, private _fg: FormBuilder) {
     super();
   }
 
@@ -39,8 +39,13 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
   private userPayload(): Partial<CityPayload> {
 
     const formValue = this.cityInfo;
+    let countryCode: string | null;
+    if (formValue.country) {
+      const country = this.countries.filter(country => country.name.toLowerCase() === formValue.country.toLowerCase());
+      countryCode = country.length ? country[0]["code"] : null;
+    }
     return {
-      city: formValue.country ? `${formValue.city},${this.countries.filter(country => country.name === formValue.country)[0]["code"]}`
+      city: formValue.country ? `${formValue.city},${countryCode}`
         : formValue.city,
       unit: formValue.unit // Temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.
     };
