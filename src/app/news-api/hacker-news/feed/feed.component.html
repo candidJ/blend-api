@@ -1,7 +1,7 @@
 <app-grid [gridData]="feed$" [gridColumns]="feedColumns">
     <ng-template #gridItems let-gridRowData>
         <ng-container *ngFor="let item of dataSource">
-            <td [routerLink]="[ '/feed', gridRowData.id ]"
+            <td [routerLink]="[ '../item', gridRowData.id ]"
                 [ngClass]="{'hide-sm': item.isHideSm}">
                 {{gridRowData[item.property]}}
                 <ng-container *ngIf="item.hasDetails">
@@ -23,8 +23,5 @@
         </td>
     </ng-template>
 </app-grid>
-
-<!-- <router-outlet></router-outlet> -->
-<!-- [routerLink]="[ '/feed', gridRowData.id ]" -->
 
 <app-paginator [noOfPages$]="noOfPages$" (onPaginatorChange)="onPaginatorChange($event)"></app-paginator>

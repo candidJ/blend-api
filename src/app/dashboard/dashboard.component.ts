@@ -73,6 +73,18 @@ export class DashboardComponent implements OnInit {
               routerLink: "jobs",
               icon: "",
               hasSubMenu: false
+            },
+            {
+              title: "Ask",
+              routerLink: "ask",
+              icon: "",
+              hasSubMenu: false
+            },
+            {
+              title: "Show",
+              routerLink: "show",
+              icon: "",
+              hasSubMenu: false
             }
           ]
         }

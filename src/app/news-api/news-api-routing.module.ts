@@ -13,26 +13,33 @@ import { FeedDetailsComponent } from './hacker-news/feed-details/feed-details.co
             {
                 path: "news-api",
                 component: ArticleListComponent
-            }, {
+            },
+            {
                 path: "",
                 component: HackerNewsComponent,
                 children: [
                     {
-                        path: "feed/:id",
+                        path: "item/:id",
                         component: FeedDetailsComponent
                     },
                     {
                         path: "feed",
-                        component: FeedComponent,
-                        children: [
-                            {
-                                path: ":id",
-                                component: FeedDetailsComponent
-                            }
-                        ]
+                        component: FeedComponent
                     },
                     {
                         path: "jobs",
+                        component: FeedComponent
+                    },
+                    {
+                        path: "latest",
+                        component: FeedComponent
+                    },
+                    {
+                        path: "ask",
+                        component: FeedComponent
+                    },
+                    {
+                        path: "show",
                         component: FeedComponent
                     }
                 ]
