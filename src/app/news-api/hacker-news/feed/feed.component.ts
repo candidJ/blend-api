@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HackerNewsApiService } from '../hacker-news-api.service';
 import { HackerNewsFeed, IGridColumnsDef, HackerNews } from 'src/app/shared/interface/interface';
 import { Observable } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -13,9 +14,10 @@ export class FeedComponent implements OnInit {
   public feed$: Observable<HackerNewsFeed[]>;
   public dataSource: HackerNews[];
   public feedColumns: HackerNews[];
+  public feedDetails: HackerNewsFeed;
   public noOfPages$: Observable<number[]>;
 
-  constructor(private hackerNewsService: HackerNewsApiService) { }
+  constructor(private hackerNewsService: HackerNewsApiService, private router: Router, private route: ActivatedRoute) { }
 
   private defineGridColumns() {
     this.feedColumns = [
@@ -74,6 +76,10 @@ export class FeedComponent implements OnInit {
 
   public onPaginatorChange(page: number) {
     return this.hackerNewsService.fetchByPageNumber(page);
+  }
+
+  public onViewDetails(value: HackerNewsFeed) {
+    this.feedDetails = value;
   }
 
   ngOnInit(): void {

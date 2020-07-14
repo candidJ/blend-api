@@ -5,4 +5,8 @@
             height: 1rem;
         }
     }
+
+    td:first-child {
+        cursor: pointer;
+    }
 }

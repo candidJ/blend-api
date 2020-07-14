@@ -7,7 +7,7 @@ const routeChild = [{
     component: DashboardComponent,
     children: [
         {
-            path: '', redirectTo: 'weather', pathMatch: 'full'
+            path: '', redirectTo: 'news', pathMatch: 'full'
         },
         {
             path: "quotes",

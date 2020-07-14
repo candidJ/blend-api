@@ -4,6 +4,7 @@ import { ArticleListComponent } from './article-list/article-list.component';
 import { HackerNewsComponent } from './hacker-news/hacker-news.component';
 import { JobsComponent } from './hacker-news/jobs/jobs.component';
 import { FeedComponent } from './hacker-news/feed/feed.component';
+import { FeedDetailsComponent } from './hacker-news/feed-details/feed-details.component';
 
 
 @NgModule({
@@ -17,21 +18,27 @@ import { FeedComponent } from './hacker-news/feed/feed.component';
                 component: HackerNewsComponent,
                 children: [
                     {
-                        path: "",
-                        redirectTo: "feed"
+                        path: "feed/:id",
+                        component: FeedDetailsComponent
                     },
                     {
-                        path:"jobs",
-                        component: JobsComponent
+                        path: "feed",
+                        component: FeedComponent,
+                        children: [
+                            {
+                                path: ":id",
+                                component: FeedDetailsComponent
+                            }
+                        ]
                     },
                     {
-                        path:"feed",
+                        path: "jobs",
                         component: FeedComponent
                     }
                 ]
             }
         ])],
-        exports: [RouterModule]
+    exports: [RouterModule]
 
 })
 export class NewsApiRoutingModule {

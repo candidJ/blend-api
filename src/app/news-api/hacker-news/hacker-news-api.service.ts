@@ -44,9 +44,13 @@ export class HackerNewsApiService extends API<HackerNewsFeed> {
 
   private determineActiveUrl() {
     const snapshot = this.router.routerState.snapshot.url;
+    const base = this.config.BASE;
     switch (snapshot) {
-      case '/news/feed': return this.config.FEED_URL;
-      case '/news/jobs': return this.config.JOBS_URL;
+      case '/news/feed': return base + this.config.FEED_URL;
+      case '/news/jobs': return base + this.config.JOBS_URL;
+      case '/news/latest': return base + this.config.LATEST_URL;
+      case '/news/ask': return base + this.config.ASK_URL;
+      case '/news/show': return base + this.config.SHOW_URL;
       default: return this.config.FEED_URL;
     }
   }

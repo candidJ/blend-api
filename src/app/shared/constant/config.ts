@@ -27,9 +27,13 @@ export const AppConfig = {
         URL: "https://www.twitter.com/intent/tweet?hashtags",
         HASHTAGS: 'programmingquotes, quotes'
     },
-    HACKER_NEWS:{
-        FEED_URL:"http://node-hnapi.herokuapp.com/news",
-        JOBS_URL:"http://node-hnapi.herokuapp.com/jobs",
+    HACKER_NEWS: {
+        BASE: "https://node-hnapi.herokuapp.com/",
+        FEED_URL: "news",
+        JOBS_URL: "jobs",
+        LATEST_URL: "newest",
+        SHOW_URL: "show",
+        ASK_URL: "ask",
         TOTAL_PAGES: 100
     }
 
