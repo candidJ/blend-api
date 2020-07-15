@@ -3,12 +3,12 @@
         <div class="card-content">
             <p class="is-size-4">
                 {{item.title}}
-                <span class="mx-1 gray">({{item.domain}})</span>
-                <a class="is-size-7" [href]="item.link" target="_blank" rel="noopener noreferrer">
+                <span class="mx-1 gray" *ngIf="item.domain">({{item.domain}})</span>
+                <a *ngIf="item.link" class="is-size-7" [href]="item.link" target="_blank" rel="noopener noreferrer">
                     <i-feather name="external-link"></i-feather>
                 </a>
             </p>
-            <p class="mt-2">
+            <p class="mt-3 gray">
                 <span>
                     <i-feather name="thumbs-up"></i-feather>{{item.points}}
                 </span>
@@ -24,7 +24,13 @@
 
     <hr>
 
-    <h2 class="is-size-5 mb-5">Total comments&nbsp;-&nbsp;{{item.comments_count}}</h2>
+    <ng-container *ngIf="item.comments_count; else noComments">
+        <h2 class="is-size-5 mb-5">{{item.comments_count}}&nbsp;&nbsp;comments</h2>
+    </ng-container>
+
+    <ng-template #noComments>
+        No comments posted.
+    </ng-template>
 
     <app-comments *ngFor="let comment of item.comments" [comment]="comment">
     </app-comments>

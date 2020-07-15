@@ -11,7 +11,6 @@ export class CommentsComponent implements OnInit {
   @Input('comment') comment: HNComments;
 
   ngOnInit(): void {
-    console.log(this.comment, "asdjjkashdi76qiwkhausy");
   }
 
 }
