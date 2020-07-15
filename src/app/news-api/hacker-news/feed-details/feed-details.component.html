@@ -1,1 +1,32 @@
-<p>feed-details works!</p>
+<ng-container *ngIf="item$ | async as item">
+    <div class="card">
+        <div class="card-content">
+            <p class="is-size-4">
+                {{item.title}}
+                <span class="mx-1 gray">({{item.domain}})</span>
+                <a class="is-size-7" [href]="item.link" target="_blank" rel="noopener noreferrer">
+                    <i-feather name="external-link"></i-feather>
+                </a>
+            </p>
+            <p class="mt-2">
+                <span>
+                    <i-feather name="thumbs-up"></i-feather>{{item.points}}
+                </span>
+                <span>
+                    <i-feather name="user"></i-feather>{{item.user}}
+                </span>
+                <span>
+                    <i-feather name="watch"></i-feather>{{item.time_ago}}
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2 class="is-size-5 mb-5">Total comments&nbsp;-&nbsp;{{item.comments_count}}</h2>
+
+    <app-comments *ngFor="let comment of item.comments" [comment]="comment">
+    </app-comments>
+
+</ng-container>

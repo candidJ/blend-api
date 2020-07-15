@@ -17,7 +17,7 @@ export class FeedComponent implements OnInit {
   public feedDetails: HackerNewsFeed;
   public noOfPages$: Observable<number[]>;
 
-  constructor(private hackerNewsService: HackerNewsApiService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private hackerNewsService: HackerNewsApiService<HackerNewsFeed>, private router: Router, private route: ActivatedRoute) { }
 
   private defineGridColumns() {
     this.feedColumns = [

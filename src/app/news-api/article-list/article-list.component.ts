@@ -13,7 +13,7 @@ import { LodashUtils } from '../../shared/helpers/lodash';
 })
 export class ArticleListComponent implements OnInit {
 
-  public articles$: Observable<INewsArticles[]>;
+  public articles$: Observable<any[]>;
   public noOfPages$: Observable<number[]>;
 
   public dataSource: IGridColumnsDef[];

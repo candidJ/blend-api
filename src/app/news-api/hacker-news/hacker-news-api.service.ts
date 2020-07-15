@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { API } from 'src/app/shared/class/api';
-import { HackerNewsFeed } from 'src/app/shared/interface/interface';
+import { HackerNewsFeedDetails } from 'src/app/shared/interface/interface';
 import { AppConfig } from 'src/app/shared/constant/config';
 import { NotificationService } from 'src/app/notifications/notification.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { RouterState, Router } from '@angular/router';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class HackerNewsApiService extends API<HackerNewsFeed> {
+export class HackerNewsApiService<T> extends API<T> {
 
   private readonly config = AppConfig.HACKER_NEWS;
 
@@ -32,18 +33,19 @@ export class HackerNewsApiService extends API<HackerNewsFeed> {
       .set('page', page.toString());
   }
 
-  protected fetchData = (params: HttpParams): Observable<HackerNewsFeed> => {
+  protected fetchData = (params: HttpParams): Observable<T> => {
     const url = this.determineActiveUrl();
-    return this.httpClient.get<HackerNewsFeed>(url, { params });
+    return this.httpClient.get<T>(url, { params });
   }
 
-  protected mapResponse = (data: HackerNewsFeed[]) => {
+  protected mapResponse = (data: T[]) => {
     this.getByPageNumber(this.config.TOTAL_PAGES);
     return data;
   }
 
   private determineActiveUrl() {
     const snapshot = this.router.routerState.snapshot.url;
+    // console.log(snapshot, "snapshot");
     const base = this.config.BASE;
     switch (snapshot) {
       case '/news/feed': return base + this.config.FEED_URL;
@@ -54,4 +56,13 @@ export class HackerNewsApiService extends API<HackerNewsFeed> {
       default: return this.config.FEED_URL;
     }
   }
+
+  // fetch item detials
+  public loadItemDetails(): Observable<HackerNewsFeedDetails> {
+    const item = this.router.routerState.snapshot.url.replace('/news/', '')
+    return this.httpClient.get<HackerNewsFeedDetails>(this.config.BASE + item)
+      .pipe(catchError(err => throwError(err)));
+  }
+
+
 }

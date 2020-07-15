@@ -1,0 +1,18 @@
+    <article class="my-5">
+        <!-- {{comment.level}} -->
+        <p class="mb-2">
+            <span>
+                <i-feather name="user"></i-feather>{{comment.user}}
+            </span>
+            <span>
+                <i-feather name="watch"></i-feather>{{comment.time_ago}}
+            </span>
+        </p>
+
+        <p *ngIf="comment.content" [innerHTML]="comment.content"></p>
+
+    </article>
+
+    <!-- for nested comments -->
+    <app-comments *ngFor="let comment of comment.comments" [comment]="comment">
+    </app-comments>

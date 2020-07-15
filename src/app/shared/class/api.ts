@@ -26,7 +26,7 @@ export abstract class API<T> implements IAPIModel<T>{
         this.apiSubject.next(page);
     }
 
-    fetch(): Observable<any[]> {
+    fetch(): Observable<T[]> {
         return this.api$
             .pipe(
                 map(this.configureParams),

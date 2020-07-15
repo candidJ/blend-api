@@ -29,11 +29,11 @@ th {
 }
 
 
-h1{
+h1 {
     font-size: 2rem;
 }
 
-h2{
+h2 {
     font-size: 1.5rem;
 }
 
@@ -41,4 +41,8 @@ h2{
     .hide-sm {
         display: none;
     }
+}
+
+:focus {
+    outline: unset !important;
 }
