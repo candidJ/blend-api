@@ -25,12 +25,12 @@ export class DashboardComponent implements OnInit {
           icon: "clipboard",
           routerLink: "/quotes",
           subMenu: [{
-            icon: "code",
+            icon: "",
             title: "Programming",
             hasSubMenu: false,
             routerLink: "programming"
           }, {
-            icon: "award",
+            icon: "",
             title: "Life",
             hasSubMenu: false,
             routerLink: "life"

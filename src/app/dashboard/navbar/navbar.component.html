@@ -32,7 +32,9 @@
                             <ng-container *ngFor="let sub of item.subMenu">
                                 <a class="navbar-item" [routerLink]="[item.routerLink, sub.routerLink]"
                                     routerLinkActive="is-active">
-                                    <i-feather [name]="sub.icon"></i-feather>
+                                    <ng-container *ngIf="sub.icon">
+                                        <i-feather [name]="sub.icon"></i-feather>
+                                    </ng-container>
                                     <span class="ml2">{{sub.title}}</span>
                                 </a>
                                 <!-- <hr class="navbar-divider"> -->
