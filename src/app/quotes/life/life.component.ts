@@ -31,7 +31,7 @@ export class LifeComponent extends Quotes<ILifeQuotes> implements OnInit {
     }
 
     public tweet(obj: ILifeQuotes) {
-        this.sendTweet(obj);
+        this.sendTweet(obj, 'quoteAuthor', 'quoteText');
     }
 
     ngOnInit(): void {

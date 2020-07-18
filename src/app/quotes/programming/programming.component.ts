@@ -38,7 +38,7 @@ export class ProgrammingComponent extends Quotes<IProgrammingQuotes> implements 
     }
 
     tweet(obj: IProgrammingQuotes): void {
-        this.sendTweet(obj);
+        this.sendTweet(obj, 'author', 'en');
     }
 
     ngOnInit(): void {
