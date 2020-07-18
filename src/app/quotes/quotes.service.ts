@@ -15,9 +15,10 @@ export class LifeQuotesService extends API<ILifeQuotes> {
 
   constructor(private httpClient: HttpClient, private _notificationService: NotificationService) {
     super();
+
+    // for testing purpose
     this.fetchFootballVideos();
     this.fetchGuardianNews();
-    this.hackernewsApi();
   }
 
 
@@ -25,18 +26,9 @@ export class LifeQuotesService extends API<ILifeQuotes> {
   private fetchFootballVideos() {
     fetch('https://www.scorebat.com/video-api/v1/')
       .then((data) => {
-        console.log(data);
+        console.log(data, "fooball api");
       }).catch((error) => {
         console.log(error, "football api");
-      });
-  }
-
-  private hackernewsApi() {
-    fetch('https://hacker-news.firebaseio.com/v0/item/8863.json?print=pretty')
-      .then((data) => {
-        console.log(data, "hackner news api");
-      }).catch((error) => {
-        console.log(error, "hacker news api");
       });
   }
 
