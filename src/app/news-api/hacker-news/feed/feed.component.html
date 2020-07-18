@@ -1,15 +1,14 @@
 <app-grid [gridData]="feed$" [gridColumns]="feedColumns">
     <ng-template #gridItems let-gridRowData>
         <ng-container *ngFor="let item of dataSource">
-            <td [routerLink]="[ '../item', gridRowData.id ]"
-                [ngClass]="{'hide-sm': item.isHideSm}">
+            <td [routerLink]="[ '../item', gridRowData.id ]" [ngClass]="{'hide-sm': item.isHideSm}">
                 {{gridRowData[item.property]}}
                 <ng-container *ngIf="item.hasDetails">
                     <p class="is-size-7 mt-2">
                         <span class="details" *ngFor="let detail of item.details">
                             <ng-container *ngIf="gridRowData[detail.property]">
                                 <i-feather [name]="detail.icon"></i-feather>
-                                {{gridRowData[detail.property]}}&nbsp;&nbsp;
+                                {{gridRowData[detail.property]}}&nbsp;&nbsp;&nbsp;&nbsp;
                             </ng-container>
                         </span>
                     </p>
@@ -17,7 +16,7 @@
             </td>
         </ng-container>
         <td>
-            <a [href]="gridRowData.url" target="_blank" class="flex justify-center align-center">
+            <a [href]="gridRowData.url" target="_blank" class="flex align-center">
                 <i-feather name="external-link"></i-feather>
             </a>
         </td>

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HackerNewsApiService } from '../hacker-news-api.service';
 import { HackerNewsFeed, IGridColumnsDef, HackerNews } from 'src/app/shared/interface/interface';
 import { Observable } from 'rxjs';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd, Event } from '@angular/router';
+import { HNFeedColumns } from 'src/app/shared/constant/metadata.const';
 
 @Component({
   selector: 'app-feed',
@@ -17,60 +18,11 @@ export class FeedComponent implements OnInit {
   public feedDetails: HackerNewsFeed;
   public noOfPages$: Observable<number[]>;
 
-  constructor(private hackerNewsService: HackerNewsApiService<HackerNewsFeed>, private router: Router, private route: ActivatedRoute) { }
-
-  private defineGridColumns() {
-    this.feedColumns = [
-      {
-        header: 'Title',
-        property: 'title',
-        type: 'text',
-        hasDetails: true,
-        isHideSm: false,
-        details: [
-          {
-            property: 'points',
-            type: 'text',
-            preposition: 'points',
-            icon: 'thumbs-up'
-          },
-          {
-            property: 'user',
-            type: 'text',
-            preposition: 'by',
-            icon: 'user'
-          },
-          {
-            property: 'time_ago',
-            type: 'text',
-            preposition: '',
-            icon: 'watch'
-          },
-          {
-            property: 'comments_count',
-            type: 'text',
-            preposition: 'comment',
-            icon: 'message-square'
-          }
-        ]
-      },
-      {
-        header: 'Domain',
-        property: 'domain',
-        type: 'link',
-        hasDetails: false,
-        isHideSm: true
-      },
-      {
-        header: 'View',
-        property: 'actions',
-        type: 'template',
-        hasDetails: false,
-        isHideSm: false
-      }
-    ];
-
-    return this.dataSource = this.feedColumns.slice(0, 2);
+  constructor(private hackerNewsService: HackerNewsApiService<HackerNewsFeed>, private router: Router, private route: ActivatedRoute) {
+    this.router.events
+      .subscribe((event: Event) => {
+        this.removeDomainForAskRoute(event);
+      });
   }
 
 
@@ -82,10 +34,24 @@ export class FeedComponent implements OnInit {
     this.feedDetails = value;
   }
 
+  private removeDomainForAskRoute(event: Event): HackerNews[] {
+    if (event instanceof NavigationEnd) {
+      console.log(event);
+      if (event.url.indexOf('ask') !== -1) {
+        this.dataSource = HNFeedColumns.slice(0, 1);
+        this.feedColumns = [...HNFeedColumns.slice(0, 1), ...HNFeedColumns.slice(2)]
+        return this.dataSource;
+      } else {
+        this.feedColumns = HNFeedColumns;
+        return this.dataSource = HNFeedColumns.slice(0, 2);
+      }
+    }
+  }
+
   ngOnInit(): void {
-    this.defineGridColumns();
     this.feed$ = this.hackerNewsService.fetch();
     this.noOfPages$ = this.hackerNewsService.getNoOfPages();
+
   }
 
 }
