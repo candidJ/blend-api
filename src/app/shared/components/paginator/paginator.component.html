@@ -1,12 +1,41 @@
 <div class="mt4 mb4">
     <nav class="pagination" role="navigation" aria-label="pagination">
-        <!-- <a class="pagination-previous">Previous</a>
-    <a class="pagination-next">Next page</a> -->
+
         <ul class="pagination-list">
+            <li>
+                <a class="pagination-previous is-link">
+                    <i-feather name="chevrons-left"></i-feather>
+                    First
+                </a>
+            </li>
+            <li>
+                <a class="pagination-previous">
+                    <i-feather name="chevron-left"></i-feather>
+                    Previous
+                </a>
+            </li>
+            <li>
+                <a class="pagination-next">Next page
+                    <i-feather name="chevron-right"></i-feather>
+                </a>
+            </li>
+            <li>
+                <a class="pagination-next">Last
+                    <i-feather name="chevrons-right"></i-feather>
+                </a>
+            </li>
+        </ul>
+
+
+
+        <!-- <ul class="pagination-list">
             <li *ngFor="let page of noOfPages$| async">
                 <a class="pagination-link" [ngClass]="{'is-current': (page === activePage)}" aria-label="activePage"
                     (click)="onPageNumber(page)" aria-current="page">{{page}}</a>
             </li>
-        </ul>
+        </ul> -->
     </nav>
 </div>
+
+<!-- listLength : number;
+pageSize: number; -->

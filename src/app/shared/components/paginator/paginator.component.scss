@@ -1,3 +1,4 @@
+@import '../../../../theme/base';
 :host {
     .br-100 {
         border-radius: 100% !important;
@@ -15,5 +16,11 @@
         border: 0 !important;
     }
 
+    .pagination-next,
+    .pagination-previous {
+        border-color: white;
+        background-color: tint(#dd7535, 95%);
+        color: #dd7535;
+    }
 
 }
