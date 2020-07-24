@@ -64,9 +64,12 @@ export class LifeQuotesService extends API<ILifeQuotes> {
   protected mapResponse = (data: any): ILifeQuotes[] => {
     // console.log(data, "life quote mapped data");
     // pluck('quotes'),
-    const noOfPaginationLinks = Math.ceil(data.totalPages / AppConfig.LIFE_QUOTES.LIMIT);
-    console.log(noOfPaginationLinks);
-    this.getByPageNumber(noOfPaginationLinks);
+    const paginationConfig: PaginationConfig = {
+      listLength: data.totalPages,
+      noOfPages: Math.ceil(data.totalPages / AppConfig.LIFE_QUOTES.LIMIT),
+      pageSize: AppConfig.LIFE_QUOTES.LIMIT
+    };
+    this.getByPageNumber(paginationConfig);
     // this.dataPublisher.next(data['quotes']);
     return data['quotes'];
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ILifeQuotes } from 'src/app/shared/interface/interface';
+import { ILifeQuotes, PaginationConfig } from 'src/app/shared/interface/interface';
 import { Observable } from 'rxjs';
 import { LifeQuotesService } from '../quotes.service';
 import { MessageBoxComponent } from 'src/app/shared/components/message-box/message-box.component';
@@ -14,7 +14,7 @@ import { Quote, Quotes } from 'src/app/shared/class/quote';
 export class LifeComponent extends Quotes<ILifeQuotes> implements OnInit {
 
     public quotes$: Observable<ILifeQuotes[]>;
-    public noOfPages$: Observable<number[]>;
+    public paginationConfig$: Observable<PaginationConfig>;
     public props = { first: 'quoteAuthor', second: 'quoteText' };
 
     public quotesService: LifeQuotesService;
@@ -36,7 +36,7 @@ export class LifeComponent extends Quotes<ILifeQuotes> implements OnInit {
 
     ngOnInit(): void {
         this.quotes$ = this.quotesService.fetch();
-        this.noOfPages$ = this.quotesService.getNoOfPages();
+        this.paginationConfig$ = this.quotesService.getNoOfPages();
         // this.quotesService.fetchByPageNumber(1);
     }
 
