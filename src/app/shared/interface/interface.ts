@@ -154,3 +154,9 @@ export interface HNComments {
 export interface HackerNewsFeedDetails extends HackerNewsFeed {
     comments: HNComments[]
 }
+
+export interface PaginationConfig {
+    pageSize: number;
+    noOfPages: number;
+    listLength: number;
+}

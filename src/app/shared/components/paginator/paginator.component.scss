@@ -1,4 +1,5 @@
 @import '../../../../theme/base';
+
 :host {
     .br-100 {
         border-radius: 100% !important;
@@ -21,6 +22,11 @@
         border-color: white;
         background-color: tint(#dd7535, 95%);
         color: #dd7535;
+    }
+
+    .disabled {
+        cursor: not-allowed;
+        color: currentColor;
     }
 
 }

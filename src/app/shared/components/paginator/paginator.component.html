@@ -1,31 +1,46 @@
 <div class="mt4 mb4">
+    <!-- <ng-container *ngIf="paginationConfig">
+        <p class="pagination">
+            Showing
+            {{record.start}}-
+            {{record.end}}
+            &nbsp;of&nbsp;
+            {{paginationConfig.listLength}}
+        </p>
+    </ng-container> -->
+
     <nav class="pagination" role="navigation" aria-label="pagination">
 
-        <ul class="pagination-list">
-            <li>
-                <a class="pagination-previous is-link">
-                    <i-feather name="chevrons-left"></i-feather>
-                    First
-                </a>
-            </li>
-            <li>
-                <a class="pagination-previous">
-                    <i-feather name="chevron-left"></i-feather>
-                    Previous
-                </a>
-            </li>
-            <li>
-                <a class="pagination-next">Next page
-                    <i-feather name="chevron-right"></i-feather>
-                </a>
-            </li>
-            <li>
-                <a class="pagination-next">Last
-                    <i-feather name="chevrons-right"></i-feather>
-                </a>
-            </li>
-        </ul>
-
+        <ng-container *ngIf="paginationConfig">
+            <ul class="pagination-list">
+                <li>
+                    <a [ngClass]="{disabled: activePage ===1}" (click)="onPageChange(1)"
+                        class="pagination-previous is-link">
+                        <i-feather name="chevrons-left"></i-feather>
+                        First
+                    </a>
+                </li>
+                <li>
+                    <a [ngClass]="{disabled: activePage ===1}" (click)="onPageChange(activePage-1)"
+                        class="pagination-previous">
+                        <i-feather name="chevron-left"></i-feather>
+                        Previous
+                    </a>
+                </li>
+                <li>
+                    <a [ngClass]="{disabled: activePage === paginationConfig.noOfPages}"
+                        (click)="onPageChange(activePage+1)" class="pagination-next">Next page
+                        <i-feather name="chevron-right"></i-feather>
+                    </a>
+                </li>
+                <li>
+                    <a [ngClass]="{disabled: activePage === paginationConfig.noOfPages}"
+                        (click)="onPageChange(paginationConfig.noOfPages)" class="pagination-next">Last
+                        <i-feather name="chevrons-right"></i-feather>
+                    </a>
+                </li>
+            </ul>
+        </ng-container>
 
 
         <!-- <ul class="pagination-list">

@@ -1,11 +1,12 @@
 import { Observable, Subject, throwError, BehaviorSubject } from 'rxjs';
 import { map, switchMap, share, pluck, tap, shareReplay, catchError } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
+import { PaginationConfig } from '../interface/interface';
 
 export interface IAPIModel<T> {
     fetch(): Observable<T[]>;
     fetchByPageNumber(page: number): void;
-    getNoOfPages(): Observable<number[]>;
+    getNoOfPages(): Observable<PaginationConfig>;
 }
 
 
@@ -13,8 +14,8 @@ export abstract class API<T> implements IAPIModel<T>{
     // using behavior subject rather than subject
     private apiSubject: BehaviorSubject<number> = new BehaviorSubject<number>(1);
     private api$: Observable<number> = this.apiSubject.asObservable();
-    private noOfPagesSubject: Subject<number> = new Subject<number>();
-    private noOfPages$: Observable<number> = this.noOfPagesSubject.asObservable();
+    private noOfPagesSubject: Subject<PaginationConfig> = new Subject<PaginationConfig>();
+    private noOfPages$: Observable<PaginationConfig> = this.noOfPagesSubject.asObservable();
 
     protected abstract mapResponse(data: T | T[]): any[];
     protected abstract configureParams(page: number): HttpParams;
@@ -41,23 +42,24 @@ export abstract class API<T> implements IAPIModel<T>{
             );
     }
 
-    getByPageNumber(page: number) {
-        return this.noOfPagesSubject.next(page);
+    getByPageNumber(paginatorConfig: PaginationConfig) {
+        return this.noOfPagesSubject.next(paginatorConfig);
     }
 
-    getNoOfPages(): Observable<number[]> {
-        return this.noOfPages$
-            .pipe(
-                map((response) => {
-                    const numbers: number[] = [];
-                    for (let i = 1; i <= response; i++) {
-                        numbers.push(i);
-                    }
-                    // console.log(numbers, "API get of of pages");
-                    return numbers;
-                },
-                    shareReplay()
-                )
-            );
+    getNoOfPages(): Observable<PaginationConfig> {
+        return this.noOfPages$;
+        // return this.noOfPages$
+        //     .pipe(
+        //         map((response) => {
+        //             const numbers: number[] = [];
+        //             for (let i = 1; i <= response; i++) {
+        //                 numbers.push(i);
+        //             }
+        //             // console.log(numbers, "API get of of pages");
+        //             return numbers;
+        //         },
+        //             shareReplay()
+        //         )
+        //     );
     }
 }

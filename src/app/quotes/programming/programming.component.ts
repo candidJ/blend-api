@@ -3,7 +3,7 @@ import { Component, OnInit, InjectionToken, Inject, ViewChild } from '@angular/c
 import { ProgrammingQuotesService, QUOTES_SERVICE_TOKEN, ProgrammingQuotesFactory } from '../quotes.service';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { IProgrammingQuotes } from '../../shared/interface/interface';
+import { IProgrammingQuotes, PaginationConfig } from '../../shared/interface/interface';
 import { MessageBoxComponent } from 'src/app/shared/components/message-box/message-box.component';
 import { Quote, Quotes } from 'src/app/shared/class/quote';
 import { NotificationService } from 'src/app/notifications/notification.service';
@@ -21,7 +21,7 @@ import { NotificationService } from 'src/app/notifications/notification.service'
 export class ProgrammingComponent extends Quotes<IProgrammingQuotes> implements OnInit {
 
     public quotes$: Observable<IProgrammingQuotes[]>;
-    public noOfPages$: Observable<number[]>;
+    public paginationConfig$: Observable<PaginationConfig>;
     public props = { first: 'author', second: 'en' };
 
     protected programmingQuotesService: ProgrammingQuotesService;
@@ -43,7 +43,7 @@ export class ProgrammingComponent extends Quotes<IProgrammingQuotes> implements 
 
     ngOnInit(): void {
         this.quotes$ = this.programmingQuotesService.fetch();
-        this.noOfPages$ = this.programmingQuotesService.getNoOfPages();
+        this.paginationConfig$ = this.programmingQuotesService.getNoOfPages();
         // this.programmingQuotesService.fetchByPageNumber(1);
     }
 

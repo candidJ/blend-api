@@ -1,7 +1,7 @@
 import { Injectable, InjectionToken } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, Subject } from 'rxjs';
-import { ILifeQuotes, IProgrammingQuotes } from '../shared/interface/interface';
+import { ILifeQuotes, IProgrammingQuotes, PaginationConfig } from '../shared/interface/interface';
 import { AppConfig } from '../shared/constant/config';
 import { API } from '../shared/class/api';
 import { NotificationService } from '../notifications/notification.service';
@@ -112,8 +112,12 @@ export class ProgrammingQuotesService extends API<IProgrammingQuotes> {
     console.log(data, "programming quotes data");
     // As api doesn't return the totalQuotes, hard coded to actual quotes in api by calculation = 25 pages *20 quotes + 1 page *1 quote;
     //  TOTAL PAGE SIZE IS 501;
-    const page = Math.ceil(AppConfig.PROGAMMING_QUOTES.TOTAL_PAGES / AppConfig.PROGAMMING_QUOTES.PAGE_SIZE);
-    this.getByPageNumber(page);
+    const paginationConfig: PaginationConfig = {
+      listLength: AppConfig.PROGAMMING_QUOTES.TOTAL_PAGES,
+      noOfPages: Math.ceil(AppConfig.PROGAMMING_QUOTES.TOTAL_PAGES / AppConfig.PROGAMMING_QUOTES.PAGE_SIZE),
+      pageSize: AppConfig.PROGAMMING_QUOTES.PAGE_SIZE
+    };
+    this.getByPageNumber(paginationConfig);
     // this.dataPublisher.next(data);
     return data;
   }

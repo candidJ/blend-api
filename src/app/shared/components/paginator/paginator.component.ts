@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs';
+import { PaginationConfig } from '../../interface/interface';
 
 
 @Component({
@@ -9,21 +10,23 @@ import { Observable } from 'rxjs';
 })
 export class PaginatorComponent implements OnInit {
 
-  @Input("noOfPages$") noOfPages$: Observable<number[]>;
+  @Input("paginationConfig") paginationConfig: PaginationConfig;
   @Output() onPaginatorChange: EventEmitter<number> = new EventEmitter<number>();
   public activePage = 1;
+  public record = {
+    start: 1,
+    end: 20
+  };
 
   constructor() { }
 
-  public onPageNumber(page: number) {
+  public onPageChange(page: number) {
     console.log(page);
     this.activePage = page;
     this.onPaginatorChange.emit(page);
   }
 
   ngOnInit(): void {
-    // this.noOfPages$.subscribe(num => console.log(num, "ahsdjkhaskdhkas"));
-    // console.log(this.noOfPages$);
   }
 
 }
