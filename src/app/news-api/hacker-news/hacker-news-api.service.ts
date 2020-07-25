@@ -44,7 +44,7 @@ export class HackerNewsApiService<T> extends API<T> {
       noOfPages: this.config.NO_OF_PAGES,
       pageSize: this.config.PAGE_SIZE
     };
-    this.getByPageNumber(paginationConfig);
+    this.broadcastPaginationConfig(paginationConfig);
     return data;
   }
 

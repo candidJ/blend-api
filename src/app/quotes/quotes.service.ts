@@ -69,7 +69,7 @@ export class LifeQuotesService extends API<ILifeQuotes> {
       noOfPages: Math.ceil(data.totalPages / AppConfig.LIFE_QUOTES.LIMIT),
       pageSize: AppConfig.LIFE_QUOTES.LIMIT
     };
-    this.getByPageNumber(paginationConfig);
+    this.broadcastPaginationConfig(paginationConfig);
     // this.dataPublisher.next(data['quotes']);
     return data['quotes'];
   }
@@ -120,7 +120,7 @@ export class ProgrammingQuotesService extends API<IProgrammingQuotes> {
       noOfPages: Math.ceil(AppConfig.PROGAMMING_QUOTES.TOTAL_RECORDS / AppConfig.PROGAMMING_QUOTES.PAGE_SIZE),
       pageSize: AppConfig.PROGAMMING_QUOTES.PAGE_SIZE
     };
-    this.getByPageNumber(paginationConfig);
+    this.broadcastPaginationConfig(paginationConfig);
     // this.dataPublisher.next(data);
     return data;
   }

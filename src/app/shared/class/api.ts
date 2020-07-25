@@ -14,8 +14,8 @@ export abstract class API<T> implements IAPIModel<T>{
     // using behavior subject rather than subject
     private apiSubject: BehaviorSubject<number> = new BehaviorSubject<number>(1);
     private api$: Observable<number> = this.apiSubject.asObservable();
-    private noOfPagesSubject: Subject<PaginationConfig> = new Subject<PaginationConfig>();
-    private noOfPages$: Observable<PaginationConfig> = this.noOfPagesSubject.asObservable();
+    private paginationConfigPublisher: Subject<PaginationConfig> = new Subject<PaginationConfig>();
+    private paginationConfig$: Observable<PaginationConfig> = this.paginationConfigPublisher.asObservable();
 
     protected abstract mapResponse(data: T | T[]): any[];
     protected abstract configureParams(page: number): HttpParams;
@@ -42,24 +42,11 @@ export abstract class API<T> implements IAPIModel<T>{
             );
     }
 
-    getByPageNumber(paginatorConfig: PaginationConfig) {
-        return this.noOfPagesSubject.next(paginatorConfig);
+    broadcastPaginationConfig(paginatorConfig: PaginationConfig) {
+        this.paginationConfigPublisher.next(paginatorConfig);
     }
 
     getNoOfPages(): Observable<PaginationConfig> {
-        return this.noOfPages$;
-        // return this.noOfPages$
-        //     .pipe(
-        //         map((response) => {
-        //             const numbers: number[] = [];
-        //             for (let i = 1; i <= response; i++) {
-        //                 numbers.push(i);
-        //             }
-        //             // console.log(numbers, "API get of of pages");
-        //             return numbers;
-        //         },
-        //             shareReplay()
-        //         )
-        //     );
+        return this.paginationConfig$;
     }
 }
