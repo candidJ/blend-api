@@ -2,8 +2,9 @@
 
   <form id="search" autocomplete="off" [formGroup]="userInputForm">
     <div class="control has-icons-left has-icons-right">
-      <input name="city" formControlName="city" class="input" type="text" placeholder="Enter city name" required>
-      <span class="icon is-small is-left flex items-center">
+      <input name="city" formControlName="city" class="input is-rounded" type="text" placeholder="Enter city name"
+        required>
+      <span class="icon is-small is-left flex items-center justify-center">
         <i-feather name="search"></i-feather>
       </span>
 
@@ -17,12 +18,12 @@
       </span> -->
     </div>
     <div class="control has-icons-left has-icons-right">
-      <input list="browsers" name="country" formControlName="country" class="input" type="text"
+      <input list="browsers" name="country" formControlName="country" class="input is-rounded" type="text"
         placeholder="Enter country name(optional)">
       <datalist id="browsers">
         <option *ngFor="let country of countries" [value]="country.name"></option>
       </datalist>
-      <span class="icon is-small is-left flex items-center">
+      <span class="icon is-small is-left flex items-center justify-center">
         <i-feather name="globe"></i-feather>
       </span>
       <!-- <span class="icon is-small is-right" (click)="userInputForm.reset()">
@@ -41,7 +42,7 @@
       </label>
     </div>
 
-    <button class="button is-link is-light" type="submit" (click)="onSubmit(userInputForm.value)"
+    <button class="button is-primary is-light is-rounded" type="submit" (click)="onSubmit(userInputForm.value)"
       [disabled]="userInputForm.invalid">Search</button>
   </form>
 

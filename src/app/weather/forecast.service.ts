@@ -79,6 +79,8 @@ export class ForecastService {
 
           // console.log(weatherIcon);
           forecast.icon = weatherIcon;
+          // set showRandomCities to False
+          this.cityPublisher.next(false);
           return forecast;
         }),
         toArray(), // converts into array - here as array (of objects )
