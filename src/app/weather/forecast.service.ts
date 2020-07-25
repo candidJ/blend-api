@@ -14,6 +14,8 @@ export class ForecastService {
   private readonly config = AppConfig.WEATHER_API_CONFIG;
   private dataClone: IOpenWeatherResponse;
   private cityPublisher = new Subject<boolean>();
+  private units: string;
+
   public showRandomCities$ = this.cityPublisher.asObservable();
 
   constructor(private httpClient: HttpClient, private notificationService: NotificationService) {
@@ -27,11 +29,12 @@ export class ForecastService {
       .pipe(
         // create a new observable with the last emitted value from previous operator
         switchMap(params => {
-          console.log(params);
+          this.units = params.get('units');
           return this.httpClient.get<IOpenWeatherResponse>(this.config.URL, { params });
         }
         ),
         tap(value => {
+          console.log(value, "askdjashgjdgasdgasyy");
           this.dataClone = Object.assign({}, value);
           this.notificationService.showSuccessMessage(`Forecast for ${this.dataClone.city.name} fetched`);
           return value;
@@ -58,7 +61,9 @@ export class ForecastService {
             sunrise: new Date(this.dataClone.city.sunrise * 1000),
             sunset: new Date(this.dataClone.city.sunset * 1000),
             windSpeed: value.wind.speed,
-            windDeg: value.wind.deg
+            windDeg: value.wind.deg,
+            //map 'units' value
+            units: this.units
           };
 
           const date = new Date();
