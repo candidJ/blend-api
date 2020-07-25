@@ -7,7 +7,7 @@ export const AppConfig = {
         COUNTRY: 'us'
     },
     IMAGES: {
-        LOGO: "../../assets/images/api-feed.png"
+        LOGO: "../../assets/images/blend-api-logo.png"
     },
     WEATHER_API_CONFIG: {
         URL: "https://api.openweathermap.org/data/2.5/forecast",
