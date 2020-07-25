@@ -20,8 +20,37 @@ export class PaginatorComponent implements OnInit {
 
   constructor() { }
 
+  /**
+   * SHow the range of activeRecords being displayed
+   * @param page 
+   */
+  private showActiveRecordsRange(page: number) {
+    const pageSize = this.paginationConfig.pageSize;
+    const noOfPages = this.paginationConfig.noOfPages;
+    const listLength = this.paginationConfig.listLength;
+    if (page === 1) {
+      return this.record = {
+        start: 1,
+        end: pageSize
+      };
+    } else if (page === noOfPages) {
+      const start = pageSize * (page - 1);
+      const end = start + (listLength - start);
+      return this.record = {
+        start,
+        end
+      };
+    } else {
+      return this.record = {
+        start: (page - 1) * pageSize,
+        end: page * pageSize
+      };
+    }
+  }
+
   public onPageChange(page: number) {
     console.log(page);
+    this.showActiveRecordsRange(page);
     this.activePage = page;
     this.onPaginatorChange.emit(page);
   }

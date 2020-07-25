@@ -1,21 +1,22 @@
-<div class="mt4 mb4">
-    <!-- <ng-container *ngIf="paginationConfig">
-        <p class="pagination">
-            Showing
-            {{record.start}}-
-            {{record.end}}
-            &nbsp;of&nbsp;
-            {{paginationConfig.listLength}}
-        </p>
-    </ng-container> -->
+<ng-container *ngIf="paginationConfig">
+    <p class="mt2 is-size-7 is-pulled-right">
+        Showing
+        {{record.start}}-
+        {{record.end}}
+        &nbsp;of&nbsp;
+        {{paginationConfig.listLength}}
+        records
+    </p>
+</ng-container>
+
+<div class="mt4 mb4 is-clearfix">
 
     <nav class="pagination" role="navigation" aria-label="pagination">
 
         <ng-container *ngIf="paginationConfig">
             <ul class="pagination-list">
                 <li>
-                    <a [ngClass]="{disabled: activePage ===1}" (click)="onPageChange(1)"
-                        class="pagination-previous is-link">
+                    <a [ngClass]="{disabled: activePage ===1}" (click)="onPageChange(1)" class="pagination-previous">
                         <i-feather name="chevrons-left"></i-feather>
                         First
                     </a>
@@ -51,7 +52,3 @@
         </ul> -->
     </nav>
 </div>
-
-<!-- {{paginationConfig | json}} -->
-<!-- listLength : number;
-pageSize: number; -->

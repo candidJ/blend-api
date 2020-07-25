@@ -65,7 +65,7 @@ export class LifeQuotesService extends API<ILifeQuotes> {
     // console.log(data, "life quote mapped data");
     // pluck('quotes'),
     const paginationConfig: PaginationConfig = {
-      listLength: data.totalPages,
+      listLength: data.totalPages * AppConfig.LIFE_QUOTES.LIMIT,
       noOfPages: Math.ceil(data.totalPages / AppConfig.LIFE_QUOTES.LIMIT),
       pageSize: AppConfig.LIFE_QUOTES.LIMIT
     };
