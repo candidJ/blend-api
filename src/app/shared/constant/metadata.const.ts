@@ -55,7 +55,7 @@ export const HNFeedColumns: HackerNews[] = [
 // Navbar config
 export const NavbarMenuItems = {
     logo: AppConfig.IMAGES.LOGO,
-    routerLink: "/dashboard",
+    routerLink: "/quotes",
     navbarMenu: [
         {
             title: "Quotes",

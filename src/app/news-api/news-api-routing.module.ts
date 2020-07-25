@@ -40,6 +40,10 @@ import { FeedDetailsComponent } from './hacker-news/feed-details/feed-details.co
                     {
                         path: "show",
                         component: FeedComponent
+                    },
+                    {
+                        path: "",
+                        redirectTo: "feed"
                     }
                 ]
             }

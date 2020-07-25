@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HackerNewsApiService } from '../hacker-news-api.service';
-import { HackerNewsFeed, IGridColumnsDef, HackerNews } from 'src/app/shared/interface/interface';
+import { HackerNewsFeed, IGridColumnsDef, HackerNews, PaginationConfig } from 'src/app/shared/interface/interface';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute, NavigationEnd, Event } from '@angular/router';
 import { HNFeedColumns } from 'src/app/shared/constant/metadata.const';
@@ -16,7 +16,7 @@ export class FeedComponent implements OnInit {
   public dataSource: HackerNews[];
   public feedColumns: HackerNews[];
   public feedDetails: HackerNewsFeed;
-  public noOfPages$: Observable<number[]>;
+  public paginationConfig$: Observable<PaginationConfig>;
 
   constructor(private hackerNewsService: HackerNewsApiService<HackerNewsFeed>, private router: Router, private route: ActivatedRoute) {
     this.router.events
@@ -36,12 +36,13 @@ export class FeedComponent implements OnInit {
 
   private removeDomainForAskRoute(event: Event): HackerNews[] {
     if (event instanceof NavigationEnd) {
-      console.log(event);
+      //  hide domain column for ask request
       if (event.url.indexOf('ask') !== -1) {
         this.dataSource = HNFeedColumns.slice(0, 1);
         this.feedColumns = [...HNFeedColumns.slice(0, 1), ...HNFeedColumns.slice(2)]
         return this.dataSource;
       } else {
+        // show columns headline and domain
         this.feedColumns = HNFeedColumns;
         return this.dataSource = HNFeedColumns.slice(0, 2);
       }
@@ -50,8 +51,7 @@ export class FeedComponent implements OnInit {
 
   ngOnInit(): void {
     this.feed$ = this.hackerNewsService.fetch();
-    this.noOfPages$ = this.hackerNewsService.getNoOfPages();
-
+    this.paginationConfig$ = this.hackerNewsService.getNoOfPages();
   }
 
 }

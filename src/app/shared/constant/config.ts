@@ -34,7 +34,9 @@ export const AppConfig = {
         LATEST_URL: "newest",
         SHOW_URL: "show",
         ASK_URL: "ask",
-        TOTAL_PAGES: 100
+        TOTAL_PAGES: 200,
+        PAGE_SIZE: 20,
+        NO_OF_PAGES: 10
     }
 
 };

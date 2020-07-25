@@ -23,4 +23,5 @@
     </ng-template>
 </app-grid>
 
-<app-paginator [noOfPages$]="noOfPages$" (onPaginatorChange)="onPaginatorChange($event)"></app-paginator>
+<app-paginator [paginationConfig]="paginationConfig$ |async" (onPaginatorChange)="onPaginatorChange($event)">
+</app-paginator>

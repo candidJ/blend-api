@@ -22,6 +22,10 @@ import { ProgrammingComponent } from './programming/programming.component';
         {
           path: "life",
           component: LifeComponent
+        },
+        {
+          path: "",
+          redirectTo: "programming"
         }
       ]
     }]),

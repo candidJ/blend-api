@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { API } from 'src/app/shared/class/api';
-import { HackerNewsFeedDetails } from 'src/app/shared/interface/interface';
+import { HackerNewsFeedDetails, PaginationConfig } from 'src/app/shared/interface/interface';
 import { AppConfig } from 'src/app/shared/constant/config';
 import { NotificationService } from 'src/app/notifications/notification.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -39,7 +39,12 @@ export class HackerNewsApiService<T> extends API<T> {
   }
 
   protected mapResponse = (data: T[]) => {
-    this.getByPageNumber(this.config.TOTAL_PAGES);
+    const paginationConfig: PaginationConfig = {
+      listLength: this.config.TOTAL_PAGES,
+      noOfPages: this.config.NO_OF_PAGES,
+      pageSize: this.config.PAGE_SIZE
+    };
+    this.getByPageNumber(paginationConfig);
     return data;
   }
 
