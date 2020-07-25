@@ -46,7 +46,7 @@ export class LifeQuotesService extends API<ILifeQuotes> {
   }
 
   protected showSuccessMessage = () => {
-    this._notificationService.showSuccessMessage("Life quotes are fetched");
+    this._notificationService.showSuccessMessage("Life quotes fetched");
   }
 
   protected configureParams = (page: number): HttpParams => {
@@ -97,7 +97,7 @@ export class ProgrammingQuotesService extends API<IProgrammingQuotes> {
   }
 
   protected showSuccessMessage = () => {
-    this._notificationService.showSuccessMessage("Programming quotes are fetched");
+    this._notificationService.showSuccessMessage("Programming quotes fetched");
   }
 
   protected configureParams = (page: number): HttpParams => {
@@ -116,8 +116,8 @@ export class ProgrammingQuotesService extends API<IProgrammingQuotes> {
     // As api doesn't return the totalQuotes, hard coded to actual quotes in api by calculation = 25 pages *20 quotes + 1 page *1 quote;
     //  TOTAL PAGE SIZE IS 501;
     const paginationConfig: PaginationConfig = {
-      listLength: AppConfig.PROGAMMING_QUOTES.TOTAL_PAGES,
-      noOfPages: Math.ceil(AppConfig.PROGAMMING_QUOTES.TOTAL_PAGES / AppConfig.PROGAMMING_QUOTES.PAGE_SIZE),
+      listLength: AppConfig.PROGAMMING_QUOTES.TOTAL_RECORDS,
+      noOfPages: Math.ceil(AppConfig.PROGAMMING_QUOTES.TOTAL_RECORDS / AppConfig.PROGAMMING_QUOTES.PAGE_SIZE),
       pageSize: AppConfig.PROGAMMING_QUOTES.PAGE_SIZE
     };
     this.getByPageNumber(paginationConfig);

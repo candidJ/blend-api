@@ -25,7 +25,7 @@ export class HackerNewsApiService<T> extends API<T> {
   }
 
   protected showSuccessMessage = () => {
-    this._notificationService.showSuccessMessage("Top news headlines fetched");
+    this._notificationService.showSuccessMessage("Latest Feed fetched");
   }
 
   protected configureParams = (page: number): HttpParams => {
@@ -40,7 +40,7 @@ export class HackerNewsApiService<T> extends API<T> {
 
   protected mapResponse = (data: T[]) => {
     const paginationConfig: PaginationConfig = {
-      listLength: this.config.TOTAL_PAGES,
+      listLength: this.config.TOTAL_RECORDS,
       noOfPages: this.config.NO_OF_PAGES,
       pageSize: this.config.PAGE_SIZE
     };

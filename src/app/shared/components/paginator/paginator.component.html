@@ -1,10 +1,10 @@
-<ng-container *ngIf="paginationConfig">
+<ng-container *ngIf="pgConfig">
     <p class="mt2 is-size-7 is-pulled-right">
         Showing
         {{record.start}}-
         {{record.end}}
         &nbsp;of&nbsp;
-        {{paginationConfig.listLength}}
+        {{pgConfig.listLength}}
         records
     </p>
 </ng-container>
@@ -13,7 +13,7 @@
 
     <nav class="pagination" role="navigation" aria-label="pagination">
 
-        <ng-container *ngIf="paginationConfig">
+        <ng-container *ngIf="pgConfig">
             <ul class="pagination-list">
                 <li>
                     <a [ngClass]="{disabled: activePage ===1}" (click)="onPageChange(1)" class="pagination-previous">
@@ -29,14 +29,14 @@
                     </a>
                 </li>
                 <li>
-                    <a [ngClass]="{disabled: activePage === paginationConfig.noOfPages}"
-                        (click)="onPageChange(activePage+1)" class="pagination-next">Next page
+                    <a [ngClass]="{disabled: activePage === pgConfig.noOfPages}" (click)="onPageChange(activePage+1)"
+                        class="pagination-next">Next page
                         <i-feather name="chevron-right"></i-feather>
                     </a>
                 </li>
                 <li>
-                    <a [ngClass]="{disabled: activePage === paginationConfig.noOfPages}"
-                        (click)="onPageChange(paginationConfig.noOfPages)" class="pagination-next">Last
+                    <a [ngClass]="{disabled: activePage === pgConfig.noOfPages}"
+                        (click)="onPageChange(pgConfig.noOfPages)" class="pagination-next">Last
                         <i-feather name="chevrons-right"></i-feather>
                     </a>
                 </li>

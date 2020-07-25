@@ -10,13 +10,22 @@ import { PaginationConfig } from '../../interface/interface';
 })
 export class PaginatorComponent implements OnInit {
 
-  @Input("paginationConfig") paginationConfig: PaginationConfig;
+  public record: { start: number; end: number };
+  public pgConfig: PaginationConfig;
+
+  @Input("paginationConfig")
+  set paginationConfig(value: PaginationConfig) {
+    if (value) {
+      this.record = {
+        start: 1,
+        end: value.pageSize
+      };
+      this.pgConfig = value;
+    }
+  }
   @Output() onPaginatorChange: EventEmitter<number> = new EventEmitter<number>();
   public activePage = 1;
-  public record = {
-    start: 1,
-    end: 20
-  };
+
 
   constructor() { }
 
@@ -25,9 +34,9 @@ export class PaginatorComponent implements OnInit {
    * @param page 
    */
   private showActiveRecordsRange(page: number) {
-    const pageSize = this.paginationConfig.pageSize;
-    const noOfPages = this.paginationConfig.noOfPages;
-    const listLength = this.paginationConfig.listLength;
+    const pageSize = this.pgConfig.pageSize;
+    const noOfPages = this.pgConfig.noOfPages;
+    const listLength = this.pgConfig.listLength;
     if (page === 1) {
       return this.record = {
         start: 1,
@@ -50,9 +59,9 @@ export class PaginatorComponent implements OnInit {
 
   public onPageChange(page: number) {
     console.log(page);
-    this.showActiveRecordsRange(page);
     this.activePage = page;
     this.onPaginatorChange.emit(page);
+    this.showActiveRecordsRange(page);
   }
 
   ngOnInit(): void {

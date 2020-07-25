@@ -21,7 +21,7 @@ export const AppConfig = {
     PROGAMMING_QUOTES: {
         URL: "https://programming-quotes-api.herokuapp.com/quotes/page/",
         PAGE_SIZE: 20,
-        TOTAL_PAGES: 501
+        TOTAL_RECORDS: 501
     },
     TWITTER: {
         URL: "https://www.twitter.com/intent/tweet?hashtags",
@@ -34,9 +34,9 @@ export const AppConfig = {
         LATEST_URL: "newest",
         SHOW_URL: "show",
         ASK_URL: "ask",
-        TOTAL_PAGES: 200,
-        PAGE_SIZE: 20,
-        NO_OF_PAGES: 10
+        TOTAL_RECORDS: 60,
+        PAGE_SIZE: 30,
+        NO_OF_PAGES: 2
     }
 
 };
