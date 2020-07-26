@@ -1,6 +1,10 @@
 :host {
 
+    main {
+        padding-top: 2rem;
+    }
+
     article {
-        margin: calc(1rem + 1vh) calc(2rem + 3vw);
+        margin: calc(2rem + 1vh) calc(2rem + 3vw);
     }
 }
