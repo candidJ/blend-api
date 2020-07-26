@@ -1,11 +1,12 @@
-<nav class="container-fluid navbar is-fixed-top is-spaced is-transparent" role="navigation" aria-label="main navigation">
+<nav class="container-fluid navbar is-fixed-top is-spaced is-transparent" role="navigation"
+    aria-label="main navigation">
 
     <div class="navbar-brand">
         <a class="navbar-item" [routerLink]="navbarItems.routerLink">
             <img [src]="navbarItems.logo" alt="logo" width="50" height="auto" class="navbar__img">
         </a>
 
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+        <a role="button" #navbarBurger class="navbar-burger burger" aria-label="menu" aria-expanded="false"
             data-target="appNavBarMenu">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -13,11 +14,11 @@
         </a>
     </div>
 
-    <div id="appNavBarMenu" class="navbar-menu">
+    <div id="appNavBarMenu" #appNavBarMenu class="navbar-menu">
         <div class="navbar-start">
             <ng-container *ngFor="let item of navbarItems.navbarMenu">
                 <ng-container *ngIf="!item.hasSubMenu; else hasMenuItems">
-                    <a class="navbar-item" [routerLink]="item.routerLink" routerLinkActive="is-active">
+                    <a class="navbar-item"  #menuItem [routerLink]="item.routerLink" routerLinkActive="is-active">
                         <i-feather [name]="item.icon"></i-feather>
                         <span class="ml2">{{item.title}}</span>
                     </a>
@@ -31,7 +32,7 @@
 
                         <div class="navbar-dropdown is-boxed">
                             <ng-container *ngFor="let sub of item.subMenu">
-                                <a class="navbar-item" [routerLink]="[item.routerLink, sub.routerLink]"
+                                <a class="navbar-item" #menuItem [routerLink]="[item.routerLink, sub.routerLink]"
                                     routerLinkActive="is-active">
                                     <ng-container *ngIf="sub.icon">
                                         <i-feather [name]="sub.icon"></i-feather>

@@ -60,7 +60,7 @@ export const NavbarMenuItems = {
         {
             title: "Quotes",
             hasSubMenu: true,
-            icon: "clipboard",
+            icon: "file-text",
             routerLink: "/quotes",
             subMenu: [{
                 icon: "",
@@ -91,7 +91,7 @@ export const NavbarMenuItems = {
         {
             title: "Hacker News",
             hasSubMenu: true,
-            icon: "file-text",
+            icon: "book-open",
             routerLink: "/news",
             subMenu: [
                 {
