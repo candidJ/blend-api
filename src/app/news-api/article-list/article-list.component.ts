@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NewsApiService } from '../news-api.service';
-import { INewsArticles, IGridColumnsDef } from '../../shared/interface/interface';
+import { INewsArticles, IGridColumnsDef, PaginationConfig } from '../../shared/interface/interface';
 import { LodashUtils } from '../../shared/helpers/lodash';
 
 @Component({
@@ -14,7 +14,7 @@ import { LodashUtils } from '../../shared/helpers/lodash';
 export class ArticleListComponent implements OnInit {
 
   public articles$: Observable<any[]>;
-  public noOfPages$: Observable<number[]>;
+  public paginationConfig$: Observable<PaginationConfig>;
 
   public dataSource: IGridColumnsDef[];
   public articleColumns: Array<IGridColumnsDef>;
@@ -62,7 +62,7 @@ export class ArticleListComponent implements OnInit {
 
   ngOnInit(): void {
     this.articles$ = this.newsApiServie.fetch();
-    this.noOfPages$ = this.newsApiServie.getNoOfPages();
+    this.paginationConfig$ = this.newsApiServie.getNoOfPages();
     // Emit value via subject But first subscribe to the observable
     // this.newsApiServie.fetchByPageNumber(1);
     this.defineGridColumns();
