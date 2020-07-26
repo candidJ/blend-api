@@ -15,10 +15,11 @@
     </div>
 
     <div id="appNavBarMenu" #appNavBarMenu class="navbar-menu">
+        <!-- navbar start -->
         <div class="navbar-start">
             <ng-container *ngFor="let item of navbarItems.navbarMenu">
                 <ng-container *ngIf="!item.hasSubMenu; else hasMenuItems">
-                    <a class="navbar-item"  #menuItem [routerLink]="item.routerLink" routerLinkActive="is-active">
+                    <a class="navbar-item" #menuItem [routerLink]="item.routerLink" routerLinkActive="is-active">
                         <i-feather [name]="item.icon"></i-feather>
                         <span class="ml2">{{item.title}}</span>
                     </a>
@@ -47,5 +48,15 @@
             </ng-container>
         </div>
 
+        <!-- navbar end - made by Jaskirat -->
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a class="button is-primary is-light" target="blank" href="https://candidj.github.io">
+                        <strong>Made by Jaskirat</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </nav>

@@ -10,7 +10,7 @@
     </p>
 
     <!-- content -->
-    <p *ngIf="comment.content" [innerHTML]="comment.content"></p>
+    <p *ngIf="comment.content" class="is-family-secondary" [innerHTML]="comment.content"></p>
 
     <!-- for nested comments (recursion) -->
     <app-comments *ngFor="let comment of comment.comments" [comment]="comment">
