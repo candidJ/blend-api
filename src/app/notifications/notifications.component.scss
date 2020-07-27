@@ -3,13 +3,13 @@
     position: fixed;
     margin: 0 6vw;
     width: 88vw;
-    bottom: 2rem;
+    bottom: 1rem;
 
     @media screen and (min-width: 600px) {
         margin: unset;
         width: 25vw;
         right: 2rem;
-        bottom: 2rem;
+        // bottom: 1rem;
     }
 
 }

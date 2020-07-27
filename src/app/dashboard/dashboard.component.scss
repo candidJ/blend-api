@@ -1,10 +1,20 @@
 :host {
-
     main {
-        padding-top: 2rem;
+        padding-top: 2vh;
     }
 
     article {
-        margin: calc(2rem + 1vh) calc(2rem + 3vw);
+        margin: 2vh 3vw;
     }
+
+    @media screen and (min-width : 599px) {
+        main {
+            padding-top: 2rem;
+        }
+
+        article {
+            margin: calc(2rem + 1vh) calc(2rem + 3vw);
+        }
+    }
+
 }

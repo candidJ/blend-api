@@ -1,0 +1,12 @@
+:host {
+    .left-space {
+        margin-left: 5vw;
+    }
+
+    @media screen and (min-width: 600px) {
+        .left-space {
+            margin-left: 2rem;
+        }
+    }
+
+}

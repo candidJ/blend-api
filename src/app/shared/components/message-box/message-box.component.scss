@@ -5,7 +5,7 @@
 
     blockquote p:nth-of-type(1)>a {
         float: right;
-        margin-bottom: calc(1rem + 1vh);
+        margin-bottom: 1vh;
     }
 
     blockquote p:last-of-type {
@@ -19,6 +19,7 @@
                 float: left;
                 margin: 0 0.5rem 0.5rem 0;
                 -webkit-shape-outside: circle();
+                -moz-shape-outside: circle();
                 shape-outside: circle();
                 font-weight: 300;
             }

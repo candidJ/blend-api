@@ -4,7 +4,7 @@ import { HNComments } from 'src/app/shared/interface/interface';
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
-  styleUrls: ['../feed-details/feed-details.component.scss']
+  styleUrls: ['../feed-details/feed-details.component.scss', '../comments/comments.component.scss']
 })
 export class CommentsComponent implements OnInit {
 

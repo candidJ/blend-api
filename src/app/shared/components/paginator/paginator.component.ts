@@ -15,7 +15,7 @@ export class PaginatorComponent implements OnInit {
 
   @Input("paginationConfig")
   set paginationConfig(value: PaginationConfig) {
-    if (value) {
+    if (!this.record && value) {
       this.record = {
         start: 1,
         end: value.pageSize
