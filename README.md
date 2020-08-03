@@ -1,13 +1,14 @@
 # Blend API :v:
-> An Angular Web App which show Weather Forecast, Hacker News, Life and Programming Quotes. 
+> An Angular Web App which shows Weather Forecast, Hacker News, Life and Programming Quotes. 
 
-##Credits
-The web application consumes open source API's. ***A big thanks to following contributors :+1: ***
 
-1. **[OpenWeather] :cloud: **(https://api.openweathermap.org/data/2.5/forecast) for Weather Forecast.
-2. **[Unofficial HackerNews API] :newspaper: **(https://node-hnapi.herokuapp.com/) for Hacker News.
-3. **[Quote Garden] :pencil: **(https://quote-garden.herokuapp.com/api/v2/quotes/all) for Life Quotes.
-4. **[Programming Quotes] :pencil: **(https://programming-quotes-api.herokuapp.com/quotes/page/) for Programming Quotes.
+## Credits
+The web application consumes open source API's. ***A big thanks to following contributors*** :+1: 
+
+1. [OpenWeather](https://api.openweathermap.org/data/2.5/forecast) for Weather Forecast :cloud:.
+2. [Unofficial HackerNews API](https://node-hnapi.herokuapp.com/) for Hacker News :newspaper:.
+3. [Quote Garden](https://quote-garden.herokuapp.com/api/v2/quotes/all) for Life Quotes :pencil:.
+4. [Programming Quotes](https://programming-quotes-api.herokuapp.com/quotes/page/) for Programming Quotes :pencil:.
 
 ### Why did I make it ?
 - As all of my work till date have been for corporates and private clients, I wanted to showcase and hone my dev skills. So I utilised my time during Covid19 to build a `Angular` SPA. 
@@ -18,15 +19,15 @@ Most of my focus while developing have been to write *modular*, *resuable* and *
 
 ### Tools used
 
-- Framework:
-    -[Angular](https://angular.io/):muscle:
+- JS Framework:
+    - [Angular](https://angular.io/):muscle:
 
 - CSS libraries:
     - [Bulma](https://bulma.io/)
     - [Tachyons](http://tachyons.io/docs/)
 
 - Icons:
-    - [FeatherIcons](https://feathericons.com/).
+    - [FeatherIcons](https://feathericons.com/)
 
 
 ## Project milestones 
@@ -36,8 +37,6 @@ Most of my focus while developing have been to write *modular*, *resuable* and *
     - Hackner News Clone :white_check_mark:
     - Custom Pagination :white_check_mark:
     - Custom Notification :white_check_mark:
-- [] Progressive Web App    
-- [] Adding [Pokemon API]()
 
 
 ## Local setup
