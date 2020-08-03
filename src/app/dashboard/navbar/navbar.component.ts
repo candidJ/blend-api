@@ -24,8 +24,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     // this.logo = AppConfig.IMAGES.LOGO;
   }
 
-  private toggleActiveClassOnNavbarBurgerClick(event) {
-    console.log("listen");
+  private toggleActiveClassOnNavbarBurgerClick(event: MouseEvent) {
     if (this.navbarBurger.nativeElement.className.includes('is-active')
     ) {
       this.renderer.removeClass(this.navbarBurger.nativeElement, 'is-active');
