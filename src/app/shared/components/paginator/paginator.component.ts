@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PaginationConfig } from '../../interface/interface';
 
@@ -8,7 +8,7 @@ import { PaginationConfig } from '../../interface/interface';
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss']
 })
-export class PaginatorComponent implements OnInit {
+export class PaginatorComponent implements OnInit, OnDestroy {
 
   public record: { start: number; end: number };
   public pgConfig: PaginationConfig;
@@ -65,6 +65,10 @@ export class PaginatorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    this.onPaginatorChange.emit(1);
   }
 
 }

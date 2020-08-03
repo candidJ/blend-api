@@ -29,14 +29,36 @@ export const AppConfig = {
     },
     HACKER_NEWS: {
         BASE: "https://node-hnapi.herokuapp.com/",
-        FEED_URL: "news",
-        JOBS_URL: "jobs",
-        LATEST_URL: "newest",
-        SHOW_URL: "show",
-        ASK_URL: "ask",
-        TOTAL_RECORDS: 60,
-        PAGE_SIZE: 30,
-        NO_OF_PAGES: 2
+        FEED: {
+            URL: "news",
+            TOTAL_RECORDS: 180,
+            PAGE_SIZE: 30,
+            NO_OF_PAGES: 6
+        },
+        JOBS: {
+            URL: "jobs",
+            TOTAL_RECORDS: 60,
+            PAGE_SIZE: 30,
+            NO_OF_PAGES: 2
+        },
+        LATEST: {
+            URL: "newest",
+            TOTAL_RECORDS: 120,
+            PAGE_SIZE: 30,
+            NO_OF_PAGES: 4
+        },
+        SHOW: {
+            URL: "show",
+            TOTAL_RECORDS: 60,
+            PAGE_SIZE: 30,
+            NO_OF_PAGES: 2
+        },
+        ASK: {
+            URL: "ask",
+            TOTAL_RECORDS: 60,
+            PAGE_SIZE: 30,
+            NO_OF_PAGES: 2
+        }
     }
 
 };

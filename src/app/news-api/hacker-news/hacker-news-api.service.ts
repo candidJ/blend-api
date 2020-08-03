@@ -39,26 +39,75 @@ export class HackerNewsApiService<T> extends API<T> {
   }
 
   protected mapResponse = (data: T[]) => {
-    const paginationConfig: PaginationConfig = {
-      listLength: this.config.TOTAL_RECORDS,
-      noOfPages: this.config.NO_OF_PAGES,
-      pageSize: this.config.PAGE_SIZE
-    };
-    this.broadcastPaginationConfig(paginationConfig);
+    this.determinePaginationConfig();
+    console.log(data, "data");
     return data;
   }
 
   private determineActiveUrl() {
     const snapshot = this.router.routerState.snapshot.url;
-    // console.log(snapshot, "snapshot");
     const base = this.config.BASE;
     switch (snapshot) {
-      case '/news/feed': return base + this.config.FEED_URL;
-      case '/news/jobs': return base + this.config.JOBS_URL;
-      case '/news/latest': return base + this.config.LATEST_URL;
-      case '/news/ask': return base + this.config.ASK_URL;
-      case '/news/show': return base + this.config.SHOW_URL;
-      default: return this.config.FEED_URL;
+      case '/news/feed': return base + this.config.FEED.URL;
+      case '/news/jobs': return base + this.config.JOBS.URL;
+      case '/news/latest': return base + this.config.LATEST.URL;
+      case '/news/ask': return base + this.config.ASK.URL;
+      case '/news/show': return base + this.config.SHOW.URL;
+      default: return base + this.config.FEED.URL;
+    }
+  }
+
+  private determinePaginationConfig() {
+    const snapshot = this.router.routerState.snapshot.url;
+    switch (snapshot) {
+      case '/news/feed':
+        const feedPaginationConfig: PaginationConfig = {
+          listLength: this.config.FEED.TOTAL_RECORDS,
+          noOfPages: this.config.FEED.NO_OF_PAGES,
+          pageSize: this.config.FEED.PAGE_SIZE
+        };
+        this.broadcastPaginationConfig(feedPaginationConfig);
+        break;
+      case '/news/jobs':
+        const jobPaginationConfig: PaginationConfig = {
+          listLength: this.config.JOBS.TOTAL_RECORDS,
+          noOfPages: this.config.JOBS.NO_OF_PAGES,
+          pageSize: this.config.JOBS.PAGE_SIZE
+        };
+        this.broadcastPaginationConfig(jobPaginationConfig);
+        break;
+      case '/news/latest':
+        const latestPaginationConfig: PaginationConfig = {
+          listLength: this.config.LATEST.TOTAL_RECORDS,
+          noOfPages: this.config.LATEST.NO_OF_PAGES,
+          pageSize: this.config.LATEST.PAGE_SIZE
+        };
+        this.broadcastPaginationConfig(latestPaginationConfig);
+        break;
+      case '/news/ask':
+        const askPaginationConfig: PaginationConfig = {
+          listLength: this.config.ASK.TOTAL_RECORDS,
+          noOfPages: this.config.ASK.NO_OF_PAGES,
+          pageSize: this.config.ASK.PAGE_SIZE
+        };
+        this.broadcastPaginationConfig(askPaginationConfig);
+        break;
+      case '/news/show':
+        const showPaginationConfig: PaginationConfig = {
+          listLength: this.config.SHOW.TOTAL_RECORDS,
+          noOfPages: this.config.SHOW.NO_OF_PAGES,
+          pageSize: this.config.SHOW.PAGE_SIZE
+        };
+        this.broadcastPaginationConfig(showPaginationConfig);
+        break;
+      default:
+        const paginationConfig: PaginationConfig = {
+          listLength: this.config.FEED.TOTAL_RECORDS,
+          noOfPages: this.config.FEED.NO_OF_PAGES,
+          pageSize: this.config.FEED.PAGE_SIZE
+        };
+        this.broadcastPaginationConfig(paginationConfig);
+        break;
     }
   }
 
