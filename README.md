@@ -1,27 +1,49 @@
-# NewsFeedApp
+# Blend API :v:
+> An Angular Web App which show Weather Forecast, Hacker News, Life and Programming Quotes. 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
+##Credits
+The web application consumes open source API's. ***A big thanks to following contributors :+1: ***
 
-## Development server
+1. **[OpenWeather] :cloud: **(https://api.openweathermap.org/data/2.5/forecast) for Weather Forecast.
+2. **[Unofficial HackerNews API] :newspaper: **(https://node-hnapi.herokuapp.com/) for Hacker News.
+3. **[Quote Garden] :pencil: **(https://quote-garden.herokuapp.com/api/v2/quotes/all) for Life Quotes.
+4. **[Programming Quotes] :pencil: **(https://programming-quotes-api.herokuapp.com/quotes/page/) for Programming Quotes.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Why did I make it ?
+- As all of my work till date have been for corporates and private clients, I wanted to showcase and hone my dev skills. So I utilised my time during Covid19 to build a `Angular` SPA. 
+- Since starting my journey as Web Developer, I didn't make any hobby/side projects. This is me covering up for a lost cause ;). I wanted to **blend** in all possible projects I would have made to begin with, into ONE application.
 
-## Code scaffolding
+Most of my focus while developing have been to write *modular*, *resuable* and *robust* code. And I know there is always a room for improvement. Therefore, I would love your feedback and code reviews. :simple_smile:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+### Tools used
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+- Framework:
+    -[Angular](https://angular.io/):muscle:
 
-## Running unit tests
+- CSS libraries:
+    - [Bulma](https://bulma.io/)
+    - [Tachyons](http://tachyons.io/docs/)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Icons:
+    - [FeatherIcons](https://feathericons.com/).
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Project milestones 
+- [X] Version 1.0
+    - Weather Forecast :white_check_mark:
+    - Quotes :white_check_mark:
+    - Hackner News Clone :white_check_mark:
+    - Custom Pagination :white_check_mark:
+    - Custom Notification :white_check_mark:
+- [] Progressive Web App    
+- [] Adding [Pokemon API]()
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Local setup
+1. Install [Node](https://nodejs.org/en/) LTS version.
+    - open `cmd prompt` and type `node -v` to check if node is installed.
+2. Install [Angular](https://angular.io/guide/setup-local) using `npm install -g @angular/cli`.
+3. Download or clone this repo.
+4. Go to project root directory and run `npm run install` to install all dependencies.
+5. Run `npm run start` and the app will open on `http://localhost:4200/`. :simple_smile:
