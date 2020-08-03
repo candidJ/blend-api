@@ -4,7 +4,10 @@
 <head>
   <meta charset="utf-8">
   <title>Blend API</title>
-  <base href="/">
+  <!-- <base href="/"> -->
+  <script>
+    document.write('<base href="' + document.location + '"/>');
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
     content="Responsive App to display content from various Open Source APIs like OpenWeather, HackerNews and Programming Quotes">

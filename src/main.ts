@@ -5,8 +5,13 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 if (environment.production) {
+
+  // remove all console logs in prod
+  if (window) {
+    window.console.log = function () { };
+  }
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
+platformBrowserDynamic().bootstrapModule(AppModule, { preserveWhitespaces: false })
   .catch(err => console.error(err));
