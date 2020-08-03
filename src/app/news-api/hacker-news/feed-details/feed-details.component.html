@@ -4,7 +4,7 @@
             <p class="is-size-4">
                 {{item.title}}
                 <span class="mx-1 silver" *ngIf="item.domain">({{item.domain}})</span>
-                <a *ngIf="item.link" class="is-size-7" [href]="item.link" target="_blank" rel="noopener noreferrer">
+                <a *ngIf="item.url" class="is-size-7" [href]="item.url" target="_blank" rel="noopener noreferrer">
                     <i-feather name="external-link"></i-feather>
                 </a>
             </p>
@@ -29,7 +29,7 @@
     </ng-container>
 
     <ng-template #noComments>
-       <span class="is-family-secondary">No comments posted.</span>
+        <span class="is-family-secondary">No comments posted.</span>
     </ng-template>
 
     <app-comments *ngFor="let comment of item.comments" [comment]="comment">

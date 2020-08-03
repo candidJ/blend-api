@@ -5,10 +5,12 @@
 ## Credits
 The web application consumes open source API's. ***A big thanks to following contributors*** :+1: 
 
-1. [OpenWeather](https://api.openweathermap.org/data/2.5/forecast) for Weather Forecast :cloud:.
-2. [Unofficial HackerNews API](https://node-hnapi.herokuapp.com/) for Hacker News :newspaper:.
-3. [Quote Garden](https://quote-garden.herokuapp.com/api/v2/quotes/all) for Life Quotes :pencil:.
-4. [Programming Quotes](https://programming-quotes-api.herokuapp.com/quotes/page/) for Programming Quotes :pencil:.
+- [OpenWeather](https://api.openweathermap.org/data/2.5/forecast) for Weather Forecast :cloud:.
+- [Unofficial HackerNews API](https://node-hnapi.herokuapp.com/) for Hacker News :newspaper:.
+- [Quote Garden](https://quote-garden.herokuapp.com/api/v2/quotes/all) for Life Quotes :pencil:.
+- [Programming Quotes](https://programming-quotes-api.herokuapp.com/quotes/page/) for Programming Quotes :pencil:.
+
+
 
 ### Why did I make it ?
 - As all of my work till date have been for corporates and private clients, I wanted to showcase and hone my dev skills. So I utilised my time during Covid19 to build a `Angular` SPA. 
