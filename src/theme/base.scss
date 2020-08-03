@@ -18,6 +18,20 @@
     height: 0.3rem;
 }
 
+::-webkit-input-placeholder { 
+    color:    #909;
+    font-size:12px;
+}
+
+::-moz-placeholder { 
+   color:    #909;
+   font-size:12px;
+}
+
+:-o-input-placeholder { 
+   color:    #909;
+   font-size:12px;
+}
 
 html,
 body {

@@ -1,5 +1,4 @@
 :host {
-
     position: fixed;
     margin: 0 6vw;
     width: 88vw;
@@ -7,9 +6,8 @@
 
     @media screen and (min-width: 600px) {
         margin: unset;
-        width: 25vw;
+        width: 30vw;
         right: 2rem;
-        // bottom: 1rem;
     }
 
 }
