@@ -73,7 +73,7 @@
           </p>
           <p>
             <span> {{forecast.currentTemp | number: '1.0-0'}}</span>
-            <ng-container *ngIf="forecast.units==='metric' ; else fahrenheit">
+            <ng-container *ngIf="forecast.units == 'metric' ; else fahrenheit">
               <i class="wi wi-celsius"></i>
             </ng-container>
             <ng-template #fahrenheit>

@@ -8,7 +8,7 @@ if (environment.production) {
 
   // remove all console logs in prod
   if (window) {
-    window.console.log = function () { };
+    // window.console.log = function () { };
   }
   enableProdMode();
 }
