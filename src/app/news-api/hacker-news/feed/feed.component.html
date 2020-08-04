@@ -4,7 +4,7 @@
             <td [routerLink]="[ '../item', gridRowData.id ]" [ngClass]="{'hide-sm': item.isHideSm}">
                 {{gridRowData[item.property]}}
                 <ng-container *ngIf="item.hasDetails">
-                    <p class="is-size-7 mt-2 silver">
+                    <p class="is-size-6-tablet is-size-7-mobile mt-2 silver">
                         <span class="details" *ngFor="let detail of item.details">
                             <ng-container *ngIf="gridRowData[detail.property]">
                                 <i-feather [name]="detail.icon"></i-feather>

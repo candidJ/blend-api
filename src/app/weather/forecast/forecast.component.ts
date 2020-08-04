@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ForecastService } from '../forecast.service';
 import { Observable, throwError } from 'rxjs';
 import { WeatherDefinition, CityPayload } from 'src/app/shared/interface/interface';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { COUNTRIES } from './country.const';
 import { debounceTime, distinctUntilChanged, switchMap, catchError, combineLatest, tap } from 'rxjs/operators';
 import { WeatherForecast } from '../weather-forecast';
@@ -83,9 +83,9 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
 
   ngOnInit() {
     this.userInputForm = this._fg.group({
-      city: new FormControl(null),
+      city: new FormControl(null, Validators.required),
       country: new FormControl(null),
-      unit: new FormControl(null)
+      unit: new FormControl('metric')
     });
     this.determineForecastStrategy("latlong");
   }

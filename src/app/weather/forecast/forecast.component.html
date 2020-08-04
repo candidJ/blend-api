@@ -46,10 +46,10 @@
       [disabled]="userInputForm.invalid">Search</button>
   </form>
 
-  <h5 class="search-guideline">
-    <p class="is-size-7 is-family-secondary">Search for city name. For more accurate results, choose country as well.
-    </p>
-  </h5>
+  <p class="search-guideline is-size-7 is-family-secondary has-text-weight-light">Search for city
+    name. For more
+    accurate results, choose country as well.
+  </p>
 
   <ng-container *ngIf="forecast$ |async as forecasts">
     <section class="forecast-header">

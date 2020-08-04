@@ -11,9 +11,8 @@
         grid-gap: 2vw 0;
     }
 
-    h5.search-guideline {
+    p.search-guideline {
         grid-area: guideline;
-        color: #888888;
     }
 
     #search {
@@ -86,6 +85,7 @@
             p:nth-of-type(1) {
                 grid-row: 1;
                 grid-column: 1/3;
+                font-weight: 600;
             }
 
             // weather icon
@@ -116,6 +116,7 @@
             p:nth-of-type(4) {
                 grid-row: 3;
                 grid-column: 1/3;
+                font-weight: 600;
             }
 
             //description list - weather details
