@@ -1,5 +1,5 @@
 # Blend API :v:
-> An Angular Web App which shows Weather Forecast, Hacker News, Life and Programming Quotes. 
+> An Angular Web App that shows Weather Forecast, Hacker News, Life and Programming Quotes. 
 
 
 ## Credits
@@ -14,9 +14,9 @@ The web application consumes open source API's. ***A big thanks to following con
 
 ### Why did I make it ?
 - As all of my work till date have been for corporates and private clients, I wanted to showcase and hone my dev skills. So I utilised my time during Covid19 to build a `Angular` SPA. 
-- Since starting my journey as Web Developer, I didn't make any hobby/side projects. This is me covering up for a lost cause ;). I wanted to **blend** in all possible projects I would have made to begin with, into ONE application.
+- Since starting my journey as Web Developer, I didn't make any hobby/side projects. This is me covering up for a lost cause:wink:. I wanted to **blend** in all possible projects I would have made to begin with, into ONE application.
 
-Most of my focus while developing have been to write *modular*, *resuable* and *robust* code. And I know there is always a room for improvement. Therefore, I would love your feedback and code reviews. :simple_smile:
+Most of my focus while developing have been to write *modular*, *resuable* and *robust* code. And I know there is always a room for improvement. Therefore, I would love your feedback and code reviews.:simple_smile:
 
 
 ### Tools used
