@@ -17,9 +17,9 @@
             blockquote p:last-of-type::first-letter {
                 font-size: calc(1rem + 2vw);
                 float: left;
-                margin: 0 0.5rem 0.5rem 0;
-                -webkit-shape-outside: circle();
-                -moz-shape-outside: circle();
+                margin: 0 0.5rem;
+                // -webkit-shape-outside: circle();
+                // -moz-shape-outside: circle();
                 shape-outside: circle();
                 font-weight: 300;
             }

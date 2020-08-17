@@ -66,7 +66,7 @@
       <li *ngFor="let forecast of forecasts" class="message is-primary">
         <div class="message-body" (click)="showWeatherDetails(forecast)">
           <p>
-            {{forecast.date | date: 'EEEE'}}
+            {{forecast.date | dateTimeFormatPipe: 'dddd'}}
           </p>
           <p>
             <i [ngClass]="forecast.icon"></i>
@@ -96,11 +96,11 @@
             <dt>Sunrise
               <i class="wi wi-sunrise"></i>
             </dt>
-            <dd>{{forecast.sunrise | date : 'mediumTime'}}</dd>
+            <dd>{{forecast.sunrise | dateTimeFormatPipe : 'h:mm:ss a'}}</dd>
             <dt>Sunset
               <i class="wi wi-sunset"></i>
             </dt>
-            <dd>{{forecast.sunset | date : 'mediumTime'}}</dd>
+            <dd>{{forecast.sunset | dateTimeFormatPipe : 'h:mm:ss a'}}</dd>
             <dt>Wind speed
               <i class="wi wi-windy"></i>
             </dt>
