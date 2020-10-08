@@ -1,5 +1,5 @@
 import { ForecastStrategy } from './forecast-strategy.interface';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { AppConfig } from '../shared/constant/config';
@@ -8,7 +8,7 @@ import { AppConfig } from '../shared/constant/config';
 export class ForecastByLatLong implements ForecastStrategy {
     constructor(private coords: { latitude: number, longitude: number }) { }
 
-    forecast(): any {
+    forecast(): Observable<HttpParams> {
         return of(this.coords)
             .pipe(
                 map(coords => {

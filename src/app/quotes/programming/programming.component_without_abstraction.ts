@@ -45,7 +45,7 @@ export class ProgrammingComponentOld implements OnInit {
 
   ngOnInit(): void {
     this.fetchQuotes();
-    this.noOfPages$ = this.programmingQuotesService.getNoOfPages();
+    // this.noOfPages$ = this.programmingQuotesService.getNoOfPages();
     // console.log("programming quotes", this.quotes$, this.noOfPages$);
     this.programmingQuotesService.fetchByPageNumber(1);
   }

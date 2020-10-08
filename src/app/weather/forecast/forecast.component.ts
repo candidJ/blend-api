@@ -30,7 +30,7 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
   }
 
   private getUserCoordinates() {
-    // sets the active strategy to get forecase i.e by city name or lat long
+    // sets the active strategy to get forecast i.e by city name or lat long
     this.setForecastStrategy(this.forecastStrategy);
     // gets the active strategy and pass it to service to be consumed
     this.forecast$ = this.forecastService.getForecast(this.getForecastByStrategy());
