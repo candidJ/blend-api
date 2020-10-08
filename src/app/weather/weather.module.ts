@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ForecastDetailsComponent } from './forecast-details/forecast-details.component';
+import { ForecastService } from './forecast.service';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ForecastDetailsComponent } from './forecast-details/forecast-details.co
       component: ForecastComponent
     }]),
     SharedModule
-  ]
+  ],
+  providers: [ForecastService]
 })
 export class WeatherModule { }

@@ -6,9 +6,7 @@ import { NotificationService } from '../notifications/notification.service';
 import { AppConfig } from '../shared/constant/config';
 import { IOpenWeatherResponse, WeatherDefinition } from '../shared/interface/interface';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ForecastService {
 
   private readonly config = AppConfig.WEATHER_API_CONFIG;

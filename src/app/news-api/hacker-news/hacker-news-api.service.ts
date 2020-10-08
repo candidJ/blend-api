@@ -8,9 +8,7 @@ import { Observable, throwError } from 'rxjs';
 import { RouterState, Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class HackerNewsApiService<T> extends API<T> {
 
   private readonly config = AppConfig.HACKER_NEWS;
