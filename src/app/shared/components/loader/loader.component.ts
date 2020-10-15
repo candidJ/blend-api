@@ -12,25 +12,10 @@ export class LoaderComponent {
   constructor(public loaderService: LoaderService) { }
 }
 
-export class LoaderComponentWithState implements OnInit, OnDestroy {
+export class LoaderComponentWithState implements OnInit {
 
-  public isLoading: boolean;
-  private destroy$: Subject<boolean> = new Subject();
-  constructor(public _loaderService: LoaderService) { }
-
-
-  private watchForLoadingStateChange() {
-    return this._loaderService.currentLoadingState()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(loaderState => this.isLoading = loaderState);
-  }
+  constructor(public loaderService: LoaderService) { }
 
   ngOnInit(): void {
-    this.watchForLoadingStateChange();
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
   }
 }

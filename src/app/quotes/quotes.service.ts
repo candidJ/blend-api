@@ -15,30 +15,6 @@ export class LifeQuotesService extends API<ILifeQuotes> {
 
   constructor(private httpClient: HttpClient, private _notificationService: NotificationService) {
     super();
-
-    // for testing purpose
-    this.fetchFootballVideos();
-    this.fetchGuardianNews();
-  }
-
-
-
-  private fetchFootballVideos() {
-    fetch('https://www.scorebat.com/video-api/v1/')
-      .then((data) => {
-        console.log(data, "fooball api");
-      }).catch((error) => {
-        console.log(error, "football api");
-      });
-  }
-
-  private fetchGuardianNews() {
-    fetch('https://content.guardianapis.com/search?api-key=f04a2cbd-3074-4214-8343-a59436eb2f42')
-      .then((data) => {
-        console.log(data, "guardian api");
-      }).catch((error) => {
-        console.log(error, "guardian api");
-      });
   }
 
   protected showErrorMessage = () => {

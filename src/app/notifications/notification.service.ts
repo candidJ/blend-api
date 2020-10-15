@@ -17,7 +17,8 @@ export class NotificationService {
 
   private notificationPublisher = new Subject<INotification>();
   // public notification$: Observable<INotification> = this.notificationPublisher.asObservable();
-  private notification$: Observable<INotification> = this.notificationPublisher.asObservable();
+
+  notification$: Observable<INotification> = this.notificationPublisher.asObservable();
 
   constructor() { }
 
@@ -53,21 +54,6 @@ export class NotificationService {
       id: notification.id,
       type: 'clear'
     })
-  }
-
-  retrieveMessageFromQueque(): Observable<INotification[]> {
-    return this.notification$
-      .pipe(
-        scan((messages = [], message: INotification) => {
-          // console.log("message", message);
-          if (message.type === 'success' || message.type === 'error' || message.type === 'info') {
-            return [...messages, message];
-          }
-          else if (message.type === 'clear') {
-            return messages.filter(data => data.id !== message.id);
-          }
-        }, [])
-      );
   }
 
   private generateRandomId(): number {

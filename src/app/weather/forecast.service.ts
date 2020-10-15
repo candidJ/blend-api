@@ -32,7 +32,6 @@ export class ForecastService {
         }
         ),
         tap(value => {
-          console.log(value, "askdjashgjdgasdgasyy");
           this.dataClone = Object.assign({}, value);
           this.notificationService.showSuccessMessage(`Forecast for ${this.dataClone.city.name} fetched`);
           return value;
@@ -125,7 +124,7 @@ export class ForecastService {
           //  #1 Handle the error 
           if (err.code === 1) {
             this.notificationService.showErrorMessage("Location denied...");
-            console.log(err);
+            // console.log(err);
             this.notificationService.showGeneralInfo("Fetching weather of Muktsar, IN");
           }
 
