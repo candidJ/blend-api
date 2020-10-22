@@ -1,4 +1,4 @@
-import { Component, OnInit, InjectionToken, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, InjectionToken, Inject, ViewChild, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 
 import { ProgrammingQuotesService, QUOTES_SERVICE_TOKEN, ProgrammingQuotesFactory } from '../quotes.service';
 import { Observable } from 'rxjs';
@@ -16,21 +16,19 @@ import { NotificationService } from 'src/app/notifications/notification.service'
         provide: QUOTES_SERVICE_TOKEN,
         useFactory: ProgrammingQuotesFactory,
         deps: [HttpClient, NotificationService]
-    }]
+    }],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProgrammingComponent extends Quotes<IProgrammingQuotes> implements OnInit {
 
     public quotes$: Observable<IProgrammingQuotes[]>;
-    public paginationConfig$: Observable<PaginationConfig>;
+    public paginationConfig$: Observable<PaginationConfig> = this.programmingQuotesService.paginationConfig$;
     public props = { first: 'author', second: 'en' };
-
-    protected programmingQuotesService: ProgrammingQuotesService;
 
     @ViewChild('messageBox') messageBox: MessageBoxComponent<IProgrammingQuotes>;
 
-    constructor(@Inject(QUOTES_SERVICE_TOKEN) programmingQuotesService: ProgrammingQuotesService) {
+    constructor(@Inject(forwardRef(() => QUOTES_SERVICE_TOKEN)) private programmingQuotesService: ProgrammingQuotesService) {
         super();
-        this.programmingQuotesService = programmingQuotesService;
     }
 
     public onPaginationChange(page: number) {
@@ -43,8 +41,6 @@ export class ProgrammingComponent extends Quotes<IProgrammingQuotes> implements 
 
     ngOnInit(): void {
         this.quotes$ = this.programmingQuotesService.fetch();
-        this.paginationConfig$ = this.programmingQuotesService.getNoOfPages();
-        // this.programmingQuotesService.fetchByPageNumber(1);
     }
 
 }

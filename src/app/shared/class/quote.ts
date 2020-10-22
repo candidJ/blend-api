@@ -35,13 +35,6 @@ export abstract class Quote<T> {
 
     protected fetchQuotes() {
         return this.quotesApiService.fetch();
-        // .subscribe((response) => {
-        // console.log(response, "fetch life  shhsjahd khaskdhkasquotes");
-        // });
-    }
-
-    protected getNoOfPages() {
-        return this.quotesApiService.getNoOfPages();
     }
 
 }

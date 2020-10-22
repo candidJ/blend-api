@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, forwardRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { ILifeQuotes, PaginationConfig } from 'src/app/shared/interface/interface';
 import { Observable } from 'rxjs';
 import { LifeQuotesService } from '../quotes.service';
@@ -9,21 +9,19 @@ import { Quote, Quotes } from 'src/app/shared/class/quote';
     selector: 'app-life',
     templateUrl: './life.component.html',
     styleUrls: ['./life.component.scss'],
-    providers: [LifeQuotesService]
+    providers: [LifeQuotesService],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LifeComponent extends Quotes<ILifeQuotes> implements OnInit {
 
     public quotes$: Observable<ILifeQuotes[]>;
-    public paginationConfig$: Observable<PaginationConfig>;
+    public paginationConfig$: Observable<PaginationConfig> = this.quotesService.paginationConfig$;
     public props = { first: 'quoteAuthor', second: 'quoteText' };
-
-    public quotesService: LifeQuotesService;
 
     @ViewChild('messageBox') messageBox: MessageBoxComponent<ILifeQuotes>;
 
-    constructor(quotesService: LifeQuotesService) {
+    constructor(@Inject(forwardRef(() => LifeQuotesService)) private quotesService: LifeQuotesService) {
         super();
-        this.quotesService = quotesService;
     }
 
     public onPaginationChange(page: number) {
@@ -36,8 +34,6 @@ export class LifeComponent extends Quotes<ILifeQuotes> implements OnInit {
 
     ngOnInit(): void {
         this.quotes$ = this.quotesService.fetch();
-        this.paginationConfig$ = this.quotesService.getNoOfPages();
-        // this.quotesService.fetchByPageNumber(1);
     }
 
 }

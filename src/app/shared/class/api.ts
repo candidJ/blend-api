@@ -6,7 +6,6 @@ import { PaginationConfig } from '../interface/interface';
 export interface IAPIModel<T> {
     fetch(): Observable<T[]>;
     fetchByPageNumber(page: number): void;
-    getNoOfPages(): Observable<PaginationConfig>;
 }
 
 
@@ -15,7 +14,7 @@ export abstract class API<T> implements IAPIModel<T>{
     private apiSubject: BehaviorSubject<number> = new BehaviorSubject<number>(1);
     private api$: Observable<number> = this.apiSubject.asObservable();
     private paginationConfigPublisher: Subject<PaginationConfig> = new Subject<PaginationConfig>();
-    private paginationConfig$: Observable<PaginationConfig> = this.paginationConfigPublisher.asObservable();
+    paginationConfig$: Observable<PaginationConfig> = this.paginationConfigPublisher.asObservable();
 
     protected abstract mapResponse(data: T | T[]): any[];
     protected abstract configureParams(page: number): HttpParams;
@@ -32,21 +31,18 @@ export abstract class API<T> implements IAPIModel<T>{
             .pipe(
                 map(this.configureParams),
                 switchMap(this.fetchData),
-                map(this.mapResponse),
-                tap(this.showSuccessMessage),
-                share(),
                 catchError(err => {
                     this.showErrorMessage;
                     return throwError(err);
-                })
+                }),
+                map(this.mapResponse),
+                tap(this.showSuccessMessage),
+                share()
             );
     }
 
-    broadcastPaginationConfig(paginatorConfig: PaginationConfig) {
+    broadcastPaginationConfig(paginatorConfig: PaginationConfig): void {
         this.paginationConfigPublisher.next(paginatorConfig);
     }
 
-    getNoOfPages(): Observable<PaginationConfig> {
-        return this.paginationConfig$;
-    }
 }

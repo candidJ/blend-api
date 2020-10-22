@@ -14,7 +14,7 @@ import { LodashUtils } from '../../shared/helpers/lodash';
 export class ArticleListComponent implements OnInit {
 
   public articles$: Observable<any[]>;
-  public paginationConfig$: Observable<PaginationConfig>;
+  public paginationConfig$: Observable<PaginationConfig> = this.newsApiServie.paginationConfig$;
 
   public dataSource: IGridColumnsDef[];
   public articleColumns: Array<IGridColumnsDef>;
@@ -62,7 +62,6 @@ export class ArticleListComponent implements OnInit {
 
   ngOnInit(): void {
     this.articles$ = this.newsApiServie.fetch();
-    this.paginationConfig$ = this.newsApiServie.getNoOfPages();
     // Emit value via subject But first subscribe to the observable
     // this.newsApiServie.fetchByPageNumber(1);
     this.defineGridColumns();
