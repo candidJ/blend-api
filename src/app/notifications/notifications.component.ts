@@ -21,7 +21,7 @@ export class NotificationsComponent implements OnInit {
         else if (message.type === 'clear') {
           return messages.filter(data => data.id !== message.id);
         }
-      })
+      }, [])
     );
 
   constructor(private notificationService: NotificationService) { }
