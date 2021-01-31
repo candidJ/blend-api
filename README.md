@@ -7,8 +7,9 @@ The web application consumes open source API's. ***A big thanks to following con
 
 - [OpenWeather](https://api.openweathermap.org/data/2.5/forecast) for Weather Forecast :cloud:.
 - [Unofficial HackerNews API](https://node-hnapi.herokuapp.com/) for Hacker News :newspaper:.
-- [Quote Garden](https://quote-garden.herokuapp.com/api/v2/quotes/all) for Life Quotes :pencil:.
-- [Programming Quotes](https://programming-quotes-api.herokuapp.com/quotes/page/) for Programming Quotes :pencil:.
+- [Quote Garden](https://quote-garden.herokuapp.com/api/v3/quotes/) for Life Quotes :pencil:.
+- [Programming Quotes](https://raw.githubusercontent.com/skolakoda/programming-quotes-api/master/backup/quotes.json)
+for Programming Quotes :pencil:.
 
 
 

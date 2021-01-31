@@ -1,7 +1,7 @@
 import { Injectable, InjectionToken } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, Subject } from 'rxjs';
-import { ILifeQuotes, IProgrammingQuotes, PaginationConfig } from '../shared/interface/interface';
+import { ILifeQuotes, ILifeQuotesResponse, IProgrammingQuotes, PaginationConfig } from '../shared/interface/interface';
 import { AppConfig } from '../shared/constant/config';
 import { API } from '../shared/class/api';
 import { NotificationService } from '../notifications/notification.service';
@@ -37,17 +37,18 @@ export class LifeQuotesService extends API<ILifeQuotes> {
     return this.httpClient.get<ILifeQuotes[]>(AppConfig.LIFE_QUOTES.URL, { params });
   }
 
-  protected mapResponse = (data: any): ILifeQuotes[] => {
-    // console.log(data, "life quote mapped data");
+
+  protected mapResponse = (data: ILifeQuotesResponse): ILifeQuotes[] => {
+    console.log(data, "life quote mapped data");
     // pluck('quotes'),
     const paginationConfig: PaginationConfig = {
-      listLength: data.totalPages * AppConfig.LIFE_QUOTES.LIMIT,
-      noOfPages: Math.ceil(data.totalPages / AppConfig.LIFE_QUOTES.LIMIT),
+      listLength: data.pagination.totalPages * AppConfig.LIFE_QUOTES.LIMIT,
+      noOfPages: Math.ceil(data.pagination.totalPages / AppConfig.LIFE_QUOTES.LIMIT),
       pageSize: AppConfig.LIFE_QUOTES.LIMIT
     };
     this.broadcastPaginationConfig(paginationConfig);
     // this.dataPublisher.next(data['quotes']);
-    return data['quotes'];
+    return data.data;
   }
 }
 
@@ -77,14 +78,16 @@ export class ProgrammingQuotesService extends API<IProgrammingQuotes> {
   }
 
   protected configureParams = (page: number): HttpParams => {
-    // console.log(page, "page number in params");
+    console.log(page, "page number in params");
+    return;
+
     return new HttpParams()
       .set('page', String(page));
   }
 
   protected fetchData = (params: any): Observable<IProgrammingQuotes[]> => {
     // console.log(params);
-    return this.httpClient.get<IProgrammingQuotes[]>(AppConfig.PROGAMMING_QUOTES.URL + `${params.updates[0].value}`);
+    return this.httpClient.get<IProgrammingQuotes[]>(AppConfig.PROGAMMING_QUOTES.URL);
   }
 
   protected mapResponse = (data: IProgrammingQuotes[]): IProgrammingQuotes[] => {
@@ -96,7 +99,8 @@ export class ProgrammingQuotesService extends API<IProgrammingQuotes> {
       noOfPages: Math.ceil(AppConfig.PROGAMMING_QUOTES.TOTAL_RECORDS / AppConfig.PROGAMMING_QUOTES.PAGE_SIZE),
       pageSize: AppConfig.PROGAMMING_QUOTES.PAGE_SIZE
     };
-    this.broadcastPaginationConfig(paginationConfig);
+    // TODO: commented pagination since API is down
+    // this.broadcastPaginationConfig(paginationConfig);
     // this.dataPublisher.next(data);
     return data;
   }

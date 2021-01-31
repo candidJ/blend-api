@@ -25,7 +25,7 @@ import { ProgrammingComponent } from './programming/programming.component';
         },
         {
           path: "",
-          redirectTo: "programming"
+          redirectTo: "life"
         }
       ]
     }]),

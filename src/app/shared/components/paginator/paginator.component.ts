@@ -30,7 +30,7 @@ export class PaginatorComponent implements OnInit, OnDestroy {
   constructor() { }
 
   /**
-   * SHow the range of activeRecords being displayed
+   * Show the range of activeRecords being displayed
    * @param page 
    */
   private showActiveRecordsRange(page: number) {

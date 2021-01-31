@@ -161,3 +161,13 @@ export interface PaginationConfig {
     noOfPages: number;
     listLength: number;
 }
+
+export interface ILifeQuotesResponse {
+    data: ILifeQuotes[];
+    pagination: {
+        currentPage: number,
+        nextPage: number,
+        totalPages: number
+    },
+    totalQuotes: number;
+}

@@ -15,11 +15,13 @@ export const AppConfig = {
         UNITS: "metric"
     },
     LIFE_QUOTES: {
-        URL: "https://quote-garden.herokuapp.com/api/v2/quotes/all",
+        URL: "https://quote-garden.herokuapp.com/api/v3/quotes/",
         LIMIT: 20
     },
     PROGAMMING_QUOTES: {
-        URL: "https://programming-quotes-api.herokuapp.com/quotes/page/",
+        // URL: "https://programming-quotes-api.herokuapp.com/quotes/page/",
+        // work around URL
+        URL: "https://raw.githubusercontent.com/skolakoda/programming-quotes-api/master/backup/quotes.json",
         PAGE_SIZE: 20,
         TOTAL_RECORDS: 501
     },

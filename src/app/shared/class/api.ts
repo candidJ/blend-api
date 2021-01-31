@@ -16,7 +16,7 @@ export abstract class API<T> implements IAPIModel<T>{
     private paginationConfigPublisher: Subject<PaginationConfig> = new Subject<PaginationConfig>();
     paginationConfig$: Observable<PaginationConfig> = this.paginationConfigPublisher.asObservable();
 
-    protected abstract mapResponse(data: T | T[]): any[];
+    protected abstract mapResponse(data: T | T[] | any): any[];
     protected abstract configureParams(page: number): HttpParams;
     protected abstract fetchData(params: HttpParams): Observable<T[]> | Observable<T>;
     protected abstract showErrorMessage(): void;
