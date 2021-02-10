@@ -1,5 +1,5 @@
-// @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500&family=Ruda:wght@400;500;600&display=swap');
 @import './font-family.scss';
-@import './bulma-custom';
-@import './weather-icons';
+@import 'bulma/css/bulma.css';
+@import "./my-theme.scss";
+@import './weather-icons.scss';
 @import './base.scss';
