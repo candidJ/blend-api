@@ -125,6 +125,12 @@ export const NavbarMenuItems = {
                     hasSubMenu: false
                 }
             ]
+        },
+        {
+            title: "Calculator",
+            hasSubMenu: false,
+            icon: "cpu",
+            routerLink: "/calculator"
         }
     ]
 };
