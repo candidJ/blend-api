@@ -95,7 +95,7 @@ export class ForecastService {
 
 
   public getCurrentLocation() {
-    return new Observable<Coordinates>((observer) => {
+    return new Observable<GeolocationCoordinates>((observer) => {
       return window.navigator.geolocation.getCurrentPosition(
         (position) => {
           observer.next(position.coords);

@@ -7,7 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ForecastDetailsComponent } from './forecast-details/forecast-details.component';
 import { ForecastService } from './forecast.service';
 
-
 @NgModule({
   declarations: [ForecastComponent, ForecastDetailsComponent],
   imports: [
