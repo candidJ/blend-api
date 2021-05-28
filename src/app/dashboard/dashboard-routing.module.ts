@@ -20,6 +20,10 @@ const routeChild = [{
         {
             path: "news",
             loadChildren: () => import('../news-api/news-api.module').then(m => m.NewsApiModule)
+        },
+        {
+            path: "calculator",
+            loadChildren: () => import('../calculator/calculator.module').then(m => m.CalculatorModule)
         }
     ]
 }];
