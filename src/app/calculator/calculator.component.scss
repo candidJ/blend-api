@@ -1,0 +1,45 @@
+@import '../../theme/my-theme.scss';
+
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .calculation-output {
+        font-size: 2.5ch;
+        text-align: right;
+    }
+
+    .calculator-wrapper {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: repeat(4, minmax(4ch, 7ch));
+        grid-template-rows: repeat(5, minmax(4ch, 7ch));
+        grid-gap: 1ch;
+        width: 20rem;
+    }
+
+    button {
+        border-color: transparent;
+    }
+
+    .base {
+        border-radius: 3ch;
+        font-size: 2.5ch;
+    }
+
+    .operator {
+        color: $dark-blue;
+    }
+
+    .numeric {
+        color: $blue;
+    }
+
+    .equate {
+        grid-row: 5;
+        grid-column: 3/5;
+    }
+}

@@ -171,3 +171,9 @@ export interface ILifeQuotesResponse {
     },
     totalQuotes: number;
 }
+
+export interface ICalculatorLayout {
+    viewValue: string;
+    value: string;
+    className: string;
+}

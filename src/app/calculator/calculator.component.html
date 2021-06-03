@@ -1,1 +1,15 @@
-<p>calculator works!</p>
+<article class="message is-info">
+    <div class="message-header">
+        <article>
+            <i-feather name="refresh-ccw"></i-feather>
+        </article>
+        <article class="calculation-output">
+            {{output}}
+        </article>
+    </div>
+    <section class="calculator-wrapper message-body">
+        <button *ngFor="let cal of calculatorConfig" (click)="onUserInput(cal.value);" class="button base"
+            [textContent]="cal.viewValue" [ngClass]="cal.className">
+        </button>
+    </section>
+</article>
