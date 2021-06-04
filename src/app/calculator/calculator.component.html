@@ -1,14 +1,16 @@
 <article class="message is-info">
-    <div class="message-header">
-        <article>
+    <section class="display px-4 py-2 has-text-grey has-text-right has-text-weight-light is-family-code">{{operation}}
+    </section>
+    <section class="is-clipped display px-4 py-2 has-text-info is-align-items-center is-flex is-justify-content-space-between">
+        <article aria-label="history" class="is-clickable is-flex">
             <i-feather name="refresh-ccw"></i-feather>
         </article>
-        <article class="calculation-output">
+        <article class="has-text-right is-size-3 has-text-weight-medium">
             {{output}}
         </article>
-    </div>
+    </section>
     <section class="calculator-wrapper message-body">
-        <button *ngFor="let cal of calculatorConfig" (click)="onUserInput(cal.value);" class="button base"
+        <button *ngFor="let cal of calculatorConfig" (click)="onUserInput(cal);" class="button base"
             [textContent]="cal.viewValue" [ngClass]="cal.className">
         </button>
     </section>

@@ -4,12 +4,12 @@ export const CalculatorConfig: ICalculatorLayout[] = [
     {
         viewValue: 'AC',
         value: 'AC',
-        className: 'operator'
+        className: 'ac'
     },
     {
         viewValue: 'DEL',
         value: 'DEL',
-        className: 'operator'
+        className: 'del'
     },
     {
         viewValue: '%',
@@ -57,7 +57,7 @@ export const CalculatorConfig: ICalculatorLayout[] = [
         className: 'numeric'
     },
     {
-        viewValue: '/',
+        viewValue: '÷',
         value: '/',
         className: 'operator'
     },
@@ -77,7 +77,7 @@ export const CalculatorConfig: ICalculatorLayout[] = [
         className: 'numeric'
     },
     {
-        viewValue: 'x',
+        viewValue: '*',
         value: '*',
         className: 'operator'
     },
@@ -94,6 +94,6 @@ export const CalculatorConfig: ICalculatorLayout[] = [
     {
         viewValue: '=',
         value: '=',
-        className: 'button is-info is-outlined equate'
+        className: 'equate'
     }
 ];
