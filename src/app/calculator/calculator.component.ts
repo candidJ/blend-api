@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ICalculatorLayout } from '../shared/interface/interface';
 import { CalculatorConfig } from './calculator.const';
 
@@ -14,12 +14,14 @@ export class CalculatorComponent implements OnInit {
   previousInput: string = "";
   operation: string = "";
   currentOperator: string = "";
+  sessionOperationHistory: { "operation": string, "result": string }[] = [];
+  @ViewChild('modal') modal: ElementRef;
 
   private isComputationDone: boolean = false;
 
-  constructor() { }
+  constructor(public renderer: Renderer2) { }
 
-  private onlyAllowOneDecimal(userInput: ICalculatorLayout) {
+  private onlyAllowOneDecimal(userInput: ICalculatorLayout): void {
     if (userInput.value === '.' && this.output.includes('.')) {
       return;
     } else {
@@ -32,7 +34,7 @@ export class CalculatorComponent implements OnInit {
     this.isComputationDone = false;
   }
 
-  private compute() {
+  private compute(): void {
     let previousInput = parseFloat(this.previousInput);
     let currentOutput = parseFloat(this.output);
 
@@ -56,11 +58,18 @@ export class CalculatorComponent implements OnInit {
         break;
     }
     console.log(this.output, "this.output");
+    this.storeOperationHistoryInCurrentSession(currentOutput);
     this.clear();
     this.isComputationDone = true;
   }
 
-  private appendOperator(userInput: ICalculatorLayout) {
+  private storeOperationHistoryInCurrentSession(currentOutput: number): void {
+    let previousOperations = JSON.parse(sessionStorage.getItem("operationHistory"));
+    previousOperations.push({ operation: `${this.operation}${currentOutput}`, result: this.output });
+    sessionStorage.setItem('operationHistory', JSON.stringify(previousOperations));
+  }
+
+  private appendOperator(userInput: ICalculatorLayout): void {
     if (!(this.calculatorConfig.some(cc => this.operation.includes(cc.viewValue)))) {
       this.isComputationDone = false;
       this.operation = `${this.output} ${userInput.viewValue}`;
@@ -104,6 +113,17 @@ export class CalculatorComponent implements OnInit {
         this.clear();
         break;
     }
+  }
+
+
+  public displayOperationsHistory(): void {
+    this.sessionOperationHistory = JSON.parse(sessionStorage.getItem("operationHistory"));
+    // console.log(this.sessionOperationHistory);
+    this.renderer.addClass(this.modal.nativeElement, 'is-active');
+  }
+
+  public hideOperationHistory(): void {
+    this.renderer.removeClass(this.modal.nativeElement, 'is-active');
   }
 
   ngOnInit(): void {
