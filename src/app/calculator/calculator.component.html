@@ -1,12 +1,13 @@
 <article class="message is-info">
     <section class="display px-4 py-2 has-text-grey has-text-right has-text-weight-light is-family-code">{{operation}}
     </section>
-    <section class="is-clipped display px-4 py-2 has-text-info is-align-items-center is-flex is-justify-content-space-between">
+    <section
+        class="display px-4 py-2 has-text-info is-align-items-center is-flex is-justify-content-space-between">
         <article aria-label="history" class="is-clickable is-flex">
             <i-feather name="refresh-ccw"></i-feather>
         </article>
-        <article class="has-text-right is-size-3 has-text-weight-medium">
-            {{output}}
+        <article class="has-text-right is-size-3 has-text-weight-medium output">
+            {{output | number}}
         </article>
     </section>
     <section class="calculator-wrapper message-body">

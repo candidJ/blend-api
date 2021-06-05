@@ -43,8 +43,13 @@
 
     .display {
         height: 3rem;
-        max-width: 10rem;
-        text-overflow: clip;
     }
 
+    .output {
+        max-width: 15rem;
+        text-overflow: ellipsis;
+        /* Required for text-overflow to do anything - re-learnt*/
+        white-space: nowrap;
+        overflow: hidden;
+    }
 }
