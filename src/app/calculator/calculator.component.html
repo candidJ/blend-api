@@ -2,7 +2,7 @@
     <section class="display px-4 py-2 has-text-grey has-text-right has-text-weight-light is-family-code">{{operation}}
     </section>
     <section class="display px-4 py-2 has-text-info is-align-items-center is-flex is-justify-content-space-between">
-        <article aria-label="history" class="is-clickable is-flex">
+        <article aria-label="history" class="is-clickable is-flex" (click)="displayOperationsHistory();">
             <i-feather name="refresh-ccw"></i-feather>
         </article>
         <article class="has-text-right is-size-3 has-text-weight-medium output">
@@ -15,3 +15,24 @@
         </button>
     </section>
 </article>
+
+
+<div #modal class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <h2 class="is-white is-size-2">Session History</h2>
+        <ng-container *ngIf="sessionOperationHistory.length > 0; else noHistoryToDisplay">
+            <article class="is-flex my-2" *ngFor="let history of sessionOperationHistory;">
+                <b class="tag is-white is-size-5">{{history.operation}}</b>
+                &nbsp;
+                <span>=</span>
+                &nbsp;
+                <b class="tag is-info is-light is-size-5">{{history.result}}</b>
+            </article>
+        </ng-container>
+        <ng-template #noHistoryToDisplay>
+            <p class="is-white">No operations performed.</p>
+        </ng-template>
+    </div>
+    <button class="modal-close is-large" aria-label="close" (click)="hideOperationHistory();"></button>
+</div>
