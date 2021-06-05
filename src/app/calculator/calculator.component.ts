@@ -77,7 +77,8 @@ export class CalculatorComponent implements OnInit {
   }
 
   private appendOperator(userInput: ICalculatorLayout): void {
-    if (!(this.calculatorConfig.some(cc => this.operation.includes(cc.viewValue)))) {
+    console.log(this.output);
+    if (!(this.calculatorConfig.some(cc => this.operation.includes(cc.viewValue))) && this.output) {
       this.isComputationDone = false;
       this.operation = `${this.output} ${userInput.viewValue}`;
       this.currentOperator = userInput.value;
