@@ -7,8 +7,9 @@ import { MessageBoxComponent } from './components/message-box/message-box.compon
 import { LoaderComponent } from './components/loader/loader.component';
 import { HighlightedDirective } from './directive/highlighted.directive';
 import { DateTimeFormatPipe } from './pipe/date-time-format';
+import { NumberFormatPipe } from './pipe/number-format';
 
-const SharedComponent = [PaginatorComponent, GridComponent, MessageBoxComponent, LoaderComponent, HighlightedDirective, DateTimeFormatPipe];
+const SharedComponent = [PaginatorComponent, GridComponent, MessageBoxComponent, LoaderComponent, HighlightedDirective, DateTimeFormatPipe, NumberFormatPipe];
 
 @NgModule({
   declarations: [...SharedComponent],

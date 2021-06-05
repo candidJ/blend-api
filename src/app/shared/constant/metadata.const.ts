@@ -129,7 +129,7 @@ export const NavbarMenuItems = {
         {
             title: "Calculator",
             hasSubMenu: false,
-            icon: "plus-square",
+            icon: "cpu",
             routerLink: "/calculator"
         }
     ]

@@ -24,11 +24,12 @@ export class CalculatorComponent implements OnInit {
       return;
     } else {
       if (this.isComputationDone) {
-        this.output = userInput.value
+        this.output = userInput.value;
       } else {
         this.output += userInput.value;
       }
     }
+    this.isComputationDone = false;
   }
 
   private compute() {
@@ -62,7 +63,7 @@ export class CalculatorComponent implements OnInit {
   private appendOperator(userInput: ICalculatorLayout) {
     if (!(this.calculatorConfig.some(cc => this.operation.includes(cc.viewValue)))) {
       this.isComputationDone = false;
-      this.operation = `${this.output}${userInput.viewValue}`;
+      this.operation = `${this.output} ${userInput.viewValue}`;
       this.currentOperator = userInput.value;
       this.previousInput = this.output;
       this.output = "";
