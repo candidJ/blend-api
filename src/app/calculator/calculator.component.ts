@@ -65,8 +65,15 @@ export class CalculatorComponent implements OnInit {
 
   private storeOperationHistoryInCurrentSession(currentOutput: number): void {
     let previousOperations = JSON.parse(sessionStorage.getItem("operationHistory"));
-    previousOperations.push({ operation: `${this.operation}${currentOutput}`, result: this.output });
-    sessionStorage.setItem('operationHistory', JSON.stringify(previousOperations));
+    let currentOperationHistory = { operation: `${this.operation} ${currentOutput}`, result: this.output };
+    if (previousOperations) {
+      previousOperations.push(currentOperationHistory);
+      sessionStorage.setItem('operationHistory', JSON.stringify(previousOperations));
+    } else {
+      let firstOperationInSession = [];
+      firstOperationInSession.push(currentOperationHistory);
+      sessionStorage.setItem('operationHistory', JSON.stringify(firstOperationInSession));
+    }
   }
 
   private appendOperator(userInput: ICalculatorLayout): void {

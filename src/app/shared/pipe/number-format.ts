@@ -4,8 +4,7 @@ import { NgModule, Pipe, PipeTransform } from "@angular/core";
 export class NumberFormatPipe implements PipeTransform {
     transform(value: any) {
         let outputNumber = value.replace(/\,/g, "");
-        console.log(outputNumber, "number");
-        if (isNaN(outputNumber)) return;
+        if ((outputNumber.length == 0) || isNaN(outputNumber)) return;
         return new Intl.NumberFormat('en-IN', { maximumFractionDigits: 5 }).format(outputNumber);
     }
 
