@@ -5,7 +5,7 @@ import { HttpParams, HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { NotificationService } from '../notifications/notification.service';
 import { AppConfig } from '../shared/constant/config';
 import { IOpenWeatherResponse, WeatherDefinition } from '../shared/interface/interface';
-
+import { GeolocationCoordinates } from 'src/app/shared/interface/interface';
 @Injectable()
 export class ForecastService {
 
