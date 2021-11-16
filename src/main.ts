@@ -7,9 +7,9 @@ import { environment } from './environments/environment';
 if (environment.production) {
 
   // remove all console logs in prod
-  if (window) {
-    window.console.log = () => { };
-  }
+  // if (window) {
+  //   window.console.log = () => { };
+  // }
   enableProdMode();
 }
 
