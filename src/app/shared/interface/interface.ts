@@ -48,26 +48,6 @@ export interface ILifeQuotes {
     quoteAuthor: string;
 }
 
-export interface INavbarMenu {
-    icon: string;
-    title: string;
-    hasSubMenu: boolean;
-    routerLink: string;
-    subMenu?: INavbarMenu[];
-}
-
-export interface INavbar {
-    logo: SafeStyle;
-    routerLink: string;
-    navbarMenu: INavbarMenu[];
-}
-
-export interface ISubMenu {
-    icon: string;
-    title: string;
-    subMenuItems: INavbarMenu[];
-}
-
 export interface IOpenWeatherResponse {
     list: {
         dt_txt: string;
