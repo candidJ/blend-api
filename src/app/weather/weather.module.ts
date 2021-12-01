@@ -3,7 +3,6 @@ import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import { SharedModule } from "../shared/shared.module";
 import { IconsModule } from "src/app/shared/modules/feather-icons/icons.module";
 import { ForecastComponent } from "src/app/weather/components/forecast/forecast.component";
 import { ForecastDetailsComponent } from "src/app/weather/components/forecast-details/forecast-details.component";
@@ -12,6 +11,7 @@ import { MessageBoxModule } from "src/app/shared/modules/message-box/message-box
 import { GridModule } from "src/app/shared/modules/grid/grid.module";
 import { LoaderModule } from "src/app/shared/modules/loader/loader.module";
 import { NotificationsModule } from "src/app/shared/modules/notifications/notifications.module";
+import { PipeModule } from "../shared/pipe/pipe.module";
 
 @NgModule({
   declarations: [ForecastComponent, ForecastDetailsComponent],
@@ -29,7 +29,7 @@ import { NotificationsModule } from "src/app/shared/modules/notifications/notifi
         component: ForecastComponent,
       },
     ]),
-    SharedModule,
+    PipeModule
   ],
   providers: [ForecastService],
 })

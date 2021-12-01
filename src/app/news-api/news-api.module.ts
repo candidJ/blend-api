@@ -7,7 +7,6 @@ import { CommentsComponent } from "src/app/news-api/components/hacker-news/comme
 import { FeedComponent } from "src/app/news-api/components/hacker-news/feed/feed.component";
 import { FeedDetailsComponent } from "src/app/news-api/components/hacker-news/feed-details/feed-details.component";
 import { NewsApiRoutingModule } from "src/app/news-api/news-api-routing.module";
-import { SharedModule } from "../shared/shared.module";
 import { MessageBoxModule } from "src/app/shared/modules/message-box/message-box.module";
 import { GridModule } from "src/app/shared/modules/grid/grid.module";
 import { LoaderModule } from "src/app/shared/modules/loader/loader.module";
@@ -30,7 +29,6 @@ import { HackerNewsApiService } from "src/app/news-api/services/hacker-news-api.
     PaginatorModule,
     LoaderModule,
     GridModule,
-    SharedModule,
   ],
   exports: [],
   providers: [HackerNewsApiService],
