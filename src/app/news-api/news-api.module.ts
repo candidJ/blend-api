@@ -3,7 +3,6 @@ import { CommonModule } from "@angular/common";
 
 import { IconsModule } from "src/app/shared/modules/feather-icons/icons.module";
 import { ArticleListComponent } from "src/app/news-api/components/article-list/article-list.component";
-import { HackerNewsComponent } from "src/app/news-api/components/hacker-news/hacker-news.component";
 import { CommentsComponent } from "src/app/news-api/components/hacker-news/comments/comments.component";
 import { FeedComponent } from "src/app/news-api/components/hacker-news/feed/feed.component";
 import { FeedDetailsComponent } from "src/app/news-api/components/hacker-news/feed-details/feed-details.component";
@@ -19,7 +18,6 @@ import { HackerNewsApiService } from "src/app/news-api/services/hacker-news-api.
 @NgModule({
   declarations: [
     ArticleListComponent,
-    HackerNewsComponent,
     CommentsComponent,
     FeedComponent,
     FeedDetailsComponent,
@@ -29,19 +27,12 @@ import { HackerNewsApiService } from "src/app/news-api/services/hacker-news-api.
     NewsApiRoutingModule,
     IconsModule,
     NotificationsModule,
-    MessageBoxModule,
     PaginatorModule,
     LoaderModule,
     GridModule,
     SharedModule,
   ],
-  exports: [
-    ArticleListComponent,
-    HackerNewsComponent,
-    CommentsComponent,
-    FeedComponent,
-    FeedDetailsComponent,
-  ],
+  exports: [],
   providers: [HackerNewsApiService],
 })
 export class NewsApiModule {}

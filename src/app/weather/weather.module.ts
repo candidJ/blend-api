@@ -11,7 +11,6 @@ import { ForecastService } from "src/app/weather/services/forecast.service";
 import { MessageBoxModule } from "src/app/shared/modules/message-box/message-box.module";
 import { GridModule } from "src/app/shared/modules/grid/grid.module";
 import { LoaderModule } from "src/app/shared/modules/loader/loader.module";
-import { PaginatorModule } from "src/app/shared/modules/paginator/paginator.module";
 import { NotificationsModule } from "src/app/shared/modules/notifications/notifications.module";
 
 @NgModule({
@@ -21,8 +20,6 @@ import { NotificationsModule } from "src/app/shared/modules/notifications/notifi
     FormsModule,
     IconsModule,
     NotificationsModule,
-    MessageBoxModule,
-    PaginatorModule,
     LoaderModule,
     GridModule,
     ReactiveFormsModule,

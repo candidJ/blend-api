@@ -41,7 +41,6 @@ import { NotificationsModule } from "src/app/shared/modules/notifications/notifi
     MessageBoxModule,
     PaginatorModule,
     LoaderModule,
-    GridModule,
     SharedModule,
   ],
 })

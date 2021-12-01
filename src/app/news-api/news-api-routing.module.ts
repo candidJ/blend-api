@@ -5,7 +5,6 @@ import { RouterModule } from "@angular/router";
 import { ArticleListComponent } from "src/app/news-api/components/article-list/article-list.component";
 import { FeedDetailsComponent } from "src/app/news-api/components/hacker-news/feed-details/feed-details.component";
 import { FeedComponent } from "src/app/news-api/components/hacker-news/feed/feed.component";
-import { HackerNewsComponent } from "src/app/news-api/components/hacker-news/hacker-news.component";
 
 @NgModule({
   imports: [
@@ -17,7 +16,6 @@ import { HackerNewsComponent } from "src/app/news-api/components/hacker-news/hac
       },
       {
         path: "",
-        component: HackerNewsComponent,
         children: [
           {
             path: "item/:id",

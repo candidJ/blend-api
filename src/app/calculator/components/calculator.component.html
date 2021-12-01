@@ -20,18 +20,18 @@
 <div #modal class="modal">
     <div class="modal-background"></div>
     <div class="modal-content">
-        <h2 class="is-white is-size-2">Session History</h2>
+        <h2 class="has-text-white is-size-2">Session History</h2>
         <ng-container *ngIf="sessionOperationHistory.length > 0; else noHistoryToDisplay">
             <article class="is-flex my-2" *ngFor="let history of sessionOperationHistory;">
-                <b class="tag is-white is-size-5">{{history.operation}}</b>
+                <b class="tag is-size-5">{{history.operation}}</b>
                 &nbsp;
-                <span>=</span>
+                <span class="has-text-white mx-1">=</span>
                 &nbsp;
                 <b class="tag is-info is-light is-size-5">{{history.result}}</b>
             </article>
         </ng-container>
         <ng-template #noHistoryToDisplay>
-            <p class="is-white">No operations performed.</p>
+            <p class="has-text-white">No operations performed.</p>
         </ng-template>
     </div>
     <button class="modal-close is-large" aria-label="close" (click)="hideOperationHistory();"></button>

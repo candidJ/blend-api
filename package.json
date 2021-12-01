@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --open",
+    "optimize": "ng serve --prod --optimization=false",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

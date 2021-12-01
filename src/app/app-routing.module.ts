@@ -4,7 +4,7 @@ import { RouterModule } from "@angular/router";
 const routes = [
   {
     path: "",
-    redirectTo: "quotes",
+    redirectTo: "calculator",
     pathMatch: "full",
   },
   {
