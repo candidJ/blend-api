@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { LifeQuotesService, ProgrammingQuotesService } from './quotes.service';
 
 @Component({
-  selector: 'app-quotes',
+  selector: 'ba-quotes',
   templateUrl: './quotes.component.html',
   styleUrls: ['./quotes.component.scss']
 })

@@ -9,7 +9,7 @@ import { Quote, Quotes } from 'src/app/shared/class/quote';
 import { NotificationService } from 'src/app/notifications/notification.service';
 
 @Component({
-    selector: 'app-programming',
+    selector: 'ba-programming',
     templateUrl: './programming.component.html',
     styleUrls: ['./programming.component.scss'],
     providers: [{

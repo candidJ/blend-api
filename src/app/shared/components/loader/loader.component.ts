@@ -4,7 +4,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-loader',
+  selector: 'ba-loader',
   templateUrl: './loader.component.html',
   styleUrls: ['./loader.component.scss']
 })

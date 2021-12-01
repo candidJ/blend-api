@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-message-box',
+  selector: 'ba-message-box',
   templateUrl: './message-box.component.html',
   styleUrls: ['./message-box.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

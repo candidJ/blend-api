@@ -13,6 +13,6 @@
     <p *ngIf="comment.content" class="is-family-secondary" [innerHTML]="comment.content"></p>
 
     <!-- for nested comments (recursion) -->
-    <app-comments *ngFor="let comment of comment.comments" [comment]="comment">
-    </app-comments>
+    <ba-comments *ngFor="let comment of comment.comments" [comment]="comment">
+    </ba-comments>
 </article>

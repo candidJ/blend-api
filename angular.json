@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "NewsFeedApp": {
+    "BlendApiApp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -34,7 +34,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "ba",
       "architect": {
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
@@ -98,23 +98,23 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "NewsFeedApp:build",
+            "browserTarget": "BlendApiApp:build",
             "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "NewsFeedApp:build:production"
+              "browserTarget": "BlendApiApp:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "NewsFeedApp:build"
+            "browserTarget": "BlendApiApp:build"
           }
         }
       }
     }
   },
-  "defaultProject": "NewsFeedApp"
+  "defaultProject": "BlendApiApp"
 }

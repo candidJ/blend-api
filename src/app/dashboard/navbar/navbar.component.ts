@@ -4,7 +4,7 @@ import { AppConfig } from 'src/app/shared/constant/config';
 import { INavbarMenu, INavbar } from 'src/app/shared/interface/interface';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'ba-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

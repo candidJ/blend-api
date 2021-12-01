@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { HackerNewsFeedDetails } from 'src/app/shared/interface/interface';
 
 @Component({
-  selector: 'app-feed-details',
+  selector: 'ba-feed-details',
   templateUrl: './feed-details.component.html',
   styleUrls: ['./feed-details.component.scss']
 })

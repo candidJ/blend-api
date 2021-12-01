@@ -3,7 +3,7 @@ import { ICalculatorLayout } from '../shared/interface/interface';
 import { CalculatorConfig } from './calculator.const';
 
 @Component({
-  selector: 'app-calculator',
+  selector: 'ba-calculator',
   templateUrl: './calculator.component.html',
   styleUrls: ['./calculator.component.scss']
 })

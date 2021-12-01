@@ -7,7 +7,7 @@
             "forecast-header"
             // "location"
             "five-day-fl"
-            "app-forecast-details";
+            "ba-forecast-details";
         grid-gap: 2vw 0;
     }
 
@@ -45,8 +45,8 @@
 
     }
 
-    app-forecast-details {
-        grid-area: app-forecast-details;
+    ba-forecast-details {
+        grid-area: ba-forecast-details;
     }
 
     input {

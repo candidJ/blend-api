@@ -11,7 +11,7 @@ import { ForecastByLatLong } from '../forecast-by-latlong';
 import { ForecastByCityName } from '../forecast-by-cityname';
 
 @Component({
-  selector: 'app-forecast',
+  selector: 'ba-forecast',
   templateUrl: './forecast.component.html',
   styleUrls: ['./forecast.component.scss']
 })

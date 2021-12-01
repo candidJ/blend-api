@@ -8,7 +8,7 @@ import { MessageBoxComponent } from 'src/app/shared/components/message-box/messa
 import { AppConfig } from 'src/app/shared/constant/config';
 
 @Component({
-  selector: 'app-programming',
+  selector: 'ba-programming',
   templateUrl: './programming.component.html',
   styleUrls: ['./programming.component.scss'],
   providers: [{

@@ -6,7 +6,7 @@ import { Router, ActivatedRoute, NavigationEnd, Event } from '@angular/router';
 import { HNFeedColumns } from 'src/app/shared/constant/metadata.const';
 
 @Component({
-  selector: 'app-feed',
+  selector: 'ba-feed',
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss']
 })

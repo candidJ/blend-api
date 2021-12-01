@@ -6,7 +6,7 @@ import { MessageBoxComponent } from 'src/app/shared/components/message-box/messa
 import { Quote, Quotes } from 'src/app/shared/class/quote';
 
 @Component({
-    selector: 'app-life',
+    selector: 'ba-life',
     templateUrl: './life.component.html',
     styleUrls: ['./life.component.scss'],
     providers: [LifeQuotesService],

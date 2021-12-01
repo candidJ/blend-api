@@ -3,7 +3,7 @@ import { INavbar } from '../shared/interface/interface';
 import { NavbarMenuItems } from '../shared/constant/metadata.const';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'ba-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })

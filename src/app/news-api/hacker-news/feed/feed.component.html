@@ -1,4 +1,4 @@
-<app-grid [gridData]="feed$" [gridColumns]="feedColumns">
+<ba-grid [gridData]="feed$" [gridColumns]="feedColumns">
     <ng-template #gridItems let-gridRowData>
         <ng-container *ngFor="let item of dataSource">
             <td [routerLink]="[ '../item', gridRowData.id ]" [ngClass]="{'hide-sm': item.isHideSm}">
@@ -21,7 +21,7 @@
             </a>
         </td>
     </ng-template>
-</app-grid>
+</ba-grid>
 
-<app-paginator [paginationConfig]="paginationConfig$ |async" (onPaginatorChange)="onPaginatorChange($event)">
-</app-paginator>
+<ba-paginator [paginationConfig]="paginationConfig$ |async" (onPaginatorChange)="onPaginatorChange($event)">
+</ba-paginator>

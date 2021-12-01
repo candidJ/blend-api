@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 
 @Component({
-  selector: 'app-notifications',
+  selector: 'ba-notifications',
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -8,7 +8,7 @@ interface CityInfo {
 }
 
 @Component({
-  selector: 'app-forecast-details',
+  selector: 'ba-forecast-details',
   templateUrl: './forecast-details.component.html',
   styleUrls: ['./forecast-details.component.scss']
 })

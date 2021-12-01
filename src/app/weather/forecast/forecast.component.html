@@ -116,7 +116,7 @@
   </ng-container>
 
   <ng-container *ngIf="forecastService.showRandomCities$ |async">
-    <app-forecast-details (cityInfo)=onSubmit($event)></app-forecast-details>
+    <ba-forecast-details (cityInfo)=onSubmit($event)></ba-forecast-details>
   </ng-container>
 
 </article>

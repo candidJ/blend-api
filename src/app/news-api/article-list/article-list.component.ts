@@ -5,7 +5,7 @@ import { INewsArticles, IGridColumnsDef, PaginationConfig } from '../../shared/i
 import { LodashUtils } from '../../shared/helpers/lodash';
 
 @Component({
-  selector: 'app-article-list',
+  selector: 'ba-article-list',
   templateUrl: './article-list.component.html',
   styleUrls: ['./article-list.component.scss'],
   providers: [NewsApiService], // equivalent to [{provide: NewsApiService, useClass: NewsApiService}],

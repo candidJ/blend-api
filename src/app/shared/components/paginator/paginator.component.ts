@@ -4,7 +4,7 @@ import { PaginationConfig } from '../../interface/interface';
 
 
 @Component({
-  selector: 'app-paginator',
+  selector: 'ba-paginator',
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss']
 })

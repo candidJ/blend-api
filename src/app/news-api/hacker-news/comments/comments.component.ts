@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HNComments } from 'src/app/shared/interface/interface';
 
 @Component({
-  selector: 'app-comments',
+  selector: 'ba-comments',
   templateUrl: './comments.component.html',
   styleUrls: ['../feed-details/feed-details.component.scss', '../comments/comments.component.scss']
 })

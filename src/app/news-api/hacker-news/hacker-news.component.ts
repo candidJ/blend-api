@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-hacker-news',
+  selector: 'ba-hacker-news',
   templateUrl: './hacker-news.component.html',
   styleUrls: ['./hacker-news.component.scss']
 })

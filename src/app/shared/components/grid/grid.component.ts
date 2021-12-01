@@ -3,7 +3,7 @@ import { Component, OnInit, Input, TemplateRef, ContentChild, AfterContentInit,
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-grid',
+  selector: 'ba-grid',
   templateUrl: './grid.component.html',
   styleUrls: ['./grid.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
