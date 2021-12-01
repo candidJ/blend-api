@@ -1,0 +1,28 @@
+:host {
+  p:nth-child(1) {
+    font-weight: 700;
+  }
+
+  blockquote p:nth-of-type(1) > a {
+    float: right;
+    margin-bottom: 1vh;
+  }
+
+  blockquote p:last-of-type {
+    clear: both;
+  }
+
+  @supports (shape-outside: circle()) {
+    @media screen and (min-width: 600px) {
+      blockquote p:last-of-type::first-letter {
+        font-size: calc(1rem + 2vw);
+        float: left;
+        margin: 0 0.5rem;
+        // -webkit-shape-outside: circle();
+        // -moz-shape-outside: circle();
+        shape-outside: circle();
+        font-weight: 300;
+      }
+    }
+  }
+}

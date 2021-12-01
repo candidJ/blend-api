@@ -1,8 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
-import { NavbarModule } from "src/app/shared/modules/navbar/navbar.module";
-
 const routes = [
   {
     path: "",
@@ -39,10 +37,7 @@ const routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { relativeLinkResolution: "legacy" }),
-    NavbarModule,
-  ],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: "legacy" })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

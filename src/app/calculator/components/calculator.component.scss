@@ -1,0 +1,55 @@
+@import "src/theme/variables.scss";
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .calculator-wrapper {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(4, minmax(4ch, 7ch));
+    grid-template-rows: repeat(5, minmax(4ch, 7ch));
+    grid-gap: 1ch;
+    max-width: 22rem;
+  }
+
+  button {
+    border-color: transparent;
+  }
+
+  .base {
+    border-radius: 3ch;
+    font-size: 2.5ch;
+  }
+
+  .operator,
+  .ac,
+  .del {
+    color: $info;
+  }
+
+  .numeric {
+    color: $primary;
+  }
+
+  .equate {
+    grid-row: 5;
+    grid-column: 3/5;
+    color: $info;
+  }
+
+  .display {
+    height: 3rem;
+  }
+
+  .output {
+    max-width: 15rem;
+    text-overflow: ellipsis;
+    /* Required for text-overflow to do anything - re-learnt*/
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
