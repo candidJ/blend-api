@@ -3,8 +3,8 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
 import { ArticleListComponent } from "src/app/news-api/components/article-list/article-list.component";
-import { FeedDetailsComponent } from "src/app/news-api/components/hacker-news/feed-details/feed-details.component";
-import { FeedComponent } from "src/app/news-api/components/hacker-news/feed/feed.component";
+import { FeedDetailsComponent } from "src/app/news-api/components/feed-details/feed-details.component";
+import { FeedComponent } from "src/app/news-api/components/feed/feed.component";
 
 @NgModule({
   imports: [
