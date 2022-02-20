@@ -1,7 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
   "projects": {
     "BlendApiApp": {
       "projectType": "application",
@@ -32,8 +31,8 @@
           "skipTests": true
         }
       },
-      "root": "",
-      "sourceRoot": "src",
+      "root": "apps/BlendApiApp",
+      "sourceRoot": "apps/BlendApiApp/src",
       "prefix": "ba",
       "architect": {
         "build": {
@@ -45,23 +44,21 @@
                 "externals": "replace"
               }
             },
-            "outputPath": "dist/blend-api",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "outputPath": "dist/apps/BlendApiApp",
+            "index": "apps/BlendApiApp/src/index.html",
+            "main": "apps/BlendApiApp/src/main.ts",
+            "polyfills": "apps/BlendApiApp/src/polyfills.ts",
+            "tsConfig": "apps/BlendApiApp/tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
+              "apps/BlendApiApp/src/favicon.ico",
+              "apps/BlendApiApp/src/assets",
               {
                 "glob": "_redirects",
-                "input": "src",
+                "input": "apps/BlendApiApp/src",
                 "output": "/"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["apps/BlendApiApp/src/styles.scss"],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -72,16 +69,19 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.prod.ts"
-              }],
+              "fileReplacements": [
+                {
+                  "replace": "apps/BlendApiApp/src/environments/environment.ts",
+                  "with": "apps/BlendApiApp/src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "budgets": [{
+              "budgets": [
+                {
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
@@ -98,8 +98,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "BlendApiApp:build",
-            "proxyConfig": "src/proxy.conf.json"
+            "browserTarget": "BlendApiApp:build"
           },
           "configurations": {
             "production": {
@@ -114,7 +113,136 @@
           }
         }
       }
+    },
+    "calculator": {
+      "projectType": "library",
+      "root": "libs/calculator",
+      "sourceRoot": "libs/calculator/src",
+      "prefix": "blend-api",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/calculator"],
+          "options": {
+            "jestConfig": "libs/calculator/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/calculator/src/**/*.ts",
+              "libs/calculator/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "hacker-news": {
+      "projectType": "library",
+      "root": "libs/hacker-news",
+      "sourceRoot": "libs/hacker-news/src",
+      "prefix": "blend-api",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/hacker-news"],
+          "options": {
+            "jestConfig": "libs/hacker-news/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/hacker-news/src/**/*.ts",
+              "libs/hacker-news/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "quotes": {
+      "projectType": "library",
+      "root": "libs/quotes",
+      "sourceRoot": "libs/quotes/src",
+      "prefix": "blend-api",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/quotes"],
+          "options": {
+            "jestConfig": "libs/quotes/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/quotes/src/**/*.ts",
+              "libs/quotes/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "shared": {
+      "projectType": "library",
+      "root": "libs/shared",
+      "sourceRoot": "libs/shared/src",
+      "prefix": "blend-api",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared"],
+          "options": {
+            "jestConfig": "libs/shared/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/src/**/*.ts",
+              "libs/shared/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "weather": {
+      "projectType": "library",
+      "root": "libs/weather",
+      "sourceRoot": "libs/weather/src",
+      "prefix": "blend-api",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/weather"],
+          "options": {
+            "jestConfig": "libs/weather/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/weather/src/**/*.ts",
+              "libs/weather/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
     }
-  },
-  "defaultProject": "BlendApiApp"
+  }
 }

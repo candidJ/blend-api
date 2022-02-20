@@ -1,0 +1,12 @@
+:host {
+  position: fixed;
+  margin: 0 6vw;
+  width: 88vw;
+  bottom: 1rem;
+
+  @media screen and (min-width: 600px) {
+    margin: unset;
+    width: 30vw;
+    right: 2rem;
+  }
+}

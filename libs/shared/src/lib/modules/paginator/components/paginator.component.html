@@ -1,0 +1,66 @@
+<ng-container *ngIf="pgConfig">
+  <p
+    class="mt2 is-size-6-desktop has-text-weight-light is-size-7-touch is-pulled-right is-family-secondary"
+  >
+    Showing
+    {{ record.start }}-
+    {{ record.end }}
+    &nbsp;of&nbsp;
+    {{ pgConfig.listLength }}
+    records
+  </p>
+</ng-container>
+
+<div class="mv4 is-clearfix">
+  <nav class="pagination" role="navigation" aria-label="pagination">
+    <ng-container *ngIf="pgConfig">
+      <ul class="pagination-list">
+        <li>
+          <a
+            [ngClass]="{ disabled: activePage === 1 }"
+            (click)="onPageChange(1)"
+            class="pagination-previous"
+          >
+            <i-feather name="chevrons-left"></i-feather>
+            First
+          </a>
+        </li>
+        <li>
+          <a
+            [ngClass]="{ disabled: activePage === 1 }"
+            (click)="onPageChange(activePage - 1)"
+            class="pagination-previous"
+          >
+            <i-feather name="chevron-left"></i-feather>
+            Previous
+          </a>
+        </li>
+        <li>
+          <a
+            [ngClass]="{ disabled: activePage === pgConfig.noOfPages }"
+            (click)="onPageChange(activePage + 1)"
+            class="pagination-next"
+            >Next page
+            <i-feather name="chevron-right"></i-feather>
+          </a>
+        </li>
+        <li>
+          <a
+            [ngClass]="{ disabled: activePage === pgConfig.noOfPages }"
+            (click)="onPageChange(pgConfig.noOfPages)"
+            class="pagination-next"
+            >Last
+            <i-feather name="chevrons-right"></i-feather>
+          </a>
+        </li>
+      </ul>
+    </ng-container>
+
+    <!-- <ul class="pagination-list">
+            <li *ngFor="let page of noOfPages$| async">
+                <a class="pagination-link" [ngClass]="{'is-current': (page === activePage)}" aria-label="activePage"
+                    (click)="onPageNumber(page)" aria-current="page">{{page}}</a>
+            </li>
+        </ul> -->
+  </nav>
+</div>

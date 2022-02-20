@@ -1,0 +1,157 @@
+<article class="container-fluid">
+  <form id="search" autocomplete="off" [formGroup]="userInputForm">
+    <div class="control has-icons-left has-icons-right">
+      <input
+        name="city"
+        formControlName="city"
+        class="input is-rounded"
+        type="text"
+        placeholder="Enter city name"
+        required
+      />
+      <span class="icon is-small is-left flex items-center justify-center">
+        <i-feather name="search"></i-feather>
+      </span>
+
+      <ng-container
+        *ngIf="
+          userInputForm.get('city')?.errors &&
+          userInputForm.get('city')?.touched
+        "
+      >
+        <p class="help is-danger">City name is required.</p>
+      </ng-container>
+      <!-- <span class="icon is-small is-right" (click)="userInputForm.reset()">
+        <i-feather name="delete"></i-feather>
+      </span> -->
+    </div>
+    <div class="control has-icons-left has-icons-right">
+      <input
+        list="browsers"
+        name="country"
+        formControlName="country"
+        class="input is-rounded"
+        type="text"
+        placeholder="Enter country name(optional)"
+      />
+      <datalist id="browsers">
+        <option
+          *ngFor="let country of countries"
+          [value]="country.name"
+        ></option>
+      </datalist>
+      <span class="icon is-small is-left flex items-center justify-center">
+        <i-feather name="globe"></i-feather>
+      </span>
+      <!-- <span class="icon is-small is-right" (click)="userInputForm.reset()">
+        <i-feather name="delete"></i-feather>
+      </span> -->
+    </div>
+
+    <div class="control" id="radio">
+      <label class="radio">
+        <input
+          type="radio"
+          name="unit"
+          formControlName="unit"
+          value="imperial"
+        />
+        Fahrenheit&nbsp;<i class="wi wi-fahrenheit"></i>
+      </label>
+      <label class="radio">
+        <input type="radio" name="unit" formControlName="unit" value="metric" />
+        Celcius&nbsp;<i class="wi wi-celsius"></i>
+      </label>
+    </div>
+
+    <button
+      class="button is-primary is-light is-rounded"
+      type="submit"
+      (click)="onSubmit(userInputForm.value)"
+      [disabled]="userInputForm.invalid"
+    >
+      Search
+    </button>
+  </form>
+
+  <p
+    class="search-guideline is-size-7 is-family-secondary has-text-weight-light"
+  >
+    Search for city name. For more accurate results, choose country as well.
+  </p>
+
+  <ng-container *ngIf="forecast$ | async as forecasts">
+    <section class="forecast-header">
+      <h2>5 day/3 hour Forecast</h2>
+
+      <b class="location">
+        <i-feather name="map-pin"></i-feather>
+        <span class="mx-1">
+          {{ forecasts[0].city }}, {{ forecasts[0].country }}
+        </span>
+        <!-- {{forecasts[0] | json}} -->
+      </b>
+    </section>
+
+    <ul class="five-day-fl">
+      <li *ngFor="let forecast of forecasts" class="message is-primary">
+        <div class="message-body" (click)="showWeatherDetails(forecast)">
+          <p>
+            {{ forecast.date | dateTimeFormatPipe: 'dddd' }}
+          </p>
+          <p>
+            <i [ngClass]="forecast.icon"></i>
+          </p>
+          <p>
+            <span> {{ forecast.currentTemp | number: '1.0-0' }}</span>
+            <ng-container *ngIf="forecast.units == 'metric'; else fahrenheit">
+              <i class="wi wi-celsius"></i>
+            </ng-container>
+            <ng-template #fahrenheit>
+              <i class="wi wi-fahrenheit"></i>
+            </ng-template>
+          </p>
+          <p>
+            {{ forecast.description | titlecase }}
+          </p>
+          <dl>
+            <dt>
+              Min/Max
+              <i class="wi wi-barometer"></i>
+            </dt>
+            <dd>{{ forecast.minTemp }}/{{ forecast.maxTemp }}</dd>
+            <dt>
+              Humidity
+              <i class="wi wi-humidity"></i>
+            </dt>
+            <dd>{{ forecast.humidity }}</dd>
+            <dt>
+              Sunrise
+              <i class="wi wi-sunrise"></i>
+            </dt>
+            <dd>{{ forecast.sunrise | dateTimeFormatPipe: 'h:mm:ss a' }}</dd>
+            <dt>
+              Sunset
+              <i class="wi wi-sunset"></i>
+            </dt>
+            <dd>{{ forecast.sunset | dateTimeFormatPipe: 'h:mm:ss a' }}</dd>
+            <dt>
+              Wind speed
+              <i class="wi wi-windy"></i>
+            </dt>
+            <dd>{{ forecast.windSpeed }}</dd>
+            <dt>
+              Wind degree
+              <i class="wi wi-degrees"></i>
+            </dt>
+            <dd>{{ forecast.windDeg }}</dd>
+          </dl>
+        </div>
+      </li>
+    </ul>
+  </ng-container>
+
+  <ng-container *ngIf="forecastService.showRandomCities$ | async">
+    <ba-forecast-details (cityInfo)="onSubmit($event)"></ba-forecast-details>
+  </ng-container>
+</article>

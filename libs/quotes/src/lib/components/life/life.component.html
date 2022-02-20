@@ -1,0 +1,13 @@
+<ba-message-box
+  [data]="quotes$ | async"
+  [props]="props"
+  (tweet)="tweet($event)"
+  #messageBox
+>
+</ba-message-box>
+
+<ba-paginator
+  [paginationConfig]="paginationConfig$ | async"
+  (onPaginatorChange)="onPaginationChange($event)"
+>
+</ba-paginator>
