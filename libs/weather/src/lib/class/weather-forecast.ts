@@ -10,6 +10,5 @@ export class WeatherForecast {
 
   public setForecastStrategy(strategy: ForecastStrategy) {
     this.strategy = strategy;
-    console.log(this.strategy);
   }
 }
