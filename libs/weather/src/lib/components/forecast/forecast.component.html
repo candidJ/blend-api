@@ -100,7 +100,7 @@
             {{ forecast.date | dateTimeFormatPipe: 'dddd' }}
           </p>
           <p>
-            <i [ngClass]="forecast.icon"></i>
+            <i [ngClass]="forecast.icon || ''"></i>
           </p>
           <p>
             <span> {{ forecast.currentTemp | number: '1.0-0' }}</span>

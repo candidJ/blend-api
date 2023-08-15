@@ -14,7 +14,7 @@ export const AppConfig = {
     UNITS: 'metric',
   },
   LIFE_QUOTES: {
-    URL: 'https://quote-garden.herokuapp.com/api/v3/quotes/',
+    URL: 'https://quote-garden.onrender.com/api/v3/quotes/',
     LIMIT: 20,
   },
   PROGRAMMING_QUOTES: {

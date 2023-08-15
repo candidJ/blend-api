@@ -3,7 +3,7 @@ import { AppConfig } from '../../../constant';
 // Navbar config
 export const NavbarMenuItems = {
   logo: AppConfig.IMAGES.LOGO,
-  routerLink: '/quotes',
+  routerLink: '/hacker-news',
   navbarMenu: [
     {
       title: 'Hacker News',
@@ -45,7 +45,7 @@ export const NavbarMenuItems = {
     },
     {
       title: 'Quotes',
-      hasSubMenu: true,
+      hasSubMenu: false,
       icon: 'file-text',
       routerLink: '/quotes',
       subMenu: [

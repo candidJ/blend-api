@@ -20,10 +20,10 @@ import {
       {
         path: '',
         children: [
-          {
-            path: 'programming',
-            component: ProgrammingComponent,
-          },
+          // {
+          //   path: 'programming',
+          //   component: ProgrammingComponent,
+          // },
           {
             path: 'life',
             component: LifeComponent,
