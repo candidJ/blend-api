@@ -65,7 +65,5 @@ export class ArticleListComponent implements OnInit {
 
   ngOnInit(): void {
     this.articles$ = this.newsApiService.fetch();
-    // Emit value via subject But first subscribe to the observable
-    // this.newsApiService.fetchByPageNumber(1);
   }
 }

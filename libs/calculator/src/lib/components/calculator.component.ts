@@ -16,14 +16,14 @@ import { ICalculatorLayout } from '../types/calculator.interface';
 })
 export class CalculatorComponent implements OnInit {
   calculatorConfig = CalculatorConfig;
-  output: string = '';
-  previousInput: string = '';
-  operation: string = '';
-  currentOperator: string = '';
+  output = '';
+  previousInput = '';
+  operation = '';
+  currentOperator = '';
   sessionOperationHistory: { operation: string; result: string }[] = [];
   @ViewChild('modal', { static: false }) modal!: ElementRef;
 
-  private isComputationDone: boolean = false;
+  private isComputationDone = false;
 
   constructor(public renderer: Renderer2) {}
 

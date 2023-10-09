@@ -30,7 +30,7 @@ export class ForecastService {
   private readonly config = AppConfig.WEATHER_API_CONFIG;
   private dataClone: IOpenWeatherResponse;
   private cityPublisher = new Subject<boolean>();
-  private units: string = '';
+  private units = '';
 
   public showRandomCities$ = this.cityPublisher.asObservable();
 

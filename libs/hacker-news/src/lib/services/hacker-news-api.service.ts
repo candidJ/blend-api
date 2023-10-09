@@ -62,8 +62,9 @@ export class HackerNewsApiService<T> extends API<T> {
     }
   }
 
-  private determinePaginationConfig() {
+  private determinePaginationConfig(): void {
     const snapshot = this.router.routerState.snapshot.url;
+    // TODO: refactor
     switch (snapshot) {
       case '/news/feed':
         const feedPaginationConfig: PaginationConfig = {
