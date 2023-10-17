@@ -7,12 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Responsive App to display content from various Open Source APIs like OpenWeather, HackerNews and Programming Quotes"
+      content="An Angular web application which shows content from various Open Source APIs like OpenWeather, HackerNews and Programming Quotes"
     />
     <meta
       name="keywords"
-      content="Angular, TypeScript, RxJS, Tachyons, Bulma, APIs, Weather, Hacker News, Quotes, OpenWeather, Responsive, Calculator, OpenSource"
+      content="Front end developer, Angular, TypeScript, JavaScript, RxJS, Tachyons, Bulma, APIs, Weather, Hacker News, Quotes, OpenWeather, Responsive, Calculator, OpenSource"
     />
+    <!-- favicon -->
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text
@@ -22,5 +23,12 @@
 
   <body class="has-navbar-fixed-top">
     <ba-root></ba-root>
+    <!-- Different favicon for development mode -->
+    <script>
+      if(location.hostname === 'localhost') {
+        document.querySelector("link[rel=icon]").href = 
+        "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>";
+      }
+    </script>
   </body>
 </html>
