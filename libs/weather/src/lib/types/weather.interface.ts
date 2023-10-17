@@ -14,9 +14,11 @@ export interface GeolocationCoordinates {
   readonly speed: number | null;
 }
 
+type ForecastDateFormat = "YYYY-MM-DD hh:mm:ss";
+
 export interface IOpenWeatherResponse {
   list: {
-    dt_txt: string;
+    dt_txt: ForecastDateFormat;
     main: {
       temp: number;
       feels_like: number;
@@ -55,7 +57,7 @@ export interface WeatherDefinition {
   humidity: number;
   title: string;
   description: string;
-  date: string;
+  date: ForecastDateFormat;
   id: number;
   city: string;
   country: string;

@@ -8,7 +8,7 @@ export class LoaderService {
   private _loadingPublisher: Subject<boolean> = new Subject();
   loader$: Observable<boolean> = this._loadingPublisher.asObservable();
 
-  showLoader(isLoading: boolean) {
-    return this._loadingPublisher.next(isLoading);
+  showLoader(isLoading: boolean): void {
+    this._loadingPublisher.next(isLoading);
   }
 }

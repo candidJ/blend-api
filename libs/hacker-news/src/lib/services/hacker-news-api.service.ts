@@ -46,6 +46,7 @@ export class HackerNewsApiService<T> extends API<T> {
   private determineActiveUrl() {
     const snapshot = this.router.routerState.snapshot.url;
     const base = this.config.BASE;
+    // TODO: remove '/news/' from base
     switch (snapshot) {
       case '/news/feed':
         return base + this.config.FEED.URL;

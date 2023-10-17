@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Subject, Observable, pipe, of } from 'rxjs';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { map, switchMap, tap, share, pluck, scan } from 'rxjs/operators';
+import { AppConfig } from '@blend-api/shared';
+import { INewsFeed } from '../types';
 
-import { AppConfig } from 'src/app/shared/constant/config';
-import { INewsFeed } from 'src/app/news-api/types/news-article.interface';
 
 @Injectable()
 export class NewsApiServiceOld {
