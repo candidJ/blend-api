@@ -46,7 +46,6 @@ export class FeedComponent implements OnInit {
           ...HNFeedColumns.slice(0, 1),
           ...HNFeedColumns.slice(2),
         ];
-        this.dataSource;
       } else {
         // show columns headline and domain
         this.feedColumns = HNFeedColumns;

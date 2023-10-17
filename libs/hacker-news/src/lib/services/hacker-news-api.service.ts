@@ -15,8 +15,7 @@ export class HackerNewsApiService<T> extends API<T> {
   constructor(
     private httpClient: HttpClient,
     private _notificationService: NotificationService,
-    private router: Router
-  ) {
+    private router: Router) {
     super();
   }
 
@@ -119,10 +118,9 @@ export class HackerNewsApiService<T> extends API<T> {
   }
 
   // fetch item details
-  public loadItemDetails(): Observable<HackerNewsFeedDetails> {
-    const item = this.router.routerState.snapshot.url.replace('/news/', '');
+  public loadItemDetails(itemId: number): Observable<HackerNewsFeedDetails> {
     return this.httpClient
-      .get<HackerNewsFeedDetails>(this.config.BASE + item)
+      .get<HackerNewsFeedDetails>(`${this.config.BASE}item/${itemId}`)
       .pipe(catchError((err) => throwError(err)));
   }
 }

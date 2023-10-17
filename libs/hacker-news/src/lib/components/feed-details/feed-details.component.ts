@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 
 import { HackerNewsApiService } from '../../services';
 import { HackerNewsFeedDetails } from '../../types';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ba-feed-details',
@@ -13,9 +14,11 @@ export class FeedDetailsComponent implements OnInit {
   public item$: Observable<HackerNewsFeedDetails>;
   public noOfPages$: Observable<number[]>;
 
-  constructor(private hackerNewsService: HackerNewsApiService<any>) {}
+  constructor(private hackerNewsService: HackerNewsApiService<any>,
+    private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.item$ = this.hackerNewsService.loadItemDetails();
+    const itemId = this.route.snapshot.params['id'];
+    this.item$ = this.hackerNewsService.loadItemDetails(itemId);
   }
 }

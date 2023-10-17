@@ -55,6 +55,7 @@ export class ArticleListComponent implements OnInit {
   }
 
   // <T, K extends keyof T>(obj: T, key: K)
+  // TODO: deep dive
   private defineGridColumns(): Array<IGridColumnsDef> {
     return (this.dataSource = this.articleColumns.slice(0, 3));
   }

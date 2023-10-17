@@ -27,7 +27,7 @@ export const AppConfig = {
     HASHTAGS: 'quotes',
   },
   HACKER_NEWS: {
-    BASE: 'https://node-hnapi.herokuapp.com/',
+    BASE: 'http://api.hackerwebapp.com/',
     FEED: {
       URL: 'news',
       TOTAL_RECORDS: 180,
