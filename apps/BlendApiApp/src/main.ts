@@ -5,11 +5,12 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 if (environment.production) {
-  // remove all console logs in prod
-  // if (window) {
-  //   window.console.log = () => { };
-  // }
-  enableProdMode();
+    // remove the console logs in prod
+    window.console.log = ()=> {};
+    window.console.debug = ()=> {};
+    window.console.warn = ()=> {};
+    window.console.info = ()=> {};
+    enableProdMode();
 }
 
 platformBrowserDynamic()
