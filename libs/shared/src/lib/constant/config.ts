@@ -27,7 +27,7 @@ export const AppConfig = {
     HASHTAGS: 'quotes',
   },
   HACKER_NEWS: {
-    BASE: 'http://api.hackerwebapp.com/',
+    BASE: 'https://api.hackerwebapp.com/',
     FEED: {
       URL: 'news',
       TOTAL_RECORDS: 180,

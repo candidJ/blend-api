@@ -1,23 +1,28 @@
 # Blend API :v:
 
-> An Angular Web App that shows Weather Forecast, Hacker News, Life and Programming Quotes.
+> I've created an Angular monorepo that seamlessly integrates the following web applications:
 
-## Credits
+- Weather App
+- Hacker News App
+- Quotes App
+- Calculator App
 
-The web application consumes open source API's. **_A big thanks to following contributors_** :+1:
+## Acknowledgments
+
+The web application utilizes open-source APIs. I extend my _gratitude_ to the following contributors: :+1:
 
 - [OpenWeather](https://api.openweathermap.org/data/2.5/forecast) for Weather Forecast :cloud:.
-- [Unofficial HackerNews API](https://node-hnapi.herokuapp.com/) for Hacker News :newspaper:.
+- [Unofficial HackerNews API](https://api.hackerwebapp.com/) for Hacker News :newspaper:.
 - [Quote Garden](https://quote-garden.onrender.com/api/v3/quotes/) for Life Quotes :pencil:.
 
-### Why did I make it ?
+### Motivation
 
-- As all of my work till date have been for corporates and private clients, I wanted to showcase and hone my dev skills. So I utilised my time during Covid19 to build a `Angular` SPA.
-- Since starting my journey as Web Developer, I didn't make any hobby/side projects. This is me covering up for a lost cause:wink:. I wanted to **blend** in all possible projects I would have made to begin with, into ONE application.
+- I created this side project during the COVID-19 pandemic to showcase and improve my web development and programming skills. It began as an 'Angular' Single Page Application (SPA) and later evolved into a monorepo, as most of my prior work had been for private clients.
+- Since embarking on my journey as a web developer, I hadn't pursued any hobby or side projects. This endeavor is my way of making up for lost time, where I aim to consolidate all the potential projects I could have undertaken into a single application.
 
-Most of my focus while developing have been to write _modular_, _resuable_ and _robust_ code. And I know there is always a room for improvement. Therefore, I would love your feedback and code reviews.:simple_smile:
+My primary focus during development has always been on crafting code that is **modular**, **reusable**, and **robust**. I recognize that there is always room for improvement, and I welcome your feedback and code reviews :simple_smile:
 
-### Tools used
+### Technologies and Tools Utilized:
 
 - JS Framework:
 
@@ -31,20 +36,30 @@ Most of my focus while developing have been to write _modular_, _resuable_ and _
 - Icons:
   - [FeatherIcons](https://feathericons.com/)
 
-## Project milestones
+## Project Milestones
 
 - [x] Version 1.0
   - Weather Forecast :white_check_mark:
   - Quotes :white_check_mark:
-  - Hackner News Clone :white_check_mark:
+  - Hacker News Clone :white_check_mark:
   - Custom Pagination :white_check_mark:
   - Custom Notification :white_check_mark:
 
-## Local setup
+- [] Version 2.0
+  - Calculator :white_check_mark:
+  - High Level UML
+
+## Local Setup with Nx
 
 1. Install [Node](https://nodejs.org/en/) LTS version.
-   - open `cmd prompt` and type `node -v` to check if node is installed.
-2. Install [Angular](https://angular.io/guide/setup-local) using `npm install -g @angular/cli`.
-3. Download or clone this repo.
-4. Go to project root directory and run `npm run install` to install all dependencies.
-5. Run `npm run start` and the app will open on `http://localhost:4200/`. :simple_smile:
+   - Open a terminal and type `node -v` to check if Node is installed.
+
+2. Install [Angular CLI](https://angular.io/guide/setup-local) using `npm install -g @angular/cli`.
+
+3. Download or clone this monorepo.
+
+4. Navigate to the project root directory.
+
+5. Run `nx install` to install all project dependencies and generate the Nx workspace configuration.
+
+6. To start the app, run `nx serve` from the project root directory. The app will open at `http://localhost:4200/`. :simple_smile:
