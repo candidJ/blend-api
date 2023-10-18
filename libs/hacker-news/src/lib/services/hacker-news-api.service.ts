@@ -42,20 +42,21 @@ export class HackerNewsApiService<T> extends API<T> {
     return data;
   };
 
-  private determineActiveUrl() {
-    const snapshot = this.router.routerState.snapshot.url;
+  private determineActiveUrl(): string {
+    const activeUrl = this.router.url.split('/'); // example: ['', 'hacker-news', 'jobs']
+    const urlType = activeUrl[activeUrl.length - 1]; // 'jobs'
     const base = this.config.BASE;
-    // TODO: remove '/news/' from base
-    switch (snapshot) {
-      case '/news/feed':
+
+    switch (urlType) {
+      case 'feed':
         return base + this.config.FEED.URL;
-      case '/news/jobs':
+      case 'jobs':
         return base + this.config.JOBS.URL;
-      case '/news/latest':
+      case 'latest':
         return base + this.config.LATEST.URL;
-      case '/news/ask':
+      case 'ask':
         return base + this.config.ASK.URL;
-      case '/news/show':
+      case 'show':
         return base + this.config.SHOW.URL;
       default:
         return base + this.config.FEED.URL;
@@ -119,6 +120,7 @@ export class HackerNewsApiService<T> extends API<T> {
 
   // fetch item details
   public loadItemDetails(itemId: number): Observable<HackerNewsFeedDetails> {
+    console.log('load item details')
     return this.httpClient
       .get<HackerNewsFeedDetails>(`${this.config.BASE}item/${itemId}`)
       .pipe(catchError((err) => throwError(err)));
