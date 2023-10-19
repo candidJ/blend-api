@@ -8,9 +8,19 @@ import { NotificationService } from 'libs/shared/src/lib/modules/notifications/s
 import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/paginator.interface';
 import { HackerNewsFeedDetails } from '../types';
 
+type ConfigType = 'jobs' | 'feed' | 'show' | 'ask' | 'latest';
+
+interface ConfigProps {
+  URL: string;
+  TOTAL_RECORDS: number;
+  PAGE_SIZE: number;
+  NO_OF_PAGES: number;
+}
+
 @Injectable()
 export class HackerNewsApiService<T> extends API<T> {
   private readonly config = AppConfig.HACKER_NEWS;
+  private readonly baseUrl = AppConfig.HACKER_NEWS_BASE_URL;
 
   constructor(
     private httpClient: HttpClient,
@@ -32,97 +42,41 @@ export class HackerNewsApiService<T> extends API<T> {
   };
 
   protected fetchData = (params: HttpParams): Observable<T> => {
-    const url = this.determineActiveUrl();
+    const url = this.composeRequestUrl();
     return this.httpClient.get<T>(url, { params });
   };
 
   protected mapResponse = (data: T[]) => {
-    this.determinePaginationConfig();
-    console.log(data, 'data');
+    this.composePaginationConfig();
     return data;
   };
 
-  private determineActiveUrl(): string {
-    const activeUrl = this.router.url.split('/'); // example: ['', 'hacker-news', 'jobs']
-    const urlType = activeUrl[activeUrl.length - 1]; // 'jobs'
-    const base = this.config.BASE;
-
-    switch (urlType) {
-      case 'feed':
-        return base + this.config.FEED.URL;
-      case 'jobs':
-        return base + this.config.JOBS.URL;
-      case 'latest':
-        return base + this.config.LATEST.URL;
-      case 'ask':
-        return base + this.config.ASK.URL;
-      case 'show':
-        return base + this.config.SHOW.URL;
-      default:
-        return base + this.config.FEED.URL;
-    }
+  private composeRequestUrl(): string {
+    const feedType: ConfigType = this.determineActiveUrl();
+    return this.baseUrl + this.config[feedType].URL;
   }
 
-  private determinePaginationConfig(): void {
-    const snapshot = this.router.routerState.snapshot.url;
-    // TODO: refactor
-    switch (snapshot) {
-      case '/news/feed':
-        const feedPaginationConfig: PaginationConfig = {
-          listLength: this.config.FEED.TOTAL_RECORDS,
-          noOfPages: this.config.FEED.NO_OF_PAGES,
-          pageSize: this.config.FEED.PAGE_SIZE,
-        };
-        this.broadcastPaginationConfig(feedPaginationConfig);
-        break;
-      case '/news/jobs':
-        const jobPaginationConfig: PaginationConfig = {
-          listLength: this.config.JOBS.TOTAL_RECORDS,
-          noOfPages: this.config.JOBS.NO_OF_PAGES,
-          pageSize: this.config.JOBS.PAGE_SIZE,
-        };
-        this.broadcastPaginationConfig(jobPaginationConfig);
-        break;
-      case '/news/latest':
-        const latestPaginationConfig: PaginationConfig = {
-          listLength: this.config.LATEST.TOTAL_RECORDS,
-          noOfPages: this.config.LATEST.NO_OF_PAGES,
-          pageSize: this.config.LATEST.PAGE_SIZE,
-        };
-        this.broadcastPaginationConfig(latestPaginationConfig);
-        break;
-      case '/news/ask':
-        const askPaginationConfig: PaginationConfig = {
-          listLength: this.config.ASK.TOTAL_RECORDS,
-          noOfPages: this.config.ASK.NO_OF_PAGES,
-          pageSize: this.config.ASK.PAGE_SIZE,
-        };
-        this.broadcastPaginationConfig(askPaginationConfig);
-        break;
-      case '/news/show':
-        const showPaginationConfig: PaginationConfig = {
-          listLength: this.config.SHOW.TOTAL_RECORDS,
-          noOfPages: this.config.SHOW.NO_OF_PAGES,
-          pageSize: this.config.SHOW.PAGE_SIZE,
-        };
-        this.broadcastPaginationConfig(showPaginationConfig);
-        break;
-      default:
-        const paginationConfig: PaginationConfig = {
-          listLength: this.config.FEED.TOTAL_RECORDS,
-          noOfPages: this.config.FEED.NO_OF_PAGES,
-          pageSize: this.config.FEED.PAGE_SIZE,
-        };
-        this.broadcastPaginationConfig(paginationConfig);
-        break;
-    }
+  private determineActiveUrl(): ConfigType {
+    const activeUrl = this.router.url.split('/').pop()! as ConfigType; // example: ['', 'hacker-news', 'jobs']
+    return activeUrl;
+  }
+
+  private composePaginationConfig(): void {
+    const feedType: ConfigType = this.determineActiveUrl();
+    const configType: ConfigProps = this.config[feedType];
+    const feedPaginationConfig: PaginationConfig = {
+      listLength: configType.TOTAL_RECORDS,
+      noOfPages: configType.NO_OF_PAGES,
+      pageSize: configType.PAGE_SIZE
+    };
+
+    this.broadcastPaginationConfig(feedPaginationConfig);
   }
 
   // fetch item details
   public loadItemDetails(itemId: number): Observable<HackerNewsFeedDetails> {
-    console.log('load item details')
     return this.httpClient
-      .get<HackerNewsFeedDetails>(`${this.config.BASE}item/${itemId}`)
+      .get<HackerNewsFeedDetails>(`${this.baseUrl}item/${itemId}`)
       .pipe(catchError((err) => throwError(err)));
   }
 }

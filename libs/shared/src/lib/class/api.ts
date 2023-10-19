@@ -12,12 +12,12 @@ import { HttpParams } from '@angular/common/http';
 
 import { PaginationConfig } from '../modules/paginator/types/paginator.interface';
 
-export interface IAPIModel<T> {
+export interface FetchData<T> {
   fetch(): Observable<T[]>;
   fetchByPageNumber(page: number): void;
 }
 
-export abstract class API<T> implements IAPIModel<T> {
+export abstract class API<T> implements FetchData<T> {
   // using behavior subject rather than subject
   private apiSubject: BehaviorSubject<number> = new BehaviorSubject<number>(1);
   private api$: Observable<number> = this.apiSubject.asObservable();
