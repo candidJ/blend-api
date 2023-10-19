@@ -62,7 +62,6 @@ export class PaginatorComponent implements OnInit, OnDestroy {
   }
 
   public onPageChange(page: number) {
-    console.log(page);
     this.activePage = page;
     this.onPaginatorChange.emit(page);
     this.showActiveRecordsRange(page);

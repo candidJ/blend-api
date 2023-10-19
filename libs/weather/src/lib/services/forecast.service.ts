@@ -63,8 +63,6 @@ export class ForecastService {
       mergeMap((value) => of(...value)), // take array record and create a stream of data -observable; of single list
       filter((value, index) => index % 8 === 0), // only concerned with every 8th value
       map((value) => {
-        // console.log(value, "weather info");
-        // console.log(this.dataClone, "dataclone");
         let forecast: WeatherDefinition = {
           currentTemp: value.main.temp,
           feelsLike: value.main.feels_like,
@@ -99,7 +97,6 @@ export class ForecastService {
           weatherIcon = `wi wi-owm-night-${forecast.id}`;
         }
 
-        // console.log(weatherIcon);
         forecast.icon = weatherIcon;
         // set showRandomCities to False
         this.cityPublisher.next(false);
@@ -108,7 +105,7 @@ export class ForecastService {
       toArray(), // converts into array - here as array (of objects )
       shareReplay(), // single network request - even if multiple subscription
       catchError((err: HttpErrorResponse) => {
-        console.log(err);
+        console.error(err);
         if (err.status == 404) {
           this.cityPublisher.next(true);
           this.notificationService.showErrorMessage(err.error.message);
@@ -142,14 +139,12 @@ export class ForecastService {
       // third when observable completes
       // used to catch error from observable but not favored over catchError
       // , (err) => {
-      //   console.log("error", err);
       // }
       // ),
       catchError((err) => {
         //  #1 Handle the error
         if (err.code === 1) {
           this.notificationService.showErrorMessage('Location denied...');
-          // console.log(err);
           this.notificationService.showGeneralInfo(
             'Fetching weather of Muktsar, IN'
           );

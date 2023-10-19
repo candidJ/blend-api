@@ -25,7 +25,5 @@ export class MessageBoxComponent<T> implements OnInit {
     this.emitTweet.emit(obj);
   }
 
-  ngOnInit(): void {
-    console.log(this.messages);
-  }
+  ngOnInit(): void {}
 }

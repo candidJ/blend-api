@@ -69,6 +69,10 @@
           },
           "configurations": {
             "production": {
+              "assets": [
+                "apps/BlendApiApp/src/favicon.ico",
+                "apps/BlendApiApp/src/assets"
+              ],
               "fileReplacements": [
                 {
                   "replace": "apps/BlendApiApp/src/environments/environment.ts",
@@ -80,6 +84,12 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "serviceWorker": false,
+              "commonChunk": true,
+              "deleteOutputPath": true,
               "budgets": [
                 {
                   "type": "initial",

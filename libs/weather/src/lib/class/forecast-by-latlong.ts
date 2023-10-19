@@ -11,7 +11,6 @@ export class ForecastByLatLong implements ForecastStrategy {
   forecast(): Observable<HttpParams> {
     return of(this.coords).pipe(
       map((coords) => {
-        // console.log(coords);
         // use to convert the coords to query params : -api.openweathermap.org/data/2.5/forecast?lat=25&long=125
         return new HttpParams()
           .set('lat', String(coords.latitude))

@@ -30,22 +30,18 @@ export class LifeQuotesService extends API<ILifeQuotes> {
   };
 
   protected configureParams = (page: number): HttpParams => {
-    // console.log(page, "page number in params");
     return new HttpParams()
       .set('page', String(page))
       .set('limit', String(AppConfig.LIFE_QUOTES.LIMIT));
   };
 
   protected fetchData = (params: any): Observable<ILifeQuotes[]> => {
-    // console.log(params);
     return this.httpClient.get<ILifeQuotes[]>(AppConfig.LIFE_QUOTES.URL, {
       params,
     });
   };
 
   protected mapResponse = (data: ILifeQuotesResponse): ILifeQuotes[] => {
-    console.log(data, 'life quote mapped data');
-    // pluck('quotes'),
     const paginationConfig: PaginationConfig = {
       listLength: data.pagination.totalPages * AppConfig.LIFE_QUOTES.LIMIT,
       noOfPages: Math.ceil(
@@ -54,7 +50,6 @@ export class LifeQuotesService extends API<ILifeQuotes> {
       pageSize: AppConfig.LIFE_QUOTES.LIMIT,
     };
     this.broadcastPaginationConfig(paginationConfig);
-    // this.dataPublisher.next(data['quotes']);
     return data.data;
   };
 }

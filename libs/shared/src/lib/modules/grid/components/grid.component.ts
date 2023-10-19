@@ -25,10 +25,8 @@ export class GridComponent implements OnInit, AfterContentInit {
   constructor() {}
 
   ngOnInit(): void {
-    // console.log(this.gridData, "this.grid data");
   }
 
   ngAfterContentInit(): void {
-    // console.log("view", this.items);
   }
 }

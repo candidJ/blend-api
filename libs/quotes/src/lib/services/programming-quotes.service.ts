@@ -39,14 +39,12 @@ export class ProgrammingQuotesService extends API<IProgrammingQuotes> {
   };
 
   protected configureParams = (page: number): HttpParams => {
-    console.log(page, 'page number in params');
     return new HttpParams()
       .set('page', String(page))
       .set('limit', String(AppConfig.PROGRAMMING_QUOTES.PAGE_SIZE));
   };
 
   protected fetchData = (params: any): Observable<IProgrammingQuotes[]> => {
-    // console.log(params);
     return this.httpClient.get<IProgrammingQuotes[]>(
       AppConfig.PROGRAMMING_QUOTES.URL
     );
@@ -55,7 +53,6 @@ export class ProgrammingQuotesService extends API<IProgrammingQuotes> {
   protected mapResponse = (
     data: IProgrammingQuotes[]
   ): IProgrammingQuotes[] => {
-    console.log(data, 'programming quotes data');
     // As api doesn't return the totalQuotes, hard coded to actual quotes in api by calculation = 25 pages *20 quotes + 1 page *1 quote;
     //  TOTAL PAGE SIZE IS 501;
     const paginationConfig: PaginationConfig = {

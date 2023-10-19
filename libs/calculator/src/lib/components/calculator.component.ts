@@ -63,7 +63,6 @@ export class CalculatorComponent implements OnInit {
       default:
         break;
     }
-    console.log(this.output, 'this.output');
     this.storeOperationHistoryInCurrentSession(currentOutput);
     this.clear();
     this.isComputationDone = true;
@@ -98,7 +97,6 @@ export class CalculatorComponent implements OnInit {
   }
 
   private appendOperator(userInput: ICalculatorLayout): void {
-    console.log(this.output);
     if (
       !this.calculatorConfig.some((cc) =>
         this.operation.includes(cc.viewValue)
@@ -153,7 +151,6 @@ export class CalculatorComponent implements OnInit {
     this.sessionOperationHistory = JSON.parse(
       sessionStorage.getItem('operationHistory') || '{}'
     );
-    // console.log(this.sessionOperationHistory);
     this.renderer.addClass(this.modal.nativeElement, 'is-active');
   }
 

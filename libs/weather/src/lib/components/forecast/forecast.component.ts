@@ -87,7 +87,6 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
   }
 
   public showWeatherDetails(forecast: WeatherDefinition) {
-    console.log(forecast);
     this.forecastDetails = forecast;
     return { ...this.forecastDetails };
   }
