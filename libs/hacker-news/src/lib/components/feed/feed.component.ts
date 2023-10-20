@@ -4,7 +4,7 @@ import { Router, ActivatedRoute, NavigationEnd, Event } from '@angular/router';
 import { HackerNews, HackerNewsFeed } from '../../types';
 import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/paginator.interface';
 import { HackerNewsApiService } from '../../services';
-import { HNFeedColumns } from '@blend-api/shared';
+import { HNFeedColumns } from '../../constants/metadata.const';
 
 @Component({
   selector: 'ba-feed',

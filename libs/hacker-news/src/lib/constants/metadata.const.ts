@@ -1,4 +1,4 @@
-import { HackerNews } from 'libs/hacker-news/src/lib/types';
+import { HackerNews } from "../types";
 
 // Hacker News Feed columns
 export const HNFeedColumns: HackerNews[] = [

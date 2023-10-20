@@ -9,7 +9,7 @@ import {
   LoaderModule,
   NavbarModule,
   NotificationsModule,
-} from '../../../../libs/shared/src';
+} from "@blend-api/shared"
 
 @NgModule({
   declarations: [AppComponent],

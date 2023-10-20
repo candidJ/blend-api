@@ -20,9 +20,9 @@ The web application utilizes open-source APIs. I extend my _gratitude_ to the fo
 - I created this side project during the COVID-19 pandemic to showcase and improve my web development and programming skills. It began as an 'Angular' Single Page Application (SPA) and later evolved into a monorepo, as most of my prior work had been for private clients.
 - Since embarking on my journey as a web developer, I hadn't pursued any hobby or side projects. This endeavor is my way of making up for lost time, where I aim to consolidate all the potential projects I could have undertaken into a single application.
 
-My primary focus during development has always been on crafting code that is **modular**, **reusable**, and **robust**. I recognize that there is always room for improvement, and I welcome your feedback and code reviews :simple_smile:
+My primary focus during development has always been on crafting code that is **modular**, **reusable**, and **robust**. I recognize that there is always room for improvement, and I welcome your feedback and code reviews.
 
-### Technologies and Tools Utilized:
+### Technologies and Tools Utilized
 
 - JS Framework:
 
@@ -36,6 +36,8 @@ My primary focus during development has always been on crafting code that is **m
 - Icons:
   - [FeatherIcons](https://feathericons.com/)
 
+### [BlendApi Graph Overview](./apps/BlendApiApp/src/assets/images/project-graph.png)
+
 ## Project Milestones
 
 - [x] Version 1.0
@@ -45,8 +47,8 @@ My primary focus during development has always been on crafting code that is **m
   - Custom Pagination :white_check_mark:
   - Custom Notification :white_check_mark:
 
-- [] Version 2.0
-  - Calculator :white_check_mark:
+- [-] Version 2.0
+  - [x] Calculator :white_check_mark:
   - High Level UML
 
 ## Local Setup with Nx
@@ -62,4 +64,4 @@ My primary focus during development has always been on crafting code that is **m
 
 5. Run `nx install` to install all project dependencies and generate the Nx workspace configuration.
 
-6. To start the app, run `nx serve` from the project root directory. The app will open at `http://localhost:4200/`. :simple_smile:
+6. To start the app, run `nx serve` from the project root directory. The app will open at `http://localhost:4200/`.
