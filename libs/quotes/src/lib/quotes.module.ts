@@ -19,20 +19,17 @@ import {
     RouterModule.forChild([
       {
         path: '',
-        children: [
+        component: LifeComponent,
+        // children: [
           // {
           //   path: 'programming',
           //   component: ProgrammingComponent,
           // },
-          {
-            path: 'life',
-            component: LifeComponent,
-          },
-          {
-            path: '',
-            redirectTo: 'life',
-          },
-        ],
+          // {
+          //   path: 'life',
+          //   component: LifeComponent,
+          // },
+        // ],
       },
     ]),
     IconsModule,
