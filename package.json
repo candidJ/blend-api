@@ -5,7 +5,7 @@
     "ng": "nx",
     "start": "ng serve --open",
     "optimize": "ng serve --prod --optimization=false",
-    "build": "ng build --configuration=production",
+    "build": "ng build --configuration=production --skip-nx-cache",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
