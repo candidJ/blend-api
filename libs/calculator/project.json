@@ -1,0 +1,27 @@
+{
+  "name": "calculator",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/calculator/src",
+  "prefix": "blend-api",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/calculator"],
+      "options": {
+        "jestConfig": "libs/calculator/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/calculator/src/**/*.ts",
+          "libs/calculator/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

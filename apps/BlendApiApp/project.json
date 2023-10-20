@@ -1,0 +1,123 @@
+{
+  "name": "BlendApiApp",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:component": {
+      "inlineTemplate": false,
+      "inlineStyle": false,
+      "style": "scss",
+      "skipTests": true
+    },
+    "@schematics/angular:class": {
+      "skipTests": true
+    },
+    "@schematics/angular:directive": {
+      "skipTests": true
+    },
+    "@schematics/angular:guard": {
+      "skipTests": true
+    },
+    "@schematics/angular:interceptor": {
+      "skipTests": true
+    },
+    "@schematics/angular:module": {},
+    "@schematics/angular:pipe": {
+      "skipTests": true
+    },
+    "@schematics/angular:service": {
+      "skipTests": true
+    }
+  },
+  "sourceRoot": "apps/BlendApiApp/src",
+  "prefix": "ba",
+  "targets": {
+    "build": {
+      "executor": "@angular-builders/custom-webpack:browser",
+      "options": {
+        "customWebpackConfig": {
+          "path": "./extra-webpack.config.js",
+          "mergeStrategies": {
+            "externals": "replace"
+          }
+        },
+        "outputPath": "dist/apps/BlendApiApp",
+        "index": "apps/BlendApiApp/src/index.html",
+        "main": "apps/BlendApiApp/src/main.ts",
+        "polyfills": "apps/BlendApiApp/src/polyfills.ts",
+        "tsConfig": "apps/BlendApiApp/tsconfig.app.json",
+        "assets": [
+          "apps/BlendApiApp/src/favicon.ico",
+          "apps/BlendApiApp/src/assets",
+          {
+            "glob": "_redirects",
+            "input": "apps/BlendApiApp/src",
+            "output": "/"
+          }
+        ],
+        "styles": ["apps/BlendApiApp/src/styles.scss"],
+        "scripts": [],
+        "vendorChunk": true,
+        "extractLicenses": false,
+        "buildOptimizer": true,
+        "sourceMap": true,
+        "optimization": true,
+        "namedChunks": true
+      },
+      "configurations": {
+        "production": {
+          "assets": [
+            "apps/BlendApiApp/src/favicon.ico",
+            "apps/BlendApiApp/src/assets"
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/BlendApiApp/src/environments/environment.ts",
+              "with": "apps/BlendApiApp/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "sourceMap": false,
+          "extractCss": true,
+          "namedChunks": false,
+          "serviceWorker": false,
+          "commonChunk": true,
+          "deleteOutputPath": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "browserTarget": "BlendApiApp:build"
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "BlendApiApp:build:production"
+        }
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "BlendApiApp:build"
+      }
+    }
+  }
+}

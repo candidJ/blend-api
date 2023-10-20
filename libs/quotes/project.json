@@ -1,0 +1,27 @@
+{
+  "name": "quotes",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/quotes/src",
+  "prefix": "blend-api",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/quotes"],
+      "options": {
+        "jestConfig": "libs/quotes/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/quotes/src/**/*.ts",
+          "libs/quotes/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
