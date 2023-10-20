@@ -58,7 +58,9 @@
                 "output": "/"
               }
             ],
-            "styles": ["apps/BlendApiApp/src/styles.scss"],
+            "styles": [
+              "apps/BlendApiApp/src/styles.scss"
+            ],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -132,7 +134,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/calculator"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/calculator"
+          ],
           "options": {
             "jestConfig": "libs/calculator/jest.config.ts",
             "passWithNoTests": true
@@ -158,7 +162,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/hacker-news"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/hacker-news"
+          ],
           "options": {
             "jestConfig": "libs/hacker-news/jest.config.ts",
             "passWithNoTests": true
@@ -184,7 +190,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/quotes"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/quotes"
+          ],
           "options": {
             "jestConfig": "libs/quotes/jest.config.ts",
             "passWithNoTests": true
@@ -210,7 +218,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/shared"
+          ],
           "options": {
             "jestConfig": "libs/shared/jest.config.ts",
             "passWithNoTests": true
@@ -236,7 +246,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/weather"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/weather"
+          ],
           "options": {
             "jestConfig": "libs/weather/jest.config.ts",
             "passWithNoTests": true
