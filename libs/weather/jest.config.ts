@@ -1,5 +1,6 @@
+/* eslint-disable */
 module.exports = {
-  displayName: 'calculator',
+  displayName: 'weather',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,7 +9,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../coverage/libs/calculator',
+  coverageDirectory: '../../coverage/libs/weather',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

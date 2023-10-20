@@ -134,7 +134,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/calculator"],
           "options": {
-            "jestConfig": "libs/calculator/jest.config.js",
+            "jestConfig": "libs/calculator/jest.config.ts",
             "passWithNoTests": true
           }
         },
@@ -160,7 +160,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/hacker-news"],
           "options": {
-            "jestConfig": "libs/hacker-news/jest.config.js",
+            "jestConfig": "libs/hacker-news/jest.config.ts",
             "passWithNoTests": true
           }
         },
@@ -186,7 +186,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/quotes"],
           "options": {
-            "jestConfig": "libs/quotes/jest.config.js",
+            "jestConfig": "libs/quotes/jest.config.ts",
             "passWithNoTests": true
           }
         },
@@ -212,7 +212,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/shared"],
           "options": {
-            "jestConfig": "libs/shared/jest.config.js",
+            "jestConfig": "libs/shared/jest.config.ts",
             "passWithNoTests": true
           }
         },
@@ -238,7 +238,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/weather"],
           "options": {
-            "jestConfig": "libs/weather/jest.config.js",
+            "jestConfig": "libs/weather/jest.config.ts",
             "passWithNoTests": true
           }
         },
