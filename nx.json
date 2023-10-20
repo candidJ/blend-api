@@ -12,7 +12,8 @@
     "tsconfig.base.json": "*"
   },
   "cli": {
-    "defaultCollection": "@nrwl/angular"
+    "defaultCollection": "@nrwl/angular",
+    "packageManager" : "npm"
   },
   "defaultProject": "BlendApi",
   "generators": {
