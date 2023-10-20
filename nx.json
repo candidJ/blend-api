@@ -3,7 +3,7 @@
     "defaultBase": "undefined"
   },
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "yarn"
   },
   "defaultProject": "BlendApiApp",
   "generators": {

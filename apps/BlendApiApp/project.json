@@ -33,14 +33,8 @@
   "prefix": "ba",
   "targets": {
     "build": {
-      "executor": "@angular-builders/custom-webpack:browser",
+      "executor": "@angular-devkit/build-angular:browser",
       "options": {
-        "customWebpackConfig": {
-          "path": "./extra-webpack.config.js",
-          "mergeStrategies": {
-            "externals": "replace"
-          }
-        },
         "outputPath": "dist/apps/BlendApiApp",
         "index": "apps/BlendApiApp/src/index.html",
         "main": "apps/BlendApiApp/src/main.ts",
