@@ -26,7 +26,7 @@
     "@angular-eslint/eslint-plugin": "16.0.3",
     "@angular-eslint/eslint-plugin-template": "16.0.3",
     "@angular-eslint/template-parser": "16.0.3",
-    "@angular/cli": "~16.2.0",
+    "@angular/cli": "~16.1.0",
     "@angular/compiler-cli": "16.2.10",
     "@angular/language-service": "16.2.10",
     "@schematics/angular": "16.2.7",
@@ -68,358 +68,82 @@
   },
   "nxJsonPlugins": [],
   "projectFileMap": {
-    "weather": [
+    "quotes": [
       {
-        "file": "libs/weather/.eslintrc.json",
+        "file": "libs/quotes/.eslintrc.json",
         "hash": "9769559818467434823"
       },
       {
-        "file": "libs/weather/README.md",
-        "hash": "17243156640905041954"
+        "file": "libs/quotes/README.md",
+        "hash": "10434425521920706099"
       },
       {
-        "file": "libs/weather/jest.config.ts",
-        "hash": "15820191648734229387"
+        "file": "libs/quotes/jest.config.ts",
+        "hash": "14579463149665089496"
       },
       {
-        "file": "libs/weather/project.json",
-        "hash": "7497606752007436180"
+        "file": "libs/quotes/project.json",
+        "hash": "17812242292957475773"
       },
       {
-        "file": "libs/weather/src/index.ts",
-        "hash": "12146681700274021831"
+        "file": "libs/quotes/src/index.ts",
+        "hash": "12675951392683084279"
       },
       {
-        "file": "libs/weather/src/lib/class/forecast-by-cityname.ts",
-        "hash": "10556888771295465084",
+        "file": "libs/quotes/src/lib/class/quote.ts",
+        "hash": "16570889953708211468",
         "deps": [
-          "npm:rxjs",
-          "npm:@angular/common/http",
           "shared"
         ]
       },
       {
-        "file": "libs/weather/src/lib/class/forecast-by-latlong.ts",
-        "hash": "4158781853818291195",
-        "deps": [
-          "npm:rxjs",
-          "npm:@angular/common/http",
-          "shared"
-        ]
+        "file": "libs/quotes/src/lib/components/life/life.component.html",
+        "hash": "14435655348563037703"
       },
       {
-        "file": "libs/weather/src/lib/class/weather-forecast.ts",
-        "hash": "6287208690369034895"
+        "file": "libs/quotes/src/lib/components/life/life.component.scss",
+        "hash": "3244421341483603138"
       },
       {
-        "file": "libs/weather/src/lib/components/forecast-details/forecast-details.component.html",
-        "hash": "6981288162478987213"
-      },
-      {
-        "file": "libs/weather/src/lib/components/forecast-details/forecast-details.component.scss",
-        "hash": "14610467054675944459"
-      },
-      {
-        "file": "libs/weather/src/lib/components/forecast-details/forecast-details.component.ts",
-        "hash": "7873834274712449464",
-        "deps": [
-          "npm:@angular/core"
-        ]
-      },
-      {
-        "file": "libs/weather/src/lib/components/forecast/forecast.component.html",
-        "hash": "11645926851433382482"
-      },
-      {
-        "file": "libs/weather/src/lib/components/forecast/forecast.component.scss",
-        "hash": "14157951783103091642"
-      },
-      {
-        "file": "libs/weather/src/lib/components/forecast/forecast.component.ts",
-        "hash": "156363402848597907",
+        "file": "libs/quotes/src/lib/components/life/life.component.ts",
+        "hash": "2762526982469352908",
         "deps": [
           "npm:@angular/core",
-          "npm:@angular/forms",
-          "npm:lodash",
+          "shared",
           "npm:rxjs"
         ]
       },
       {
-        "file": "libs/weather/src/lib/constants/cities.const.ts",
-        "hash": "8723235828156630538"
+        "file": "libs/quotes/src/lib/components/programming/programming.component.html",
+        "hash": "14280739325452393095"
       },
       {
-        "file": "libs/weather/src/lib/constants/country.const.ts",
-        "hash": "10486571224804146822"
-      },
-      {
-        "file": "libs/weather/src/lib/services/forecast.service.ts",
-        "hash": "8689757697017615951",
-        "deps": [
-          "npm:@angular/core",
-          "npm:rxjs",
-          "npm:@angular/common/http",
-          "shared"
-        ]
-      },
-      {
-        "file": "libs/weather/src/lib/types/forecast-strategy.interface.ts",
-        "hash": "3665449644254490727",
-        "deps": [
-          "npm:rxjs",
-          "npm:@angular/common/http"
-        ]
-      },
-      {
-        "file": "libs/weather/src/lib/types/weather.interface.ts",
-        "hash": "2583886328656842999"
-      },
-      {
-        "file": "libs/weather/src/lib/weather.module.ts",
-        "hash": "4871694502111394398",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@angular/common",
-          "npm:@angular/router",
-          "npm:@angular/forms",
-          "shared"
-        ]
-      },
-      {
-        "file": "libs/weather/src/test-setup.ts",
-        "hash": "17711435995618823417",
-        "deps": [
-          "npm:jest-preset-angular/setup-jest"
-        ]
-      },
-      {
-        "file": "libs/weather/tsconfig.json",
-        "hash": "7237535718920748111"
-      },
-      {
-        "file": "libs/weather/tsconfig.lib.json",
-        "hash": "15303894523353606021"
-      },
-      {
-        "file": "libs/weather/tsconfig.spec.json",
-        "hash": "18121645209207210368"
-      }
-    ],
-    "BlendApiApp": [
-      {
-        "file": "apps/BlendApiApp/.browserslistrc",
-        "hash": "15525697355818847451"
-      },
-      {
-        "file": "apps/BlendApiApp/project.json",
-        "hash": "11598681264049565558"
-      },
-      {
-        "file": "apps/BlendApiApp/src/_redirects",
-        "hash": "7289026612628632489"
-      },
-      {
-        "file": "apps/BlendApiApp/src/app/app-routing.module.ts",
-        "hash": "11745192101504647113",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@angular/router",
-          "quotes",
-          "weather",
-          "hacker-news",
-          "calculator"
-        ]
-      },
-      {
-        "file": "apps/BlendApiApp/src/app/app.component.html",
-        "hash": "18195973602587881387"
-      },
-      {
-        "file": "apps/BlendApiApp/src/app/app.component.scss",
-        "hash": "3613895579813597690"
-      },
-      {
-        "file": "apps/BlendApiApp/src/app/app.component.ts",
-        "hash": "17967129543400066221",
-        "deps": [
-          "npm:@angular/core",
-          "shared"
-        ]
-      },
-      {
-        "file": "apps/BlendApiApp/src/app/app.module.ts",
-        "hash": "11994533633790250871",
-        "deps": [
-          "npm:@angular/platform-browser",
-          "npm:@angular/core",
-          "npm:@angular/common/http",
-          "shared"
-        ]
-      },
-      {
-        "file": "apps/BlendApiApp/src/assets/.gitkeep",
+        "file": "libs/quotes/src/lib/components/programming/programming.component.scss",
         "hash": "3244421341483603138"
       },
       {
-        "file": "apps/BlendApiApp/src/assets/images/api-feed.png",
-        "hash": "2210067770687615529"
-      },
-      {
-        "file": "apps/BlendApiApp/src/assets/images/blend-api-logo.png",
-        "hash": "1484839143722750102"
-      },
-      {
-        "file": "apps/BlendApiApp/src/assets/images/project-graph.png",
-        "hash": "2898853721672561452"
-      },
-      {
-        "file": "apps/BlendApiApp/src/environments/environment.prod.ts",
-        "hash": "10220522844224226756"
-      },
-      {
-        "file": "apps/BlendApiApp/src/environments/environment.ts",
-        "hash": "4256018448305775564"
-      },
-      {
-        "file": "apps/BlendApiApp/src/favicon.ico",
-        "hash": "8732824150753629211"
-      },
-      {
-        "file": "apps/BlendApiApp/src/index.html",
-        "hash": "2542571995526757940"
-      },
-      {
-        "file": "apps/BlendApiApp/src/main.ts",
-        "hash": "10951195587090103004",
+        "file": "libs/quotes/src/lib/components/programming/programming.component.ts",
+        "hash": "13277866058067155139",
         "deps": [
           "npm:@angular/core",
-          "npm:@angular/platform-browser-dynamic"
+          "npm:rxjs",
+          "npm:@angular/common/http",
+          "shared"
         ]
       },
       {
-        "file": "apps/BlendApiApp/src/polyfills.ts",
-        "hash": "2522703372224456104",
+        "file": "libs/quotes/src/lib/components/programming/programming.component_without_abstraction.ts",
+        "hash": "15156369547011614628",
         "deps": [
-          "npm:zone.js"
+          "npm:@angular/core",
+          "npm:rxjs",
+          "npm:@angular/common/http",
+          "shared"
         ]
       },
       {
-        "file": "apps/BlendApiApp/src/proxy.conf.json",
-        "hash": "11281046345527164812"
-      },
-      {
-        "file": "apps/BlendApiApp/src/styles.scss",
-        "hash": "5726515888874414326"
-      },
-      {
-        "file": "apps/BlendApiApp/src/theme/_index.scss",
-        "hash": "12125661457468874805"
-      },
-      {
-        "file": "apps/BlendApiApp/src/theme/base.scss",
-        "hash": "13045529623674364126"
-      },
-      {
-        "file": "apps/BlendApiApp/src/theme/font-family.scss",
-        "hash": "12589185940162084388"
-      },
-      {
-        "file": "apps/BlendApiApp/src/theme/font/RobotoSlab/LICENSE.txt",
-        "hash": "1742713622754055560"
-      },
-      {
-        "file": "apps/BlendApiApp/src/theme/font/RobotoSlab/roboto_slab_400.woff2",
-        "hash": "12516340895413921670"
-      },
-      {
-        "file": "apps/BlendApiApp/src/theme/font/RobotoSlab/roboto_slab_500.woff2",
-        "hash": "14197603157739667862"
-      },
-      {
-        "file": "apps/BlendApiApp/src/theme/font/RobotoSlab/roboto_slab_600.woff2",
-        "hash": "12548274200254798167"
-      },
-      {
-        "file": "apps/BlendApiApp/src/theme/font/RobotoSlab/rotobo_slab_300.woff2",
-        "hash": "6560532876230097060"
-      },
-      {
-        "file": "apps/BlendApiApp/src/theme/font/Ruda/OFL.txt",
-        "hash": "10694592365674122732"
-      },
-      {
-        "file": "apps/BlendApiApp/src/theme/font/Ruda/ruda_400.woff2",
-        "hash": "5565064730304015205"
-      },
-      {
-        "file": "apps/BlendApiApp/src/theme/font/Ruda/ruda_600.woff2",
-        "hash": "5112344952492815359"
-      },
-      {
-        "file": "apps/BlendApiApp/src/theme/font/Ruda/ruda_700.woff2",
-        "hash": "3865525716271321548"
-      },
-      {
-        "file": "apps/BlendApiApp/src/theme/font/weathericons-regular-webfont.eot",
-        "hash": "8708455381697614710"
-      },
-      {
-        "file": "apps/BlendApiApp/src/theme/font/weathericons-regular-webfont.svg",
-        "hash": "16016545891026956009"
-      },
-      {
-        "file": "apps/BlendApiApp/src/theme/font/weathericons-regular-webfont.ttf",
-        "hash": "3650236206452324030"
-      },
-      {
-        "file": "apps/BlendApiApp/src/theme/font/weathericons-regular-webfont.woff",
-        "hash": "1640003070299301133"
-      },
-      {
-        "file": "apps/BlendApiApp/src/theme/font/weathericons-regular-webfont.woff2",
-        "hash": "14358099146017503459"
-      },
-      {
-        "file": "apps/BlendApiApp/src/theme/my-theme.scss",
-        "hash": "2445606094909717722"
-      },
-      {
-        "file": "apps/BlendApiApp/src/theme/variables.scss",
-        "hash": "6872738283760378621"
-      },
-      {
-        "file": "apps/BlendApiApp/src/theme/weather-icons.scss",
-        "hash": "1625305359959412575"
-      },
-      {
-        "file": "apps/BlendApiApp/tsconfig.app.json",
-        "hash": "2276589693114153683"
-      }
-    ],
-    "calculator": [
-      {
-        "file": "libs/calculator/.eslintrc.json",
-        "hash": "9769559818467434823"
-      },
-      {
-        "file": "libs/calculator/README.md",
-        "hash": "8176947484452868652"
-      },
-      {
-        "file": "libs/calculator/jest.config.ts",
-        "hash": "6100249588503819755"
-      },
-      {
-        "file": "libs/calculator/project.json",
-        "hash": "5804412765329416290"
-      },
-      {
-        "file": "libs/calculator/src/index.ts",
-        "hash": "1873551164684425090"
-      },
-      {
-        "file": "libs/calculator/src/lib/calculator.module.ts",
-        "hash": "14748585316419605535",
+        "file": "libs/quotes/src/lib/quotes.module.ts",
+        "hash": "16829480475412426549",
         "deps": [
           "npm:@angular/core",
           "npm:@angular/common",
@@ -428,46 +152,46 @@
         ]
       },
       {
-        "file": "libs/calculator/src/lib/components/calculator.component.html",
-        "hash": "1017521106814330453"
-      },
-      {
-        "file": "libs/calculator/src/lib/components/calculator.component.scss",
-        "hash": "12098221649381781137"
-      },
-      {
-        "file": "libs/calculator/src/lib/components/calculator.component.ts",
-        "hash": "8427421964625213457",
+        "file": "libs/quotes/src/lib/services/life-quotes.service.ts",
+        "hash": "11785205568351867427",
         "deps": [
+          "npm:@angular/common/http",
           "npm:@angular/core",
-          "npm:lodash"
+          "npm:rxjs",
+          "shared"
         ]
       },
       {
-        "file": "libs/calculator/src/lib/constants/calculator.const.ts",
-        "hash": "1818716253331514071"
+        "file": "libs/quotes/src/lib/services/programming-quotes.service.ts",
+        "hash": "10116940175261405570",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common/http",
+          "npm:rxjs",
+          "shared"
+        ]
       },
       {
-        "file": "libs/calculator/src/lib/types/calculator.interface.ts",
-        "hash": "5863656839391763576"
+        "file": "libs/quotes/src/lib/types/quotes.interface.ts",
+        "hash": "2327150613760916106"
       },
       {
-        "file": "libs/calculator/src/test-setup.ts",
+        "file": "libs/quotes/src/test-setup.ts",
         "hash": "17711435995618823417",
         "deps": [
           "npm:jest-preset-angular/setup-jest"
         ]
       },
       {
-        "file": "libs/calculator/tsconfig.json",
+        "file": "libs/quotes/tsconfig.json",
         "hash": "7237535718920748111"
       },
       {
-        "file": "libs/calculator/tsconfig.lib.json",
+        "file": "libs/quotes/tsconfig.lib.json",
         "hash": "15303894523353606021"
       },
       {
-        "file": "libs/calculator/tsconfig.spec.json",
+        "file": "libs/quotes/tsconfig.spec.json",
         "hash": "18121645209207210368"
       }
     ],
@@ -965,62 +689,93 @@
         "hash": "18121645209207210368"
       }
     ],
-    "quotes": [
+    "weather": [
       {
-        "file": "libs/quotes/.eslintrc.json",
+        "file": "libs/weather/.eslintrc.json",
         "hash": "9769559818467434823"
       },
       {
-        "file": "libs/quotes/README.md",
-        "hash": "10434425521920706099"
+        "file": "libs/weather/README.md",
+        "hash": "17243156640905041954"
       },
       {
-        "file": "libs/quotes/jest.config.ts",
-        "hash": "14579463149665089496"
+        "file": "libs/weather/jest.config.ts",
+        "hash": "15820191648734229387"
       },
       {
-        "file": "libs/quotes/project.json",
-        "hash": "17812242292957475773"
+        "file": "libs/weather/project.json",
+        "hash": "7497606752007436180"
       },
       {
-        "file": "libs/quotes/src/index.ts",
-        "hash": "12675951392683084279"
+        "file": "libs/weather/src/index.ts",
+        "hash": "12146681700274021831"
       },
       {
-        "file": "libs/quotes/src/lib/class/quote.ts",
-        "hash": "16570889953708211468",
+        "file": "libs/weather/src/lib/class/forecast-by-cityname.ts",
+        "hash": "10556888771295465084",
         "deps": [
+          "npm:rxjs",
+          "npm:@angular/common/http",
           "shared"
         ]
       },
       {
-        "file": "libs/quotes/src/lib/components/life/life.component.html",
-        "hash": "14435655348563037703"
+        "file": "libs/weather/src/lib/class/forecast-by-latlong.ts",
+        "hash": "4158781853818291195",
+        "deps": [
+          "npm:rxjs",
+          "npm:@angular/common/http",
+          "shared"
+        ]
       },
       {
-        "file": "libs/quotes/src/lib/components/life/life.component.scss",
-        "hash": "3244421341483603138"
+        "file": "libs/weather/src/lib/class/weather-forecast.ts",
+        "hash": "6287208690369034895"
       },
       {
-        "file": "libs/quotes/src/lib/components/life/life.component.ts",
-        "hash": "2762526982469352908",
+        "file": "libs/weather/src/lib/components/forecast-details/forecast-details.component.html",
+        "hash": "6981288162478987213"
+      },
+      {
+        "file": "libs/weather/src/lib/components/forecast-details/forecast-details.component.scss",
+        "hash": "14610467054675944459"
+      },
+      {
+        "file": "libs/weather/src/lib/components/forecast-details/forecast-details.component.ts",
+        "hash": "7873834274712449464",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/weather/src/lib/components/forecast/forecast.component.html",
+        "hash": "11645926851433382482"
+      },
+      {
+        "file": "libs/weather/src/lib/components/forecast/forecast.component.scss",
+        "hash": "14157951783103091642"
+      },
+      {
+        "file": "libs/weather/src/lib/components/forecast/forecast.component.ts",
+        "hash": "156363402848597907",
         "deps": [
           "npm:@angular/core",
-          "shared",
+          "npm:@angular/forms",
+          "npm:lodash",
           "npm:rxjs"
         ]
       },
       {
-        "file": "libs/quotes/src/lib/components/programming/programming.component.html",
-        "hash": "14280739325452393095"
+        "file": "libs/weather/src/lib/constants/cities.const.ts",
+        "hash": "8723235828156630538"
       },
       {
-        "file": "libs/quotes/src/lib/components/programming/programming.component.scss",
-        "hash": "3244421341483603138"
+        "file": "libs/weather/src/lib/constants/country.const.ts",
+        "hash": "10486571224804146822"
       },
       {
-        "file": "libs/quotes/src/lib/components/programming/programming.component.ts",
-        "hash": "13277866058067155139",
+        "file": "libs/weather/src/lib/services/forecast.service.ts",
+        "hash": "8689757697017615951",
         "deps": [
           "npm:@angular/core",
           "npm:rxjs",
@@ -1029,18 +784,72 @@
         ]
       },
       {
-        "file": "libs/quotes/src/lib/components/programming/programming.component_without_abstraction.ts",
-        "hash": "15156369547011614628",
+        "file": "libs/weather/src/lib/types/forecast-strategy.interface.ts",
+        "hash": "3665449644254490727",
+        "deps": [
+          "npm:rxjs",
+          "npm:@angular/common/http"
+        ]
+      },
+      {
+        "file": "libs/weather/src/lib/types/weather.interface.ts",
+        "hash": "2583886328656842999"
+      },
+      {
+        "file": "libs/weather/src/lib/weather.module.ts",
+        "hash": "4871694502111394398",
         "deps": [
           "npm:@angular/core",
-          "npm:rxjs",
-          "npm:@angular/common/http",
+          "npm:@angular/common",
+          "npm:@angular/router",
+          "npm:@angular/forms",
           "shared"
         ]
       },
       {
-        "file": "libs/quotes/src/lib/quotes.module.ts",
-        "hash": "16829480475412426549",
+        "file": "libs/weather/src/test-setup.ts",
+        "hash": "17711435995618823417",
+        "deps": [
+          "npm:jest-preset-angular/setup-jest"
+        ]
+      },
+      {
+        "file": "libs/weather/tsconfig.json",
+        "hash": "7237535718920748111"
+      },
+      {
+        "file": "libs/weather/tsconfig.lib.json",
+        "hash": "15303894523353606021"
+      },
+      {
+        "file": "libs/weather/tsconfig.spec.json",
+        "hash": "18121645209207210368"
+      }
+    ],
+    "calculator": [
+      {
+        "file": "libs/calculator/.eslintrc.json",
+        "hash": "9769559818467434823"
+      },
+      {
+        "file": "libs/calculator/README.md",
+        "hash": "8176947484452868652"
+      },
+      {
+        "file": "libs/calculator/jest.config.ts",
+        "hash": "6100249588503819755"
+      },
+      {
+        "file": "libs/calculator/project.json",
+        "hash": "5804412765329416290"
+      },
+      {
+        "file": "libs/calculator/src/index.ts",
+        "hash": "1873551164684425090"
+      },
+      {
+        "file": "libs/calculator/src/lib/calculator.module.ts",
+        "hash": "14748585316419605535",
         "deps": [
           "npm:@angular/core",
           "npm:@angular/common",
@@ -1049,47 +858,238 @@
         ]
       },
       {
-        "file": "libs/quotes/src/lib/services/life-quotes.service.ts",
-        "hash": "11785205568351867427",
+        "file": "libs/calculator/src/lib/components/calculator.component.html",
+        "hash": "1017521106814330453"
+      },
+      {
+        "file": "libs/calculator/src/lib/components/calculator.component.scss",
+        "hash": "12098221649381781137"
+      },
+      {
+        "file": "libs/calculator/src/lib/components/calculator.component.ts",
+        "hash": "8427421964625213457",
         "deps": [
-          "npm:@angular/common/http",
           "npm:@angular/core",
-          "npm:rxjs",
-          "shared"
+          "npm:lodash"
         ]
       },
       {
-        "file": "libs/quotes/src/lib/services/programming-quotes.service.ts",
-        "hash": "10116940175261405570",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@angular/common/http",
-          "npm:rxjs",
-          "shared"
-        ]
+        "file": "libs/calculator/src/lib/constants/calculator.const.ts",
+        "hash": "1818716253331514071"
       },
       {
-        "file": "libs/quotes/src/lib/types/quotes.interface.ts",
-        "hash": "2327150613760916106"
+        "file": "libs/calculator/src/lib/types/calculator.interface.ts",
+        "hash": "5863656839391763576"
       },
       {
-        "file": "libs/quotes/src/test-setup.ts",
+        "file": "libs/calculator/src/test-setup.ts",
         "hash": "17711435995618823417",
         "deps": [
           "npm:jest-preset-angular/setup-jest"
         ]
       },
       {
-        "file": "libs/quotes/tsconfig.json",
+        "file": "libs/calculator/tsconfig.json",
         "hash": "7237535718920748111"
       },
       {
-        "file": "libs/quotes/tsconfig.lib.json",
+        "file": "libs/calculator/tsconfig.lib.json",
         "hash": "15303894523353606021"
       },
       {
-        "file": "libs/quotes/tsconfig.spec.json",
+        "file": "libs/calculator/tsconfig.spec.json",
         "hash": "18121645209207210368"
+      }
+    ],
+    "BlendApiApp": [
+      {
+        "file": "apps/BlendApiApp/.browserslistrc",
+        "hash": "15525697355818847451"
+      },
+      {
+        "file": "apps/BlendApiApp/project.json",
+        "hash": "11598681264049565558"
+      },
+      {
+        "file": "apps/BlendApiApp/src/_redirects",
+        "hash": "7289026612628632489"
+      },
+      {
+        "file": "apps/BlendApiApp/src/app/app-routing.module.ts",
+        "hash": "11745192101504647113",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/router",
+          "quotes",
+          "weather",
+          "hacker-news",
+          "calculator"
+        ]
+      },
+      {
+        "file": "apps/BlendApiApp/src/app/app.component.html",
+        "hash": "18195973602587881387"
+      },
+      {
+        "file": "apps/BlendApiApp/src/app/app.component.scss",
+        "hash": "3613895579813597690"
+      },
+      {
+        "file": "apps/BlendApiApp/src/app/app.component.ts",
+        "hash": "17967129543400066221",
+        "deps": [
+          "npm:@angular/core",
+          "shared"
+        ]
+      },
+      {
+        "file": "apps/BlendApiApp/src/app/app.module.ts",
+        "hash": "11994533633790250871",
+        "deps": [
+          "npm:@angular/platform-browser",
+          "npm:@angular/core",
+          "npm:@angular/common/http",
+          "shared"
+        ]
+      },
+      {
+        "file": "apps/BlendApiApp/src/assets/.gitkeep",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "apps/BlendApiApp/src/assets/images/api-feed.png",
+        "hash": "2210067770687615529"
+      },
+      {
+        "file": "apps/BlendApiApp/src/assets/images/blend-api-logo.png",
+        "hash": "1484839143722750102"
+      },
+      {
+        "file": "apps/BlendApiApp/src/assets/images/project-graph.png",
+        "hash": "2898853721672561452"
+      },
+      {
+        "file": "apps/BlendApiApp/src/environments/environment.prod.ts",
+        "hash": "10220522844224226756"
+      },
+      {
+        "file": "apps/BlendApiApp/src/environments/environment.ts",
+        "hash": "4256018448305775564"
+      },
+      {
+        "file": "apps/BlendApiApp/src/favicon.ico",
+        "hash": "8732824150753629211"
+      },
+      {
+        "file": "apps/BlendApiApp/src/index.html",
+        "hash": "2542571995526757940"
+      },
+      {
+        "file": "apps/BlendApiApp/src/main.ts",
+        "hash": "10951195587090103004",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/platform-browser-dynamic"
+        ]
+      },
+      {
+        "file": "apps/BlendApiApp/src/polyfills.ts",
+        "hash": "2522703372224456104",
+        "deps": [
+          "npm:zone.js"
+        ]
+      },
+      {
+        "file": "apps/BlendApiApp/src/proxy.conf.json",
+        "hash": "11281046345527164812"
+      },
+      {
+        "file": "apps/BlendApiApp/src/styles.scss",
+        "hash": "5726515888874414326"
+      },
+      {
+        "file": "apps/BlendApiApp/src/theme/_index.scss",
+        "hash": "12125661457468874805"
+      },
+      {
+        "file": "apps/BlendApiApp/src/theme/base.scss",
+        "hash": "13045529623674364126"
+      },
+      {
+        "file": "apps/BlendApiApp/src/theme/font-family.scss",
+        "hash": "12589185940162084388"
+      },
+      {
+        "file": "apps/BlendApiApp/src/theme/font/RobotoSlab/LICENSE.txt",
+        "hash": "1742713622754055560"
+      },
+      {
+        "file": "apps/BlendApiApp/src/theme/font/RobotoSlab/roboto_slab_400.woff2",
+        "hash": "12516340895413921670"
+      },
+      {
+        "file": "apps/BlendApiApp/src/theme/font/RobotoSlab/roboto_slab_500.woff2",
+        "hash": "14197603157739667862"
+      },
+      {
+        "file": "apps/BlendApiApp/src/theme/font/RobotoSlab/roboto_slab_600.woff2",
+        "hash": "12548274200254798167"
+      },
+      {
+        "file": "apps/BlendApiApp/src/theme/font/RobotoSlab/rotobo_slab_300.woff2",
+        "hash": "6560532876230097060"
+      },
+      {
+        "file": "apps/BlendApiApp/src/theme/font/Ruda/OFL.txt",
+        "hash": "10694592365674122732"
+      },
+      {
+        "file": "apps/BlendApiApp/src/theme/font/Ruda/ruda_400.woff2",
+        "hash": "5565064730304015205"
+      },
+      {
+        "file": "apps/BlendApiApp/src/theme/font/Ruda/ruda_600.woff2",
+        "hash": "5112344952492815359"
+      },
+      {
+        "file": "apps/BlendApiApp/src/theme/font/Ruda/ruda_700.woff2",
+        "hash": "3865525716271321548"
+      },
+      {
+        "file": "apps/BlendApiApp/src/theme/font/weathericons-regular-webfont.eot",
+        "hash": "8708455381697614710"
+      },
+      {
+        "file": "apps/BlendApiApp/src/theme/font/weathericons-regular-webfont.svg",
+        "hash": "16016545891026956009"
+      },
+      {
+        "file": "apps/BlendApiApp/src/theme/font/weathericons-regular-webfont.ttf",
+        "hash": "3650236206452324030"
+      },
+      {
+        "file": "apps/BlendApiApp/src/theme/font/weathericons-regular-webfont.woff",
+        "hash": "1640003070299301133"
+      },
+      {
+        "file": "apps/BlendApiApp/src/theme/font/weathericons-regular-webfont.woff2",
+        "hash": "14358099146017503459"
+      },
+      {
+        "file": "apps/BlendApiApp/src/theme/my-theme.scss",
+        "hash": "2445606094909717722"
+      },
+      {
+        "file": "apps/BlendApiApp/src/theme/variables.scss",
+        "hash": "6872738283760378621"
+      },
+      {
+        "file": "apps/BlendApiApp/src/theme/weather-icons.scss",
+        "hash": "1625305359959412575"
+      },
+      {
+        "file": "apps/BlendApiApp/tsconfig.app.json",
+        "hash": "2276589693114153683"
       }
     ]
   }
