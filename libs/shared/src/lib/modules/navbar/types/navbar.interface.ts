@@ -5,10 +5,19 @@ export interface BlendAPILogo {
   routerLink: string;
 }
 
-export interface NavbarMenu {
-  icon: string;
+interface MenuItems {
+icon: string;
   title: string;
-  hasSubMenu: boolean;
   routerLink: string;
-  subMenu?: NavbarMenu[];
 }
+
+interface WithoutSubMenu extends MenuItems {
+  hasSubMenu: false;
+}
+
+export interface WithSubMenu extends MenuItems {
+  hasSubMenu: true;
+  subMenu: Array<WithSubMenu | WithoutSubMenu>;
+}
+
+export type NavbarMenu = WithoutSubMenu | WithSubMenu;

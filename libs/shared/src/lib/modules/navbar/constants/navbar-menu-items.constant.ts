@@ -9,9 +9,9 @@ export const AppLogoWithLink : BlendAPILogo = {
 export const NavbarMenuItems: Array<NavbarMenu> = [
     {
       title: 'Hacker News',
-      hasSubMenu: true,
       icon: 'book-open',
       routerLink: '/hacker-news',
+      hasSubMenu: true,
       subMenu: [
         {
           title: 'Feed',
@@ -50,20 +50,21 @@ export const NavbarMenuItems: Array<NavbarMenu> = [
       hasSubMenu: false,
       icon: 'file-text',
       routerLink: '/quotes',
-      subMenu: [
-        {
-          icon: '',
-          title: 'Programming',
-          hasSubMenu: false,
-          routerLink: 'programming',
-        },
-        {
-          icon: '',
-          title: 'Life',
-          hasSubMenu: false,
-          routerLink: 'life',
-        },
-      ],
+      // Uncomment to include multiple quotes API
+      // subMenu: [
+      //   {
+      //     title: 'Programming',
+      //     hasSubMenu: false,
+      //     icon: '',
+      //     routerLink: 'programming',
+      //   },
+      //   {
+      //     title: 'Life',
+      //     hasSubMenu: false,
+      //     icon: '',
+      //     routerLink: 'life',
+      //   },
+      // ],
     },
     {
       title: 'Weather',
