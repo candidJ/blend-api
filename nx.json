@@ -7,15 +7,15 @@
   },
   "defaultProject": "BlendApiApp",
   "generators": {
-    "@nrwl/angular:application": {
+    "@nx/angular:application": {
       "linter": "eslint",
       "unitTestRunner": "jest"
     },
-    "@nrwl/angular:library": {
+    "@nx/angular:library": {
       "linter": "eslint",
       "unitTestRunner": "jest"
     },
-    "@nrwl/angular:component": {}
+    "@nx/angular:component": {}
   },
   "tasksRunnerOptions": {
     "default": {
