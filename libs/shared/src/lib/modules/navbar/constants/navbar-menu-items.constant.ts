@@ -1,10 +1,12 @@
 import { AppConfig } from '../../../constant';
+import { BlendAPILogo, NavbarMenu } from '../types/navbar.interface';
 
-// Navbar config
-export const NavbarMenuItems = {
+export const AppLogoWithLink : BlendAPILogo = {
   logo: AppConfig.IMAGES.LOGO,
   routerLink: '/hacker-news',
-  navbarMenu: [
+}
+
+export const NavbarMenuItems: Array<NavbarMenu> = [
     {
       title: 'Hacker News',
       hasSubMenu: true,
@@ -69,19 +71,10 @@ export const NavbarMenuItems = {
       icon: 'cloud-lightning',
       routerLink: '/weather',
     },
-
-    // NEWS API org api only works in Developer mode. Uncomment to access when running locally.
-    // {
-    //   title: "News",
-    //   hasSubMenu: false,
-    //   icon: "file-text",
-    //   routerLink: "/news"
-    // },
     {
       title: 'Calculator',
       hasSubMenu: false,
       icon: 'cpu',
       routerLink: '/calculator',
     },
-  ],
-};
+  ];

@@ -4,10 +4,10 @@
   aria-label="main navigation"
 >
   <div class="navbar-brand">
-    <a class="navbar-item" [routerLink]="navbarItems.routerLink">
+    <a class="navbar-item" [routerLink]="appLogoWithLink.routerLink">
       <b>Blend</b> &nbsp;
       <img
-        [src]="navbarItems.logo"
+        [src]="appLogoWithLink.logo"
         alt="logo"
         width="50"
         height="auto"
@@ -33,7 +33,7 @@
   <div id="appNavBarMenu" #appNavBarMenu class="navbar-menu">
     <!-- navbar start -->
     <div class="navbar-start">
-      <ng-container *ngFor="let item of navbarItems.navbarMenu">
+      <ng-container *ngFor="let item of navbarMenuItems">
         <ng-container *ngIf="!item.hasSubMenu; else hasMenuItems">
           <a
             class="navbar-item"

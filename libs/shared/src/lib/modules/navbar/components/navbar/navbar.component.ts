@@ -10,7 +10,7 @@ import {
   ViewChildren,
   QueryList,
 } from '@angular/core';
-import { INavbar } from '../../types/navbar.interface';
+import { BlendAPILogo, NavbarMenu } from '../../types/navbar.interface';
 
 @Component({
   selector: 'ba-navbar',
@@ -19,7 +19,8 @@ import { INavbar } from '../../types/navbar.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
-  @Input('navbarItems') navbarItems: INavbar;
+  @Input('navbarMenuItems') navbarMenuItems : NavbarMenu[];
+  @Input('appLogoWithLink') appLogoWithLink : BlendAPILogo;
   @ViewChild('navbarBurger') navbarBurger: ElementRef = new ElementRef(
     'navbarBurger'
   );

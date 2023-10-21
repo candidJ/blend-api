@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { NavbarMenuItems } from '../../../../libs/shared/src';
-import { INavbar } from '../../../../libs/shared/src/lib/modules/navbar/types/navbar.interface';
+import { AppLogoWithLink, NavbarMenu, NavbarMenuItems } from '../../../../libs/shared/src';
 
 @Component({
   selector: 'ba-root',
@@ -9,5 +8,6 @@ import { INavbar } from '../../../../libs/shared/src/lib/modules/navbar/types/na
 })
 export class AppComponent {
   title = 'Blend API';
-  public navbarItems: INavbar = NavbarMenuItems;
+  appLogoWithLink = AppLogoWithLink;
+  navbarMenuItems: Array<NavbarMenu> = NavbarMenuItems;
 }

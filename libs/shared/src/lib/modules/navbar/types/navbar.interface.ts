@@ -1,21 +1,14 @@
 import { SafeStyle } from '@angular/platform-browser';
 
-export interface INavbar {
+export interface BlendAPILogo {
   logo: SafeStyle;
   routerLink: string;
-  navbarMenu: INavbarMenu[];
 }
 
-export interface INavbarMenu {
+export interface NavbarMenu {
   icon: string;
   title: string;
   hasSubMenu: boolean;
   routerLink: string;
-  subMenu?: INavbarMenu[];
-}
-
-export interface ISubMenu {
-  icon: string;
-  title: string;
-  subMenuItems: INavbarMenu[];
+  subMenu?: NavbarMenu[];
 }
