@@ -20,3 +20,5 @@ export interface ILifeQuotesResponse {
   };
   totalQuotes: number;
 }
+
+export type PaginationFunc = (page: number) => void;

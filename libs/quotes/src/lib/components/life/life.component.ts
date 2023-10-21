@@ -1,17 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  forwardRef,
-  Inject,
+  inject,
   OnInit,
-  ViewChild,
 } from '@angular/core';
-import { MessageBoxComponent } from 'libs/shared/src/lib/modules/message-box/components/message-box.component';
-import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/paginator.interface';
 import { Observable } from 'rxjs';
-import { Quotes } from '../../class/quote';
+import { sendTweet } from '../../utils/quote';
 import { LifeQuotesService } from '../../services/life-quotes.service';
-import { ILifeQuotes } from '../../types/quotes.interface';
+import { ILifeQuotes, PaginationFunc } from '../../types/quotes.interface';
+import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/paginator.interface';
 
 @Component({
   selector: 'ba-life',
@@ -20,27 +17,22 @@ import { ILifeQuotes } from '../../types/quotes.interface';
   providers: [LifeQuotesService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LifeComponent extends Quotes<ILifeQuotes> implements OnInit {
+export class LifeComponent implements OnInit {
+  private quotesService = inject(LifeQuotesService);
+  
   public quotes$: Observable<ILifeQuotes[]>;
   public paginationConfig$: Observable<PaginationConfig> =
     this.quotesService.paginationConfig$;
   public props = { first: 'quoteAuthor', second: 'quoteText' };
 
-  @ViewChild('messageBox') messageBox: MessageBoxComponent<ILifeQuotes>;
+  constructor() {}
 
-  constructor(
-    @Inject(forwardRef(() => LifeQuotesService))
-    private quotesService: LifeQuotesService
-  ) {
-    super();
-  }
-
-  public onPaginationChange(page: number) {
+  onPaginationChange: PaginationFunc = (page: number) => {
     this.quotesService.fetchByPageNumber(page);
   }
 
-  public tweet(obj: ILifeQuotes) {
-    this.sendTweet(obj, 'quoteAuthor', 'quoteText');
+  public tweet(obj: ILifeQuotes): void{
+    sendTweet(obj, 'quoteAuthor', 'quoteText');
   }
 
   ngOnInit(): void {

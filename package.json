@@ -1,6 +1,6 @@
 {
   "name": "blend-api",
-  "version": "0.0.0",
+  "version": "2.0.0",
   "scripts": {
     "ng": "nx",
     "start": "ng serve --open",
