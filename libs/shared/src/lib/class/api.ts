@@ -1,4 +1,4 @@
-import { Observable, Subject, throwError, BehaviorSubject } from 'rxjs';
+import { Observable, Subject, throwError, BehaviorSubject, EMPTY } from 'rxjs';
 import {
   map,
   switchMap,
@@ -18,6 +18,7 @@ export interface FetchData<T> {
 }
 
 export abstract class API<T> implements FetchData<T> {
+
   // using behavior subject rather than subject
   private apiSubject: BehaviorSubject<number> = new BehaviorSubject<number>(1);
   private api$: Observable<number> = this.apiSubject.asObservable();
@@ -44,7 +45,8 @@ export abstract class API<T> implements FetchData<T> {
       switchMap(this.fetchData),
       catchError((err) => {
         this.showErrorMessage;
-        return throwError(err);
+        throwError(err);
+        return EMPTY;
       }),
       map(this.mapResponse),
       tap(this.showSuccessMessage),

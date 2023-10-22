@@ -7,9 +7,9 @@
   </ba-message-box>
 </ng-container>
 
-<ng-container *ngIf="(paginationConfig$ | async) as paginationConfig">
+<ng-container *ngIf="paginationConfig().listLength > 0">
     <ba-paginator
-      [paginationConfig]="paginationConfig"
+      [paginationConfig]="paginationConfig()"
       (onPaginatorChange)="onPaginationChange($event)"
     >
     </ba-paginator>

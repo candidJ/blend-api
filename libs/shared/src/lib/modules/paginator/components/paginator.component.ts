@@ -6,7 +6,6 @@ import {
   Output,
   OnDestroy,
   signal,
-  effect,
 } from '@angular/core';
 import { PaginationConfig, RecordType } from '../types/paginator.interface';
 
@@ -18,8 +17,16 @@ import { PaginationConfig, RecordType } from '../types/paginator.interface';
 export class PaginatorComponent implements OnInit, OnDestroy {
   public record = signal<RecordType>({start: 1, end: 20});
   public activePage = 1;
+  public pagination: PaginationConfig;
 
-  @Input('paginationConfig') pgConfig: PaginationConfig;
+  @Input('paginationConfig') 
+  set paginationConfig(value: PaginationConfig) {
+    if(value) {
+      this.record.mutate((record) =>  record.end = value.pageSize);
+      this.pagination = value;
+    }
+  }
+
   @Output() onPaginatorChange: EventEmitter<number> =
     new EventEmitter<number>();
 
@@ -30,7 +37,7 @@ export class PaginatorComponent implements OnInit, OnDestroy {
    * @param page
    */
   private showActiveRecordsRange(page: number) {
-    const { pageSize, noOfPages, listLength } = this.pgConfig;
+    const { pageSize, noOfPages, listLength } = this.pagination;
     this.record.set({
         start : page === 1 ? 1: pageSize * (page - 1),
         end : page === noOfPages ? listLength : page * pageSize

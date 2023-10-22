@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { API, AppConfig } from '@blend-api/shared';
 
@@ -9,10 +9,12 @@ import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/pa
 
 @Injectable()
 export class LifeQuotesService extends API<LifeQuote> {
-  // When Subject is used in instead of behavior subject in API-
-  //  using subscribers - publish method for stateless components
-  private dataPublisher = new Subject<LifeQuote[]>();
-  data$ = this.dataPublisher.asObservable();
+  
+  paginationConfig = signal<PaginationConfig>({
+    listLength: 0,
+    noOfPages: 0,
+    pageSize: 0
+  });
 
   constructor(
     private httpClient: HttpClient,
@@ -44,12 +46,13 @@ export class LifeQuotesService extends API<LifeQuote> {
   // TODO: side effect + data return = anti pattern
   protected mapResponse = (data: ILifeQuotesResponse): LifeQuote[] => {
     const {pagination} = data;
-    const paginationConfig: PaginationConfig = {
-      listLength: data.totalQuotes,
-      noOfPages: pagination.totalPages,
-      pageSize: AppConfig.LIFE_QUOTES.LIMIT,
-    };
-    this.broadcastPaginationConfig(paginationConfig);
+    if(this.paginationConfig().listLength === 0){
+        this.paginationConfig.set({
+          listLength: data.totalQuotes,
+          noOfPages: pagination.totalPages,
+          pageSize: AppConfig.LIFE_QUOTES.LIMIT,
+        });
+    }
     return data.data;
   };
 }
