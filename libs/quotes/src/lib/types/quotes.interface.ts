@@ -1,18 +1,17 @@
-export interface IProgrammingQuotes {
-  en: string;
+export interface ProgrammingQuote {
   author: string;
-  rating: number;
-  id: string;
+  en: string;
 }
 
-export interface ILifeQuotes {
-  id: string;
+export interface LifeQuote {
   quoteText: string;
   quoteAuthor: string;
 }
 
+export type QuoteProps<T>  = [keyof T, keyof T];
+
 export interface ILifeQuotesResponse {
-  data: ILifeQuotes[];
+  data: LifeQuote[];
   pagination: {
     currentPage: number;
     nextPage: number;

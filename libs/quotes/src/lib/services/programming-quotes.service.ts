@@ -2,7 +2,7 @@ import { Injectable, InjectionToken } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { NotificationService } from 'libs/shared/src/lib/modules/notifications/services/notification.service';
-import { IProgrammingQuotes } from '../types/quotes.interface';
+import { ProgrammingQuote } from '../types/quotes.interface';
 import { API, AppConfig } from '@blend-api/shared';
 import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/paginator.interface';
 
@@ -17,9 +17,9 @@ export const QUOTES_SERVICE_TOKEN =
   new InjectionToken<ProgrammingQuotesService>('QUOTES_SERVICE_TOKEN');
 
 @Injectable()
-export class ProgrammingQuotesService extends API<IProgrammingQuotes> {
+export class ProgrammingQuotesService extends API<ProgrammingQuote> {
   private httpClient: HttpClient;
-  private dataPublisher = new BehaviorSubject<IProgrammingQuotes[]>([]);
+  private dataPublisher = new BehaviorSubject<ProgrammingQuote[]>([]);
   data$ = this.dataPublisher.asObservable();
 
   constructor(
@@ -44,15 +44,15 @@ export class ProgrammingQuotesService extends API<IProgrammingQuotes> {
       .set('limit', String(AppConfig.PROGRAMMING_QUOTES.PAGE_SIZE));
   };
 
-  protected fetchData = (params: any): Observable<IProgrammingQuotes[]> => {
-    return this.httpClient.get<IProgrammingQuotes[]>(
+  protected fetchData = (params: any): Observable<ProgrammingQuote[]> => {
+    return this.httpClient.get<ProgrammingQuote[]>(
       AppConfig.PROGRAMMING_QUOTES.URL
     );
   };
 
   protected mapResponse = (
-    data: IProgrammingQuotes[]
-  ): IProgrammingQuotes[] => {
+    data: ProgrammingQuote[]
+  ): ProgrammingQuote[] => {
     // As api doesn't return the totalQuotes, hard coded to actual quotes in api by calculation = 25 pages *20 quotes + 1 page *1 quote;
     //  TOTAL PAGE SIZE IS 501;
     const paginationConfig: PaginationConfig = {

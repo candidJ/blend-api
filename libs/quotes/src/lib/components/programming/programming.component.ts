@@ -13,7 +13,7 @@ import {
   QUOTES_SERVICE_TOKEN,
 } from '../../services/programming-quotes.service';
 import { NotificationService } from 'libs/shared/src/lib/modules/notifications/services/notification.service';
-import { IProgrammingQuotes, PaginationFunc } from '../../types/quotes.interface';
+import { ProgrammingQuote, PaginationFunc, QuoteProps } from '../../types/quotes.interface';
 import { sendTweet } from '../../utils/quote';
 import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/paginator.interface';
 
@@ -31,10 +31,10 @@ import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/pa
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProgrammingComponent implements OnInit {
-  public quotes$: Observable<IProgrammingQuotes[]>;
+  public quotes$: Observable<ProgrammingQuote[]>;
   public paginationConfig$: Observable<PaginationConfig> =
     this.programmingQuotesService.paginationConfig$;
-  public props = { first: 'author', second: 'en' };
+  public props: QuoteProps<ProgrammingQuote> = ['author', 'en']
 
   constructor(
     @Inject(forwardRef(() => QUOTES_SERVICE_TOKEN))
@@ -45,8 +45,8 @@ export class ProgrammingComponent implements OnInit {
     this.programmingQuotesService.fetchByPageNumber(page);
   }
 
-  tweet(obj: IProgrammingQuotes): void {
-    sendTweet(obj, 'author', 'en');
+  tweet(obj: ProgrammingQuote): void {
+    sendTweet(obj, ['author', 'en']);
   }
 
   ngOnInit(): void {

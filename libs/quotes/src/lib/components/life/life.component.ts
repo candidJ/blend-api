@@ -7,7 +7,7 @@ import {
 import { Observable } from 'rxjs';
 import { sendTweet } from '../../utils/quote';
 import { LifeQuotesService } from '../../services/life-quotes.service';
-import { ILifeQuotes, PaginationFunc } from '../../types/quotes.interface';
+import { LifeQuote, PaginationFunc, QuoteProps } from '../../types/quotes.interface';
 import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/paginator.interface';
 
 @Component({
@@ -20,10 +20,10 @@ import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/pa
 export class LifeComponent implements OnInit {
   private quotesService = inject(LifeQuotesService);
   
-  public quotes$: Observable<ILifeQuotes[]>;
+  public quotes$: Observable<LifeQuote[]>;
   public paginationConfig$: Observable<PaginationConfig> =
     this.quotesService.paginationConfig$;
-  public props = { first: 'quoteAuthor', second: 'quoteText' };
+  public props: QuoteProps<LifeQuote> = ['quoteAuthor','quoteText']
 
   constructor() {}
 
@@ -31,8 +31,8 @@ export class LifeComponent implements OnInit {
     this.quotesService.fetchByPageNumber(page);
   }
 
-  public tweet(obj: ILifeQuotes): void{
-    sendTweet(obj, 'quoteAuthor', 'quoteText');
+  public tweet(obj: LifeQuote): void{
+    sendTweet(obj, ['quoteAuthor', 'quoteText']);
   }
 
   ngOnInit(): void {

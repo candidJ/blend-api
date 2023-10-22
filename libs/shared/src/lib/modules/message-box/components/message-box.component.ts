@@ -13,9 +13,9 @@ import {
   styleUrls: ['./message-box.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MessageBoxComponent<T> implements OnInit {
+export class MessageBoxComponent<T, K extends keyof T> implements OnInit {
   @Input('data') messages: T[];
-  @Input('props') props: any;
+  @Input('props') props: K[];
   @Output('tweet')
   private emitTweet = new EventEmitter();
 
