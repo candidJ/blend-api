@@ -3,8 +3,7 @@
     class="mt2 is-size-6-desktop has-text-weight-light is-size-7-touch is-pulled-right is-family-secondary"
   >
     Showing
-    {{ record.start }}-
-    {{ record.end }}
+    {{ record.start }}–{{ record.end }}
     &nbsp;of&nbsp;
     {{ pgConfig.listLength }}
     records
@@ -40,7 +39,7 @@
             [ngClass]="{ disabled: activePage === pgConfig.noOfPages }"
             (click)="onPageChange(activePage + 1)"
             class="pagination-next"
-            >Next page
+            >Next
             <i-feather name="chevron-right"></i-feather>
           </a>
         </li>

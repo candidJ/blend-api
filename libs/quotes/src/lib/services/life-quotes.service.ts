@@ -41,12 +41,12 @@ export class LifeQuotesService extends API<ILifeQuotes> {
     });
   };
 
+  // TODO: side effect + data return = anti pattern
   protected mapResponse = (data: ILifeQuotesResponse): ILifeQuotes[] => {
+    const {pagination} = data;
     const paginationConfig: PaginationConfig = {
-      listLength: data.pagination.totalPages * AppConfig.LIFE_QUOTES.LIMIT,
-      noOfPages: Math.ceil(
-        data.pagination.totalPages / AppConfig.LIFE_QUOTES.LIMIT
-      ),
+      listLength: data.totalQuotes,
+      noOfPages: pagination.totalPages,
       pageSize: AppConfig.LIFE_QUOTES.LIMIT,
     };
     this.broadcastPaginationConfig(paginationConfig);
