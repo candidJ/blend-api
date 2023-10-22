@@ -27,16 +27,54 @@ export class CalculatorComponent implements OnInit {
 
   constructor(public renderer: Renderer2) {}
 
+  public onUserInput(userInput: ICalculatorLayout): void {
+    switch (userInput.className) {
+      case 'numeric':
+        this.onlyAllowOneDecimal(userInput);
+        break;
+      case 'operator':
+        this.appendOperator(userInput);
+        break;
+      case 'equate':
+        this.compute();
+        break;
+      case 'ac':
+        this.clear();
+        this.output = '';
+        break;
+      case 'del':
+        this.removeLastDigit();
+        break;
+      default:
+        this.clear();
+        break;
+    }
+  }
+
+  public displayOperationsHistory(): void {
+    this.sessionOperationHistory = JSON.parse(
+      sessionStorage.getItem('operationHistory') || '{}'
+    );
+    this.renderer.addClass(this.modal.nativeElement, 'is-active');
+  }
+
+  public hideOperationHistory(): void {
+    this.renderer.removeClass(this.modal.nativeElement, 'is-active');
+  }
+
+  ngOnInit(): void {}
+
   private onlyAllowOneDecimal(userInput: ICalculatorLayout): void {
     if (userInput.value === '.' && this.output.includes('.')) {
       return;
-    } else {
-      if (this.isComputationDone) {
-        this.output = userInput.value;
-      } else {
-        this.output += userInput.value;
-      }
     }
+
+    if (this.isComputationDone) {
+      this.output = userInput.value;
+    } else {
+      this.output += userInput.value;
+    }
+    
     this.isComputationDone = false;
   }
 
@@ -63,8 +101,8 @@ export class CalculatorComponent implements OnInit {
       default:
         break;
     }
-    this.storeOperationHistoryInCurrentSession(currentOutput);
-    this.clear();
+    this.storeOperationHistoryInCurrentSession(currentOutput); // effect
+    this.clear(); // effect; complete
     this.isComputationDone = true;
   }
 
@@ -111,52 +149,16 @@ export class CalculatorComponent implements OnInit {
     }
   }
 
-  private clear() {
+  private clear(): void {
     this.previousInput = '';
     this.operation = '';
     this.currentOperator = '';
   }
 
-  private removeLastDigit() {
+  private removeLastDigit(): void {
     if (this.output.length > 0) {
       this.output = this.output.toString().slice(0, -1);
     }
   }
 
-  public onUserInput(userInput: ICalculatorLayout) {
-    switch (userInput.className) {
-      case 'numeric':
-        this.onlyAllowOneDecimal(userInput);
-        break;
-      case 'operator':
-        this.appendOperator(userInput);
-        break;
-      case 'equate':
-        this.compute();
-        break;
-      case 'ac':
-        this.clear();
-        this.output = '';
-        break;
-      case 'del':
-        this.removeLastDigit();
-        break;
-      default:
-        this.clear();
-        break;
-    }
-  }
-
-  public displayOperationsHistory(): void {
-    this.sessionOperationHistory = JSON.parse(
-      sessionStorage.getItem('operationHistory') || '{}'
-    );
-    this.renderer.addClass(this.modal.nativeElement, 'is-active');
-  }
-
-  public hideOperationHistory(): void {
-    this.renderer.removeClass(this.modal.nativeElement, 'is-active');
-  }
-
-  ngOnInit(): void {}
 }

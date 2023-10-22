@@ -48,7 +48,7 @@
   .output {
     max-width: 15rem;
     text-overflow: ellipsis;
-    /* Required for text-overflow to do anything - re-learnt*/
+    /* Required when using text-overflow */
     white-space: nowrap;
     overflow: hidden;
   }

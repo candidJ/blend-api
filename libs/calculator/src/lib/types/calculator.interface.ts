@@ -3,3 +3,5 @@ export interface ICalculatorLayout {
   value: string;
   className: string;
 }
+
+export type OperandType = '%' | '+' | '=' | '-' | '*';

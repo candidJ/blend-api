@@ -1,4 +1,3 @@
-export * from './lib/shared.module';
 export * from './lib/class';
 export * from './lib/constant';
 export * from './lib/directive';
