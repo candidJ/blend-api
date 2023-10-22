@@ -69,7 +69,7 @@ export const AppConfig = {
   },
   TWITTER: {
     URL: 'https://www.twitter.com/intent/tweet?hashtags',
-    HASHTAGS: 'quotes',
+    HASHTAGS: 'quote',
   },
   HACKER_NEWS_BASE_URL: 'https://api.hackerwebapp.com/',
   HACKER_NEWS

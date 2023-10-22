@@ -5,8 +5,10 @@ import {
   EventEmitter,
   Output,
   OnDestroy,
+  signal,
+  effect,
 } from '@angular/core';
-import { PaginationConfig } from '../types/paginator.interface';
+import { PaginationConfig, RecordType } from '../types/paginator.interface';
 
 @Component({
   selector: 'ba-paginator',
@@ -14,51 +16,25 @@ import { PaginationConfig } from '../types/paginator.interface';
   styleUrls: ['./paginator.component.scss'],
 })
 export class PaginatorComponent implements OnInit, OnDestroy {
-  public record: { start: number; end: number };
-  public pgConfig: PaginationConfig;
+  public record = signal<RecordType>({start: 1, end: 20});
+  public activePage = 1;
 
-  @Input('paginationConfig')
-  set paginationConfig(value: PaginationConfig) {
-    if (!this.record && value) {
-      this.record = {
-        start: 1,
-        end: value.pageSize,
-      };
-      this.pgConfig = value;
-    }
-  }
+  @Input('paginationConfig') pgConfig: PaginationConfig;
   @Output() onPaginatorChange: EventEmitter<number> =
     new EventEmitter<number>();
-  public activePage = 1;
 
   constructor() {}
 
   /**
-   * Show the range of activeRecords being displayed
+   * Calculate the range of activeRecords
    * @param page
    */
   private showActiveRecordsRange(page: number) {
-    const pageSize = this.pgConfig.pageSize;
-    const noOfPages = this.pgConfig.noOfPages;
-    const listLength = this.pgConfig.listLength;
-    if (page === 1) {
-      return (this.record = {
-        start: 1,
-        end: pageSize,
-      });
-    } else if (page === noOfPages) {
-      const start = pageSize * (page - 1);
-      const end = start + (listLength - start);
-      return (this.record = {
-        start,
-        end,
-      });
-    } else {
-      return (this.record = {
-        start: (page - 1) * pageSize,
-        end: page * pageSize,
-      });
-    }
+    const { pageSize, noOfPages, listLength } = this.pgConfig;
+    this.record.set({
+        start : page === 1 ? 1: pageSize * (page - 1),
+        end : page === noOfPages ? listLength : page * pageSize
+    });
   }
 
   public onPageChange(page: number) {
@@ -70,6 +46,6 @@ export class PaginatorComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
   ngOnDestroy(): void {
-    this.onPaginatorChange.emit(1);
+    this.onPaginatorChange.unsubscribe();
   }
 }

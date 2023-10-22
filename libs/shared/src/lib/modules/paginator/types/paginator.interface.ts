@@ -3,3 +3,8 @@ export interface PaginationConfig {
   noOfPages: number;
   listLength: number;
 }
+
+export type RecordType = {
+  start: number;
+  end: number;
+}
