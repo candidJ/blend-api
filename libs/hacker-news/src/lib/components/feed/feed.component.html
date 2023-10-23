@@ -27,7 +27,7 @@
 </ba-grid>
 
 <ba-paginator
-  [paginationConfig]="paginationConfig$ | async"
+  [paginationConfig]="paginationConfig()"
   (onPaginatorChange)="onPaginatorChange($event)"
 >
 </ba-paginator>

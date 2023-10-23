@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { RouterState, Router } from '@angular/router';
@@ -21,6 +21,12 @@ interface ConfigProps {
 export class HackerNewsApiService<T> extends API<T> {
   private readonly config = AppConfig.HACKER_NEWS;
   private readonly baseUrl = AppConfig.HACKER_NEWS_BASE_URL;
+
+  paginationConfig = signal<PaginationConfig>({
+    listLength: 0,
+    noOfPages: 0,
+    pageSize: 0
+  });
 
   constructor(
     private httpClient: HttpClient,
@@ -62,17 +68,18 @@ export class HackerNewsApiService<T> extends API<T> {
   }
 
   private composePaginationConfig(): void {
-    const feedType: ConfigType = this.determineActiveUrl();
-    const configType: ConfigProps = this.config[feedType];
-    const feedPaginationConfig: PaginationConfig = {
-      listLength: configType.TOTAL_RECORDS,
-      noOfPages: configType.NO_OF_PAGES,
-      pageSize: configType.PAGE_SIZE
-    };
-
-    this.broadcastPaginationConfig(feedPaginationConfig);
+    if(this.paginationConfig().listLength == 0){
+      const feedType: ConfigType = this.determineActiveUrl();
+      const configType: ConfigProps = this.config[feedType];
+      const feedPaginationConfig: PaginationConfig = {
+        listLength: configType.TOTAL_RECORDS,
+        noOfPages: configType.NO_OF_PAGES,
+        pageSize: configType.PAGE_SIZE
+      };
+      // set the signal to pagination from API
+      this.paginationConfig.set(feedPaginationConfig);
+    }
   }
-
   // fetch item details
   public loadItemDetails(itemId: number): Observable<HackerNewsFeedDetails> {
     return this.httpClient

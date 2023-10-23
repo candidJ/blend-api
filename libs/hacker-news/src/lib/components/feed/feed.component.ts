@@ -16,9 +16,8 @@ export class FeedComponent implements OnInit {
   public dataSource: HackerNews[];
   public feedColumns: HackerNews[];
   public feedDetails: HackerNewsFeed;
-  public paginationConfig$: Observable<PaginationConfig> =
-    this.hackerNewsService.paginationConfig$;
-
+  public paginationConfig = this.hackerNewsService.paginationConfig;
+  
   constructor(
     private hackerNewsService: HackerNewsApiService<HackerNewsFeed>,
     private router: Router,
