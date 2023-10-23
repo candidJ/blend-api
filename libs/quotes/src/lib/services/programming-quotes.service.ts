@@ -1,4 +1,4 @@
-import { Injectable, InjectionToken } from '@angular/core';
+import { Injectable, InjectionToken, signal } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { NotificationService } from 'libs/shared/src/lib/modules/notifications/services/notification.service';
@@ -19,8 +19,12 @@ export const QUOTES_SERVICE_TOKEN =
 @Injectable()
 export class ProgrammingQuotesService extends API<ProgrammingQuote> {
   private httpClient: HttpClient;
-  private dataPublisher = new BehaviorSubject<ProgrammingQuote[]>([]);
-  data$ = this.dataPublisher.asObservable();
+
+  public paginationConfig = signal<PaginationConfig>({
+    listLength: 0,
+    noOfPages: 0,
+    pageSize: 0
+  });
 
   constructor(
     httpClient: HttpClient,
@@ -55,17 +59,19 @@ export class ProgrammingQuotesService extends API<ProgrammingQuote> {
   ): ProgrammingQuote[] => {
     // As api doesn't return the totalQuotes, hard coded to actual quotes in api by calculation = 25 pages *20 quotes + 1 page *1 quote;
     //  TOTAL PAGE SIZE IS 501;
-    const paginationConfig: PaginationConfig = {
-      listLength: AppConfig.PROGRAMMING_QUOTES.TOTAL_RECORDS,
-      noOfPages: Math.ceil(
-        AppConfig.PROGRAMMING_QUOTES.TOTAL_RECORDS /
-          AppConfig.PROGRAMMING_QUOTES.PAGE_SIZE
-      ),
-      pageSize: AppConfig.PROGRAMMING_QUOTES.PAGE_SIZE,
-    };
-    // TODO: commented pagination since API is down
-    this.broadcastPaginationConfig(paginationConfig);
-    this.dataPublisher.next(data);
+    if(this.paginationConfig().listLength === 0) {
+      const paginationConfig: PaginationConfig = {
+        listLength: AppConfig.PROGRAMMING_QUOTES.TOTAL_RECORDS,
+        noOfPages: Math.ceil(
+          AppConfig.PROGRAMMING_QUOTES.TOTAL_RECORDS /
+            AppConfig.PROGRAMMING_QUOTES.PAGE_SIZE
+        ),
+        pageSize: AppConfig.PROGRAMMING_QUOTES.PAGE_SIZE,
+      };
+
+      this.paginationConfig.set(paginationConfig);
+    }
+    
     return data;
   };
 }

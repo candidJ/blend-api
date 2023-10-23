@@ -3,10 +3,8 @@ import {
   OnInit,
   TemplateRef,
   ViewChild,
-  AfterViewInit,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/paginator.interface';
 import { Observable, of } from 'rxjs';
 import { NewsApiService } from '../../services';
 import { IGridColumnsDef } from '../../types';
@@ -20,8 +18,6 @@ import { IGridColumnsDef } from '../../types';
 })
 export class ArticleListComponent implements OnInit {
   public articles$: Observable<any[]>;
-  public paginationConfig$: Observable<PaginationConfig> =
-    this.newsApiService.paginationConfig$;
 
   public dataSource: IGridColumnsDef[] = [];
   public articleColumns: Array<IGridColumnsDef> = [

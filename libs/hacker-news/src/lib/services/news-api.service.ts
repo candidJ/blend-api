@@ -39,7 +39,6 @@ export class NewsApiService extends API<INewsFeed> {
   protected mapResponse = (data: INewsFeed) => {
     const totalResults = data.totalResults;
     const page = Math.ceil(totalResults / this.config.PAGE_SIZE);
-    // this.broadcastPaginationConfig(page);
     return data.articles;
   };
 }

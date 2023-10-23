@@ -22,10 +22,6 @@ export abstract class API<T> implements FetchData<T> {
   // using behavior subject rather than subject
   private apiSubject: BehaviorSubject<number> = new BehaviorSubject<number>(1);
   private api$: Observable<number> = this.apiSubject.asObservable();
-  private paginationConfigPublisher: Subject<PaginationConfig> =
-    new Subject<PaginationConfig>();
-  paginationConfig$: Observable<PaginationConfig> =
-    this.paginationConfigPublisher.asObservable();
 
   protected abstract mapResponse(data: T | T[] | any): any[];
   protected abstract configureParams(page: number): HttpParams;
@@ -52,9 +48,5 @@ export abstract class API<T> implements FetchData<T> {
       tap(this.showSuccessMessage),
       share()
     );
-  }
-
-  broadcastPaginationConfig(paginatorConfig: PaginationConfig): void {
-    this.paginationConfigPublisher.next(paginatorConfig);
   }
 }

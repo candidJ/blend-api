@@ -32,8 +32,7 @@ import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/pa
 })
 export class ProgrammingComponent implements OnInit {
   public quotes$: Observable<ProgrammingQuote[]>;
-  public paginationConfig$: Observable<PaginationConfig> =
-    this.programmingQuotesService.paginationConfig$;
+  public paginationConfig = this.programmingQuotesService.paginationConfig;
   public props: QuoteProps<ProgrammingQuote> = ['author', 'en']
 
   constructor(
