@@ -110,7 +110,7 @@ export class ForecastService {
           this.cityPublisher.next(true);
           this.notificationService.showErrorMessage(err.error.message);
         }
-        return throwError(err);
+        return throwError(() => err);
       })
     );
   }
@@ -146,15 +146,15 @@ export class ForecastService {
         if (err.code === 1) {
           this.notificationService.showErrorMessage('Location denied...');
           this.notificationService.showGeneralInfo(
-            'Fetching weather of Muktsar, IN'
+            'Fetching weather of Seattle, WA'
           );
         }
 
         //  #2 Return a new observable -- which can maybe pass default coordinates in case user denied location
         // unlike tap operator second argument; it DOES return an observable and pass something to pipe operator
         return of({
-          longitude: 74.5122,
-          latitude: 30.4762,
+          longitude: -122.332,
+          latitude: 47.6061,
         });
 
         // throwError(err);

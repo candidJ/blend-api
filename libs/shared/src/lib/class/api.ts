@@ -10,8 +10,6 @@ import {
 } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 
-import { PaginationConfig } from '../modules/paginator/types/paginator.interface';
-
 export interface FetchData<T> {
   fetch(): Observable<T[]>;
   fetchByPageNumber(page: number): void;
@@ -41,8 +39,7 @@ export abstract class API<T> implements FetchData<T> {
       switchMap(this.fetchData),
       catchError((err) => {
         this.showErrorMessage;
-        throwError(err);
-        return EMPTY;
+        return throwError(() => err);
       }),
       map(this.mapResponse),
       tap(this.showSuccessMessage),
