@@ -18,23 +18,23 @@ import { LifeQuote, PaginationFunc, QuoteProps } from '../../types/quotes.interf
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LifeComponent implements OnInit {
-  private quotesService = inject(LifeQuotesService);
+  #quotesService = inject(LifeQuotesService);
   
-  public quotes$: Observable<LifeQuote[]>;
-  public paginationConfig = this.quotesService.paginationConfig;
-  public props: QuoteProps<LifeQuote> = ['quoteAuthor','quoteText']
+  quotes$: Observable<LifeQuote[]>;
+  paginationConfig = this.#quotesService.paginationConfig;
+  props: QuoteProps<LifeQuote> = ['quoteAuthor','quoteText']
 
   constructor() {}
 
   onPaginationChange: PaginationFunc = (page: number) => {
-    this.quotesService.fetchByPageNumber(page);
+    this.#quotesService.fetchByPageNumber(page);
   }
 
-  public tweet(obj: LifeQuote): void{
+  tweet(obj: LifeQuote): void{
     sendTweet(obj, ['quoteAuthor', 'quoteText']);
   }
 
   ngOnInit(): void {
-    this.quotes$ = this.quotesService.fetch();
+    this.quotes$ = this.#quotesService.fetch();
   }
 }

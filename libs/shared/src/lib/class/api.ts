@@ -46,7 +46,7 @@ export abstract class API<T> implements FetchData<T> {
       }),
       map(this.mapResponse),
       tap(this.showSuccessMessage),
-      share()
+      shareReplay(1)
     );
   }
 }
