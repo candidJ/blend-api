@@ -58,7 +58,7 @@ export class LifeQuotesService extends FeedPubSub {
       .set('limit', String(AppConfig.LIFE_QUOTES.LIMIT));
   };
 
-  private fetchData = (params: any): Observable<ILifeQuotesResponse> => {
+  private fetchData = (params: HttpParams): Observable<ILifeQuotesResponse> => {
     return this.httpClient.get<ILifeQuotesResponse>(AppConfig.LIFE_QUOTES.URL, {
       params,
     });

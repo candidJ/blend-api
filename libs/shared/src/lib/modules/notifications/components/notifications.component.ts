@@ -12,8 +12,16 @@ import { NotificationService } from '../services/notification.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotificationsComponent implements OnInit {
-  public notifications$: Observable<INotification[]> =
-    this.notificationService.notification$.pipe(
+  public notifications$: Observable<INotification[]>;
+
+  constructor(private notificationService: NotificationService) {}
+
+  clearNotification(notification: INotification): void {
+    this.notificationService.clearNotification(notification);
+  }
+
+  ngOnInit(): void {
+    this.notifications$ = this.notificationService.notification$.pipe(
       scan((messages: Array<INotification>, message: INotification) => {
         if (message.type === 'clear') {
           return messages.filter((data) => data.id !== message.id);
@@ -22,12 +30,5 @@ export class NotificationsComponent implements OnInit {
         }
       }, [])
     );
-
-  constructor(private notificationService: NotificationService) {}
-
-  clearNotification(notification: INotification): void {
-    this.notificationService.clearNotification(notification);
   }
-
-  ngOnInit(): void {}
 }

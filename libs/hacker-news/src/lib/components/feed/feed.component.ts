@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, WritableSignal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute, NavigationEnd, Event } from '@angular/router';
 import { HackerNews, HackerNewsFeed } from '../../types';
 import { HackerNewsApiService } from '../../services';
 import { HNFeedColumns } from '../../constants/metadata.const';
+import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/paginator.interface';
 
 @Component({
   selector: 'ba-feed',
@@ -14,7 +15,7 @@ export class FeedComponent implements OnInit {
   public feed$: Observable<HackerNewsFeed[]>;
   public dataSource: HackerNews[];
   public feedColumns: HackerNews[];
-  public paginationConfig = this.hackerNewsService.paginationConfig;
+  public paginationConfig: WritableSignal<PaginationConfig>;
   
   constructor(
     private hackerNewsService: HackerNewsApiService,
@@ -23,6 +24,7 @@ export class FeedComponent implements OnInit {
     this.router.events.subscribe((event: Event) => {
       this.removeDomainForAskRoute(event);
     });
+    this.paginationConfig = this.hackerNewsService.paginationConfig;
   }
 
   public onPaginatorChange(page: number) {

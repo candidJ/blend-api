@@ -4,6 +4,7 @@ import {
   Inject,
   forwardRef,
   ChangeDetectionStrategy,
+  WritableSignal,
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -15,6 +16,7 @@ import {
 import { NotificationService } from 'libs/shared/src/lib/modules/notifications/services/notification.service';
 import { ProgrammingQuote, PaginationFunc, QuoteProps } from '../../types/quotes.interface';
 import { sendTweet } from '../../utils/quote';
+import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/paginator.interface';
 
 @Component({
   selector: 'ba-programming',
@@ -31,13 +33,15 @@ import { sendTweet } from '../../utils/quote';
 })
 export class ProgrammingComponent implements OnInit {
   public quotes$: Observable<ProgrammingQuote[]>;
-  public paginationConfig = this.programmingQuotesService.paginationConfig;
+  public paginationConfig: WritableSignal<PaginationConfig>;
   public props: QuoteProps<ProgrammingQuote> = ['author', 'en']
 
   constructor(
     @Inject(forwardRef(() => QUOTES_SERVICE_TOKEN))
     private programmingQuotesService: ProgrammingQuotesService
-  ) { }
+  ) { 
+    this.paginationConfig = this.programmingQuotesService.paginationConfig;
+  }
 
   onPaginationChange: PaginationFunc = (page: number)=> {
     this.programmingQuotesService.fetchFeedByPageNumber(page);

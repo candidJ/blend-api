@@ -1,51 +1,5 @@
 {
   "nodes": {
-    "hacker-news": {
-      "name": "hacker-news",
-      "type": "lib",
-      "data": {
-        "name": "hacker-news",
-        "root": "libs/hacker-news",
-        "$schema": "../../node_modules/nx/schemas/project-schema.json",
-        "projectType": "library",
-        "sourceRoot": "libs/hacker-news/src",
-        "prefix": "blend-api",
-        "targets": {
-          "test": {
-            "inputs": [
-              "default",
-              "^production",
-              "{workspaceRoot}/jest.preset.js"
-            ],
-            "executor": "@nx/jest:jest",
-            "outputs": [
-              "{workspaceRoot}/coverage/libs/hacker-news"
-            ],
-            "options": {
-              "jestConfig": "libs/hacker-news/jest.config.ts",
-              "passWithNoTests": true
-            },
-            "configurations": {}
-          },
-          "lint": {
-            "inputs": [
-              "default",
-              "{workspaceRoot}/.eslintrc.json"
-            ],
-            "executor": "@nx/linter:eslint",
-            "options": {
-              "lintFilePatterns": [
-                "libs/hacker-news/src/**/*.ts",
-                "libs/hacker-news/src/**/*.html"
-              ]
-            },
-            "configurations": {}
-          }
-        },
-        "tags": [],
-        "implicitDependencies": []
-      }
-    },
     "BlendApiApp": {
       "name": "BlendApiApp",
       "type": "app",
@@ -177,6 +131,52 @@
         "tags": []
       }
     },
+    "hacker-news": {
+      "name": "hacker-news",
+      "type": "lib",
+      "data": {
+        "name": "hacker-news",
+        "root": "libs/hacker-news",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "library",
+        "sourceRoot": "libs/hacker-news/src",
+        "prefix": "blend-api",
+        "targets": {
+          "test": {
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "executor": "@nx/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/libs/hacker-news"
+            ],
+            "options": {
+              "jestConfig": "libs/hacker-news/jest.config.ts",
+              "passWithNoTests": true
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "executor": "@nx/linter:eslint",
+            "options": {
+              "lintFilePatterns": [
+                "libs/hacker-news/src/**/*.ts",
+                "libs/hacker-news/src/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "tags": [],
+        "implicitDependencies": []
+      }
+    },
     "calculator": {
       "name": "calculator",
       "type": "lib",
@@ -269,52 +269,6 @@
         "implicitDependencies": []
       }
     },
-    "quotes": {
-      "name": "quotes",
-      "type": "lib",
-      "data": {
-        "name": "quotes",
-        "root": "libs/quotes",
-        "$schema": "../../node_modules/nx/schemas/project-schema.json",
-        "projectType": "library",
-        "sourceRoot": "libs/quotes/src",
-        "prefix": "blend-api",
-        "targets": {
-          "test": {
-            "inputs": [
-              "default",
-              "^production",
-              "{workspaceRoot}/jest.preset.js"
-            ],
-            "executor": "@nx/jest:jest",
-            "outputs": [
-              "{workspaceRoot}/coverage/libs/quotes"
-            ],
-            "options": {
-              "jestConfig": "libs/quotes/jest.config.ts",
-              "passWithNoTests": true
-            },
-            "configurations": {}
-          },
-          "lint": {
-            "inputs": [
-              "default",
-              "{workspaceRoot}/.eslintrc.json"
-            ],
-            "executor": "@nx/linter:eslint",
-            "options": {
-              "lintFilePatterns": [
-                "libs/quotes/src/**/*.ts",
-                "libs/quotes/src/**/*.html"
-              ]
-            },
-            "configurations": {}
-          }
-        },
-        "tags": [],
-        "implicitDependencies": []
-      }
-    },
     "shared": {
       "name": "shared",
       "type": "lib",
@@ -352,6 +306,52 @@
               "lintFilePatterns": [
                 "libs/shared/src/**/*.ts",
                 "libs/shared/src/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "tags": [],
+        "implicitDependencies": []
+      }
+    },
+    "quotes": {
+      "name": "quotes",
+      "type": "lib",
+      "data": {
+        "name": "quotes",
+        "root": "libs/quotes",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "library",
+        "sourceRoot": "libs/quotes/src",
+        "prefix": "blend-api",
+        "targets": {
+          "test": {
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "executor": "@nx/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/libs/quotes"
+            ],
+            "options": {
+              "jestConfig": "libs/quotes/jest.config.ts",
+              "passWithNoTests": true
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "executor": "@nx/linter:eslint",
+            "options": {
+              "lintFilePatterns": [
+                "libs/quotes/src/**/*.ts",
+                "libs/quotes/src/**/*.html"
               ]
             },
             "configurations": {}
@@ -12182,33 +12182,6 @@
     }
   },
   "dependencies": {
-    "hacker-news": [
-      {
-        "source": "hacker-news",
-        "target": "npm:@angular/core",
-        "type": "static"
-      },
-      {
-        "source": "hacker-news",
-        "target": "npm:rxjs",
-        "type": "static"
-      },
-      {
-        "source": "hacker-news",
-        "target": "npm:@angular/router",
-        "type": "static"
-      },
-      {
-        "source": "hacker-news",
-        "target": "npm:@angular/common",
-        "type": "static"
-      },
-      {
-        "source": "hacker-news",
-        "target": "shared",
-        "type": "static"
-      }
-    ],
     "BlendApiApp": [
       {
         "source": "BlendApiApp",
@@ -12258,6 +12231,33 @@
       {
         "source": "BlendApiApp",
         "target": "npm:zone.js",
+        "type": "static"
+      }
+    ],
+    "hacker-news": [
+      {
+        "source": "hacker-news",
+        "target": "npm:@angular/core",
+        "type": "static"
+      },
+      {
+        "source": "hacker-news",
+        "target": "npm:rxjs",
+        "type": "static"
+      },
+      {
+        "source": "hacker-news",
+        "target": "npm:@angular/router",
+        "type": "static"
+      },
+      {
+        "source": "hacker-news",
+        "target": "shared",
+        "type": "static"
+      },
+      {
+        "source": "hacker-news",
+        "target": "npm:@angular/common",
         "type": "static"
       }
     ],
@@ -12325,33 +12325,6 @@
         "type": "static"
       }
     ],
-    "quotes": [
-      {
-        "source": "quotes",
-        "target": "npm:@angular/core",
-        "type": "static"
-      },
-      {
-        "source": "quotes",
-        "target": "npm:rxjs",
-        "type": "static"
-      },
-      {
-        "source": "quotes",
-        "target": "npm:@angular/common",
-        "type": "static"
-      },
-      {
-        "source": "quotes",
-        "target": "shared",
-        "type": "static"
-      },
-      {
-        "source": "quotes",
-        "target": "npm:@angular/router",
-        "type": "static"
-      }
-    ],
     "shared": [
       {
         "source": "shared",
@@ -12386,6 +12359,33 @@
       {
         "source": "shared",
         "target": "npm:@angular/platform-browser",
+        "type": "static"
+      }
+    ],
+    "quotes": [
+      {
+        "source": "quotes",
+        "target": "npm:@angular/core",
+        "type": "static"
+      },
+      {
+        "source": "quotes",
+        "target": "npm:rxjs",
+        "type": "static"
+      },
+      {
+        "source": "quotes",
+        "target": "npm:@angular/common",
+        "type": "static"
+      },
+      {
+        "source": "quotes",
+        "target": "shared",
+        "type": "static"
+      },
+      {
+        "source": "quotes",
+        "target": "npm:@angular/router",
         "type": "static"
       }
     ],

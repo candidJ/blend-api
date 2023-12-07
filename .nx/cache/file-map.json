@@ -68,326 +68,501 @@
   },
   "nxJsonPlugins": [],
   "projectFileMap": {
-    "shared": [
+    "calculator": [
       {
-        "file": "libs/shared/.eslintrc.json",
+        "file": "libs/calculator/.eslintrc.json",
         "hash": "9769559818467434823"
       },
       {
-        "file": "libs/shared/README.md",
-        "hash": "18321119346861532697"
+        "file": "libs/calculator/README.md",
+        "hash": "8176947484452868652"
       },
       {
-        "file": "libs/shared/jest.config.ts",
-        "hash": "7486919318868888350"
+        "file": "libs/calculator/jest.config.ts",
+        "hash": "6100249588503819755"
       },
       {
-        "file": "libs/shared/project.json",
-        "hash": "18024149540595924681"
+        "file": "libs/calculator/project.json",
+        "hash": "5804412765329416290"
       },
       {
-        "file": "libs/shared/src/index.ts",
-        "hash": "16940525558901708993"
+        "file": "libs/calculator/src/index.ts",
+        "hash": "1873551164684425090"
       },
       {
-        "file": "libs/shared/src/lib/class/api.ts",
-        "hash": "5138076541995774275",
+        "file": "libs/calculator/src/lib/calculator.module.ts",
+        "hash": "14748585316419605535",
         "deps": [
-          "npm:rxjs",
-          "npm:@angular/common"
-        ]
-      },
-      {
-        "file": "libs/shared/src/lib/class/index.ts",
-        "hash": "13443657969788988525"
-      },
-      {
-        "file": "libs/shared/src/lib/constant/config.ts",
-        "hash": "6423236122380911811"
-      },
-      {
-        "file": "libs/shared/src/lib/constant/index.ts",
-        "hash": "2537789943699795918"
-      },
-      {
-        "file": "libs/shared/src/lib/directive/directive.module.ts",
-        "hash": "16177380192361078977",
-        "deps": [
+          "npm:@angular/core",
           "npm:@angular/common",
-          "npm:@angular/core"
-        ]
-      },
-      {
-        "file": "libs/shared/src/lib/directive/highlighted.directive.ts",
-        "hash": "12453971641484255711",
-        "deps": [
-          "npm:@angular/core"
-        ]
-      },
-      {
-        "file": "libs/shared/src/lib/directive/index.ts",
-        "hash": "485084515448419525"
-      },
-      {
-        "file": "libs/shared/src/lib/helpers/date-time.ts",
-        "hash": "5550059564199733274",
-        "deps": [
-          "npm:moment"
-        ]
-      },
-      {
-        "file": "libs/shared/src/lib/helpers/index.ts",
-        "hash": "10447743983826384235"
-      },
-      {
-        "file": "libs/shared/src/lib/modules/feather-icons/icons.module.ts",
-        "hash": "16601197840832079867",
-        "deps": [
-          "npm:@angular/core",
-          "npm:angular-feather"
-        ]
-      },
-      {
-        "file": "libs/shared/src/lib/modules/grid/components/grid.component.html",
-        "hash": "14260699577139323376"
-      },
-      {
-        "file": "libs/shared/src/lib/modules/grid/components/grid.component.scss",
-        "hash": "3244421341483603138"
-      },
-      {
-        "file": "libs/shared/src/lib/modules/grid/components/grid.component.ts",
-        "hash": "10992646393630843215",
-        "deps": [
-          "npm:@angular/core",
-          "npm:rxjs"
-        ]
-      },
-      {
-        "file": "libs/shared/src/lib/modules/grid/grid.module.ts",
-        "hash": "3011500555709188680",
-        "deps": [
-          "npm:@angular/common",
-          "npm:@angular/core"
-        ]
-      },
-      {
-        "file": "libs/shared/src/lib/modules/index.ts",
-        "hash": "1250108221756072849"
-      },
-      {
-        "file": "libs/shared/src/lib/modules/loader/components/loader.component.html",
-        "hash": "8267092227751484203"
-      },
-      {
-        "file": "libs/shared/src/lib/modules/loader/components/loader.component.scss",
-        "hash": "7963173959429334952"
-      },
-      {
-        "file": "libs/shared/src/lib/modules/loader/components/loader.component.ts",
-        "hash": "1867167303283876212",
-        "deps": [
-          "npm:@angular/core"
-        ]
-      },
-      {
-        "file": "libs/shared/src/lib/modules/loader/loader.module.ts",
-        "hash": "17241116804083079425",
-        "deps": [
-          "npm:@angular/common",
-          "npm:@angular/common/http",
-          "npm:@angular/core"
-        ]
-      },
-      {
-        "file": "libs/shared/src/lib/modules/loader/services/loader-interceptor.service.ts",
-        "hash": "13877297143584982685",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@angular/common/http",
-          "npm:rxjs"
-        ]
-      },
-      {
-        "file": "libs/shared/src/lib/modules/loader/services/loader.service.ts",
-        "hash": "9668851467926273211",
-        "deps": [
-          "npm:@angular/core",
-          "npm:rxjs"
-        ]
-      },
-      {
-        "file": "libs/shared/src/lib/modules/message-box/components/message-box.component.html",
-        "hash": "13601220164595112559"
-      },
-      {
-        "file": "libs/shared/src/lib/modules/message-box/components/message-box.component.scss",
-        "hash": "2078902263855125016"
-      },
-      {
-        "file": "libs/shared/src/lib/modules/message-box/components/message-box.component.ts",
-        "hash": "8849221816748193464",
-        "deps": [
-          "npm:@angular/core"
-        ]
-      },
-      {
-        "file": "libs/shared/src/lib/modules/message-box/message-box.module.ts",
-        "hash": "13433892787167337091",
-        "deps": [
-          "npm:@angular/common",
-          "npm:@angular/core"
-        ]
-      },
-      {
-        "file": "libs/shared/src/lib/modules/navbar/components/navbar/navbar.component.html",
-        "hash": "6896438472273708725"
-      },
-      {
-        "file": "libs/shared/src/lib/modules/navbar/components/navbar/navbar.component.scss",
-        "hash": "5209910942264743014"
-      },
-      {
-        "file": "libs/shared/src/lib/modules/navbar/components/navbar/navbar.component.ts",
-        "hash": "9608262956609598607",
-        "deps": [
-          "npm:@angular/core"
-        ]
-      },
-      {
-        "file": "libs/shared/src/lib/modules/navbar/constants/navbar-menu-items.constant.ts",
-        "hash": "12744498777887163882"
-      },
-      {
-        "file": "libs/shared/src/lib/modules/navbar/navbar.module.ts",
-        "hash": "16090228170307968421",
-        "deps": [
-          "npm:@angular/core",
           "npm:@angular/router",
-          "npm:@angular/common"
+          "shared"
         ]
       },
       {
-        "file": "libs/shared/src/lib/modules/navbar/types/navbar.interface.ts",
-        "hash": "4671402033753049850",
-        "deps": [
-          "npm:@angular/platform-browser"
-        ]
+        "file": "libs/calculator/src/lib/components/calculator.component.html",
+        "hash": "12513519988056239611"
       },
       {
-        "file": "libs/shared/src/lib/modules/notifications/components/notifications.component.html",
-        "hash": "6835714517376633489"
+        "file": "libs/calculator/src/lib/components/calculator.component.scss",
+        "hash": "7940814443903704345"
       },
       {
-        "file": "libs/shared/src/lib/modules/notifications/components/notifications.component.scss",
-        "hash": "16770557946649331258"
-      },
-      {
-        "file": "libs/shared/src/lib/modules/notifications/components/notifications.component.ts",
-        "hash": "9856877252337587502",
+        "file": "libs/calculator/src/lib/components/calculator.component.ts",
+        "hash": "3040905751427297837",
         "deps": [
           "npm:@angular/core",
-          "npm:rxjs"
+          "npm:lodash"
         ]
       },
       {
-        "file": "libs/shared/src/lib/modules/notifications/notifications.module.ts",
-        "hash": "7961328592476502590",
-        "deps": [
-          "npm:@angular/common",
-          "npm:@angular/core"
-        ]
+        "file": "libs/calculator/src/lib/constants/calculator.const.ts",
+        "hash": "1818716253331514071"
       },
       {
-        "file": "libs/shared/src/lib/modules/notifications/services/notification.service.ts",
-        "hash": "15366020151518176334",
-        "deps": [
-          "npm:@angular/core",
-          "npm:rxjs"
-        ]
+        "file": "libs/calculator/src/lib/types/calculator.interface.ts",
+        "hash": "9492388756139923796"
       },
       {
-        "file": "libs/shared/src/lib/modules/notifications/types/notifications.interface.ts",
-        "hash": "2106801589180644565"
-      },
-      {
-        "file": "libs/shared/src/lib/modules/paginator/components/paginator.component.html",
-        "hash": "14938478245440610311"
-      },
-      {
-        "file": "libs/shared/src/lib/modules/paginator/components/paginator.component.scss",
-        "hash": "7154117781807404907"
-      },
-      {
-        "file": "libs/shared/src/lib/modules/paginator/components/paginator.component.ts",
-        "hash": "15572074186009178364",
-        "deps": [
-          "npm:@angular/core"
-        ]
-      },
-      {
-        "file": "libs/shared/src/lib/modules/paginator/paginator.module.ts",
-        "hash": "15867353744277639924",
-        "deps": [
-          "npm:@angular/common",
-          "npm:@angular/core"
-        ]
-      },
-      {
-        "file": "libs/shared/src/lib/modules/paginator/types/paginator.interface.ts",
-        "hash": "9498179010713437880"
-      },
-      {
-        "file": "libs/shared/src/lib/pipe/date-time-format.ts",
-        "hash": "1359263430898342093",
-        "deps": [
-          "npm:@angular/core"
-        ]
-      },
-      {
-        "file": "libs/shared/src/lib/pipe/index.ts",
-        "hash": "1584476171027343415"
-      },
-      {
-        "file": "libs/shared/src/lib/pipe/number-format.ts",
-        "hash": "17297735277566905711",
-        "deps": [
-          "npm:@angular/core"
-        ]
-      },
-      {
-        "file": "libs/shared/src/lib/pipe/pipe.module.ts",
-        "hash": "4792918557393765241",
-        "deps": [
-          "npm:@angular/common",
-          "npm:@angular/core"
-        ]
-      },
-      {
-        "file": "libs/shared/src/lib/shared.module.ts",
-        "hash": "5686692921421764619",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@angular/common"
-        ]
-      },
-      {
-        "file": "libs/shared/src/test-setup.ts",
+        "file": "libs/calculator/src/test-setup.ts",
         "hash": "17711435995618823417",
         "deps": [
           "npm:jest-preset-angular/setup-jest"
         ]
       },
       {
-        "file": "libs/shared/tsconfig.json",
+        "file": "libs/calculator/tsconfig.json",
         "hash": "7237535718920748111"
       },
       {
-        "file": "libs/shared/tsconfig.lib.json",
+        "file": "libs/calculator/tsconfig.lib.json",
         "hash": "15303894523353606021"
       },
       {
-        "file": "libs/shared/tsconfig.spec.json",
+        "file": "libs/calculator/tsconfig.spec.json",
+        "hash": "18121645209207210368"
+      }
+    ],
+    "weather": [
+      {
+        "file": "libs/weather/.eslintrc.json",
+        "hash": "9769559818467434823"
+      },
+      {
+        "file": "libs/weather/README.md",
+        "hash": "17243156640905041954"
+      },
+      {
+        "file": "libs/weather/jest.config.ts",
+        "hash": "15820191648734229387"
+      },
+      {
+        "file": "libs/weather/project.json",
+        "hash": "7497606752007436180"
+      },
+      {
+        "file": "libs/weather/src/index.ts",
+        "hash": "12146681700274021831"
+      },
+      {
+        "file": "libs/weather/src/lib/class/forecast-by-cityname.ts",
+        "hash": "10556888771295465084",
+        "deps": [
+          "npm:rxjs",
+          "npm:@angular/common/http",
+          "shared"
+        ]
+      },
+      {
+        "file": "libs/weather/src/lib/class/forecast-by-latlong.ts",
+        "hash": "4158781853818291195",
+        "deps": [
+          "npm:rxjs",
+          "npm:@angular/common/http",
+          "shared"
+        ]
+      },
+      {
+        "file": "libs/weather/src/lib/class/weather-forecast.ts",
+        "hash": "6287208690369034895"
+      },
+      {
+        "file": "libs/weather/src/lib/components/forecast-details/forecast-details.component.html",
+        "hash": "6981288162478987213"
+      },
+      {
+        "file": "libs/weather/src/lib/components/forecast-details/forecast-details.component.scss",
+        "hash": "14610467054675944459"
+      },
+      {
+        "file": "libs/weather/src/lib/components/forecast-details/forecast-details.component.ts",
+        "hash": "7873834274712449464",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/weather/src/lib/components/forecast/forecast.component.html",
+        "hash": "11645926851433382482"
+      },
+      {
+        "file": "libs/weather/src/lib/components/forecast/forecast.component.scss",
+        "hash": "14157951783103091642"
+      },
+      {
+        "file": "libs/weather/src/lib/components/forecast/forecast.component.ts",
+        "hash": "156363402848597907",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/forms",
+          "npm:lodash",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/weather/src/lib/constants/cities.const.ts",
+        "hash": "8723235828156630538"
+      },
+      {
+        "file": "libs/weather/src/lib/constants/country.const.ts",
+        "hash": "10486571224804146822"
+      },
+      {
+        "file": "libs/weather/src/lib/services/forecast.service.ts",
+        "hash": "15484415150948417958",
+        "deps": [
+          "npm:@angular/core",
+          "npm:rxjs",
+          "npm:@angular/common",
+          "shared"
+        ]
+      },
+      {
+        "file": "libs/weather/src/lib/types/forecast-strategy.interface.ts",
+        "hash": "3665449644254490727",
+        "deps": [
+          "npm:rxjs",
+          "npm:@angular/common/http"
+        ]
+      },
+      {
+        "file": "libs/weather/src/lib/types/weather.interface.ts",
+        "hash": "2583886328656842999"
+      },
+      {
+        "file": "libs/weather/src/lib/weather.module.ts",
+        "hash": "4871694502111394398",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:@angular/router",
+          "npm:@angular/forms",
+          "shared"
+        ]
+      },
+      {
+        "file": "libs/weather/src/test-setup.ts",
+        "hash": "17711435995618823417",
+        "deps": [
+          "npm:jest-preset-angular/setup-jest"
+        ]
+      },
+      {
+        "file": "libs/weather/tsconfig.json",
+        "hash": "7237535718920748111"
+      },
+      {
+        "file": "libs/weather/tsconfig.lib.json",
+        "hash": "15303894523353606021"
+      },
+      {
+        "file": "libs/weather/tsconfig.spec.json",
+        "hash": "18121645209207210368"
+      }
+    ],
+    "quotes": [
+      {
+        "file": "libs/quotes/.eslintrc.json",
+        "hash": "9769559818467434823"
+      },
+      {
+        "file": "libs/quotes/README.md",
+        "hash": "10434425521920706099"
+      },
+      {
+        "file": "libs/quotes/jest.config.ts",
+        "hash": "14579463149665089496"
+      },
+      {
+        "file": "libs/quotes/project.json",
+        "hash": "17812242292957475773"
+      },
+      {
+        "file": "libs/quotes/src/index.ts",
+        "hash": "12675951392683084279"
+      },
+      {
+        "file": "libs/quotes/src/lib/components/life/life.component.html",
+        "hash": "11281460995927801921"
+      },
+      {
+        "file": "libs/quotes/src/lib/components/life/life.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "libs/quotes/src/lib/components/life/life.component.ts",
+        "hash": "2049121965790097741",
+        "deps": [
+          "npm:@angular/core",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/quotes/src/lib/components/programming/programming.component.html",
+        "hash": "6115773386578290309"
+      },
+      {
+        "file": "libs/quotes/src/lib/components/programming/programming.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "libs/quotes/src/lib/components/programming/programming.component.ts",
+        "hash": "9299474542695853070",
+        "deps": [
+          "npm:@angular/core",
+          "npm:rxjs",
+          "npm:@angular/common",
+          "shared"
+        ]
+      },
+      {
+        "file": "libs/quotes/src/lib/quotes.module.ts",
+        "hash": "16829480475412426549",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:@angular/router",
+          "shared"
+        ]
+      },
+      {
+        "file": "libs/quotes/src/lib/services/life-quotes.service.ts",
+        "hash": "538512324916369159",
+        "deps": [
+          "npm:@angular/common",
+          "npm:@angular/core",
+          "npm:rxjs",
+          "shared"
+        ]
+      },
+      {
+        "file": "libs/quotes/src/lib/services/programming-quotes.service.ts",
+        "hash": "17198099428024416612",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:rxjs",
+          "shared"
+        ]
+      },
+      {
+        "file": "libs/quotes/src/lib/types/quotes.interface.ts",
+        "hash": "2801153618907659008"
+      },
+      {
+        "file": "libs/quotes/src/lib/utils/quote.ts",
+        "hash": "11895516671645393478",
+        "deps": [
+          "shared"
+        ]
+      },
+      {
+        "file": "libs/quotes/src/test-setup.ts",
+        "hash": "17711435995618823417",
+        "deps": [
+          "npm:jest-preset-angular/setup-jest"
+        ]
+      },
+      {
+        "file": "libs/quotes/tsconfig.json",
+        "hash": "7237535718920748111"
+      },
+      {
+        "file": "libs/quotes/tsconfig.lib.json",
+        "hash": "15303894523353606021"
+      },
+      {
+        "file": "libs/quotes/tsconfig.spec.json",
+        "hash": "18121645209207210368"
+      }
+    ],
+    "hacker-news": [
+      {
+        "file": "libs/hacker-news/.eslintrc.json",
+        "hash": "9769559818467434823"
+      },
+      {
+        "file": "libs/hacker-news/README.md",
+        "hash": "18332203022890710672"
+      },
+      {
+        "file": "libs/hacker-news/jest.config.ts",
+        "hash": "9060812826873839758"
+      },
+      {
+        "file": "libs/hacker-news/project.json",
+        "hash": "1014077020034217462"
+      },
+      {
+        "file": "libs/hacker-news/src/index.ts",
+        "hash": "1614669516924311843"
+      },
+      {
+        "file": "libs/hacker-news/src/lib/components/article-list/article-list.component.html",
+        "hash": "10798783775780976444"
+      },
+      {
+        "file": "libs/hacker-news/src/lib/components/article-list/article-list.component.scss",
+        "hash": "17320013545929966218"
+      },
+      {
+        "file": "libs/hacker-news/src/lib/components/article-list/article-list.component.ts",
+        "hash": "6207238521494495599",
+        "deps": [
+          "npm:@angular/core",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/hacker-news/src/lib/components/comments/comments.component.html",
+        "hash": "10874646436258206875"
+      },
+      {
+        "file": "libs/hacker-news/src/lib/components/comments/comments.component.scss",
+        "hash": "13463278813589139653"
+      },
+      {
+        "file": "libs/hacker-news/src/lib/components/comments/comments.component.ts",
+        "hash": "14330687373195297948",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/hacker-news/src/lib/components/feed-details/feed-details.component.html",
+        "hash": "3854260177834422204"
+      },
+      {
+        "file": "libs/hacker-news/src/lib/components/feed-details/feed-details.component.scss",
+        "hash": "13477968145762496165"
+      },
+      {
+        "file": "libs/hacker-news/src/lib/components/feed-details/feed-details.component.ts",
+        "hash": "2499305984645742557",
+        "deps": [
+          "npm:@angular/core",
+          "npm:rxjs",
+          "npm:@angular/router"
+        ]
+      },
+      {
+        "file": "libs/hacker-news/src/lib/components/feed/feed.component.html",
+        "hash": "266563959826028544"
+      },
+      {
+        "file": "libs/hacker-news/src/lib/components/feed/feed.component.scss",
+        "hash": "17152084091033368571"
+      },
+      {
+        "file": "libs/hacker-news/src/lib/components/feed/feed.component.ts",
+        "hash": "4699472743907052701",
+        "deps": [
+          "npm:@angular/core",
+          "npm:rxjs",
+          "npm:@angular/router",
+          "shared"
+        ]
+      },
+      {
+        "file": "libs/hacker-news/src/lib/components/index.ts",
+        "hash": "17594320234128112848"
+      },
+      {
+        "file": "libs/hacker-news/src/lib/constants/metadata.const.ts",
+        "hash": "184767650969575170"
+      },
+      {
+        "file": "libs/hacker-news/src/lib/hacker-news-routing.module.ts",
+        "hash": "9071109824714018751",
+        "deps": [
+          "npm:@angular/common",
+          "npm:@angular/core",
+          "npm:@angular/router"
+        ]
+      },
+      {
+        "file": "libs/hacker-news/src/lib/hacker-news.module.ts",
+        "hash": "3778049701509423104",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "shared"
+        ]
+      },
+      {
+        "file": "libs/hacker-news/src/lib/services/hacker-news-api.service.ts",
+        "hash": "1581812627775499979",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common",
+          "npm:rxjs",
+          "npm:@angular/router",
+          "shared"
+        ]
+      },
+      {
+        "file": "libs/hacker-news/src/lib/services/index.ts",
+        "hash": "4224998172993939219"
+      },
+      {
+        "file": "libs/hacker-news/src/lib/services/news-api.service.ts",
+        "hash": "15341650248172745842",
+        "deps": [
+          "npm:@angular/core",
+          "npm:rxjs",
+          "npm:@angular/common",
+          "shared"
+        ]
+      },
+      {
+        "file": "libs/hacker-news/src/lib/types/hacker-news.interface.ts",
+        "hash": "17704117091420241794"
+      },
+      {
+        "file": "libs/hacker-news/src/lib/types/index.ts",
+        "hash": "6409524922482783574"
+      },
+      {
+        "file": "libs/hacker-news/src/lib/types/news-article.interface.ts",
+        "hash": "6675595849730527554"
+      },
+      {
+        "file": "libs/hacker-news/src/test-setup.ts",
+        "hash": "17711435995618823417",
+        "deps": [
+          "npm:jest-preset-angular/setup-jest"
+        ]
+      },
+      {
+        "file": "libs/hacker-news/tsconfig.json",
+        "hash": "7237535718920748111"
+      },
+      {
+        "file": "libs/hacker-news/tsconfig.lib.json",
+        "hash": "15303894523353606021"
+      },
+      {
+        "file": "libs/hacker-news/tsconfig.spec.json",
         "hash": "18121645209207210368"
       }
     ],
@@ -582,500 +757,325 @@
         "hash": "2276589693114153683"
       }
     ],
-    "calculator": [
+    "shared": [
       {
-        "file": "libs/calculator/.eslintrc.json",
+        "file": "libs/shared/.eslintrc.json",
         "hash": "9769559818467434823"
       },
       {
-        "file": "libs/calculator/README.md",
-        "hash": "8176947484452868652"
+        "file": "libs/shared/README.md",
+        "hash": "18321119346861532697"
       },
       {
-        "file": "libs/calculator/jest.config.ts",
-        "hash": "6100249588503819755"
+        "file": "libs/shared/jest.config.ts",
+        "hash": "7486919318868888350"
       },
       {
-        "file": "libs/calculator/project.json",
-        "hash": "5804412765329416290"
+        "file": "libs/shared/project.json",
+        "hash": "18024149540595924681"
       },
       {
-        "file": "libs/calculator/src/index.ts",
-        "hash": "1873551164684425090"
+        "file": "libs/shared/src/index.ts",
+        "hash": "16940525558901708993"
       },
       {
-        "file": "libs/calculator/src/lib/calculator.module.ts",
-        "hash": "14748585316419605535",
+        "file": "libs/shared/src/lib/class/api.ts",
+        "hash": "12406502822510087474",
         "deps": [
-          "npm:@angular/core",
-          "npm:@angular/common",
-          "npm:@angular/router",
-          "shared"
-        ]
-      },
-      {
-        "file": "libs/calculator/src/lib/components/calculator.component.html",
-        "hash": "10980834749262229456"
-      },
-      {
-        "file": "libs/calculator/src/lib/components/calculator.component.scss",
-        "hash": "7940814443903704345"
-      },
-      {
-        "file": "libs/calculator/src/lib/components/calculator.component.ts",
-        "hash": "3040905751427297837",
-        "deps": [
-          "npm:@angular/core",
-          "npm:lodash"
-        ]
-      },
-      {
-        "file": "libs/calculator/src/lib/constants/calculator.const.ts",
-        "hash": "1818716253331514071"
-      },
-      {
-        "file": "libs/calculator/src/lib/types/calculator.interface.ts",
-        "hash": "9492388756139923796"
-      },
-      {
-        "file": "libs/calculator/src/test-setup.ts",
-        "hash": "17711435995618823417",
-        "deps": [
-          "npm:jest-preset-angular/setup-jest"
-        ]
-      },
-      {
-        "file": "libs/calculator/tsconfig.json",
-        "hash": "7237535718920748111"
-      },
-      {
-        "file": "libs/calculator/tsconfig.lib.json",
-        "hash": "15303894523353606021"
-      },
-      {
-        "file": "libs/calculator/tsconfig.spec.json",
-        "hash": "18121645209207210368"
-      }
-    ],
-    "quotes": [
-      {
-        "file": "libs/quotes/.eslintrc.json",
-        "hash": "9769559818467434823"
-      },
-      {
-        "file": "libs/quotes/README.md",
-        "hash": "10434425521920706099"
-      },
-      {
-        "file": "libs/quotes/jest.config.ts",
-        "hash": "14579463149665089496"
-      },
-      {
-        "file": "libs/quotes/project.json",
-        "hash": "17812242292957475773"
-      },
-      {
-        "file": "libs/quotes/src/index.ts",
-        "hash": "12675951392683084279"
-      },
-      {
-        "file": "libs/quotes/src/lib/components/life/life.component.html",
-        "hash": "11281460995927801921"
-      },
-      {
-        "file": "libs/quotes/src/lib/components/life/life.component.scss",
-        "hash": "3244421341483603138"
-      },
-      {
-        "file": "libs/quotes/src/lib/components/life/life.component.ts",
-        "hash": "11489725580895860695",
-        "deps": [
-          "npm:@angular/core",
           "npm:rxjs"
         ]
       },
       {
-        "file": "libs/quotes/src/lib/components/programming/programming.component.html",
-        "hash": "6115773386578290309"
+        "file": "libs/shared/src/lib/class/index.ts",
+        "hash": "13443657969788988525"
       },
       {
-        "file": "libs/quotes/src/lib/components/programming/programming.component.scss",
-        "hash": "3244421341483603138"
+        "file": "libs/shared/src/lib/constant/config.ts",
+        "hash": "6423236122380911811"
       },
       {
-        "file": "libs/quotes/src/lib/components/programming/programming.component.ts",
-        "hash": "6039181273178357997",
-        "deps": [
-          "npm:@angular/core",
-          "npm:rxjs",
-          "npm:@angular/common",
-          "shared"
-        ]
+        "file": "libs/shared/src/lib/constant/index.ts",
+        "hash": "2537789943699795918"
       },
       {
-        "file": "libs/quotes/src/lib/quotes.module.ts",
-        "hash": "16829480475412426549",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@angular/common",
-          "npm:@angular/router",
-          "shared"
-        ]
-      },
-      {
-        "file": "libs/quotes/src/lib/services/life-quotes.service.ts",
-        "hash": "8709746807539335670",
+        "file": "libs/shared/src/lib/directive/directive.module.ts",
+        "hash": "16177380192361078977",
         "deps": [
           "npm:@angular/common",
-          "npm:@angular/core",
-          "npm:rxjs",
-          "shared"
+          "npm:@angular/core"
         ]
       },
       {
-        "file": "libs/quotes/src/lib/services/programming-quotes.service.ts",
-        "hash": "15678797108961283417",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@angular/common",
-          "npm:rxjs",
-          "shared"
-        ]
-      },
-      {
-        "file": "libs/quotes/src/lib/types/quotes.interface.ts",
-        "hash": "2801153618907659008"
-      },
-      {
-        "file": "libs/quotes/src/lib/utils/quote.ts",
-        "hash": "11895516671645393478",
-        "deps": [
-          "shared"
-        ]
-      },
-      {
-        "file": "libs/quotes/src/test-setup.ts",
-        "hash": "17711435995618823417",
-        "deps": [
-          "npm:jest-preset-angular/setup-jest"
-        ]
-      },
-      {
-        "file": "libs/quotes/tsconfig.json",
-        "hash": "7237535718920748111"
-      },
-      {
-        "file": "libs/quotes/tsconfig.lib.json",
-        "hash": "15303894523353606021"
-      },
-      {
-        "file": "libs/quotes/tsconfig.spec.json",
-        "hash": "18121645209207210368"
-      }
-    ],
-    "weather": [
-      {
-        "file": "libs/weather/.eslintrc.json",
-        "hash": "9769559818467434823"
-      },
-      {
-        "file": "libs/weather/README.md",
-        "hash": "17243156640905041954"
-      },
-      {
-        "file": "libs/weather/jest.config.ts",
-        "hash": "15820191648734229387"
-      },
-      {
-        "file": "libs/weather/project.json",
-        "hash": "7497606752007436180"
-      },
-      {
-        "file": "libs/weather/src/index.ts",
-        "hash": "12146681700274021831"
-      },
-      {
-        "file": "libs/weather/src/lib/class/forecast-by-cityname.ts",
-        "hash": "10556888771295465084",
-        "deps": [
-          "npm:rxjs",
-          "npm:@angular/common/http",
-          "shared"
-        ]
-      },
-      {
-        "file": "libs/weather/src/lib/class/forecast-by-latlong.ts",
-        "hash": "4158781853818291195",
-        "deps": [
-          "npm:rxjs",
-          "npm:@angular/common/http",
-          "shared"
-        ]
-      },
-      {
-        "file": "libs/weather/src/lib/class/weather-forecast.ts",
-        "hash": "6287208690369034895"
-      },
-      {
-        "file": "libs/weather/src/lib/components/forecast-details/forecast-details.component.html",
-        "hash": "6981288162478987213"
-      },
-      {
-        "file": "libs/weather/src/lib/components/forecast-details/forecast-details.component.scss",
-        "hash": "14610467054675944459"
-      },
-      {
-        "file": "libs/weather/src/lib/components/forecast-details/forecast-details.component.ts",
-        "hash": "7873834274712449464",
+        "file": "libs/shared/src/lib/directive/highlighted.directive.ts",
+        "hash": "12453971641484255711",
         "deps": [
           "npm:@angular/core"
         ]
       },
       {
-        "file": "libs/weather/src/lib/components/forecast/forecast.component.html",
-        "hash": "11645926851433382482"
+        "file": "libs/shared/src/lib/directive/index.ts",
+        "hash": "485084515448419525"
       },
       {
-        "file": "libs/weather/src/lib/components/forecast/forecast.component.scss",
-        "hash": "14157951783103091642"
+        "file": "libs/shared/src/lib/helpers/date-time.ts",
+        "hash": "5550059564199733274",
+        "deps": [
+          "npm:moment"
+        ]
       },
       {
-        "file": "libs/weather/src/lib/components/forecast/forecast.component.ts",
-        "hash": "156363402848597907",
+        "file": "libs/shared/src/lib/helpers/index.ts",
+        "hash": "10447743983826384235"
+      },
+      {
+        "file": "libs/shared/src/lib/modules/feather-icons/icons.module.ts",
+        "hash": "16601197840832079867",
         "deps": [
           "npm:@angular/core",
-          "npm:@angular/forms",
-          "npm:lodash",
-          "npm:rxjs"
+          "npm:angular-feather"
         ]
       },
       {
-        "file": "libs/weather/src/lib/constants/cities.const.ts",
-        "hash": "8723235828156630538"
+        "file": "libs/shared/src/lib/modules/grid/components/grid.component.html",
+        "hash": "12386639116154247174"
       },
       {
-        "file": "libs/weather/src/lib/constants/country.const.ts",
-        "hash": "10486571224804146822"
+        "file": "libs/shared/src/lib/modules/grid/components/grid.component.scss",
+        "hash": "3244421341483603138"
       },
       {
-        "file": "libs/weather/src/lib/services/forecast.service.ts",
-        "hash": "15484415150948417958",
-        "deps": [
-          "npm:@angular/core",
-          "npm:rxjs",
-          "npm:@angular/common",
-          "shared"
-        ]
-      },
-      {
-        "file": "libs/weather/src/lib/types/forecast-strategy.interface.ts",
-        "hash": "3665449644254490727",
-        "deps": [
-          "npm:rxjs",
-          "npm:@angular/common/http"
-        ]
-      },
-      {
-        "file": "libs/weather/src/lib/types/weather.interface.ts",
-        "hash": "2583886328656842999"
-      },
-      {
-        "file": "libs/weather/src/lib/weather.module.ts",
-        "hash": "4871694502111394398",
-        "deps": [
-          "npm:@angular/core",
-          "npm:@angular/common",
-          "npm:@angular/router",
-          "npm:@angular/forms",
-          "shared"
-        ]
-      },
-      {
-        "file": "libs/weather/src/test-setup.ts",
-        "hash": "17711435995618823417",
-        "deps": [
-          "npm:jest-preset-angular/setup-jest"
-        ]
-      },
-      {
-        "file": "libs/weather/tsconfig.json",
-        "hash": "7237535718920748111"
-      },
-      {
-        "file": "libs/weather/tsconfig.lib.json",
-        "hash": "15303894523353606021"
-      },
-      {
-        "file": "libs/weather/tsconfig.spec.json",
-        "hash": "18121645209207210368"
-      }
-    ],
-    "hacker-news": [
-      {
-        "file": "libs/hacker-news/.eslintrc.json",
-        "hash": "9769559818467434823"
-      },
-      {
-        "file": "libs/hacker-news/README.md",
-        "hash": "18332203022890710672"
-      },
-      {
-        "file": "libs/hacker-news/jest.config.ts",
-        "hash": "9060812826873839758"
-      },
-      {
-        "file": "libs/hacker-news/project.json",
-        "hash": "1014077020034217462"
-      },
-      {
-        "file": "libs/hacker-news/src/index.ts",
-        "hash": "1614669516924311843"
-      },
-      {
-        "file": "libs/hacker-news/src/lib/components/article-list/article-list.component.html",
-        "hash": "10798783775780976444"
-      },
-      {
-        "file": "libs/hacker-news/src/lib/components/article-list/article-list.component.scss",
-        "hash": "17320013545929966218"
-      },
-      {
-        "file": "libs/hacker-news/src/lib/components/article-list/article-list.component.ts",
-        "hash": "16159662204210051476",
+        "file": "libs/shared/src/lib/modules/grid/components/grid.component.ts",
+        "hash": "10992646393630843215",
         "deps": [
           "npm:@angular/core",
           "npm:rxjs"
         ]
       },
       {
-        "file": "libs/hacker-news/src/lib/components/comments/comments.component.html",
-        "hash": "10874646436258206875"
+        "file": "libs/shared/src/lib/modules/grid/grid.module.ts",
+        "hash": "3011500555709188680",
+        "deps": [
+          "npm:@angular/common",
+          "npm:@angular/core"
+        ]
       },
       {
-        "file": "libs/hacker-news/src/lib/components/comments/comments.component.scss",
-        "hash": "13463278813589139653"
+        "file": "libs/shared/src/lib/modules/index.ts",
+        "hash": "1250108221756072849"
       },
       {
-        "file": "libs/hacker-news/src/lib/components/comments/comments.component.ts",
-        "hash": "14330687373195297948",
+        "file": "libs/shared/src/lib/modules/loader/components/loader.component.html",
+        "hash": "8267092227751484203"
+      },
+      {
+        "file": "libs/shared/src/lib/modules/loader/components/loader.component.scss",
+        "hash": "7963173959429334952"
+      },
+      {
+        "file": "libs/shared/src/lib/modules/loader/components/loader.component.ts",
+        "hash": "1867167303283876212",
         "deps": [
           "npm:@angular/core"
         ]
       },
       {
-        "file": "libs/hacker-news/src/lib/components/feed-details/feed-details.component.html",
-        "hash": "3854260177834422204"
-      },
-      {
-        "file": "libs/hacker-news/src/lib/components/feed-details/feed-details.component.scss",
-        "hash": "13477968145762496165"
-      },
-      {
-        "file": "libs/hacker-news/src/lib/components/feed-details/feed-details.component.ts",
-        "hash": "2034281013559196880",
-        "deps": [
-          "npm:@angular/core",
-          "npm:rxjs",
-          "npm:@angular/router"
-        ]
-      },
-      {
-        "file": "libs/hacker-news/src/lib/components/feed/feed.component.html",
-        "hash": "266563959826028544"
-      },
-      {
-        "file": "libs/hacker-news/src/lib/components/feed/feed.component.scss",
-        "hash": "17152084091033368571"
-      },
-      {
-        "file": "libs/hacker-news/src/lib/components/feed/feed.component.ts",
-        "hash": "1707911976847911876",
-        "deps": [
-          "npm:@angular/core",
-          "npm:rxjs",
-          "npm:@angular/router"
-        ]
-      },
-      {
-        "file": "libs/hacker-news/src/lib/components/index.ts",
-        "hash": "17594320234128112848"
-      },
-      {
-        "file": "libs/hacker-news/src/lib/constants/metadata.const.ts",
-        "hash": "184767650969575170"
-      },
-      {
-        "file": "libs/hacker-news/src/lib/hacker-news-routing.module.ts",
-        "hash": "9071109824714018751",
+        "file": "libs/shared/src/lib/modules/loader/loader.module.ts",
+        "hash": "17241116804083079425",
         "deps": [
           "npm:@angular/common",
-          "npm:@angular/core",
-          "npm:@angular/router"
+          "npm:@angular/common/http",
+          "npm:@angular/core"
         ]
       },
       {
-        "file": "libs/hacker-news/src/lib/hacker-news.module.ts",
-        "hash": "3778049701509423104",
+        "file": "libs/shared/src/lib/modules/loader/services/loader-interceptor.service.ts",
+        "hash": "13877297143584982685",
         "deps": [
           "npm:@angular/core",
-          "npm:@angular/common",
-          "shared"
+          "npm:@angular/common/http",
+          "npm:rxjs"
         ]
       },
       {
-        "file": "libs/hacker-news/src/lib/services/hacker-news-api.service.ts",
-        "hash": "4942144589676141004",
+        "file": "libs/shared/src/lib/modules/loader/services/loader.service.ts",
+        "hash": "9668851467926273211",
         "deps": [
           "npm:@angular/core",
+          "npm:rxjs"
+        ]
+      },
+      {
+        "file": "libs/shared/src/lib/modules/message-box/components/message-box.component.html",
+        "hash": "13601220164595112559"
+      },
+      {
+        "file": "libs/shared/src/lib/modules/message-box/components/message-box.component.scss",
+        "hash": "2078902263855125016"
+      },
+      {
+        "file": "libs/shared/src/lib/modules/message-box/components/message-box.component.ts",
+        "hash": "8849221816748193464",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/shared/src/lib/modules/message-box/message-box.module.ts",
+        "hash": "13433892787167337091",
+        "deps": [
           "npm:@angular/common",
-          "npm:rxjs",
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/shared/src/lib/modules/navbar/components/navbar/navbar.component.html",
+        "hash": "3552997841477936819"
+      },
+      {
+        "file": "libs/shared/src/lib/modules/navbar/components/navbar/navbar.component.scss",
+        "hash": "5209910942264743014"
+      },
+      {
+        "file": "libs/shared/src/lib/modules/navbar/components/navbar/navbar.component.ts",
+        "hash": "9608262956609598607",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/shared/src/lib/modules/navbar/constants/navbar-menu-items.constant.ts",
+        "hash": "12744498777887163882"
+      },
+      {
+        "file": "libs/shared/src/lib/modules/navbar/navbar.module.ts",
+        "hash": "16090228170307968421",
+        "deps": [
+          "npm:@angular/core",
           "npm:@angular/router",
-          "shared"
+          "npm:@angular/common"
         ]
       },
       {
-        "file": "libs/hacker-news/src/lib/services/index.ts",
-        "hash": "4224998172993939219"
+        "file": "libs/shared/src/lib/modules/navbar/types/navbar.interface.ts",
+        "hash": "4671402033753049850",
+        "deps": [
+          "npm:@angular/platform-browser"
+        ]
       },
       {
-        "file": "libs/hacker-news/src/lib/services/news-api.service.ts",
-        "hash": "18001897929644263281",
+        "file": "libs/shared/src/lib/modules/notifications/components/notifications.component.html",
+        "hash": "6835714517376633489"
+      },
+      {
+        "file": "libs/shared/src/lib/modules/notifications/components/notifications.component.scss",
+        "hash": "16770557946649331258"
+      },
+      {
+        "file": "libs/shared/src/lib/modules/notifications/components/notifications.component.ts",
+        "hash": "5702770934932328955",
         "deps": [
           "npm:@angular/core",
-          "npm:rxjs",
-          "npm:@angular/common",
-          "shared"
+          "npm:rxjs"
         ]
       },
       {
-        "file": "libs/hacker-news/src/lib/types/hacker-news.interface.ts",
-        "hash": "17704117091420241794"
+        "file": "libs/shared/src/lib/modules/notifications/notifications.module.ts",
+        "hash": "7961328592476502590",
+        "deps": [
+          "npm:@angular/common",
+          "npm:@angular/core"
+        ]
       },
       {
-        "file": "libs/hacker-news/src/lib/types/index.ts",
-        "hash": "6409524922482783574"
+        "file": "libs/shared/src/lib/modules/notifications/services/notification.service.ts",
+        "hash": "15674597459529680694",
+        "deps": [
+          "npm:@angular/core",
+          "npm:rxjs"
+        ]
       },
       {
-        "file": "libs/hacker-news/src/lib/types/news-article.interface.ts",
-        "hash": "6675595849730527554"
+        "file": "libs/shared/src/lib/modules/notifications/types/notifications.interface.ts",
+        "hash": "8108262656659640179"
       },
       {
-        "file": "libs/hacker-news/src/test-setup.ts",
+        "file": "libs/shared/src/lib/modules/paginator/components/paginator.component.html",
+        "hash": "14938478245440610311"
+      },
+      {
+        "file": "libs/shared/src/lib/modules/paginator/components/paginator.component.scss",
+        "hash": "7154117781807404907"
+      },
+      {
+        "file": "libs/shared/src/lib/modules/paginator/components/paginator.component.ts",
+        "hash": "15572074186009178364",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/shared/src/lib/modules/paginator/paginator.module.ts",
+        "hash": "15867353744277639924",
+        "deps": [
+          "npm:@angular/common",
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/shared/src/lib/modules/paginator/types/paginator.interface.ts",
+        "hash": "9498179010713437880"
+      },
+      {
+        "file": "libs/shared/src/lib/pipe/date-time-format.ts",
+        "hash": "1359263430898342093",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/shared/src/lib/pipe/index.ts",
+        "hash": "1584476171027343415"
+      },
+      {
+        "file": "libs/shared/src/lib/pipe/number-format.ts",
+        "hash": "5648510050953271208",
+        "deps": [
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/shared/src/lib/pipe/pipe.module.ts",
+        "hash": "4792918557393765241",
+        "deps": [
+          "npm:@angular/common",
+          "npm:@angular/core"
+        ]
+      },
+      {
+        "file": "libs/shared/src/lib/shared.module.ts",
+        "hash": "5686692921421764619",
+        "deps": [
+          "npm:@angular/core",
+          "npm:@angular/common"
+        ]
+      },
+      {
+        "file": "libs/shared/src/test-setup.ts",
         "hash": "17711435995618823417",
         "deps": [
           "npm:jest-preset-angular/setup-jest"
         ]
       },
       {
-        "file": "libs/hacker-news/tsconfig.json",
+        "file": "libs/shared/tsconfig.json",
         "hash": "7237535718920748111"
       },
       {
-        "file": "libs/hacker-news/tsconfig.lib.json",
+        "file": "libs/shared/tsconfig.lib.json",
         "hash": "15303894523353606021"
       },
       {
-        "file": "libs/hacker-news/tsconfig.spec.json",
+        "file": "libs/shared/tsconfig.spec.json",
         "hash": "18121645209207210368"
       }
     ]
