@@ -2,8 +2,6 @@ import { Observable, Subject, throwError, BehaviorSubject, EMPTY } from 'rxjs';
 import {
   map,
   switchMap,
-  share,
-  pluck,
   tap,
   shareReplay,
   catchError,
@@ -38,8 +36,8 @@ export abstract class API<T> implements FetchData<T> {
       map(this.configureParams),
       switchMap(this.fetchData),
       catchError((err) => {
-        this.showErrorMessage;
-        return throwError(() => err);
+        this.showErrorMessage();
+        return throwError(err);
       }),
       map(this.mapResponse),
       tap(this.showSuccessMessage),

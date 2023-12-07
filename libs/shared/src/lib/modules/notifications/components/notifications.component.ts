@@ -14,17 +14,12 @@ import { NotificationService } from '../services/notification.service';
 export class NotificationsComponent implements OnInit {
   public notifications$: Observable<INotification[]> =
     this.notificationService.notification$.pipe(
-      scan((messages: INotification[] = [], message: INotification) => {
-        if (
-          message.type === 'success' ||
-          message.type === 'error' ||
-          message.type === 'info'
-        ) {
-          return (messages = [...messages, message]);
-        } else if (message.type === 'clear') {
+      scan((messages: Array<INotification>, message: INotification) => {
+        if (message.type === 'clear') {
           return messages.filter((data) => data.id !== message.id);
+        } else {
+          return [...messages, message];
         }
-        return messages;
       }, [])
     );
 

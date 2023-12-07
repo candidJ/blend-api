@@ -2,13 +2,9 @@ import { Injectable } from '@angular/core';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
 import { INotification } from '../types/notifications.interface';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class NotificationService {
   private notificationPublisher = new Subject<INotification>();
-  // public notification$: Observable<INotification> = this.notificationPublisher.asObservable();
-
   notification$: Observable<INotification> =
     this.notificationPublisher.asObservable();
 
@@ -21,12 +17,12 @@ export class NotificationService {
     const id = this.generateRandomId();
     this.notificationPublisher.next({
       text: message,
-      type: type,
-      id,
+      type,
+      id
     });
 
     setTimeout(() => {
-      this.clearNotification({ text: message, id });
+      this.clearNotification({ text: message, id, type: 'clear' });
     }, 5000);
   }
 
@@ -43,14 +39,10 @@ export class NotificationService {
   }
 
   clearNotification(notification: INotification): void {
-    this.notificationPublisher.next({
-      text: notification.text,
-      id: notification.id,
-      type: 'clear',
-    });
+    this.notificationPublisher.next(notification);
   }
 
   private generateRandomId(): number {
-    return Math.round(Math.random() * 10000);
+    return Math.round(Math.random() * 100000);
   }
 }

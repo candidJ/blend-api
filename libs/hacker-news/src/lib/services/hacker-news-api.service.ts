@@ -30,17 +30,17 @@ export class HackerNewsApiService<T> extends API<T> {
 
   constructor(
     private httpClient: HttpClient,
-    private _notificationService: NotificationService,
+    private notificationService: NotificationService,
     private router: Router) {
     super();
   }
 
   protected showErrorMessage = () => {
-    this._notificationService.showErrorMessage('Technical error occurred');
+    this.notificationService.showErrorMessage('Technical error occurred');
   };
 
   protected showSuccessMessage = () => {
-    this._notificationService.showSuccessMessage('Latest Feed fetched');
+    this.notificationService.showSuccessMessage('Latest Feed fetched');
   };
 
   protected configureParams = (page: number): HttpParams => {
