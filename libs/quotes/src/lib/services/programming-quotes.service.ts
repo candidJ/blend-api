@@ -19,6 +19,7 @@ export const QUOTES_SERVICE_TOKEN =
 @Injectable()
 export class ProgrammingQuotesService extends API<ProgrammingQuote> {
   private httpClient: HttpClient;
+  private readonly QUOTES = AppConfig.PROGRAMMING_QUOTES;
 
   public paginationConfig = signal<PaginationConfig>({
     listLength: 0,
@@ -28,45 +29,43 @@ export class ProgrammingQuotesService extends API<ProgrammingQuote> {
 
   constructor(
     httpClient: HttpClient,
-    private _notificationService: NotificationService
+    private notificationService: NotificationService
   ) {
     super();
     this.httpClient = httpClient;
   }
 
   protected showErrorMessage = () => {
-    this._notificationService.showErrorMessage('Technical error occurred');
+    this.notificationService.showErrorMessage('Technical error occurred');
   };
 
   protected showSuccessMessage = () => {
-    this._notificationService.showSuccessMessage('Programming quotes fetched');
+    this.notificationService.showSuccessMessage('Programming quotes fetched');
   };
 
   protected configureParams = (page: number): HttpParams => {
     return new HttpParams()
       .set('page', String(page))
-      .set('limit', String(AppConfig.PROGRAMMING_QUOTES.PAGE_SIZE));
+      .set('limit', String(this.QUOTES.PAGE_SIZE));
   };
 
   protected fetchData = (params: any): Observable<ProgrammingQuote[]> => {
     return this.httpClient.get<ProgrammingQuote[]>(
-      AppConfig.PROGRAMMING_QUOTES.URL
+      this.QUOTES.URL
     );
   };
 
   protected mapResponse = (
     data: ProgrammingQuote[]
   ): ProgrammingQuote[] => {
-    // As api doesn't return the totalQuotes, hard coded to actual quotes in api by calculation = 25 pages *20 quotes + 1 page *1 quote;
-    //  TOTAL PAGE SIZE IS 501;
     if(this.paginationConfig().listLength === 0) {
       const paginationConfig: PaginationConfig = {
-        listLength: AppConfig.PROGRAMMING_QUOTES.TOTAL_RECORDS,
+        listLength: this.QUOTES.TOTAL_RECORDS,
         noOfPages: Math.ceil(
-          AppConfig.PROGRAMMING_QUOTES.TOTAL_RECORDS /
-            AppConfig.PROGRAMMING_QUOTES.PAGE_SIZE
+          this.QUOTES.TOTAL_RECORDS /
+            this.QUOTES.PAGE_SIZE
         ),
-        pageSize: AppConfig.PROGRAMMING_QUOTES.PAGE_SIZE,
+        pageSize: this.QUOTES.PAGE_SIZE,
       };
 
       this.paginationConfig.set(paginationConfig);

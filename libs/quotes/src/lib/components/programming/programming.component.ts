@@ -15,7 +15,6 @@ import {
 import { NotificationService } from 'libs/shared/src/lib/modules/notifications/services/notification.service';
 import { ProgrammingQuote, PaginationFunc, QuoteProps } from '../../types/quotes.interface';
 import { sendTweet } from '../../utils/quote';
-import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/paginator.interface';
 
 @Component({
   selector: 'ba-programming',
