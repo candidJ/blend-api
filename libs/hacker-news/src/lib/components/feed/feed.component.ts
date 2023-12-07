@@ -14,13 +14,11 @@ export class FeedComponent implements OnInit {
   public feed$: Observable<HackerNewsFeed[]>;
   public dataSource: HackerNews[];
   public feedColumns: HackerNews[];
-  public feedDetails: HackerNewsFeed;
   public paginationConfig = this.hackerNewsService.paginationConfig;
   
   constructor(
-    private hackerNewsService: HackerNewsApiService<HackerNewsFeed>,
-    private router: Router,
-    private route: ActivatedRoute
+    private hackerNewsService: HackerNewsApiService,
+    private router: Router
   ) {
     this.router.events.subscribe((event: Event) => {
       this.removeDomainForAskRoute(event);
@@ -28,11 +26,7 @@ export class FeedComponent implements OnInit {
   }
 
   public onPaginatorChange(page: number) {
-    return this.hackerNewsService.fetchByPageNumber(page);
-  }
-
-  public onViewDetails(value: HackerNewsFeed) {
-    this.feedDetails = value;
+    return this.hackerNewsService.fetchFeedByPageNumber(page);
   }
 
   private removeDomainForAskRoute(event: Event): void {
@@ -53,6 +47,6 @@ export class FeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.feed$ = this.hackerNewsService.fetch();
+    this.feed$ = this.hackerNewsService.fetchNewsFeed();
   }
 }

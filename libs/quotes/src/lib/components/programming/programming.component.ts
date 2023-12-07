@@ -40,7 +40,7 @@ export class ProgrammingComponent implements OnInit {
   ) { }
 
   onPaginationChange: PaginationFunc = (page: number)=> {
-    this.programmingQuotesService.fetchByPageNumber(page);
+    this.programmingQuotesService.fetchFeedByPageNumber(page);
   }
 
   tweet(obj: ProgrammingQuote): void {
@@ -48,6 +48,6 @@ export class ProgrammingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.quotes$ = this.programmingQuotesService.fetch();
+    this.quotes$ = this.programmingQuotesService.fetchQuotesFeed();
   }
 }

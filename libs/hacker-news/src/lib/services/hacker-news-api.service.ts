@@ -2,11 +2,11 @@ import { Injectable, signal } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { RouterState, Router } from '@angular/router';
-import { catchError } from 'rxjs/operators';
-import { API, AppConfig } from '@blend-api/shared';
+import { catchError, map, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { FeedPubSub, AppConfig } from '@blend-api/shared';
 import { NotificationService } from 'libs/shared/src/lib/modules/notifications/services/notification.service';
 import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/paginator.interface';
-import { HackerNewsFeedDetails } from '../types';
+import { HackerNewsFeed, HackerNewsFeedDetails } from '../types';
 
 type ConfigType = 'jobs' | 'feed' | 'show' | 'ask' | 'latest';
 
@@ -18,7 +18,7 @@ interface ConfigProps {
 }
 
 @Injectable()
-export class HackerNewsApiService<T> extends API<T> {
+export class HackerNewsApiService extends FeedPubSub {
   private readonly config = AppConfig.HACKER_NEWS;
   private readonly baseUrl = AppConfig.HACKER_NEWS_BASE_URL;
 
@@ -35,27 +35,44 @@ export class HackerNewsApiService<T> extends API<T> {
     super();
   }
 
-  protected showErrorMessage = () => {
+
+    // fetch individual item with comments
+  public loadItemDetails(itemId: number): Observable<HackerNewsFeedDetails> {
+    return this.httpClient
+      .get<HackerNewsFeedDetails>(`${this.baseUrl}item/${itemId}`)
+      .pipe(catchError((err) => throwError(err)));
+  }
+
+  public fetchNewsFeed(): Observable<HackerNewsFeed[]> {
+    return this.feedSubscriber.pipe(
+      map(this.configureParams),
+      switchMap(this.fetchData),
+      catchError((err) => {
+        this.showErrorMessage();
+        return throwError(err);
+      }),
+      tap(this.composePaginationConfig, this.showSuccessMessage),
+      shareReplay(1)
+    );
+  }
+
+  private showErrorMessage = () => {
     this.notificationService.showErrorMessage('Technical error occurred');
   };
 
-  protected showSuccessMessage = () => {
+  private showSuccessMessage = () => {
     this.notificationService.showSuccessMessage('Latest Feed fetched');
   };
 
-  protected configureParams = (page: number): HttpParams => {
+  private configureParams = (page: number = 1): HttpParams => {
     return new HttpParams().set('page', page.toString());
   };
 
-  protected fetchData = (params: HttpParams): Observable<T> => {
+  private fetchData = (params: HttpParams): Observable<HackerNewsFeed[]> => {
     const url = this.composeRequestUrl();
-    return this.httpClient.get<T>(url, { params });
+    return this.httpClient.get<HackerNewsFeed[]>(url, { params });
   };
 
-  protected mapResponse = (data: T[]) => {
-    this.composePaginationConfig();
-    return data;
-  };
 
   private composeRequestUrl(): string {
     const feedType: ConfigType = this.determineActiveUrl();
@@ -76,14 +93,9 @@ export class HackerNewsApiService<T> extends API<T> {
         noOfPages: configType.NO_OF_PAGES,
         pageSize: configType.PAGE_SIZE
       };
-      // set the signal to pagination from API
+      // set the signal to pagination from FeedPubSub
       this.paginationConfig.set(feedPaginationConfig);
     }
   }
-  // fetch item details
-  public loadItemDetails(itemId: number): Observable<HackerNewsFeedDetails> {
-    return this.httpClient
-      .get<HackerNewsFeedDetails>(`${this.baseUrl}item/${itemId}`)
-      .pipe(catchError((err) => throwError(err)));
-  }
+
 }

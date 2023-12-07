@@ -33,31 +33,31 @@
   <div id="appNavBarMenu" #appNavBarMenu class="navbar-menu">
     <!-- navbar start -->
     <div class="navbar-start">
-      <ng-container *ngFor="let item of navbarMenuItems">
-        <ng-container *ngIf="!item.hasSubMenu; else hasMenuItems">
+      <ng-container *ngFor="let navbarMenuItem of navbarMenuItems">
+        <ng-container *ngIf="!navbarMenuItem.hasSubMenu">
           <a
             class="navbar-item"
             #menuItem
-            [routerLink]="item.routerLink"
+            [routerLink]="navbarMenuItem.routerLink"
             routerLinkActive="is-active"
           >
-            <i-feather [name]="item.icon"></i-feather>
-            <span class="ml2">{{ item.title }}</span>
+            <i-feather [name]="navbarMenuItem.icon"></i-feather>
+            <span class="ml2">{{ navbarMenuItem.title }}</span>
           </a>
         </ng-container>
-        <ng-template #hasMenuItems>
+        <ng-container *ngIf="navbarMenuItem.hasSubMenu">
           <section class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
-              <i-feather [name]="item.icon"></i-feather>
-              <span class="ml2">{{ item.title }}</span>
+              <i-feather [name]="navbarMenuItem.icon"></i-feather>
+              <span class="ml2">{{ navbarMenuItem.title }}</span>
             </a>
 
             <div class="navbar-dropdown is-boxed">
-              <ng-container *ngFor="let sub of item.subMenu">
+              <ng-container *ngFor="let sub of navbarMenuItem.subMenu">
                 <a
                   class="navbar-item"
                   #menuItem
-                  [routerLink]="[item.routerLink, sub.routerLink]"
+                  [routerLink]="[navbarMenuItem.routerLink, sub.routerLink]"
                   routerLinkActive="is-active"
                 >
                   <ng-container *ngIf="sub.icon">
@@ -69,8 +69,10 @@
               </ng-container>
             </div>
           </section>
-        </ng-template>
+        </ng-container> 
+        <!-- hasSubMenu ends -->
       </ng-container>
+      <!-- navbar ends -->
     </div>
 
     <!-- navbar end - made by Jaskirat -->

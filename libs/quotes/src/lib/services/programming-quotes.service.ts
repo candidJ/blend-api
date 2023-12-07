@@ -1,9 +1,17 @@
 import { Injectable, InjectionToken, signal } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject, Subject } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import {
+  map,
+  switchMap,
+  tap,
+  shareReplay,
+  catchError,
+} from 'rxjs/operators';
+
 import { NotificationService } from 'libs/shared/src/lib/modules/notifications/services/notification.service';
 import { ProgrammingQuote } from '../types/quotes.interface';
-import { API, AppConfig } from '@blend-api/shared';
+import { FeedPubSub, AppConfig } from '@blend-api/shared';
 import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/paginator.interface';
 
 export function ProgrammingQuotesFactory(
@@ -17,7 +25,7 @@ export const QUOTES_SERVICE_TOKEN =
   new InjectionToken<ProgrammingQuotesService>('QUOTES_SERVICE_TOKEN');
 
 @Injectable()
-export class ProgrammingQuotesService extends API<ProgrammingQuote> {
+export class ProgrammingQuotesService extends FeedPubSub {
   private httpClient: HttpClient;
   private readonly QUOTES = AppConfig.PROGRAMMING_QUOTES;
 
@@ -35,29 +43,40 @@ export class ProgrammingQuotesService extends API<ProgrammingQuote> {
     this.httpClient = httpClient;
   }
 
-  protected showErrorMessage = () => {
+  public fetchQuotesFeed(): Observable<ProgrammingQuote[]> {
+    return this.feedSubscriber.pipe(
+      map(this.configureParams),
+      switchMap(this.fetchData),
+      catchError((err) => {
+        this.showErrorMessage();
+        return throwError(err);
+      }),
+      tap(this.composePaginationConfig, this.showSuccessMessage),
+      shareReplay(1)
+    );
+  }
+
+  private showErrorMessage = () => {
     this.notificationService.showErrorMessage('Technical error occurred');
   };
 
-  protected showSuccessMessage = () => {
+  private showSuccessMessage = () => {
     this.notificationService.showSuccessMessage('Programming quotes fetched');
   };
 
-  protected configureParams = (page: number): HttpParams => {
+  private configureParams = (page: number = 1): HttpParams => {
     return new HttpParams()
       .set('page', String(page))
       .set('limit', String(this.QUOTES.PAGE_SIZE));
   };
 
-  protected fetchData = (params: any): Observable<ProgrammingQuote[]> => {
+  private fetchData = (): Observable<ProgrammingQuote[]> => {
     return this.httpClient.get<ProgrammingQuote[]>(
       this.QUOTES.URL
     );
   };
 
-  protected mapResponse = (
-    data: ProgrammingQuote[]
-  ): ProgrammingQuote[] => {
+  private composePaginationConfig(): void {
     if(this.paginationConfig().listLength === 0) {
       const paginationConfig: PaginationConfig = {
         listLength: this.QUOTES.TOTAL_RECORDS,
@@ -71,6 +90,6 @@ export class ProgrammingQuotesService extends API<ProgrammingQuote> {
       this.paginationConfig.set(paginationConfig);
     }
     
-    return data;
   };
+
 }

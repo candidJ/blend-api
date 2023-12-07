@@ -27,7 +27,7 @@ export class LifeComponent implements OnInit {
   constructor() {}
 
   onPaginationChange: PaginationFunc = (page: number) => {
-    this.#quotesService.fetchByPageNumber(page);
+    this.#quotesService.fetchFeedByPageNumber(page);
   }
 
   tweet(obj: LifeQuote): void{
@@ -35,6 +35,6 @@ export class LifeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.quotes$ = this.#quotesService.fetch();
+    this.quotes$ = this.#quotesService.fetchQuotesFeed();
   }
 }

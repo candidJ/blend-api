@@ -47,20 +47,20 @@ export class ArticleListComponent implements OnInit {
   actionsTemp: TemplateRef<any>;
 
   constructor(private newsApiService: NewsApiService) {
-    this.defineGridColumns();
+    this.dataSource = [...this.articleColumns];
   }
 
   // <T, K extends keyof T>(obj: T, key: K)
   // TODO: deep dive
-  private defineGridColumns(): Array<IGridColumnsDef> {
-    return (this.dataSource = this.articleColumns.slice(0, 3));
+  private defineGridColumns() {
+    this.dataSource = [...this.articleColumns];
   }
 
-  public onPaginatorChange(page: number) {
-    return this.newsApiService.fetchByPageNumber(page);
+  public onPaginatorChange(page: number): void {
+    this.newsApiService.fetchFeedByPageNumber(page);
   }
 
   ngOnInit(): void {
-    this.articles$ = this.newsApiService.fetch();
+    this.articles$ = this.newsApiService.fetchNewsArticles();
   }
 }

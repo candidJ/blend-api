@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { HackerNewsApiService } from '../../services';
 import { HackerNewsFeedDetails } from '../../types';
@@ -14,7 +14,7 @@ export class FeedDetailsComponent implements OnInit {
   public item$: Observable<HackerNewsFeedDetails>;
   public noOfPages$: Observable<number[]>;
 
-  constructor(private hackerNewsService: HackerNewsApiService<any>,
+  constructor(private hackerNewsService: HackerNewsApiService,
     private route: ActivatedRoute) {}
 
   ngOnInit(): void {

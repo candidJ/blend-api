@@ -1,47 +1,12 @@
-import { Observable, Subject, throwError, BehaviorSubject, EMPTY } from 'rxjs';
-import {
-  map,
-  switchMap,
-  tap,
-  shareReplay,
-  catchError,
-} from 'rxjs/operators';
-import { HttpParams } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
 
-export interface FetchData<T> {
-  fetch(): Observable<T[]>;
-  fetchByPageNumber(page: number): void;
-}
+export class FeedPubSub {
 
-export abstract class API<T> implements FetchData<T> {
+  protected actionSubject: Subject<number> = new Subject<number>();
+  protected feedSubscriber: Observable<number> = this.actionSubject.asObservable();
 
-  // using behavior subject rather than subject
-  private apiSubject: BehaviorSubject<number> = new BehaviorSubject<number>(1);
-  private api$: Observable<number> = this.apiSubject.asObservable();
-
-  protected abstract mapResponse(data: T | T[] | any): any[];
-  protected abstract configureParams(page: number): HttpParams;
-  protected abstract fetchData(
-    params: HttpParams
-  ): Observable<T[]> | Observable<T>;
-  protected abstract showErrorMessage(): void;
-  protected abstract showSuccessMessage(): void;
-
-  fetchByPageNumber(page: number): void {
-    this.apiSubject.next(page);
+  fetchFeedByPageNumber(page: number): void {
+    this.actionSubject.next(page);
   }
 
-  fetch(): Observable<T[]> {
-    return this.api$.pipe(
-      map(this.configureParams),
-      switchMap(this.fetchData),
-      catchError((err) => {
-        this.showErrorMessage();
-        return throwError(err);
-      }),
-      map(this.mapResponse),
-      tap(this.showSuccessMessage),
-      shareReplay(1)
-    );
-  }
 }
