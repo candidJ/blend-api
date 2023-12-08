@@ -10,22 +10,6 @@ export class NotificationService {
 
   constructor() {}
 
-  private addMessageToQueue(
-    message: string,
-    type: 'success' | 'error' | 'info'
-  ): void {
-    const id = this.generateRandomId();
-    this.notificationPublisher.next({
-      text: message,
-      type,
-      id
-    });
-
-    setTimeout(() => {
-      this.clearNotification({ text: message, id, type: 'clear' });
-    }, 5000);
-  }
-
   showSuccessMessage(message: string): void {
     this.addMessageToQueue(message, 'success');
   }
@@ -44,5 +28,21 @@ export class NotificationService {
 
   private generateRandomId(): number {
     return Math.round(Math.random() * 100000);
+  }
+
+  private addMessageToQueue(
+    message: string,
+    type: 'success' | 'error' | 'info'
+  ): void {
+    const id = this.generateRandomId();
+    this.notificationPublisher.next({
+      text: message,
+      type,
+      id
+    });
+
+    setTimeout(() => {
+      this.clearNotification({ text: message, id, type: 'clear' });
+    }, 5000);
   }
 }

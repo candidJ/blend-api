@@ -17,10 +17,10 @@ import { IGridColumnsDef } from '../../types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleListComponent implements OnInit {
-  public articles$: Observable<any[]>;
+  articles$: Observable<any[]>;
 
-  public dataSource: IGridColumnsDef[] = [];
-  public articleColumns: Array<IGridColumnsDef> = [
+  dataSource: IGridColumnsDef[] = [];
+  articleColumns: Array<IGridColumnsDef> = [
     {
       header: 'Headline',
       property: 'title',
@@ -50,14 +50,14 @@ export class ArticleListComponent implements OnInit {
     this.dataSource = [...this.articleColumns];
   }
 
+  onPaginatorChange(page: number): void {
+    this.newsApiService.fetchFeedByPageNumber(page);
+  }
+
   // <T, K extends keyof T>(obj: T, key: K)
   // TODO: deep dive
   private defineGridColumns() {
     this.dataSource = [...this.articleColumns];
-  }
-
-  public onPaginatorChange(page: number): void {
-    this.newsApiService.fetchFeedByPageNumber(page);
   }
 
   ngOnInit(): void {

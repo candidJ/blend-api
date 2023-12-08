@@ -64,7 +64,7 @@ export class HackerNewsApiService extends FeedPubSub {
     this.notificationService.showSuccessMessage('Latest Feed fetched');
   };
 
-  private configureParams = (page: number = 1): HttpParams => {
+  private configureParams = (page = 1): HttpParams => {
     return new HttpParams().set('page', page.toString());
   };
 

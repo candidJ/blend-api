@@ -52,7 +52,7 @@ export class LifeQuotesService extends FeedPubSub {
     this.notificationService.showSuccessMessage('Life quotes fetched');
   };
 
-  private configureParams = (page: number = 1): HttpParams => {
+  private configureParams = (page = 1): HttpParams => {
     return new HttpParams()
       .set('page', String(page))
       .set('limit', String(AppConfig.LIFE_QUOTES.LIMIT));

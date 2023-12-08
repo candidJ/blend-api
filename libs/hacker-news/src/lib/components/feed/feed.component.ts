@@ -12,10 +12,10 @@ import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/pa
   styleUrls: ['./feed.component.scss'],
 })
 export class FeedComponent implements OnInit {
-  public feed$: Observable<HackerNewsFeed[]>;
-  public dataSource: HackerNews[];
-  public feedColumns: HackerNews[];
-  public paginationConfig: WritableSignal<PaginationConfig>;
+  feed$: Observable<HackerNewsFeed[]>;
+  dataSource: HackerNews[];
+  feedColumns: HackerNews[];
+  paginationConfig: WritableSignal<PaginationConfig>;
   
   constructor(
     private hackerNewsService: HackerNewsApiService,
@@ -27,7 +27,7 @@ export class FeedComponent implements OnInit {
     this.paginationConfig = this.hackerNewsService.paginationConfig;
   }
 
-  public onPaginatorChange(page: number) {
+  onPaginatorChange(page: number) {
     return this.hackerNewsService.fetchFeedByPageNumber(page);
   }
 

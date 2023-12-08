@@ -32,9 +32,9 @@ import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/pa
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProgrammingComponent implements OnInit {
-  public quotes$: Observable<ProgrammingQuote[]>;
-  public paginationConfig: WritableSignal<PaginationConfig>;
-  public props: QuoteProps<ProgrammingQuote> = ['author', 'en']
+  quotes$: Observable<ProgrammingQuote[]>;
+  paginationConfig: WritableSignal<PaginationConfig>;
+  props: QuoteProps<ProgrammingQuote> = ['author', 'en'];
 
   constructor(
     @Inject(forwardRef(() => QUOTES_SERVICE_TOKEN))

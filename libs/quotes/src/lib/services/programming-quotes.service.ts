@@ -56,15 +56,15 @@ export class ProgrammingQuotesService extends FeedPubSub {
     );
   }
 
-  private showErrorMessage = () => {
+  private showErrorMessage = () : void => {
     this.notificationService.showErrorMessage('Technical error occurred');
   };
 
-  private showSuccessMessage = () => {
+  private showSuccessMessage = () : void => {
     this.notificationService.showSuccessMessage('Programming quotes fetched');
   };
 
-  private configureParams = (page: number = 1): HttpParams => {
+  private configureParams = (page = 1): HttpParams => {
     return new HttpParams()
       .set('page', String(page))
       .set('limit', String(this.QUOTES.PAGE_SIZE));

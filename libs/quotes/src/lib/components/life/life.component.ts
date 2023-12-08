@@ -22,7 +22,7 @@ export class LifeComponent implements OnInit {
   
   quotes$: Observable<LifeQuote[]>;
   paginationConfig = this.#quotesService.paginationConfig;
-  props: QuoteProps<LifeQuote> = ['quoteAuthor','quoteText']
+  props: QuoteProps<LifeQuote> = ['quoteAuthor','quoteText'];
 
   constructor() {}
 
