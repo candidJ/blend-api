@@ -2,6 +2,7 @@
   <table class="table is-striped is-hoverable is-fullwidth">
     <thead>
       <tr>
+        <!-- shows just the column header -->
         <ng-container *ngFor="let column of gridColumns">
           <th
             class="has-background-primary-light is-capitalized"
@@ -34,7 +35,7 @@
       </ng-container>
 
       <ng-template #noGridData>
-        <p class="m-4">Unable to fetch the data</p>
+        <p class="m-4">An error occurred while fetching the data</p>
       </ng-template>
     </tbody>
   </table>

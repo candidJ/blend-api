@@ -7,7 +7,7 @@ import {
   AfterContentInit,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ba-grid',

@@ -36,7 +36,7 @@ export class LoaderInterceptorService implements HttpInterceptor {
         (err: HttpErrorResponse) => {
           if (err) {
             this.setLoadingState(false);
-            // this._notificationService.showErrorMessage("Some error occured...");
+            // this._notificationService.showErrorMessage("Some error occurred...");
           }
         }
       )

@@ -47,6 +47,7 @@ export class ArticleListComponent implements OnInit {
   actionsTemp: TemplateRef<any>;
 
   constructor(private newsApiService: NewsApiService) {
+    // TODO: why do we need to clone the articles columns to data source
     this.dataSource = [...this.articleColumns];
   }
 
