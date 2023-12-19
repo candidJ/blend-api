@@ -8,7 +8,7 @@ import { CityPayload } from '../../types/weather.interface';
   styleUrls: ['./forecast-details.component.scss'],
 })
 export class ForecastDetailsComponent implements OnInit {
-  public threeCities: Partial<CityPayload>[] = [];
+  threeCities: Partial<CityPayload>[] = [];
   private cities = CITIES;
 
   @Output('cityInfo') sendCityInfo = new EventEmitter();
@@ -23,7 +23,7 @@ export class ForecastDetailsComponent implements OnInit {
     }
   }
 
-  public onCityClick(info: Partial<CityPayload>): void {
+  onCityClick(info: Partial<CityPayload>): void {
     this.sendCityInfo.emit(info);
   }
 

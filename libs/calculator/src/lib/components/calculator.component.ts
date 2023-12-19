@@ -25,9 +25,9 @@ export class CalculatorComponent implements OnInit {
 
   private isComputationDone = false;
 
-  constructor(public renderer: Renderer2) {}
+  constructor(private renderer: Renderer2) {}
 
-  public onUserInput(userInput: ICalculatorLayout): void {
+  onUserInput(userInput: ICalculatorLayout): void {
     switch (userInput.className) {
       case 'numeric':
         this.onlyAllowOneDecimal(userInput);
@@ -51,14 +51,14 @@ export class CalculatorComponent implements OnInit {
     }
   }
 
-  public displayOperationsHistory(): void {
+  displayOperationsHistory(): void {
     this.sessionOperationHistory = JSON.parse(
       sessionStorage.getItem('operationHistory') || '{}'
     );
     this.renderer.addClass(this.modal.nativeElement, 'is-active');
   }
 
-  public hideOperationHistory(): void {
+  hideOperationHistory(): void {
     this.renderer.removeClass(this.modal.nativeElement, 'is-active');
   }
 

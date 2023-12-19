@@ -12,7 +12,7 @@ import { NotificationService } from '../services/notification.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotificationsComponent implements OnInit {
-  public notifications$: Observable<INotification[]>;
+  notifications$: Observable<INotification[]>;
 
   constructor(private notificationService: NotificationService) {}
 

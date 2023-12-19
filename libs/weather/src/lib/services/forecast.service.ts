@@ -32,7 +32,7 @@ export class ForecastService {
   private cityPublisher = new Subject<boolean>();
   private units = '';
 
-  public showRandomCities$ = this.cityPublisher.asObservable();
+  showRandomCities$ = this.cityPublisher.asObservable();
 
   constructor(
     private httpClient: HttpClient,
@@ -41,7 +41,7 @@ export class ForecastService {
     this.cityPublisher.next(false);
   }
 
-  public getForecast(
+  getForecast(
     forecastHttpParams: Observable<HttpParams>
   ): Observable<WeatherDefinition[]> {
     return forecastHttpParams.pipe(
@@ -115,7 +115,7 @@ export class ForecastService {
     );
   }
 
-  public getCurrentLocation() {
+  getCurrentLocation() {
     return new Observable<GeolocationCoordinates>((observer) => {
       return window.navigator.geolocation.getCurrentPosition(
         (position) => {

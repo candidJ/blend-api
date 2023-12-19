@@ -15,9 +15,9 @@ import { PaginationConfig, RecordType } from '../types/paginator.interface';
   styleUrls: ['./paginator.component.scss'],
 })
 export class PaginatorComponent implements OnInit, OnDestroy {
-  public record = signal<RecordType>({start: 1, end: 20});
-  public activePage = 1;
-  public pagination: PaginationConfig;
+  record = signal<RecordType>({start: 1, end: 20});
+  activePage = 1;
+  pagination: PaginationConfig;
 
   @Input('paginationConfig') 
   set paginationConfig(value: PaginationConfig) {
@@ -44,7 +44,7 @@ export class PaginatorComponent implements OnInit, OnDestroy {
     });
   }
 
-  public onPageChange(page: number) {
+  onPageChange(page: number) {
     this.activePage = page;
     this.onPaginatorChange.emit(page);
     this.showActiveRecordsRange(page);

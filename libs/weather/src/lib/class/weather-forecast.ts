@@ -4,11 +4,11 @@ import { ForecastStrategy } from '../types/forecast-strategy.interface';
 export class WeatherForecast {
   private strategy: ForecastStrategy;
 
-  public getForecastByStrategy() {
+  getForecastByStrategy() {
     return this.strategy.forecast();
   }
 
-  public setForecastStrategy(strategy: ForecastStrategy) {
+  setForecastStrategy(strategy: ForecastStrategy) {
     this.strategy = strategy;
   }
 }

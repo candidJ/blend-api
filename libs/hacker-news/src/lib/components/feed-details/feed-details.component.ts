@@ -11,8 +11,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./feed-details.component.scss'],
 })
 export class FeedDetailsComponent implements OnInit {
-  public item$: Observable<HackerNewsFeedDetails>;
-  public noOfPages$: Observable<number[]>;
+  item$: Observable<HackerNewsFeedDetails>;
+  noOfPages$: Observable<number[]>;
 
   constructor(private hackerNewsService: HackerNewsApiService,
     private route: ActivatedRoute) {}

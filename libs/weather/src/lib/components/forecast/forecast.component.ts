@@ -21,10 +21,10 @@ import { CityPayload, WeatherDefinition } from '../../types/weather.interface';
   styleUrls: ['./forecast.component.scss'],
 })
 export class ForecastComponent extends WeatherForecast implements OnInit {
-  public forecast$: Observable<WeatherDefinition[]>;
-  public userInputForm: FormGroup;
-  public countries: { name: string; code: string }[] = COUNTRIES;
-  public forecastDetails: WeatherDefinition;
+  forecast$: Observable<WeatherDefinition[]>;
+  userInputForm: FormGroup;
+  countries: { name: string; code: string }[] = COUNTRIES;
+  forecastDetails: WeatherDefinition;
 
   private forecastStrategy: ForecastStrategy;
   private cityInfo: Partial<CityPayload>;
@@ -86,7 +86,7 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
     }
   }
 
-  public showWeatherDetails(forecast: WeatherDefinition) {
+  showWeatherDetails(forecast: WeatherDefinition) {
     this.forecastDetails = forecast;
     return { ...this.forecastDetails };
   }
