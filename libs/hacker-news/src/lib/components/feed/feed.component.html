@@ -11,7 +11,7 @@
             <span class="details" *ngFor="let detail of item.details">
               <ng-container *ngIf="gridRowData[detail.property]">
                 <i-feather [name]="detail.icon"></i-feather>
-                {{ gridRowData[detail.property] }}&nbsp;&nbsp;&nbsp;&nbsp;
+                {{ gridRowData[detail.property] }}&nbsp;
               </ng-container>
             </span>
           </p>

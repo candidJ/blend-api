@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import * as _ from 'lodash';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ForecastByCityName } from '../../class/forecast-by-cityname';
 import { ForecastByLatLong } from '../../class/forecast-by-latlong';
 import { WeatherForecast } from '../../class/weather-forecast';
@@ -31,10 +31,10 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
 
   constructor(
     public forecastService: ForecastService,
-    private _fg: FormBuilder
+    private fg: FormBuilder
   ) {
     super();
-    this.userInputForm = this._fg.group({
+    this.userInputForm = this.fg.group({
       city: new FormControl(null, Validators.required),
       country: new FormControl(null),
       unit: new FormControl('metric'),
@@ -54,10 +54,6 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
     const formValue = this.cityInfo;
     let countryCode: string | null = '';
     if (formValue.country) {
-      // const country = this.countries.filter(
-      //   (country) =>
-      //     country.name.toLowerCase() === formValue.country.toLowerCase()
-      // );
       const country = _.filter(this.countries, formValue.country);
       countryCode = country.length ? country[0]['code'] : null;
     }
@@ -69,7 +65,7 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
     };
   }
 
-  private determineForecastStrategy(type: string) {
+  private determineForecastStrategy(type: string) : void {
     switch (type) {
       case 'latlong':
         this.forecastService.getCurrentLocation().subscribe((config) => {
@@ -86,18 +82,13 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
     }
   }
 
-  showWeatherDetails(forecast: WeatherDefinition) {
-    this.forecastDetails = forecast;
-    return { ...this.forecastDetails };
-  }
-
-  onSubmit(value: Partial<CityPayload>) {
+  onSubmit(value: Partial<CityPayload>) : void {
     this.cityInfo = value;
     this.determineForecastStrategy('cityname');
     this.getUserCoordinates();
   }
 
-  ngOnInit() {
+  ngOnInit() : void {
     this.determineForecastStrategy('latlong');
   }
 }

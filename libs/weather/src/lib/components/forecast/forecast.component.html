@@ -60,7 +60,7 @@
       </label>
       <label class="radio">
         <input type="radio" name="unit" formControlName="unit" value="metric" />
-        Celcius&nbsp;<i class="wi wi-celsius"></i>
+        Celsius&nbsp;<i class="wi wi-celsius"></i>
       </label>
     </div>
 
@@ -95,7 +95,7 @@
 
     <ul class="five-day-fl">
       <li *ngFor="let forecast of forecasts" class="message is-primary">
-        <div class="message-body" (click)="showWeatherDetails(forecast)">
+        <div class="message-body">
           <p>
             {{ forecast.date | dateTimeFormatPipe: 'dddd' }}
           </p>
