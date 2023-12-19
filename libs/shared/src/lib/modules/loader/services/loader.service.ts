@@ -5,10 +5,10 @@ import { Subject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LoaderService {
-  private _loadingPublisher: Subject<boolean> = new Subject();
-  loader$: Observable<boolean> = this._loadingPublisher.asObservable();
+  private loadingPublisher: Subject<boolean> = new Subject();
+  loader$: Observable<boolean> = this.loadingPublisher.asObservable();
 
   showLoader(isLoading: boolean): void {
-    this._loadingPublisher.next(isLoading);
+    this.loadingPublisher.next(isLoading);
   }
 }

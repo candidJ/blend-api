@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./feed-details.component.scss'],
 })
 export class FeedDetailsComponent implements OnInit {
-  item$: Observable<HackerNewsFeedDetails>;
+  feedItem$: Observable<HackerNewsFeedDetails>;
   noOfPages$: Observable<number[]>;
 
   constructor(private hackerNewsService: HackerNewsApiService,
@@ -19,6 +19,6 @@ export class FeedDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     const itemId = this.route.snapshot.params['id'];
-    this.item$ = this.hackerNewsService.loadItemDetails(itemId);
+    this.feedItem$ = this.hackerNewsService.loadItemDetails(itemId);
   }
 }

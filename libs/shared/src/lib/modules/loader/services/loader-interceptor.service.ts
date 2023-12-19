@@ -10,16 +10,12 @@ import {
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LoaderService } from './loader.service';
-import { NotificationService } from '../../notifications/services/notification.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoaderInterceptorService implements HttpInterceptor {
-  constructor(
-    private _loaderService: LoaderService,
-    private _notificationService: NotificationService
-  ) {}
+  constructor(private loaderService: LoaderService) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -36,7 +32,6 @@ export class LoaderInterceptorService implements HttpInterceptor {
         (err: HttpErrorResponse) => {
           if (err) {
             this.setLoadingState(false);
-            // this._notificationService.showErrorMessage("Some error occurred...");
           }
         }
       )
@@ -44,6 +39,6 @@ export class LoaderInterceptorService implements HttpInterceptor {
   }
 
   private setLoadingState(isLoading: boolean): void {
-    this._loaderService.showLoader(isLoading);
+    this.loaderService.showLoader(isLoading);
   }
 }

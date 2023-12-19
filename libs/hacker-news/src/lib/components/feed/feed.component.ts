@@ -1,6 +1,6 @@
 import { Component, OnInit, WritableSignal } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Router, ActivatedRoute, NavigationEnd, Event } from '@angular/router';
+import { Router, NavigationEnd, Event } from '@angular/router';
 import { HackerNews, HackerNewsFeed } from '../../types';
 import { HackerNewsApiService } from '../../services';
 import { HNFeedColumns } from '../../constants/metadata.const';

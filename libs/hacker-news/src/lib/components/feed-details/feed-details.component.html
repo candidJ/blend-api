@@ -1,16 +1,16 @@
-<ng-container *ngIf="item$ | async as item">
+<ng-container *ngIf="feedItem$ | async as feedItem">
   <div class="card">
     <div class="card-content">
       <p>
-        <b class="is-size-4-tablet is-size-5-mobile"> {{ item.title }}</b>
+        <b class="is-size-4-tablet is-size-5-mobile"> {{ feedItem.title }}</b>
         <span
           class="mx-1 silver is-size-5-tablet is-size-6-mobile"
-          *ngIf="item.domain"
-          >({{ item.domain }})</span
+          *ngIf="feedItem.domain"
+          >({{ feedItem.domain }})</span
         >
         <a
-          *ngIf="item.url"
-          [href]="item.url"
+          *ngIf="feedItem.url"
+          [href]="feedItem.url"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -18,18 +18,18 @@
         </a>
       </p>
       <p class="mt-3 silver">
-        <span> <i-feather name="thumbs-up"></i-feather>{{ item.points }} </span>
-        <span> <i-feather name="user"></i-feather>{{ item.user }} </span>
-        <span> <i-feather name="watch"></i-feather>{{ item.time_ago }} </span>
+        <span> <i-feather name="thumbs-up"></i-feather>{{ feedItem.points }} </span>
+        <span> <i-feather name="user"></i-feather>{{ feedItem.user }} </span>
+        <span> <i-feather name="watch"></i-feather>{{ feedItem.time_ago }} </span>
       </p>
     </div>
   </div>
 
   <hr />
 
-  <ng-container *ngIf="item.comments_count; else noComments">
+  <ng-container *ngIf="feedItem.comments_count; else noComments">
     <h2 class="is-size-5-desktop is-size-6-touch mb-5">
-      {{ item.comments_count }}&nbsp;comments
+      {{ feedItem.comments_count }}&nbsp;comments
     </h2>
   </ng-container>
 
@@ -37,6 +37,6 @@
     <span class="is-family-secondary">No comments posted.</span>
   </ng-template>
 
-  <ba-comments *ngFor="let comment of item.comments" [comment]="comment">
+  <ba-comments *ngFor="let comment of feedItem.comments" [comment]="comment">
   </ba-comments>
 </ng-container>
