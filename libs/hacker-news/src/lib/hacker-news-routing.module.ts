@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import {
-  ArticleListComponent,
   FeedComponent,
   FeedDetailsComponent,
 } from './components';
@@ -11,10 +10,6 @@ import {
   imports: [
     CommonModule,
     RouterModule.forChild([
-      {
-        path: 'news-api',
-        component: ArticleListComponent,
-      },
       {
         path: '',
         children: [

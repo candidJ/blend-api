@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  ArticleListComponent,
   CommentsComponent,
   FeedComponent,
   FeedDetailsComponent,
@@ -18,7 +17,6 @@ import { HackerNewsApiService } from './services';
 
 @NgModule({
   declarations: [
-    ArticleListComponent,
     CommentsComponent,
     FeedComponent,
     FeedDetailsComponent,
