@@ -29,7 +29,7 @@ export class ProgrammingQuotesService extends FeedPubSub {
   private httpClient: HttpClient;
   private readonly QUOTES = AppConfig.PROGRAMMING_QUOTES;
 
-  public paginationConfig = signal<PaginationConfig>({
+  paginationConfig = signal<PaginationConfig>({
     listLength: 0,
     noOfPages: 0,
     pageSize: 0
@@ -43,7 +43,7 @@ export class ProgrammingQuotesService extends FeedPubSub {
     this.httpClient = httpClient;
   }
 
-  public fetchQuotesFeed(): Observable<ProgrammingQuote[]> {
+  fetchQuotesFeed(): Observable<ProgrammingQuote[]> {
     return this.feedSubscriber.pipe(
       map(this.configureParams),
       switchMap(this.fetchData),
@@ -89,7 +89,6 @@ export class ProgrammingQuotesService extends FeedPubSub {
 
       this.paginationConfig.set(paginationConfig);
     }
-    
   };
 
 }

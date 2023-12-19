@@ -23,7 +23,7 @@ export class NewsApiService extends FeedPubSub {
     super();
   }
 
-  public fetchNewsArticles(): Observable<INewsArticles[]> {
+  fetchNewsArticles(): Observable<INewsArticles[]> {
     return this.feedSubscriber.pipe(
       map(this.configureParams),
       switchMap(this.fetchData),

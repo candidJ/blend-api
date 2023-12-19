@@ -30,7 +30,7 @@ export class LifeQuotesService extends FeedPubSub {
     super();
   }
 
-  public fetchQuotesFeed(): Observable<LifeQuote[]> {
+  fetchQuotesFeed(): Observable<LifeQuote[]> {
     return this.feedSubscriber.pipe(
       map(this.configureParams),
       switchMap(this.fetchData),

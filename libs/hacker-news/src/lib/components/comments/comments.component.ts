@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { HNComments } from '../../types';
 
 @Component({
@@ -8,6 +8,7 @@ import { HNComments } from '../../types';
     '../feed-details/feed-details.component.scss',
     './comments.component.scss',
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CommentsComponent implements OnInit {
   @Input('comment') comment: HNComments;

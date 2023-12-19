@@ -1,8 +1,8 @@
-import { Observable, Subject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 export class FeedPubSub {
 
-  protected actionSubject: Subject<number> = new Subject<number>();
+  protected actionSubject: BehaviorSubject<number> = new BehaviorSubject<number>(1);
   protected feedSubscriber: Observable<number> = this.actionSubject.asObservable();
 
   fetchFeedByPageNumber(page: number): void {

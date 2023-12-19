@@ -36,14 +36,13 @@ export class HackerNewsApiService extends FeedPubSub {
   }
 
 
-    // fetch individual item with comments
-  public loadItemDetails(itemId: number): Observable<HackerNewsFeedDetails> {
+  loadItemDetails(itemId: number): Observable<HackerNewsFeedDetails> {
     return this.httpClient
       .get<HackerNewsFeedDetails>(`${this.baseUrl}item/${itemId}`)
       .pipe(catchError((err) => throwError(err)));
   }
 
-  public fetchNewsFeed(): Observable<HackerNewsFeed[]> {
+  fetchNewsFeed(): Observable<HackerNewsFeed[]> {
     return this.feedSubscriber.pipe(
       map(this.configureParams),
       switchMap(this.fetchData),
@@ -85,7 +84,7 @@ export class HackerNewsApiService extends FeedPubSub {
   }
 
   private composePaginationConfig(): void {
-    if(this.paginationConfig().listLength == 0){
+    if(this.paginationConfig && this.paginationConfig().listLength == 0){
       const feedType: ConfigType = this.determineActiveUrl();
       const configType: ConfigProps = this.config[feedType];
       const feedPaginationConfig: PaginationConfig = {
