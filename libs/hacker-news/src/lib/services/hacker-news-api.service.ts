@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { RouterState, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { catchError, map, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { FeedPubSub, AppConfig } from '@blend-api/shared';
 import { NotificationService } from 'libs/shared/src/lib/modules/notifications/services/notification.service';
@@ -19,14 +19,15 @@ interface ConfigProps {
 
 @Injectable()
 export class HackerNewsApiService extends FeedPubSub {
-  private readonly config = AppConfig.HACKER_NEWS;
-  private readonly baseUrl = AppConfig.HACKER_NEWS_BASE_URL;
-
+  
   paginationConfig = signal<PaginationConfig>({
     listLength: 0,
     noOfPages: 0,
     pageSize: 0
   });
+
+  private readonly config = AppConfig.HACKER_NEWS;
+  private readonly baseUrl = AppConfig.HACKER_NEWS_BASE_URL;
 
   constructor(
     private httpClient: HttpClient,
@@ -34,7 +35,6 @@ export class HackerNewsApiService extends FeedPubSub {
     private router: Router) {
     super();
   }
-
 
   loadItemDetails(itemId: number): Observable<HackerNewsFeedDetails> {
     return this.httpClient
@@ -83,8 +83,8 @@ export class HackerNewsApiService extends FeedPubSub {
     return activeUrl;
   }
 
-  private composePaginationConfig(): void {
-    if(this.paginationConfig && this.paginationConfig().listLength == 0){
+  private composePaginationConfig = (): void => {
+    if(this.paginationConfig()){
       const feedType: ConfigType = this.determineActiveUrl();
       const configType: ConfigProps = this.config[feedType];
       const feedPaginationConfig: PaginationConfig = {

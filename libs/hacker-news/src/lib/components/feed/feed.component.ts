@@ -27,8 +27,8 @@ export class FeedComponent implements OnInit {
     this.paginationConfig = this.hackerNewsService.paginationConfig;
   }
 
-  onPaginatorChange(page: number) {
-    return this.hackerNewsService.fetchFeedByPageNumber(page);
+  onPaginatorChange(page: number): void {
+    this.hackerNewsService.fetchFeedByPageNumber(page);
   }
 
   private removeDomainForAskRoute(event: Event): void {

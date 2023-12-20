@@ -26,8 +26,11 @@
   </ng-template>
 </ba-grid>
 
-<ba-paginator
-  [paginationConfig]="paginationConfig()"
-  (onPaginatorChange)="onPaginatorChange($event)"
->
-</ba-paginator>
+<ng-container *ngIf="paginationConfig()">
+  <ba-paginator
+    [paginationConfig]="paginationConfig()"
+    (onPaginatorChange)="onPaginatorChange($event)"
+  >
+  </ba-paginator>
+</ng-container>
+
