@@ -15,14 +15,19 @@ import { PaginationConfig, RecordType } from '../types/paginator.interface';
   styleUrls: ['./paginator.component.scss'],
 })
 export class PaginatorComponent implements OnInit, OnDestroy {
-  record = signal<RecordType>({start: 1, end: 20});
+  record = signal<RecordType | null>(null);
   activePage = 1;
-  pagination: PaginationConfig;
+  pagination: PaginationConfig | null = null;
 
   @Input('paginationConfig') 
   set paginationConfig(value: PaginationConfig) {
-    if(value) {
-      this.record.mutate((record) =>  record.end = value.pageSize);
+    if(value && !this.pagination) {
+      this.record.update(() => {
+        return {
+          start : 1,
+          end: value.pageSize
+        }
+      });
       this.pagination = value;
     }
   }
@@ -37,7 +42,7 @@ export class PaginatorComponent implements OnInit, OnDestroy {
    * @param page
    */
   private showActiveRecordsRange(page: number) {
-    const { pageSize, noOfPages, listLength } = this.pagination;
+    const { pageSize, noOfPages, listLength } = this.pagination!;
     this.record.set({
         start : page === 1 ? 1: pageSize * (page - 1),
         end : page === noOfPages ? listLength : page * pageSize

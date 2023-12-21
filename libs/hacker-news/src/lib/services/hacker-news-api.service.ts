@@ -20,11 +20,7 @@ interface ConfigProps {
 @Injectable()
 export class HackerNewsApiService extends FeedPubSub {
   
-  paginationConfig = signal<PaginationConfig>({
-    listLength: 0,
-    noOfPages: 0,
-    pageSize: 0
-  });
+  paginationConfig = signal<PaginationConfig | null>(null);
 
   private readonly config = AppConfig.HACKER_NEWS;
   private readonly baseUrl = AppConfig.HACKER_NEWS_BASE_URL;
@@ -84,7 +80,6 @@ export class HackerNewsApiService extends FeedPubSub {
   }
 
   private composePaginationConfig = (): void => {
-    if(this.paginationConfig()){
       const feedType: ConfigType = this.determineActiveUrl();
       const configType: ConfigProps = this.config[feedType];
       const feedPaginationConfig: PaginationConfig = {
@@ -94,7 +89,6 @@ export class HackerNewsApiService extends FeedPubSub {
       };
       // set the signal to pagination from FeedPubSub
       this.paginationConfig.set(feedPaginationConfig);
-    }
   }
 
 }
