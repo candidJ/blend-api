@@ -1,17 +1,17 @@
-export interface IGridColumnsDef {
+interface GridColumns {
   header: string;
   property: string;
   type: 'text' | 'date' | 'template' | 'link';
 }
 
-export interface HackerNewsDetails {
+interface HackerNewsDetails {
   icon: string;
   preposition: string;
   type: string;
   property: string;
 }
 
-export interface HackerNews extends IGridColumnsDef {
+export interface HackerNews extends GridColumns {
   hasDetails: boolean;
   details?: HackerNewsDetails[];
   isHideSm: boolean;
@@ -30,17 +30,17 @@ export interface HackerNewsFeed {
   domain: string;
 }
 
-export interface HNComments {
+export interface HackerNewsFeedComments {
   id: number;
   level: number;
   user: string;
   time: number;
   time_ago: string;
   content: string;
-  comments: HNComments[];
+  comments: HackerNewsFeedComments[];
   marginLeft: string;
 }
 
 export interface HackerNewsFeedDetails extends HackerNewsFeed {
-  comments: HNComments[];
+  comments: HackerNewsFeedComments[];
 }

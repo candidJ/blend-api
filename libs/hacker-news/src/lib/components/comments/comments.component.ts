@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
-import { HNComments } from '../../types';
+import { HackerNewsFeedComments } from '../../types';
 
 @Component({
   selector: 'ba-comments',
@@ -11,7 +11,7 @@ import { HNComments } from '../../types';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CommentsComponent implements OnInit {
-  @Input('comment') comment: HNComments;
+  @Input('comment') comment: HackerNewsFeedComments;
 
   ngOnInit(): void {}
 }

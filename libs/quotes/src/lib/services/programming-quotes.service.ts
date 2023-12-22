@@ -16,9 +16,9 @@ import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/pa
 
 export function ProgrammingQuotesFactory(
   http: HttpClient,
-  _notificationService: NotificationService
+  notificationService: NotificationService
 ): ProgrammingQuotesService {
-  return new ProgrammingQuotesService(http, _notificationService);
+  return new ProgrammingQuotesService(http, notificationService);
 }
 
 export const QUOTES_SERVICE_TOKEN =

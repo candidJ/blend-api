@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import * as _ from 'lodash';
 import { CalculatorConfig } from '../constants/calculator.const';
-import { ICalculatorLayout } from '../types/calculator.interface';
+import { CalculatorLayout } from '../types/calculator.interface';
 
 @Component({
   selector: 'ba-calculator',
@@ -27,7 +27,7 @@ export class CalculatorComponent implements OnInit {
 
   constructor(private renderer: Renderer2) {}
 
-  onUserInput(userInput: ICalculatorLayout): void {
+  onUserInput(userInput: CalculatorLayout): void {
     switch (userInput.className) {
       case 'numeric':
         this.onlyAllowOneDecimal(userInput);
@@ -64,7 +64,7 @@ export class CalculatorComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  private onlyAllowOneDecimal(userInput: ICalculatorLayout): void {
+  private onlyAllowOneDecimal(userInput: CalculatorLayout): void {
     if (userInput.value === '.' && this.output.includes('.')) {
       return;
     }
@@ -134,7 +134,7 @@ export class CalculatorComponent implements OnInit {
     }
   }
 
-  private appendOperator(userInput: ICalculatorLayout): void {
+  private appendOperator(userInput: CalculatorLayout): void {
     if (
       !this.calculatorConfig.some((cc) =>
         this.operation.includes(cc.viewValue)

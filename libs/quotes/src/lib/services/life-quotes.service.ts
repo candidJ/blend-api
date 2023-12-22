@@ -11,7 +11,7 @@ import {
 } from 'rxjs/operators';
 
 import { NotificationService } from 'libs/shared/src/lib/modules/notifications/services/notification.service';
-import { LifeQuote, ILifeQuotesResponse } from '../types/quotes.interface';
+import { LifeQuote, LifeQuoteResponse } from '../types/quotes.interface';
 import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/paginator.interface';
 
 @Injectable()
@@ -58,13 +58,13 @@ export class LifeQuotesService extends FeedPubSub {
       .set('limit', String(AppConfig.LIFE_QUOTES.LIMIT));
   };
 
-  private fetchData = (params: HttpParams): Observable<ILifeQuotesResponse> => {
-    return this.httpClient.get<ILifeQuotesResponse>(AppConfig.LIFE_QUOTES.URL, {
+  private fetchData = (params: HttpParams): Observable<LifeQuoteResponse> => {
+    return this.httpClient.get<LifeQuoteResponse>(AppConfig.LIFE_QUOTES.URL, {
       params,
     });
   };
 
-  private composePaginationConfig = (data: ILifeQuotesResponse): void => {
+  private composePaginationConfig = (data: LifeQuoteResponse): void => {
     const {pagination} = data;
     if(this.paginationConfig().listLength === 0){
         this.paginationConfig.set({
@@ -75,7 +75,7 @@ export class LifeQuotesService extends FeedPubSub {
     }
   };
 
-  private mapResponse(quotes: ILifeQuotesResponse): LifeQuote[] {
+  private mapResponse(quotes: LifeQuoteResponse): LifeQuote[] {
       return quotes.data;
   }
 }

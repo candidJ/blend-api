@@ -8,15 +8,17 @@ export interface LifeQuote {
   quoteAuthor: string;
 }
 
+interface LifeQuotePagination {
+  currentPage: number;
+  nextPage: number;
+  totalPages: number;
+}
+
 export type QuoteProps<T>  = [keyof T, keyof T];
 
-export interface ILifeQuotesResponse {
+export interface LifeQuoteResponse {
   data: LifeQuote[];
-  pagination: {
-    currentPage: number;
-    nextPage: number;
-    totalPages: number;
-  };
+  pagination: LifeQuotePagination;
   totalQuotes: number;
 }
 

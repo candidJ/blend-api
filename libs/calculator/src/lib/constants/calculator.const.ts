@@ -1,6 +1,6 @@
-import { ICalculatorLayout } from '../types/calculator.interface';
+import { CalculatorLayout } from '../types/calculator.interface';
 
-export const CalculatorConfig: ICalculatorLayout[] = [
+export const CalculatorConfig: CalculatorLayout[] = [
   {
     viewValue: 'AC',
     value: 'AC',

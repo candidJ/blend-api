@@ -1,7 +1,6 @@
 import { HackerNews } from "../types";
 
-// Hacker News Feed columns
-export const HNFeedColumns: HackerNews[] = [
+export const HackerNewsFeedColumns: HackerNews[] = [
   {
     header: 'Title',
     property: 'title',

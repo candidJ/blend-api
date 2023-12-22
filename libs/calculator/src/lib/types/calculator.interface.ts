@@ -1,4 +1,4 @@
-export interface ICalculatorLayout {
+export interface CalculatorLayout {
   viewValue: string;
   value: string;
   className: string;
