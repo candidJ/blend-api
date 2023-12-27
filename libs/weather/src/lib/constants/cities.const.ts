@@ -17,7 +17,11 @@ export const CITIES = [
   },
   {
     country: 'United States of America',
-    city: 'Yuba City',
+    city: 'Las Vegas',
+  },
+  {
+    country: 'United States of America',
+    city: 'San Francisco',
   },
   {
     country: 'India',
@@ -32,24 +36,24 @@ export const CITIES = [
     city: 'Mysore',
   },
   {
-    country: 'Singapore',
-    city: 'Pulau Ujong',
+    country: 'India',
+    city: 'Hyderabad',
+  },
+  {
+    country: 'India',
+    city: 'Udaipur',
   },
   {
     country: 'Japan',
     city: 'Osaka',
   },
   {
-    country: 'Thailand',
-    city: 'Bangkok',
-  },
-  {
     country: 'Japan',
     city: 'Tokyo',
   },
   {
-    country: 'Pakistan',
-    city: 'Lahore',
+    country: 'Thailand',
+    city: 'Bangkok',
   },
   {
     country: 'Ukraine',
@@ -60,10 +64,6 @@ export const CITIES = [
     city: 'London',
   },
   {
-    country: 'Czech Republic',
-    city: 'Prague',
-  },
-  {
     country: 'United Kingdom',
     city: 'Birmingham',
   },
@@ -72,12 +72,12 @@ export const CITIES = [
     city: 'Leeds',
   },
   {
-    country: 'Russia',
-    city: 'Moscow',
+    country: 'Czech Republic',
+    city: 'Prague',
   },
   {
-    country: 'Italy',
-    city: 'Milan',
+    country: 'Russia',
+    city: 'Moscow',
   },
   {
     country: 'Spain',
@@ -113,11 +113,11 @@ export const CITIES = [
   },
   {
     country: 'Brazil',
-    city: 'rio de janeiro',
+    city: 'Rio de janeiro',
   },
   {
     country: 'Canada',
-    city: 'Surrey',
+    city: 'Toronto',
   },
   {
     country: 'Canada',
@@ -134,14 +134,6 @@ export const CITIES = [
   {
     country: 'Germany',
     city: 'Hamburg',
-  },
-  {
-    country: 'India',
-    city: 'Chandigarh',
-  },
-  {
-    country: 'India',
-    city: 'Udaipur',
   },
   {
     country: 'Turkey',
@@ -188,16 +180,16 @@ export const CITIES = [
     city: 'Dublin',
   },
   {
-    country: 'United States of America',
-    city: 'San Francisco',
-  },
-  {
     country: 'South Africa',
     city: 'Cape Town',
   },
   {
     country: 'Italy',
     city: 'Venice',
+  },
+  {
+    country: 'Italy',
+    city: 'Milan',
   },
   {
     country: 'Chile',
@@ -218,10 +210,6 @@ export const CITIES = [
   {
     country: 'Zimbabwe',
     city: 'Harare',
-  },
-  {
-    country: 'Armenia',
-    city: 'Yerevan',
   },
   {
     country: 'Cuba',

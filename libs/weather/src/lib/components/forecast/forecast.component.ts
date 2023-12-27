@@ -27,7 +27,7 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
   forecastDetails: WeatherDefinition;
 
   private forecastStrategy: ForecastStrategy;
-  private cityInfo: Partial<CityPayload>;
+  private cityInfo: CityPayload;
 
   constructor(
     public forecastService: ForecastService,
@@ -36,12 +36,12 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
     super();
     this.userInputForm = this.fg.group({
       city: new FormControl(null, Validators.required),
-      country: new FormControl(null),
+      country: new FormControl(""),
       unit: new FormControl('metric'),
     });
   }
 
-  private getUserCoordinates() {
+  private getUserCoordinates() : void {
     // sets the active strategy to get forecast i.e by city name or lat long
     this.setForecastStrategy(this.forecastStrategy);
     // gets the active strategy and pass it to service to be consumed
@@ -50,18 +50,17 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
     );
   }
 
-  private userPayload(): Partial<CityPayload> {
-    const formValue = this.cityInfo;
+  private userPayload(): CityPayload {
+    const {country, city, unit} = this.cityInfo;
     let countryCode: string | null = '';
-    if (formValue.country) {
-      const country = _.filter(this.countries, formValue.country);
-      countryCode = country.length ? country[0]['code'] : null;
+    if (country) {
+      const filteredCountry = _.filter(this.countries, country);
+      countryCode = filteredCountry.length ? country[0] : null;
     }
     return {
-      city: formValue.country
-        ? `${formValue.city},${countryCode}`
-        : formValue.city,
-      unit: formValue.unit, // Temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.
+      city: country ? `${city},${countryCode}` : city,
+      country: '',
+      unit: unit, // Temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.
     };
   }
 
@@ -74,7 +73,7 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
         });
         break;
       case 'cityname':
-        const config: Partial<CityPayload> = this.userPayload();
+        const config: CityPayload = this.userPayload();
         this.forecastStrategy = new ForecastByCityName(config);
         break;
       default:
@@ -82,7 +81,7 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
     }
   }
 
-  onSubmit(value: Partial<CityPayload>) : void {
+  onSubmit(value: CityPayload) : void {
     this.cityInfo = value;
     this.determineForecastStrategy('cityname');
     this.getUserCoordinates();

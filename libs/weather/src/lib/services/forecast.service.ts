@@ -31,6 +31,10 @@ export class ForecastService {
   private dataClone: IOpenWeatherResponse;
   private cityPublisher = new Subject<boolean>();
   private units = '';
+  private readonly SEATTLE_LAT_LONG = {
+    longitude: -122.332,
+    latitude: 47.6061,
+  };
 
   showRandomCities$ = this.cityPublisher.asObservable();
 
@@ -106,10 +110,8 @@ export class ForecastService {
       shareReplay(), // single network request - even if multiple subscription
       catchError((err: HttpErrorResponse) => {
         console.error(err);
-        if (err.status == 404) {
-          this.cityPublisher.next(true);
-          this.notificationService.showErrorMessage(err.error.message);
-        }
+        this.cityPublisher.next(true);
+        this.notificationService.showErrorMessage(err.error.message);
         return throwError(() => err);
       })
     );
@@ -152,10 +154,7 @@ export class ForecastService {
 
         //  #2 Return a new observable -- which can maybe pass default coordinates in case user denied location
         // unlike tap operator second argument; it DOES return an observable and pass something to pipe operator
-        return of({
-          longitude: -122.332,
-          latitude: 47.6061,
-        });
+        return of(this.SEATTLE_LAT_LONG);
 
         // throwError(err);
 

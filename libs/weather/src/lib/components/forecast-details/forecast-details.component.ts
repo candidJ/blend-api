@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
 import { CITIES } from '../../constants/cities.const';
 import { CityPayload } from '../../types/weather.interface';
 
@@ -6,28 +6,41 @@ import { CityPayload } from '../../types/weather.interface';
   selector: 'ba-forecast-details',
   templateUrl: './forecast-details.component.html',
   styleUrls: ['./forecast-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ForecastDetailsComponent implements OnInit {
-  threeCities: Partial<CityPayload>[] = [];
+  randomCities: Partial<CityPayload>[] = [];
   private cities = CITIES;
+  private cityHashMap : Map<number, boolean> = new Map();
 
   @Output('cityInfo') sendCityInfo = new EventEmitter();
 
   constructor() {}
 
-  private generateThreeRandomCities() {
-    for (let i = 1; i <= 5; i++) {
-      this.threeCities.push(
-        this.cities[Math.floor(Math.random() * (this.cities.length - 1))]
-      );
+  private generateRandomCities() {
+    for (let i = 0; i < 5; i++) {
+      let randomHash = this.generateRandomHash();
+      if(!this.cityHashMap.has(randomHash)) {
+        this.cityHashMap.set(randomHash, true);
+      } else {
+        while(this.cityHashMap.has(randomHash)){
+          randomHash = this.generateRandomHash();
+        }
+      }
+      const randomCity = this.cities[randomHash];
+      this.randomCities.push(randomCity);
     }
   }
 
-  onCityClick(info: Partial<CityPayload>): void {
-    this.sendCityInfo.emit(info);
+  private generateRandomHash() : number {
+    return Math.round(Math.random() * (this.cities.length - 1));
+  }
+
+  onCityClick(cityInfo: Partial<CityPayload>): void {
+    this.sendCityInfo.emit(cityInfo);
   }
 
   ngOnInit(): void {
-    this.generateThreeRandomCities();
+    this.generateRandomCities();
   }
 }

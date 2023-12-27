@@ -1,6 +1,6 @@
 export interface CityPayload {
   city: string;
-  unit: 'imperial' | 'metric';
+  unit: 'imperial' | 'metric' | 'standard';
   country: string;
 }
 
