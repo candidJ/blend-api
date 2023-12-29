@@ -99,7 +99,7 @@ export class CalculatorComponent implements OnInit {
         this.output = (previousInput % currentOutput).toString();
         break;
       default:
-        break;
+        throw new Error(`Uncaught user input for${this.currentOperator}`);
     }
     this.storeOperationHistoryInCurrentSession(currentOutput); // effect
     this.clear(); // effect; complete

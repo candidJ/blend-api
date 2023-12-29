@@ -77,7 +77,7 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
         this.forecastStrategy = new ForecastByCityName(config);
         break;
       default:
-        'latlong';
+        throw new Error(`Uncaught exception for forecast type: ${type}`);
     }
   }
 
