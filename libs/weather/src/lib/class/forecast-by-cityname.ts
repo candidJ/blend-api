@@ -14,9 +14,7 @@ export class ForecastByCityName implements ForecastStrategy {
   constructor(private config: CityPayload) {}
 
   forecast(): Observable<HttpParams> {
-    return of({
-      ...this.config,
-    }).pipe(
+    return of(this.config).pipe(
       map((data) => {
         return new HttpParams()
           .set('q', data.city)

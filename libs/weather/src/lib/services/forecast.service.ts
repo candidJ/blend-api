@@ -31,7 +31,7 @@ export class ForecastService {
   private dataClone: IOpenWeatherResponse;
   private cityPublisher = new Subject<boolean>();
   private units = '';
-  private readonly SEATTLE_LAT_LONG = {
+  private readonly SEATTLE_LAT_LONG : Pick<GeolocationCoordinates, 'latitude' | 'longitude'> = {
     longitude: -122.332,
     latitude: 47.6061,
   };

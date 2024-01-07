@@ -9,10 +9,9 @@ import * as _ from 'lodash';
 import { Observable } from 'rxjs';
 import { ForecastByCityName } from '../../class/forecast-by-cityname';
 import { ForecastByLatLong } from '../../class/forecast-by-latlong';
-import { WeatherForecast } from '../../class/weather-forecast';
+import { ForecastContext } from '../../class/forecast-context';
 import { COUNTRIES } from '../../constants/country.const';
 import { ForecastService } from '../../services/forecast.service';
-import { ForecastStrategy } from '../../types/forecast-strategy.interface';
 import { CityPayload, WeatherDefinition } from '../../types/weather.interface';
 
 @Component({
@@ -20,14 +19,11 @@ import { CityPayload, WeatherDefinition } from '../../types/weather.interface';
   templateUrl: './forecast.component.html',
   styleUrls: ['./forecast.component.scss'],
 })
-export class ForecastComponent extends WeatherForecast implements OnInit {
+export class ForecastComponent extends ForecastContext implements OnInit {
   forecast$: Observable<WeatherDefinition[]>;
   userInputForm: FormGroup;
   countries: { name: string; code: string }[] = COUNTRIES;
   forecastDetails: WeatherDefinition;
-
-  private forecastStrategy: ForecastStrategy;
-  private cityInfo: CityPayload;
 
   constructor(
     public forecastService: ForecastService,
@@ -41,17 +37,14 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
     });
   }
 
-  private getUserCoordinates() : void {
-    // sets the active strategy to get forecast i.e by city name or lat long
-    this.setForecastStrategy(this.forecastStrategy);
-    // gets the active strategy and pass it to service to be consumed
+  private fetchWeatherForecast() : void {
     this.forecast$ = this.forecastService.getForecast(
-      this.getForecastByStrategy()
+      this.performForecast()
     );
   }
 
-  private userPayload(): CityPayload {
-    const {country, city, unit} = this.cityInfo;
+  private userPayload(cityInfo: CityPayload): CityPayload {
+    const {country, city, unit} = cityInfo;
     let countryCode: string | null = '';
     if (country) {
       const filteredCountry = _.filter(this.countries, country);
@@ -60,34 +53,23 @@ export class ForecastComponent extends WeatherForecast implements OnInit {
     return {
       city: country ? `${city},${countryCode}` : city,
       country: '',
-      unit: unit, // Temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.
+      unit: unit
     };
   }
 
-  private determineForecastStrategy(type: string) : void {
-    switch (type) {
-      case 'latlong':
-        this.forecastService.getCurrentLocation().subscribe((config) => {
-          this.forecastStrategy = new ForecastByLatLong(config);
-          this.getUserCoordinates();
-        });
-        break;
-      case 'cityname':
-        const config: CityPayload = this.userPayload();
-        this.forecastStrategy = new ForecastByCityName(config);
-        break;
-      default:
-        throw new Error(`Uncaught exception for forecast type: ${type}`);
-    }
-  }
-
-  onSubmit(value: CityPayload) : void {
-    this.cityInfo = value;
-    this.determineForecastStrategy('cityname');
-    this.getUserCoordinates();
+  onSubmit(userCityNameInput: CityPayload) : void {
+    const cityPayload : CityPayload = this.userPayload(userCityNameInput);
+    let forecastByCityName = new ForecastByCityName(cityPayload);
+    this.setForecastStrategy(forecastByCityName);
+    this.fetchWeatherForecast();
   }
 
   ngOnInit() : void {
-    this.determineForecastStrategy('latlong');
+    this.forecastService.getCurrentLocation().subscribe((currentLocation) => {
+      const forecastByLatLong = new ForecastByLatLong(currentLocation);
+      // sets the default active strategy to forecast by latitude and longitude
+      this.setForecastStrategy(forecastByLatLong);
+      this.fetchWeatherForecast();
+    });
   }
 }

@@ -6,7 +6,7 @@ import { AppConfig } from '@blend-api/shared';
 
 // Implementation of strategy
 export class ForecastByLatLong implements ForecastStrategy {
-  constructor(private coords: { latitude: number; longitude: number }) {}
+  constructor(private coords: Pick<GeolocationCoordinates, "latitude" | "longitude">) {}
 
   forecast(): Observable<HttpParams> {
     return of(this.coords).pipe(
