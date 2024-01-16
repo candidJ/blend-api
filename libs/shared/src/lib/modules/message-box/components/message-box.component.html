@@ -1,25 +1,23 @@
 <article class="is-flex is-multiline columns">
-  <ul
-    class="column is-full-mobile is-one-third-tablet is-one-quarter-desktop is-one-fifth-widescreen"
-    *ngFor="let message of messages"
-  >
-    <!-- <li class="message h-100 has-background-primary-light"> -->
-    <li class="message h-100 is-primary">
-      <blockquote class="message-body h-100">
-        <p>
-          <!-- <cite highlighted #highlighter="hl" (dblclick)="highlighter.toggle();"></cite> -->
-          {{ message[props[0]] }}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Send tweet"
-          >
-            <i-feather name="twitter" (click)="onTweet(message)"></i-feather>
-          </a>
-        </p>
-
-        <p class="is-family-secondary mv3">{{ message[props[1]] }}</p>
-      </blockquote>
-    </li>
-  </ul>
+  @for (message of messages; track message) {
+    <ul
+      class="column is-full-mobile is-one-third-tablet is-one-quarter-desktop is-one-fifth-widescreen"
+      >
+      <li class="message h-100 is-primary">
+        <blockquote class="message-body h-100">
+          <p>
+            {{ message[props[0]] }}
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Send tweet"
+              >
+              <i-feather name="twitter" (click)="onTweet(message)"></i-feather>
+            </a>
+          </p>
+          <p class="is-family-secondary mv3">{{ message[props[1]] }}</p>
+        </blockquote>
+      </li>
+    </ul>
+  }
 </article>

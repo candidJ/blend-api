@@ -6,13 +6,16 @@
   </p>
 
   <!-- content -->
-  <p
-    *ngIf="comment.content"
-    class="is-family-secondary"
-    [innerHTML]="comment.content"
-  ></p>
+  @if (comment.content) {
+    <p
+      class="is-family-secondary"
+      [innerHTML]="comment.content"
+    ></p>
+  }
 
   <!-- for nested comments (recursion) -->
-  <ba-comments *ngFor="let comment of comment.comments" [comment]="comment">
-  </ba-comments>
+  @for (comment of comment.comments; track comment) {
+    <ba-comments [comment]="comment">
+    </ba-comments>
+  }
 </article>

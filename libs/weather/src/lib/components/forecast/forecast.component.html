@@ -8,22 +8,17 @@
         type="text"
         placeholder="Enter city name"
         required
-      />
+        />
       <span class="icon is-small is-left flex items-center justify-center">
         <i-feather name="search"></i-feather>
       </span>
 
-      <ng-container
-        *ngIf="
-          userInputForm.get('city')?.errors &&
-          userInputForm.get('city')?.touched
-        "
-      >
+      @if (
+        userInputForm.get('city')?.errors &&
+        userInputForm.get('city')?.touched
+        ) {
         <p class="help is-danger">City name is required.</p>
-      </ng-container>
-      <!-- <span class="icon is-small is-right" (click)="userInputForm.reset()">
-        <i-feather name="delete"></i-feather>
-      </span> -->
+      }
     </div>
     <div class="control has-icons-left has-icons-right">
       <input
@@ -33,19 +28,17 @@
         class="input is-rounded"
         type="text"
         placeholder="Enter country name(optional)"
-      />
+        />
       <datalist id="browsers">
-        <option
-          *ngFor="let country of countries"
-          [value]="country.name"
-        ></option>
+        @for (country of countries; track country) {
+          <option
+            [value]="country.name"
+          ></option>
+        }
       </datalist>
       <span class="icon is-small is-left flex items-center justify-center">
         <i-feather name="globe"></i-feather>
       </span>
-      <!-- <span class="icon is-small is-right" (click)="userInputForm.reset()">
-        <i-feather name="delete"></i-feather>
-      </span> -->
     </div>
 
     <div class="control" id="radio">
@@ -76,25 +69,23 @@
 
   <p
     class="search-guideline is-size-7 is-family-secondary has-text-weight-light"
-  >
+    >
     Search for city name. For more accurate results, choose country as well.
   </p>
 
-  <ng-container *ngIf="forecast$ | async as forecasts">
+  @if (forecast$ | async; as forecasts) {
     <section class="forecast-header">
       <h2>5 day Forecast</h2>
-
       <b class="location">
         <i-feather name="map-pin"></i-feather>
         <span class="mx-1">
           {{ forecasts[0].city }}, {{ forecasts[0].country }}
         </span>
-        <!-- {{forecasts[0] | json}} -->
       </b>
     </section>
-
-    <ul class="five-day-fl">
-      <li *ngFor="let forecast of forecasts" class="message is-primary">
+  <ul class="five-day-fl">
+    @for (forecast of forecasts; track forecast) {
+      <li class="message is-primary">
         <div class="message-body">
           <p>
             {{ forecast.date | dateTimeFormatPipe: 'dddd' }}
@@ -104,12 +95,11 @@
           </p>
           <p>
             <span> {{ forecast.currentTemp | number: '1.0-0' }}</span>
-            <ng-container *ngIf="forecast.units == 'metric'; else fahrenheit">
+            @if (forecast.units == 'metric') {
               <i class="wi wi-celsius"></i>
-            </ng-container>
-            <ng-template #fahrenheit>
+            } @else {
               <i class="wi wi-fahrenheit"></i>
-            </ng-template>
+            }
           </p>
           <p>
             {{ forecast.description | titlecase }}
@@ -148,10 +138,11 @@
           </dl>
         </div>
       </li>
+      }
     </ul>
-  </ng-container>
+  }
 
-  <ng-container *ngIf="forecastService.showRandomCities$ | async">
-    <ba-forecast-details (cityInfo)="onSubmit($event)"></ba-forecast-details>
-  </ng-container>
+@if (forecastService.showRandomCities$ | async) {
+  <ba-forecast-details (cityInfo)="onSubmit($event)"></ba-forecast-details>
+}
 </article>

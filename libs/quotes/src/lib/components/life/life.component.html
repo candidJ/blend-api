@@ -1,16 +1,16 @@
-<ng-container *ngIf="(quotes$ | async) as quotes">
+@if ((quotes$ | async); as quotes) {
   <ba-message-box
     [data]="quotes"
     [props]="props"
     (tweet)="tweet($event)"
-  >
-  </ba-message-box>
-</ng-container>
-
-<ng-container *ngIf="paginationConfig().listLength > 0">
-    <ba-paginator
-      [paginationConfig]="paginationConfig()"
-      (onPaginatorChange)="onPaginationChange($event)"
     >
-    </ba-paginator>
-</ng-container>
+  </ba-message-box>
+}
+
+@if (paginationConfig().listLength > 0) {
+  <ba-paginator
+    [paginationConfig]="paginationConfig()"
+    (onPaginatorChange)="onPaginationChange($event)"
+    >
+  </ba-paginator>
+}

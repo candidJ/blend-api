@@ -1,13 +1,15 @@
-<div *ngFor="let notification of notifications$ | async" class="mb2">
-  <p
-    class="notification is-narrow is-flex is-light"
+@for (notification of notifications$ | async; track notification) {
+  <div class="mb2">
+    <p
+      class="notification is-narrow is-flex is-light"
     [ngClass]="{
       'is-success': notification.type === 'success',
       'is-danger': notification.type === 'error',
       'is-info': notification.type === 'info'
     }"
-  >
-    <button class="delete" (click)="clearNotification(notification)"></button>
-    {{ notification.text | titlecase }}
-  </p>
-</div>
+      >
+      <button class="delete" (click)="clearNotification(notification)"></button>
+      {{ notification.text | titlecase }}
+    </p>
+  </div>
+}

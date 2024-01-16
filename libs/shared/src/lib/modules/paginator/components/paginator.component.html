@@ -1,25 +1,25 @@
-<ng-container *ngIf="pagination && record()">
+@if (pagination && record()) {
   <p
     class="mt2 is-size-6-desktop has-text-weight-light is-size-7-touch is-pulled-right is-family-secondary"
-  >
+    >
     Showing
     {{ record()?.start }}–{{ record()?.end }}
     &nbsp;of&nbsp;
     {{ pagination.listLength }}
     records
   </p>
-</ng-container>
+}
 
 <div class="mv4 is-clearfix">
   <nav class="pagination" role="navigation" aria-label="pagination">
-    <ng-container *ngIf="pagination">
+    @if (pagination) {
       <ul class="pagination-list">
         <li>
           <a
             [ngClass]="{ disabled: activePage === 1 }"
             (click)="onPageChange(1)"
             class="pagination-previous"
-          >
+            >
             <i-feather name="chevrons-left"></i-feather>
             First
           </a>
@@ -29,7 +29,7 @@
             [ngClass]="{ disabled: activePage === 1 }"
             (click)="onPageChange(activePage - 1)"
             class="pagination-previous"
-          >
+            >
             <i-feather name="chevron-left"></i-feather>
             Previous
           </a>
@@ -53,6 +53,6 @@
           </a>
         </li>
       </ul>
-    </ng-container>
+    }
   </nav>
 </div>

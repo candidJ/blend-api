@@ -3,42 +3,30 @@
     <thead>
       <tr>
         <!-- shows just the column header -->
-        <ng-container *ngFor="let column of gridColumns">
+        @for (column of gridColumns; track column) {
           <th
             class="has-background-primary-light is-capitalized"
             [ngClass]="{ 'hide-sm': column.isHideSm }"
-          >
+            >
             {{ column.header }}
           </th>
-        </ng-container>
+        }
       </tr>
     </thead>
 
     <tbody>
-      <ng-container *ngIf="gridData$ | async as grids; else noGridData">
-        <ng-container *ngFor="let grid of grids; let i = index">
+      @if (gridData$ | async; as grids) {
+        @for (grid of grids; track grid; let i = $index) {
           <tr>
-            <!-- alternative syntax for passing context -->
-            <!-- 1st syntax -->
-            <!-- <td>
-                            <ng-container *ngTemplateOutlet="view, context: {grid:grid}">
-                            </ng-container>
-                        </td> -->
-            <!-- 2nd syntax -->
-            <!-- <ng-template [ngTemplateOutlet]="items" [ngTemplateOutletContext]="{$implicit: grid}"></ng-template> -->
+          <ng-template
+            *ngTemplateOutlet="items; context: { $implicit: grid }"
+          ></ng-template>
+        </tr>
+      }
+    } @else {
+      Fetching data...
+    }
 
-            <ng-template
-              *ngTemplateOutlet="items; context: { $implicit: grid }"
-            ></ng-template>
-          </tr>
-        </ng-container>
-      </ng-container>
-
-      <!-- TODO: add v17 @if @else syntax -->
-      <ng-template #noGridData>
-        Fetching data...
-        <!-- <p class="m-4">An error occurred while fetching the data</p> -->
-      </ng-template>
-    </tbody>
-  </table>
+  </tbody>
+</table>
 </div>
