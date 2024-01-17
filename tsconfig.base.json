@@ -7,9 +7,8 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
-    // https://www.typescriptlang.org/tsconfig#strict
     "strict": true,
-    "exactOptionalPropertyTypes" : true,
+    "exactOptionalPropertyTypes": true,
     "strictNullChecks": true,
     "module": "es2020",
     "moduleResolution": "node",
