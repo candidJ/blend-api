@@ -14,9 +14,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessageBoxComponent<T, K extends keyof T> {
-  // TODO: rename bindings
-  @Input() data: T[];
-  @Input() props: K[];
+  @Input() messages: T[];
+  @Input() messageKeys: K[];
   @Output() tweet = new EventEmitter();
 
   constructor() {}

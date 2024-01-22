@@ -1,12 +1,12 @@
 <article class="is-flex is-multiline columns">
-  @for (message of data; track message) {
+  @for (message of messages; track message) {
     <ul
       class="column is-full-mobile is-one-third-tablet is-one-quarter-desktop is-one-fifth-widescreen"
       >
       <li class="message h-100 is-primary">
         <blockquote class="message-body h-100">
           <p>
-            {{ message[props[0]] }}
+            {{ message[messageKeys[0]] }}
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -15,7 +15,7 @@
               <i-feather name="twitter" (click)="onTweet(message)"></i-feather>
             </a>
           </p>
-          <p class="is-family-secondary mv3">{{ message[props[1]] }}</p>
+          <p class="is-family-secondary mv3">{{ message[messageKeys[1]] }}</p>
         </blockquote>
       </li>
     </ul>

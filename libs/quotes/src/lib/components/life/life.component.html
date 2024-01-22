@@ -1,7 +1,7 @@
 @if ((quotes$ | async); as quotes) {
   <ba-message-box
-    [data]="quotes"
-    [props]="props"
+    [messages]="quotes"
+    [messageKeys]="props"
     (tweet)="tweet($event)"
     >
   </ba-message-box>
