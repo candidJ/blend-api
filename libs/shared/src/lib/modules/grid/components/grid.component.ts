@@ -16,7 +16,7 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GridComponent {
-  @Input() gridData$: Observable<any[]>;
+  @Input() gridData: Array<any>;
   @Input() gridColumns: Array<any>;
 
   @ContentChild('gridItems')

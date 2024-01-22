@@ -15,8 +15,8 @@
     </thead>
 
     <tbody>
-      @if (gridData$ | async; as grids) {
-        @for (grid of grids; track grid; let i = $index) {
+      @if (gridData) {
+        @for (grid of gridData; track grid; let i = $index) {
           <tr>
           <ng-template
             *ngTemplateOutlet="items; context: { $implicit: grid }"
