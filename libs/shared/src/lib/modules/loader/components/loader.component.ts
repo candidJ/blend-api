@@ -11,8 +11,7 @@ export class LoaderComponent {
 }
 
 @Directive()
-export class LoaderComponentWithState implements OnInit {
+export class LoaderComponentWithState {
   constructor(public loaderService: LoaderService) {}
 
-  ngOnInit(): void {}
 }

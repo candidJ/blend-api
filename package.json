@@ -7,7 +7,7 @@
     "optimize": "ng serve --prod --optimization=false",
     "build": "ng build --configuration=production --skip-nx-cache",
     "test": "ng test",
-    "lint": "nx workspace-lint && ng lint",
+    "lint": "nx run-many --target=lint",
     "e2e": "ng e2e",
     "nx": "nx",
     "affected:apps": "nx affected:apps",

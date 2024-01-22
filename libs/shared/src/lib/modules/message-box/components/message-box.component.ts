@@ -13,17 +13,16 @@ import {
   styleUrls: ['./message-box.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MessageBoxComponent<T, K extends keyof T> implements OnInit {
-  @Input('data') messages: T[];
-  @Input('props') props: K[];
-  @Output('tweet')
-  private emitTweet = new EventEmitter();
+export class MessageBoxComponent<T, K extends keyof T> {
+  // TODO: rename bindings
+  @Input() data: T[];
+  @Input() props: K[];
+  @Output() tweet = new EventEmitter();
 
   constructor() {}
 
   onTweet(obj: T): void {
-    this.emitTweet.emit(obj);
+    this.tweet.emit(obj);
   }
 
-  ngOnInit(): void {}
 }

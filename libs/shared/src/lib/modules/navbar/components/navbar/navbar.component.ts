@@ -18,9 +18,9 @@ import { BlendAPILogo, NavbarMenu } from '../../types/navbar.interface';
   styleUrls: ['./navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavbarComponent implements OnInit, AfterViewInit {
-  @Input('navbarMenuItems') navbarMenuItems : NavbarMenu[];
-  @Input('appLogoWithLink') appLogoWithLink : BlendAPILogo;
+export class NavbarComponent implements AfterViewInit {
+  @Input() navbarMenuItems : NavbarMenu[];
+  @Input() appLogoWithLink : BlendAPILogo;
   @ViewChild('navbarBurger') navbarBurger: ElementRef = new ElementRef(
     'navbarBurger'
   );
@@ -33,9 +33,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   constructor(private renderer: Renderer2) {}
 
-  ngOnInit(): void {}
-
-  private toggleActiveClassOnNavbarBurgerClick(event: MouseEvent) {
+  private toggleActiveClassOnNavbarBurgerClick() {
     if (this.navbarBurger.nativeElement.className.includes('is-active')) {
       this.renderer.removeClass(this.navbarBurger.nativeElement, 'is-active');
       this.renderer.removeClass(this.appNavBarMenu.nativeElement, 'is-active');
@@ -46,12 +44,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.renderer.listen(this.navbarBurger.nativeElement, 'click', (event) =>
-      this.toggleActiveClassOnNavbarBurgerClick(event)
+    this.renderer.listen(this.navbarBurger.nativeElement, 'click', () =>
+      this.toggleActiveClassOnNavbarBurgerClick()
     );
     this.menuItem.forEach((el) => {
-      this.renderer.listen(el.nativeElement, 'click', (event) =>
-        this.toggleActiveClassOnNavbarBurgerClick(event)
+      this.renderer.listen(el.nativeElement, 'click', () =>
+        this.toggleActiveClassOnNavbarBurgerClick()
       );
     });
   }

@@ -10,8 +10,7 @@ import { HackerNewsFeedComments } from '../../types';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CommentsComponent implements OnInit {
-  @Input('comment') comment: HackerNewsFeedComments;
+export class CommentsComponent {
+  @Input() comment: HackerNewsFeedComments;
 
-  ngOnInit(): void {}
 }

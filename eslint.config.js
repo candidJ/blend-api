@@ -16,7 +16,7 @@ module.exports = [
         'error',
         {
           enforceBuildableLibDependency: true,
-          allow: [],
+          allow: ["@blend-api/shared/*"],
           depConstraints: [
             {
               sourceTag: '*',

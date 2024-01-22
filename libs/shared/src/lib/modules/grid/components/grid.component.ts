@@ -15,8 +15,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./grid.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GridComponent implements OnInit, AfterContentInit {
-  @Input('gridData') gridData$: Observable<any[]>;
+export class GridComponent {
+  @Input() gridData$: Observable<any[]>;
   @Input() gridColumns: Array<any>;
 
   @ContentChild('gridItems')
@@ -24,9 +24,4 @@ export class GridComponent implements OnInit, AfterContentInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-  }
-
-  ngAfterContentInit(): void {
-  }
 }

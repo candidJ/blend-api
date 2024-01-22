@@ -22,7 +22,8 @@
       "@blend-api/hacker-news": ["libs/hacker-news/src/index.ts"],
       "@blend-api/quotes": ["libs/quotes/src/index.ts"],
       "@blend-api/shared": ["libs/shared/src/index.ts"],
-      "@blend-api/weather": ["libs/weather/src/index.ts"]
+      "@blend-api/weather": ["libs/weather/src/index.ts"],
+      "@apps" : ["apps/BlendApiApp/*"]
     },
     "rootDir": "."
   },

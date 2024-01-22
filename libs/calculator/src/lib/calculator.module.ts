@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 import { CalculatorComponent } from './components/calculator.component';
 import { IconsModule, PipeModule } from '@blend-api/shared';

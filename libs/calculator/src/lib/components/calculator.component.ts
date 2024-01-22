@@ -14,7 +14,7 @@ import { CalculatorLayout } from '../types/calculator.interface';
   templateUrl: './calculator.component.html',
   styleUrls: ['./calculator.component.scss'],
 })
-export class CalculatorComponent implements OnInit {
+export class CalculatorComponent {
   calculatorConfig = CalculatorConfig;
   output = '';
   previousInput = '';
@@ -62,8 +62,6 @@ export class CalculatorComponent implements OnInit {
     this.renderer.removeClass(this.modal.nativeElement, 'is-active');
   }
 
-  ngOnInit(): void {}
-
   private onlyAllowOneDecimal(userInput: CalculatorLayout): void {
     if (userInput.value === '.' && this.output.includes('.')) {
       return;
@@ -79,8 +77,8 @@ export class CalculatorComponent implements OnInit {
   }
 
   private compute(): void {
-    let previousInput = parseFloat(this.previousInput);
-    let currentOutput = parseFloat(this.output);
+    const previousInput = parseFloat(this.previousInput);
+    const currentOutput = parseFloat(this.output);
 
     switch (this.currentOperator) {
       case '+':
@@ -114,7 +112,7 @@ export class CalculatorComponent implements OnInit {
         sessionStorage.getItem('operationHistory') || '{}'
       );
     }
-    let currentOperationHistory = {
+    const currentOperationHistory = {
       operation: String(`${this.operation} ${currentOutput}`),
       result: this.output,
     };
@@ -125,7 +123,7 @@ export class CalculatorComponent implements OnInit {
         JSON.stringify(previousOperations)
       );
     } else {
-      let firstOperationInSession = [];
+      const firstOperationInSession = [];
       firstOperationInSession.push(currentOperationHistory);
       sessionStorage.setItem(
         'operationHistory',
