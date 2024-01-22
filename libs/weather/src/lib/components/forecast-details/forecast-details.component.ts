@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { CITIES } from '../../constants/cities.const';
 import { CityPayload } from '../../types/weather.interface';
 
@@ -6,7 +6,6 @@ import { CityPayload } from '../../types/weather.interface';
   selector: 'ba-forecast-details',
   templateUrl: './forecast-details.component.html',
   styleUrls: ['./forecast-details.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ForecastDetailsComponent implements OnInit {
   randomCities: Partial<CityPayload>[] = [];

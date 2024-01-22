@@ -3,7 +3,6 @@ import {
   OnInit,
   Inject,
   forwardRef,
-  ChangeDetectionStrategy,
   WritableSignal,
 } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -29,7 +28,6 @@ import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/pa
       deps: [HttpClient, NotificationService],
     },
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProgrammingComponent implements OnInit {
   quotes$: Observable<ProgrammingQuote[]>;

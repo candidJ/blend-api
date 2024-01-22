@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { scan } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -9,7 +9,6 @@ import { NotificationService } from '../services/notification.service';
   selector: 'ba-notifications',
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotificationsComponent implements OnInit {
   notifications$: Observable<INotification[]>;

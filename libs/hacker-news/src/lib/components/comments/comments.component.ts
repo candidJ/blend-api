@@ -12,5 +12,4 @@ import { HackerNewsFeedComments } from '../../types';
 })
 export class CommentsComponent {
   @Input() comment: HackerNewsFeedComments;
-
 }

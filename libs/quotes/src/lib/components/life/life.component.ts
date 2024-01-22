@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   inject,
   OnInit,
@@ -15,7 +14,6 @@ import { LifeQuote, PaginationFunc, QuoteProps } from '../../types/quotes.interf
   templateUrl: './life.component.html',
   styleUrls: ['./life.component.scss'],
   providers: [LifeQuotesService],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LifeComponent implements OnInit {
   #quotesService = inject(LifeQuotesService);
