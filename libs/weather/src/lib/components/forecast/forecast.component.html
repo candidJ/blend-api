@@ -88,7 +88,7 @@
       <li class="message is-primary">
         <div class="message-body">
           <p>
-            {{ forecast.date | dateTimeFormatPipe: 'dddd' }}
+            {{ forecast.date | dateTimeFormatPipe: 'EEEE' }}
           </p>
           <p>
             <i [ngClass]="forecast.icon || ''"></i>
@@ -119,12 +119,12 @@
               Sunrise
               <i class="wi wi-sunrise"></i>
             </dt>
-            <dd>{{ forecast.sunrise | dateTimeFormatPipe: 'h:mm:ss a' }}</dd>
+            <dd>{{ forecast.sunrise | dateTimeFormatPipe: 'h:mm a' }}</dd>
             <dt>
               Sunset
               <i class="wi wi-sunset"></i>
             </dt>
-            <dd>{{ forecast.sunset | dateTimeFormatPipe: 'h:mm:ss a' }}</dd>
+            <dd>{{ forecast.sunset | dateTimeFormatPipe: 'h:mm a' }}</dd>
             <dt>
               Wind speed
               <i class="wi wi-windy"></i>

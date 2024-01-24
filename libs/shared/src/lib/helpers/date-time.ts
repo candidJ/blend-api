@@ -1,7 +1,7 @@
-import * as moment from 'moment';
+import {formatDate} from '@angular/common';
 
 export class DateTimeUtils {
   static formatDate(date: "YYYY-MM-DD hh:mm:ss" | Date, format: string): string {
-    return moment(date).format(format);
+    return formatDate(date, format, 'en-US');
   }
 }
