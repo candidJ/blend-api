@@ -7,15 +7,15 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+
+import { NotificationService, PaginationConfig } from '@blend-api/shared';
 import {
   ProgrammingQuotesFactory,
   ProgrammingQuotesService,
   QUOTES_SERVICE_TOKEN,
 } from '../../services/programming-quotes.service';
-import { NotificationService } from 'libs/shared/src/lib/modules/notifications/services/notification.service';
 import { ProgrammingQuote, PaginationFunc, QuoteProps } from '../../types/quotes.interface';
 import { sendTweet } from '../../utils/quote';
-import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/paginator.interface';
 
 @Component({
   selector: 'ba-programming',

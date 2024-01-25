@@ -9,10 +9,8 @@ import {
   catchError,
 } from 'rxjs/operators';
 
-import { NotificationService } from 'libs/shared/src/lib/modules/notifications/services/notification.service';
+import { FeedPubSub, AppConfig, PaginationConfig, NotificationService } from '@blend-api/shared';
 import { ProgrammingQuote } from '../types/quotes.interface';
-import { FeedPubSub, AppConfig } from '@blend-api/shared';
-import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/paginator.interface';
 
 export function ProgrammingQuotesFactory(
   http: HttpClient,

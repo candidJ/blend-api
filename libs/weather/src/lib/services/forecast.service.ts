@@ -24,8 +24,7 @@ import {
   WeatherDefinition,
   WeatherItem,
 } from '../types/weather.interface';
-import { AppConfig } from '@blend-api/shared';
-import { NotificationService } from 'libs/shared/src/lib/modules/notifications/services/notification.service';
+import { AppConfig, NotificationService } from '@blend-api/shared';
 
 @Injectable()
 export class ForecastService {

@@ -3,10 +3,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { catchError, map, shareReplay, switchMap, tap } from 'rxjs/operators';
-import { FeedPubSub, AppConfig } from '@blend-api/shared';
-import { NotificationService } from 'libs/shared/src/lib/modules/notifications/services/notification.service';
-import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/paginator.interface';
+import { FeedPubSub, AppConfig, PaginationConfig, NotificationService } from '@blend-api/shared';
 import { HackerNewsFeed, HackerNewsFeedDetails } from '../types';
+
 
 type ConfigType = 'jobs' | 'feed' | 'show' | 'ask' | 'latest';
 
@@ -20,7 +19,7 @@ interface ConfigProps {
 @Injectable()
 export class HackerNewsApiService extends FeedPubSub {
   
-  paginationConfig = signal<PaginationConfig | null>(null);
+  paginationConfig = signal<PaginationConfig| null>(null);
 
   private readonly config = AppConfig.HACKER_NEWS;
   private readonly baseUrl = AppConfig.HACKER_NEWS_BASE_URL;

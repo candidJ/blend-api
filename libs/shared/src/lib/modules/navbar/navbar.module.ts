@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { IconsModule } from '..';
+import { IconsModule } from '../feather-icons/icons.module';
 
 @NgModule({
   declarations: [NavbarComponent],

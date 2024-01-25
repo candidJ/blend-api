@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { Observable, Subject, throwError } from 'rxjs';
-import { FeedPubSub, AppConfig } from '@blend-api/shared';
+import { FeedPubSub, AppConfig, NotificationService, PaginationConfig } from '@blend-api/shared';
 import {
   map,
   switchMap,
@@ -10,9 +10,7 @@ import {
   catchError,
 } from 'rxjs/operators';
 
-import { NotificationService } from 'libs/shared/src/lib/modules/notifications/services/notification.service';
 import { LifeQuote, LifeQuoteResponse } from '../types/quotes.interface';
-import { PaginationConfig } from 'libs/shared/src/lib/modules/paginator/types/paginator.interface';
 
 @Injectable()
 export class LifeQuotesService extends FeedPubSub {
