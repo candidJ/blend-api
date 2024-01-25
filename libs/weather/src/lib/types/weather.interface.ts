@@ -16,37 +16,41 @@ export interface GeolocationCoordinates {
 
 type ForecastDateFormat = "YYYY-MM-DD hh:mm:ss";
 
-export interface IOpenWeatherResponse {
-  list: {
-    dt_txt: ForecastDateFormat;
-    main: {
-      temp: number;
-      feels_like: number;
-      temp_min: number;
-      temp_max: number;
-      humidity: number;
-    };
-    weather: [
-      {
-        id: number;
-        main: string;
-        description: string;
-        icon: string;
-      }
-    ];
-    wind: {
-      speed: number;
-      deg: number;
-    };
-  }[];
-  city: {
-    name: string;
-    country: string;
-    sunrise: number;
-    sunset: number;
+export interface CityWeather {
+  name: string;
+  country: string;
+  sunrise: number;
+  sunset: number;
+  id: number;
+  timezone: number;
+};
+interface MainTemperatureResponse {
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    humidity: number;
+}
+
+interface Weather {
     id: number;
-    timezone: number;
+    main: string;
+    description: string;
+    icon: string;
+}
+
+export interface WeatherItem {
+  dt_txt: ForecastDateFormat;
+  main: MainTemperatureResponse;
+  weather: Weather[];
+  wind: {
+    speed: number;
+    deg: number;
   };
+}
+export interface WeatherResponse {
+  list: WeatherItem[];
+  city: CityWeather
 }
 
 export interface WeatherDefinition {

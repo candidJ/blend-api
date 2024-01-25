@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError, pipe, Subject } from 'rxjs';
+import { Observable, of, throwError, Subject } from 'rxjs';
 import {
   map,
   switchMap,
@@ -19,8 +19,10 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import {
-  IOpenWeatherResponse,
+  CityWeather,
+  WeatherResponse,
   WeatherDefinition,
+  WeatherItem,
 } from '../types/weather.interface';
 import { AppConfig } from '@blend-api/shared';
 import { NotificationService } from 'libs/shared/src/lib/modules/notifications/services/notification.service';
@@ -28,7 +30,7 @@ import { NotificationService } from 'libs/shared/src/lib/modules/notifications/s
 @Injectable()
 export class ForecastService {
   private readonly config = AppConfig.WEATHER_API_CONFIG;
-  private dataClone: IOpenWeatherResponse;
+  private cityWeather: CityWeather;
   private cityPublisher = new Subject<boolean>();
   private units = '';
   private readonly SEATTLE_LAT_LONG : Pick<GeolocationCoordinates, 'latitude' | 'longitude'> = {
@@ -49,70 +51,31 @@ export class ForecastService {
     forecastHttpParams: Observable<HttpParams>
   ): Observable<WeatherDefinition[]> {
     return forecastHttpParams.pipe(
-      // create a new observable with the last emitted value from previous operator
+      // create a new observable with the last emitted value from previous observable and cancel the last observable
       switchMap((params) => {
-        this.units = params.get('units') || '';
-        return this.httpClient.get<IOpenWeatherResponse>(this.config.URL, {
+        this.units = params.get('units') || 'metric';
+        return this.httpClient.get<WeatherResponse>(this.config.URL, {
           params,
         });
       }),
-      tap((value) => {
-        this.dataClone = Object.assign({}, value);
-        this.notificationService.showSuccessMessage(
-          `Forecast for ${this.dataClone.city.name} fetched`
-        );
-        return value;
+      tap((weatherResponse : WeatherResponse) => {
+        this.cityWeather = Object.assign({}, weatherResponse.city);
+        return weatherResponse;
       }),
-      pluck('list'), // pluck out the list property
-      mergeMap((value) => of(...value)), // take array record and create a stream of data -observable; of single list
-      filter((value, index) => index % 8 === 0), // only concerned with every 8th value
-      map((value) => {
-        let forecast: WeatherDefinition = {
-          currentTemp: value.main.temp,
-          feelsLike: value.main.feels_like,
-          minTemp: value.main.temp_min,
-          maxTemp: value.main.temp_max,
-          humidity: value.main.humidity,
-          title: value.weather[0].main,
-          description: value.weather[0].description,
-          id: value.weather[0].id,
-          date: value.dt_txt,
-          city: this.dataClone.city.name,
-          country: this.dataClone.city.country,
-          //Convert a Unix timestamp to time
-          sunrise: new Date(this.dataClone.city.sunrise * 1000),
-          sunset: new Date(this.dataClone.city.sunset * 1000),
-          windSpeed: value.wind.speed,
-          windDeg: value.wind.deg,
-          //map 'units' value
-          units: this.units,
-        };
-
-        const date = new Date();
-        let weatherIcon: string;
-
-        /* Get suitable icon for weather */
-        if (
-          date.getHours() >= forecast.sunrise.getHours() &&
-          date.getHours() < forecast.sunset.getHours()
-        ) {
-          weatherIcon = `wi wi-owm-day-${forecast.id}`;
-        } else {
-          weatherIcon = `wi wi-owm-night-${forecast.id}`;
-        }
-
-        forecast.icon = weatherIcon;
-        // set showRandomCities to False
-        this.cityPublisher.next(false);
-        return forecast;
-      }),
-      toArray(), // converts into array - here as array (of objects )
+      // pluck out the list property
+      pluck('list'),
+      mergeMap((weatherList: WeatherItem[]) => of(...weatherList)),
+      // total records count = 40. to show weather forecast for next 5 day, take out every 8th record from the list
+      filter((value : WeatherItem, index: number) => (index + 1) % 8 === 0),
+      // transform each weather item to weather definition
+      map((weatherItem: WeatherItem) => this.transformWeatherItem(weatherItem)),
+      toArray(), // convert individual weather item to an Array of WeatherLists
       shareReplay(), // single network request - even if multiple subscription
       catchError((err: HttpErrorResponse) => {
         console.error(err);
         this.cityPublisher.next(true);
         this.notificationService.showErrorMessage(err.error.message);
-        return throwError(() => err);
+        return throwError(err);
       })
     );
   }
@@ -126,7 +89,7 @@ export class ForecastService {
           observer.complete();
         },
         (err) => {
-          // console.log("err", err);
+          console.error("err", err);
           observer.error(err);
         }
       );
@@ -165,4 +128,55 @@ export class ForecastService {
       })
     );
   }
+
+  private transformWeatherItem = (weatherItem : WeatherItem): WeatherDefinition => {
+    let forecast: WeatherDefinition = {
+      currentTemp: weatherItem.main.temp,
+      feelsLike: weatherItem.main.feels_like,
+      minTemp: weatherItem.main.temp_min,
+      maxTemp: weatherItem.main.temp_max,
+      humidity: weatherItem.main.humidity,
+      title: weatherItem.weather[0].main,
+      description: weatherItem.weather[0].description,
+      id: weatherItem.weather[0].id,
+      date: weatherItem.dt_txt,
+      city: this.cityWeather.name,
+      country: this.cityWeather.country,
+      //Convert a Unix timestamp to time
+      sunrise: new Date(this.cityWeather.sunrise * 1000),
+      sunset: new Date(this.cityWeather.sunset * 1000),
+      windSpeed: weatherItem.wind.speed,
+      windDeg: weatherItem.wind.deg,
+      units: this.units,
+    };
+
+    forecast.icon = this.determineWeatherIcon(forecast);
+
+    // set showRandomCities to False
+    this.cityPublisher.next(false);
+    this.notificationService.showSuccessMessage(
+      `Forecast for ${forecast.city} fetched`
+    );
+
+    return forecast;
+  }
+
+
+  private determineWeatherIcon = (forecast: WeatherDefinition) : string =>{
+    const date = new Date();
+    let weatherIcon: string;
+
+    /* Get suitable icon for weather */
+    if (
+      date.getHours() >= forecast.sunrise.getHours() &&
+      date.getHours() < forecast.sunset.getHours()
+    ) {
+      weatherIcon = `wi wi-owm-day-${forecast.id}`;
+    } else {
+      weatherIcon = `wi wi-owm-night-${forecast.id}`;
+    }
+
+    return weatherIcon;
+  }
+
 }
