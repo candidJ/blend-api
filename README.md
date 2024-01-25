@@ -35,6 +35,7 @@ My primary focus during development has always been on crafting code that is **m
 
 - Icons:
   - [FeatherIcons](https://feathericons.com/)
+  - [WeatherIcons](https://erikflowers.github.io/weather-icons/)
 
 ### [BlendApi Graph Overview](./apps/BlendApiApp/src/assets/images/project-graph.png)
 
