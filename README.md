@@ -31,7 +31,6 @@ My primary focus during development has always been on crafting code that is **m
 - CSS libraries:
 
   - [Bulma](https://bulma.io/)
-  - [Tachyons](http://tachyons.io/docs/)
 
 - Icons:
   - [FeatherIcons](https://feathericons.com/)
