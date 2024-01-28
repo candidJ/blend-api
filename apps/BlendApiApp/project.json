@@ -76,7 +76,6 @@
           "vendorChunk": false,
           "buildOptimizer": true,
           "sourceMap": false,
-          "extractCss": true,
           "namedChunks": false,
           "serviceWorker": false,
           "commonChunk": true,
