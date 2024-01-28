@@ -20,11 +20,6 @@
     border-color: transparent;
   }
 
-  .base {
-    border-radius: 3ch;
-    font-size: 2.5ch;
-  }
-
   .operator,
   .ac,
   .del {
@@ -41,7 +36,7 @@
     color: $info;
   }
 
-  .display {
+  .h-3 {
     height: 3rem;
   }
 

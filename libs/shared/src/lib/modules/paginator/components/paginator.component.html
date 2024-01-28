@@ -1,6 +1,6 @@
 @if (pagination && record()) {
   <p
-    class="mt2 is-size-6-desktop has-text-weight-light is-size-7-touch is-pulled-right is-family-secondary"
+    class="my-2 is-size-6-desktop has-text-weight-light is-size-7-touch is-family-secondary"
     >
     Showing
     {{ record()?.start }}–{{ record()?.end }}
@@ -10,7 +10,7 @@
   </p>
 }
 
-<div class="mv4 is-clearfix">
+<div class="my-4">
   <nav class="pagination" role="navigation" aria-label="pagination">
     @if (pagination) {
       <ul class="pagination-list">

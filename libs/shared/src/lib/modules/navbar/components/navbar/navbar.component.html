@@ -42,14 +42,14 @@
             routerLinkActive="is-active"
           >
             <i-feather [name]="navbarMenuItem.icon"></i-feather>
-            <span class="ml2">{{ navbarMenuItem.title }}</span>
+            <span class="ml-2">{{ navbarMenuItem.title }}</span>
           </a>
         }
         @if (navbarMenuItem.hasSubMenu) {
           <section class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
               <i-feather [name]="navbarMenuItem.icon"></i-feather>
-              <span class="ml2">{{ navbarMenuItem.title }}</span>
+              <span class="ml-2">{{ navbarMenuItem.title }}</span>
             </a>
 
             <div class="navbar-dropdown is-boxed">
@@ -63,7 +63,7 @@
                 @if (sub.icon) {
                     <i-feather [name]="sub.icon"></i-feather>
                 }
-                  <span class="ml2">{{ sub.title }}</span>
+                  <span class="ml-2">{{ sub.title }}</span>
                 </a>
               }
             </div>

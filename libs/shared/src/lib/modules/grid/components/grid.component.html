@@ -38,7 +38,7 @@
       >
       {{ gridRowData[item.property] }}
       @if (item.hasDetails) {
-        <p class="is-size-6-tablet is-size-7-mobile mt-2 gray">
+        <p class="is-size-6-tablet is-size-7-mobile mt-2 has-text-grey">
           @for (detail of item.details; track detail) {
             <span class="details">
               @if (gridRowData[detail.property]) {

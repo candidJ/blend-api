@@ -1,11 +1,11 @@
 <article class="message is-info">
   <section
-    class="display px-4 py-2 has-text-grey has-text-right has-text-weight-light is-family-code"
+    class="h-3 px-4 py-2 has-text-grey has-text-right has-text-weight-light is-family-code"
     >
     {{ operation }}
   </section>
   <section
-    class="display px-4 py-2 has-text-info is-align-items-center is-flex is-justify-content-space-between"
+    class="h-3 px-4 py-2 has-text-info is-align-items-center is-flex is-justify-content-space-between"
     >
     <article
       aria-label="history"
@@ -22,7 +22,7 @@
     @for (cal of calculatorConfig; track cal) {
       <button
         (click)="onUserInput(cal)"
-        class="button base"
+        class="button is-rounded is-size-5"
         [textContent]="cal.viewValue"
         [ngClass]="cal.className"
       ></button>
@@ -36,12 +36,10 @@
     <h2 class="has-text-white is-size-2">Session History</h2>
     @if (sessionOperationHistory.length > 0) {
       @for (history of sessionOperationHistory; track history) {
-        <article
-          class="is-flex my-2"
-          >
+        <article class="is-flex my-2">
           <b class="tag is-size-5">{{ history.operation }}</b>
           &nbsp;
-          <span class="has-text-white mx-2 self-center">=</span>
+          <span class="has-text-white mx-2 is-align-self-center">=</span>
           &nbsp;
           <b class="tag is-info is-light is-size-5">{{ history.result | numberFormat }}</b>
         </article>
