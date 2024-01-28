@@ -5,7 +5,10 @@ import { map } from 'rxjs/operators';
 import { PaginationConfig } from '@blend-api/shared';
 import { HackerNewsGridColumns, HackerNewsFeed } from '../../types';
 import { HackerNewsApiService } from '../../services';
-import { HackerNewsFeedColumns, YCOMBINATOR_URL } from '../../constants/metadata.const';
+import {
+  HackerNewsFeedColumns,
+  YCOMBINATOR_URL,
+} from '../../constants/metadata.const';
 
 @Component({
   selector: 'ba-feed',
@@ -26,14 +29,15 @@ export class FeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.feed$ = this.hackerNewsService.fetchNewsFeed()
-      .pipe(map((feed) => {
-        return feed.map(f => {
+    this.feed$ = this.hackerNewsService.fetchNewsFeed().pipe(
+      map((feed) => {
+        return feed.map((f) => {
           if (f.type === 'ask') {
             f.url = `${YCOMBINATOR_URL}${f.url}`;
           }
           return f;
         });
-      }))
+      }),
+    );
   }
 }

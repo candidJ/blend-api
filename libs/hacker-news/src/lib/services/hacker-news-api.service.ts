@@ -3,9 +3,13 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { catchError, map, shareReplay, switchMap, tap } from 'rxjs/operators';
-import { FeedPubSub, AppConfig, PaginationConfig, NotificationService } from '@blend-api/shared';
+import {
+  FeedPubSub,
+  AppConfig,
+  PaginationConfig,
+  NotificationService,
+} from '@blend-api/shared';
 import { HackerNewsFeed, HackerNewsFeedDetails } from '../types';
-
 
 type ConfigType = 'jobs' | 'feed' | 'show' | 'ask' | 'latest';
 
@@ -18,8 +22,7 @@ interface ConfigProps {
 
 @Injectable()
 export class HackerNewsApiService extends FeedPubSub {
-  
-  paginationConfig = signal<PaginationConfig| null>(null);
+  paginationConfig = signal<PaginationConfig | null>(null);
 
   private readonly config = AppConfig.HACKER_NEWS;
   private readonly baseUrl = AppConfig.HACKER_NEWS_BASE_URL;
@@ -27,7 +30,8 @@ export class HackerNewsApiService extends FeedPubSub {
   constructor(
     private httpClient: HttpClient,
     private notificationService: NotificationService,
-    private router: Router) {
+    private router: Router,
+  ) {
     super();
   }
 
@@ -46,7 +50,7 @@ export class HackerNewsApiService extends FeedPubSub {
         return throwError(err);
       }),
       tap(this.composePaginationConfig, this.showSuccessMessage),
-      shareReplay(1)
+      shareReplay(1),
     );
   }
 
@@ -67,7 +71,6 @@ export class HackerNewsApiService extends FeedPubSub {
     return this.httpClient.get<HackerNewsFeed[]>(url, { params });
   };
 
-
   private composeRequestUrl(): string {
     const feedType: ConfigType = this.determineActiveUrl();
     return this.baseUrl + this.config[feedType].URL;
@@ -79,15 +82,14 @@ export class HackerNewsApiService extends FeedPubSub {
   }
 
   private composePaginationConfig = (): void => {
-      const feedType: ConfigType = this.determineActiveUrl();
-      const configType: ConfigProps = this.config[feedType];
-      const feedPaginationConfig: PaginationConfig = {
-        listLength: configType.TOTAL_RECORDS,
-        noOfPages: configType.NO_OF_PAGES,
-        pageSize: configType.PAGE_SIZE
-      };
-      // set the signal to pagination from FeedPubSub
-      this.paginationConfig.set(feedPaginationConfig);
-  }
-
+    const feedType: ConfigType = this.determineActiveUrl();
+    const configType: ConfigProps = this.config[feedType];
+    const feedPaginationConfig: PaginationConfig = {
+      listLength: configType.TOTAL_RECORDS,
+      noOfPages: configType.NO_OF_PAGES,
+      pageSize: configType.PAGE_SIZE,
+    };
+    // set the signal to pagination from FeedPubSub
+    this.paginationConfig.set(feedPaginationConfig);
+  };
 }

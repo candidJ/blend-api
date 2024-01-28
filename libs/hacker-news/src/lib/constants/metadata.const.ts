@@ -1,4 +1,4 @@
-import { HackerNewsGridColumns } from "../types";
+import { HackerNewsGridColumns } from '../types';
 
 export const HackerNewsFeedColumns: HackerNewsGridColumns[] = [
   {
@@ -50,4 +50,4 @@ export const HackerNewsFeedColumns: HackerNewsGridColumns[] = [
   },
 ];
 
-export const YCOMBINATOR_URL = "https://news.ycombinator.com/";
+export const YCOMBINATOR_URL = 'https://news.ycombinator.com/';

@@ -19,14 +19,14 @@ export class PaginatorComponent implements OnInit, OnDestroy {
   activePage = 1;
   pagination: PaginationConfig | null = null;
 
-  @Input('paginationConfig') 
+  @Input('paginationConfig')
   set paginationConfig(value: PaginationConfig) {
-    if(value && !this.pagination) {
+    if (value && !this.pagination) {
       this.record.update(() => {
         return {
-          start : 1,
-          end: value.pageSize
-        }
+          start: 1,
+          end: value.pageSize,
+        };
       });
       this.pagination = value;
     }
@@ -44,8 +44,8 @@ export class PaginatorComponent implements OnInit, OnDestroy {
   private showActiveRecordsRange(page: number) {
     const { pageSize, noOfPages, listLength } = this.pagination!;
     this.record.set({
-        start : page === 1 ? 1: pageSize * (page - 1),
-        end : page === noOfPages ? listLength : page * pageSize
+      start: page === 1 ? 1 : pageSize * (page - 1),
+      end: page === noOfPages ? listLength : page * pageSize,
     });
   }
 

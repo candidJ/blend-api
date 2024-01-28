@@ -27,7 +27,7 @@ export class NotificationsComponent implements OnInit {
         } else {
           return [...messages, message];
         }
-      }, [])
+      }, []),
     );
   }
 }

@@ -6,7 +6,9 @@ import { AppConfig } from '@blend-api/shared';
 
 // Implementation of strategy
 export class ForecastByLatLong implements ForecastStrategy {
-  constructor(private coords: Pick<GeolocationCoordinates, "latitude" | "longitude">) {}
+  constructor(
+    private coords: Pick<GeolocationCoordinates, 'latitude' | 'longitude'>,
+  ) {}
 
   forecast(): Observable<HttpParams> {
     return of(this.coords).pipe(
@@ -17,7 +19,7 @@ export class ForecastByLatLong implements ForecastStrategy {
           .set('lon', String(coords.longitude))
           .set('units', AppConfig.WEATHER_API_CONFIG.UNITS)
           .set('appid', AppConfig.WEATHER_API_CONFIG.API_KEY);
-      })
+      }),
     );
   }
 }

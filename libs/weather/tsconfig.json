@@ -22,6 +22,6 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true,
-    "debug" : true
+    "debug": true
   }
 }

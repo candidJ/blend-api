@@ -2,7 +2,6 @@
   "name": "blend-api",
   "version": "2.0.0",
   "scripts": {
-    "lint": "nx run-many --target=lint",
     "nx": "nx",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
@@ -13,11 +12,12 @@
     "affected:graph": "nx affected:graph",
     "affected": "nx affected",
     "format": "nx format:write",
-    "format:write": "nx format:write",
-    "format:check": "nx format:check",
+    "format:write": "nx format:write --all",
+    "format:check": "nx format:check --all",
     "graph": "nx graph",
     "workspace-schematic": "nx workspace-schematic",
     "help": "nx help",
+    "lint": "nx run-many --target=lint",
     "postinstall": "node ./decorate-angular-cli.js"
   },
   "private": true,

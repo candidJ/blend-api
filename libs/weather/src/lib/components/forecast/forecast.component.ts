@@ -27,24 +27,22 @@ export class ForecastComponent extends ForecastContext implements OnInit {
 
   constructor(
     public forecastService: ForecastService,
-    private fg: FormBuilder
+    private fg: FormBuilder,
   ) {
     super();
     this.userInputForm = this.fg.group({
       city: new FormControl(null, Validators.required),
-      country: new FormControl(""),
+      country: new FormControl(''),
       unit: new FormControl('metric'),
     });
   }
 
-  private fetchWeatherForecast() : void {
-    this.forecast$ = this.forecastService.getForecast(
-      this.performForecast()
-    );
+  private fetchWeatherForecast(): void {
+    this.forecast$ = this.forecastService.getForecast(this.performForecast());
   }
 
   private userPayload(cityInfo: CityPayload): CityPayload {
-    const {country, city, unit} = cityInfo;
+    const { country, city, unit } = cityInfo;
     let countryCode: string | null = '';
     if (country) {
       const filteredCountry = _.filter(this.countries, country);
@@ -53,18 +51,18 @@ export class ForecastComponent extends ForecastContext implements OnInit {
     return {
       city: country ? `${city},${countryCode}` : city,
       country: '',
-      unit: unit
+      unit: unit,
     };
   }
 
-  onSubmit(userCityNameInput: CityPayload) : void {
-    const cityPayload : CityPayload = this.userPayload(userCityNameInput);
+  onSubmit(userCityNameInput: CityPayload): void {
+    const cityPayload: CityPayload = this.userPayload(userCityNameInput);
     let forecastByCityName = new ForecastByCityName(cityPayload);
     this.setForecastStrategy(forecastByCityName);
     this.fetchWeatherForecast();
   }
 
-  ngOnInit() : void {
+  ngOnInit(): void {
     this.forecastService.getCurrentLocation().subscribe((currentLocation) => {
       const forecastByLatLong = new ForecastByLatLong(currentLocation);
       // sets the default active strategy to forecast by latitude and longitude

@@ -1,8 +1,4 @@
-import {
-  Component,
-  Input,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'ba-grid',
@@ -14,6 +10,5 @@ export class GridComponent {
   @Input() gridColumns: Array<any>;
   @Input() gridRows: Array<any>;
 
-  constructor() { }
-
+  constructor() {}
 }

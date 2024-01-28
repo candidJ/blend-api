@@ -6,7 +6,7 @@ export interface BlendAPILogo {
 }
 
 interface MenuItems {
-icon: string;
+  icon: string;
   title: string;
   routerLink: string;
 }

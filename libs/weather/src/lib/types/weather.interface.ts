@@ -14,7 +14,7 @@ export interface GeolocationCoordinates {
   readonly speed: number | null;
 }
 
-type ForecastDateFormat = "YYYY-MM-DD hh:mm:ss";
+type ForecastDateFormat = 'YYYY-MM-DD hh:mm:ss';
 
 export interface CityWeather {
   name: string;
@@ -23,20 +23,20 @@ export interface CityWeather {
   sunset: number;
   id: number;
   timezone: number;
-};
+}
 interface MainTemperatureResponse {
-    temp: number;
-    feels_like: number;
-    temp_min: number;
-    temp_max: number;
-    humidity: number;
+  temp: number;
+  feels_like: number;
+  temp_min: number;
+  temp_max: number;
+  humidity: number;
 }
 
 interface Weather {
-    id: number;
-    main: string;
-    description: string;
-    icon: string;
+  id: number;
+  main: string;
+  description: string;
+  icon: string;
 }
 
 export interface WeatherItem {
@@ -50,7 +50,7 @@ export interface WeatherItem {
 }
 export interface WeatherResponse {
   list: WeatherItem[];
-  city: CityWeather
+  city: CityWeather;
 }
 
 export interface WeatherDefinition {

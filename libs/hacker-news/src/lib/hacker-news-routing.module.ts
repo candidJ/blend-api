@@ -1,10 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import {
-  FeedComponent,
-  FeedDetailsComponent,
-} from './components';
+import { FeedComponent, FeedDetailsComponent } from './components';
 
 @NgModule({
   imports: [

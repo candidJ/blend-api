@@ -13,5 +13,4 @@ export class LoaderComponent {
 @Directive()
 export class LoaderComponentWithState {
   constructor(public loaderService: LoaderService) {}
-
 }

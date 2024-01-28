@@ -53,7 +53,7 @@ export class CalculatorComponent {
 
   displayOperationsHistory(): void {
     this.sessionOperationHistory = JSON.parse(
-      sessionStorage.getItem('operationHistory') || '{}'
+      sessionStorage.getItem('operationHistory') || '{}',
     );
     this.renderer.addClass(this.modal.nativeElement, 'is-active');
   }
@@ -72,7 +72,7 @@ export class CalculatorComponent {
     } else {
       this.output += userInput.value;
     }
-    
+
     this.isComputationDone = false;
   }
 
@@ -109,7 +109,7 @@ export class CalculatorComponent {
 
     if (!_.isEmpty(sessionStorage.getItem('operationHistory'))) {
       previousOperations = JSON.parse(
-        sessionStorage.getItem('operationHistory') || '{}'
+        sessionStorage.getItem('operationHistory') || '{}',
       );
     }
     const currentOperationHistory = {
@@ -120,14 +120,14 @@ export class CalculatorComponent {
       previousOperations.push(currentOperationHistory);
       sessionStorage.setItem(
         'operationHistory',
-        JSON.stringify(previousOperations)
+        JSON.stringify(previousOperations),
       );
     } else {
       const firstOperationInSession = [];
       firstOperationInSession.push(currentOperationHistory);
       sessionStorage.setItem(
         'operationHistory',
-        JSON.stringify(firstOperationInSession)
+        JSON.stringify(firstOperationInSession),
       );
     }
   }
@@ -135,7 +135,7 @@ export class CalculatorComponent {
   private appendOperator(userInput: CalculatorLayout): void {
     if (
       !this.calculatorConfig.some((cc) =>
-        this.operation.includes(cc.viewValue)
+        this.operation.includes(cc.viewValue),
       ) &&
       this.output
     ) {
@@ -158,5 +158,4 @@ export class CalculatorComponent {
       this.output = this.output.toString().slice(0, -1);
     }
   }
-
 }

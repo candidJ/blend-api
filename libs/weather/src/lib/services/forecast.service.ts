@@ -32,7 +32,10 @@ export class ForecastService {
   private cityWeather: CityWeather;
   private cityPublisher = new Subject<boolean>();
   private units = '';
-  private readonly SEATTLE_LAT_LONG : Pick<GeolocationCoordinates, 'latitude' | 'longitude'> = {
+  private readonly SEATTLE_LAT_LONG: Pick<
+    GeolocationCoordinates,
+    'latitude' | 'longitude'
+  > = {
     longitude: -122.332,
     latitude: 47.6061,
   };
@@ -41,13 +44,13 @@ export class ForecastService {
 
   constructor(
     private httpClient: HttpClient,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
   ) {
     this.cityPublisher.next(false);
   }
 
   getForecast(
-    forecastHttpParams: Observable<HttpParams>
+    forecastHttpParams: Observable<HttpParams>,
   ): Observable<WeatherDefinition[]> {
     return forecastHttpParams.pipe(
       // create a new observable with the last emitted value from previous observable and cancel the last observable
@@ -57,7 +60,7 @@ export class ForecastService {
           params,
         });
       }),
-      tap((weatherResponse : WeatherResponse) => {
+      tap((weatherResponse: WeatherResponse) => {
         this.cityWeather = Object.assign({}, weatherResponse.city);
         return weatherResponse;
       }),
@@ -65,7 +68,7 @@ export class ForecastService {
       pluck('list'),
       mergeMap((weatherList: WeatherItem[]) => of(...weatherList)),
       // total records count = 40. to show weather forecast for next 5 day, take out every 8th record from the list
-      filter((value : WeatherItem, index: number) => (index + 1) % 8 === 0),
+      filter((value: WeatherItem, index: number) => (index + 1) % 8 === 0),
       // transform each weather item to weather definition
       map((weatherItem: WeatherItem) => this.transformWeatherItem(weatherItem)),
       toArray(), // convert individual weather item to an Array of WeatherLists
@@ -75,7 +78,7 @@ export class ForecastService {
         this.cityPublisher.next(true);
         this.notificationService.showErrorMessage(err.error.message);
         return throwError(err);
-      })
+      }),
     );
   }
 
@@ -88,9 +91,9 @@ export class ForecastService {
           observer.complete();
         },
         (err) => {
-          console.error("err", err);
+          console.error('err', err);
           observer.error(err);
-        }
+        },
       );
     }).pipe(
       retry(1), // retry would re-subscribe to the observable by executing it again..
@@ -110,7 +113,7 @@ export class ForecastService {
         if (err.code === 1) {
           this.notificationService.showErrorMessage('Location denied...');
           this.notificationService.showGeneralInfo(
-            'Fetching weather of Seattle, WA'
+            'Fetching weather of Seattle, WA',
           );
         }
 
@@ -124,11 +127,13 @@ export class ForecastService {
           return new Observable((observer)=>{
               observer.error(err);
           }) */
-      })
+      }),
     );
   }
 
-  private transformWeatherItem = (weatherItem : WeatherItem): WeatherDefinition => {
+  private transformWeatherItem = (
+    weatherItem: WeatherItem,
+  ): WeatherDefinition => {
     let forecast: WeatherDefinition = {
       currentTemp: weatherItem.main.temp,
       feelsLike: weatherItem.main.feels_like,
@@ -154,14 +159,13 @@ export class ForecastService {
     // set showRandomCities to False
     this.cityPublisher.next(false);
     this.notificationService.showSuccessMessage(
-      `Forecast for ${forecast.city} fetched`
+      `Forecast for ${forecast.city} fetched`,
     );
 
     return forecast;
-  }
+  };
 
-
-  private determineWeatherIcon = (forecast: WeatherDefinition) : string =>{
+  private determineWeatherIcon = (forecast: WeatherDefinition): string => {
     const date = new Date();
     let weatherIcon: string;
 
@@ -176,6 +180,5 @@ export class ForecastService {
     }
 
     return weatherIcon;
-  }
-
+  };
 }

@@ -41,6 +41,7 @@ My primary focus during development has always been on crafting code that is **m
 ## Project Milestones
 
 - [x] Version 1.0
+
   - Weather Forecast :white_check_mark:
   - Quotes :white_check_mark:
   - Hacker News Clone :white_check_mark:
@@ -54,6 +55,7 @@ My primary focus during development has always been on crafting code that is **m
 ## Local Setup with Nx
 
 1. Install [Node](https://nodejs.org/en/) LTS version.
+
    - Open a terminal and type `node -v` to check if Node is installed.
 
 2. Install [Angular CLI](https://angular.io/guide/setup-local) using `npm install -g @angular/cli`.

@@ -17,7 +17,7 @@ export class LoaderInterceptorService implements HttpInterceptor {
 
   intercept(
     req: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     this.setLoadingState(true);
     return next.handle(req).pipe(
@@ -31,8 +31,8 @@ export class LoaderInterceptorService implements HttpInterceptor {
           if (err) {
             this.setLoadingState(false);
           }
-        }
-      )
+        },
+      ),
     );
   }
 

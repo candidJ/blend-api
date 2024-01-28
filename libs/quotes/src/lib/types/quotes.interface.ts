@@ -14,7 +14,7 @@ interface LifeQuotePagination {
   totalPages: number;
 }
 
-export type QuoteProps<T>  = [keyof T, keyof T];
+export type QuoteProps<T> = [keyof T, keyof T];
 
 export interface LifeQuoteResponse {
   data: LifeQuote[];

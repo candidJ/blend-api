@@ -1,4 +1,9 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { HackerNewsFeedComments } from '../../types';
 
 @Component({
@@ -8,7 +13,7 @@ import { HackerNewsFeedComments } from '../../types';
     '../feed-details/feed-details.component.scss',
     './comments.component.scss',
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommentsComponent {
   @Input() comment: HackerNewsFeedComments;

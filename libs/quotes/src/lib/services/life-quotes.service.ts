@@ -1,29 +1,27 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { Observable, Subject, throwError } from 'rxjs';
-import { FeedPubSub, AppConfig, NotificationService, PaginationConfig } from '@blend-api/shared';
 import {
-  map,
-  switchMap,
-  tap,
-  shareReplay,
-  catchError,
-} from 'rxjs/operators';
+  FeedPubSub,
+  AppConfig,
+  NotificationService,
+  PaginationConfig,
+} from '@blend-api/shared';
+import { map, switchMap, tap, shareReplay, catchError } from 'rxjs/operators';
 
 import { LifeQuote, LifeQuoteResponse } from '../types/quotes.interface';
 
 @Injectable()
 export class LifeQuotesService extends FeedPubSub {
-  
   paginationConfig = signal<PaginationConfig>({
     listLength: 0,
     noOfPages: 0,
-    pageSize: 0
+    pageSize: 0,
   });
 
   constructor(
     private httpClient: HttpClient,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
   ) {
     super();
   }
@@ -38,7 +36,7 @@ export class LifeQuotesService extends FeedPubSub {
       }),
       tap(this.composePaginationConfig, this.showSuccessMessage),
       map(this.mapResponse),
-      shareReplay(1)
+      shareReplay(1),
     );
   }
 
@@ -63,17 +61,17 @@ export class LifeQuotesService extends FeedPubSub {
   };
 
   private composePaginationConfig = (data: LifeQuoteResponse): void => {
-    const {pagination} = data;
-    if(this.paginationConfig().listLength === 0){
-        this.paginationConfig.set({
-          listLength: data.totalQuotes,
-          noOfPages: pagination.totalPages,
-          pageSize: AppConfig.LIFE_QUOTES.LIMIT,
-        });
+    const { pagination } = data;
+    if (this.paginationConfig().listLength === 0) {
+      this.paginationConfig.set({
+        listLength: data.totalQuotes,
+        noOfPages: pagination.totalPages,
+        pageSize: AppConfig.LIFE_QUOTES.LIMIT,
+      });
     }
   };
 
   private mapResponse(quotes: LifeQuoteResponse): LifeQuote[] {
-      return quotes.data;
+    return quotes.data;
   }
 }

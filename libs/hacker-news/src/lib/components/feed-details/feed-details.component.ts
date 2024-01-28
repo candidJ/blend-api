@@ -14,8 +14,10 @@ export class FeedDetailsComponent implements OnInit {
   feedItem$: Observable<HackerNewsFeedDetails>;
   noOfPages$: Observable<number[]>;
 
-  constructor(private hackerNewsService: HackerNewsApiService,
-    private route: ActivatedRoute) {}
+  constructor(
+    private hackerNewsService: HackerNewsApiService,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
     const itemId = this.route.snapshot.params['id'];

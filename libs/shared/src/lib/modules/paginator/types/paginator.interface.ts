@@ -7,4 +7,4 @@ export interface PaginationConfig {
 export type RecordType = {
   start: number;
   end: number;
-}
+};

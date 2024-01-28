@@ -14,7 +14,11 @@ import {
   ProgrammingQuotesService,
   QUOTES_SERVICE_TOKEN,
 } from '../../services/programming-quotes.service';
-import { ProgrammingQuote, PaginationFunc, QuoteProps } from '../../types/quotes.interface';
+import {
+  ProgrammingQuote,
+  PaginationFunc,
+  QuoteProps,
+} from '../../types/quotes.interface';
 import { sendTweet } from '../../utils/quote';
 
 @Component({
@@ -36,14 +40,14 @@ export class ProgrammingComponent implements OnInit {
 
   constructor(
     @Inject(forwardRef(() => QUOTES_SERVICE_TOKEN))
-    private programmingQuotesService: ProgrammingQuotesService
-  ) { 
+    private programmingQuotesService: ProgrammingQuotesService,
+  ) {
     this.paginationConfig = this.programmingQuotesService.paginationConfig;
   }
 
-  onPaginationChange: PaginationFunc = (page: number)=> {
+  onPaginationChange: PaginationFunc = (page: number) => {
     this.programmingQuotesService.fetchFeedByPageNumber(page);
-  }
+  };
 
   tweet(obj: ProgrammingQuote): void {
     sendTweet(obj, ['author', 'en']);

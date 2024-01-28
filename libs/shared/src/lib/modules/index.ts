@@ -15,5 +15,5 @@ export * from './navbar/types/navbar.interface';
 export * from './notifications/types/notifications.interface';
 export * from './paginator/types/paginator.interface';
 
-// service 
+// service
 export * from './notifications/services/notification.service';

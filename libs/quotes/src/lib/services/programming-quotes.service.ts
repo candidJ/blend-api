@@ -1,20 +1,19 @@
 import { Injectable, InjectionToken, signal } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import {
-  map,
-  switchMap,
-  tap,
-  shareReplay,
-  catchError,
-} from 'rxjs/operators';
+import { map, switchMap, tap, shareReplay, catchError } from 'rxjs/operators';
 
-import { FeedPubSub, AppConfig, PaginationConfig, NotificationService } from '@blend-api/shared';
+import {
+  FeedPubSub,
+  AppConfig,
+  PaginationConfig,
+  NotificationService,
+} from '@blend-api/shared';
 import { ProgrammingQuote } from '../types/quotes.interface';
 
 export function ProgrammingQuotesFactory(
   http: HttpClient,
-  notificationService: NotificationService
+  notificationService: NotificationService,
 ): ProgrammingQuotesService {
   return new ProgrammingQuotesService(http, notificationService);
 }
@@ -30,12 +29,12 @@ export class ProgrammingQuotesService extends FeedPubSub {
   paginationConfig = signal<PaginationConfig>({
     listLength: 0,
     noOfPages: 0,
-    pageSize: 0
+    pageSize: 0,
   });
 
   constructor(
     httpClient: HttpClient,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
   ) {
     super();
     this.httpClient = httpClient;
@@ -50,15 +49,15 @@ export class ProgrammingQuotesService extends FeedPubSub {
         return throwError(err);
       }),
       tap(this.composePaginationConfig, this.showSuccessMessage),
-      shareReplay(1)
+      shareReplay(1),
     );
   }
 
-  private showErrorMessage = () : void => {
+  private showErrorMessage = (): void => {
     this.notificationService.showErrorMessage('Technical error occurred');
   };
 
-  private showSuccessMessage = () : void => {
+  private showSuccessMessage = (): void => {
     this.notificationService.showSuccessMessage('Programming quotes fetched');
   };
 
@@ -69,24 +68,18 @@ export class ProgrammingQuotesService extends FeedPubSub {
   };
 
   private fetchData = (): Observable<ProgrammingQuote[]> => {
-    return this.httpClient.get<ProgrammingQuote[]>(
-      this.QUOTES.URL
-    );
+    return this.httpClient.get<ProgrammingQuote[]>(this.QUOTES.URL);
   };
 
   private composePaginationConfig(): void {
-    if(this.paginationConfig().listLength === 0) {
+    if (this.paginationConfig().listLength === 0) {
       const paginationConfig: PaginationConfig = {
         listLength: this.QUOTES.TOTAL_RECORDS,
-        noOfPages: Math.ceil(
-          this.QUOTES.TOTAL_RECORDS /
-            this.QUOTES.PAGE_SIZE
-        ),
+        noOfPages: Math.ceil(this.QUOTES.TOTAL_RECORDS / this.QUOTES.PAGE_SIZE),
         pageSize: this.QUOTES.PAGE_SIZE,
       };
 
       this.paginationConfig.set(paginationConfig);
     }
-  };
-
+  }
 }

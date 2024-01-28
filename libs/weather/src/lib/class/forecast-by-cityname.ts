@@ -20,7 +20,7 @@ export class ForecastByCityName implements ForecastStrategy {
           .set('q', data.city)
           .set('units', data.unit || AppConfig.WEATHER_API_CONFIG.UNITS)
           .set('appid', AppConfig.WEATHER_API_CONFIG.API_KEY);
-      })
+      }),
     );
   }
 }

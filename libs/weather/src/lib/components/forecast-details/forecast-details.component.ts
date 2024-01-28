@@ -10,7 +10,7 @@ import { CityPayload } from '../../types/weather.interface';
 export class ForecastDetailsComponent implements OnInit {
   randomCities: Partial<CityPayload>[] = [];
   private cities = CITIES;
-  private cityHashMap : Map<number, boolean> = new Map();
+  private cityHashMap: Map<number, boolean> = new Map();
 
   @Output('cityInfo') sendCityInfo = new EventEmitter();
 
@@ -19,10 +19,10 @@ export class ForecastDetailsComponent implements OnInit {
   private generateRandomCities() {
     for (let i = 0; i < 5; i++) {
       let randomHash = this.generateRandomHash();
-      if(!this.cityHashMap.has(randomHash)) {
+      if (!this.cityHashMap.has(randomHash)) {
         this.cityHashMap.set(randomHash, true);
       } else {
-        while(this.cityHashMap.has(randomHash)){
+        while (this.cityHashMap.has(randomHash)) {
           randomHash = this.generateRandomHash();
         }
       }
@@ -31,7 +31,7 @@ export class ForecastDetailsComponent implements OnInit {
     }
   }
 
-  private generateRandomHash() : number {
+  private generateRandomHash(): number {
     return Math.round(Math.random() * (this.cities.length - 1));
   }
 

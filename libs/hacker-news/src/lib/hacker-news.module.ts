@@ -16,11 +16,7 @@ import {
 import { HackerNewsApiService } from './services';
 
 @NgModule({
-  declarations: [
-    CommentsComponent,
-    FeedComponent,
-    FeedDetailsComponent,
-  ],
+  declarations: [CommentsComponent, FeedComponent, FeedDetailsComponent],
   imports: [
     CommonModule,
     HackerNewsRoutingModule,

@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { AppLogoWithLink, NavbarMenu, NavbarMenuItems } from '@blend-api/shared';
+import {
+  AppLogoWithLink,
+  NavbarMenu,
+  NavbarMenuItems,
+} from '@blend-api/shared';
 
 @Component({
   selector: 'ba-root',

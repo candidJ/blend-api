@@ -1,5 +1,8 @@
 <!-- add margin for level greater than 0 -->
-<article class="my-5" [ngClass]="{ 'left-space': comment.level }">
+<article
+  class="my-5"
+  [ngClass]="{ 'left-space': comment.level }"
+>
   <p class="has-text-grey my-1">
     <span> <i-feather name="user"></i-feather>{{ comment.user }} </span>
     <span> <i-feather name="watch"></i-feather>{{ comment.time_ago }} </span>
@@ -7,15 +10,14 @@
 
   <!-- content -->
   @if (comment.content) {
-    <p
-      class="is-family-secondary"
-      [innerHTML]="comment.content"
-    ></p>
+  <p
+    class="is-family-secondary"
+    [innerHTML]="comment.content"
+  ></p>
   }
 
   <!-- for nested comments (recursion) -->
   @for (comment of comment.comments; track comment) {
-    <ba-comments [comment]="comment">
-    </ba-comments>
+  <ba-comments [comment]="comment"> </ba-comments>
   }
 </article>

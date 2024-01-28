@@ -32,13 +32,13 @@ export class NotificationService {
 
   private addMessageToQueue(
     message: string,
-    type: 'success' | 'error' | 'info'
+    type: 'success' | 'error' | 'info',
   ): void {
     const id = this.generateRandomId();
     this.notificationPublisher.next({
       text: message,
       type,
-      id
+      id,
     });
 
     setTimeout(() => {

@@ -21,14 +21,14 @@ import {
         path: '',
         component: LifeComponent,
         // children: [
-          // {
-          //   path: 'programming',
-          //   component: ProgrammingComponent,
-          // },
-          // {
-          //   path: 'life',
-          //   component: LifeComponent,
-          // },
+        // {
+        //   path: 'programming',
+        //   component: ProgrammingComponent,
+        // },
+        // {
+        //   path: 'life',
+        //   component: LifeComponent,
+        // },
         // ],
       },
     ]),

@@ -1,58 +1,66 @@
 @if (pagination && record()) {
-  <p
-    class="my-2 is-size-6-desktop has-text-weight-light is-size-7-touch is-family-secondary"
-    >
-    Showing
-    {{ record()?.start }}–{{ record()?.end }}
-    &nbsp;of&nbsp;
-    {{ pagination.listLength }}
-    records
-  </p>
+<p
+  class="my-2 is-size-6-desktop has-text-weight-light is-size-7-touch is-family-secondary"
+>
+  Showing
+  {{ record()?.start }}–{{ record()?.end }}
+  &nbsp;of&nbsp;
+  {{ pagination.listLength }}
+  records
+</p>
 }
 
 <div class="my-4">
-  <nav class="pagination" role="navigation" aria-label="pagination">
+  <nav
+    class="pagination"
+    role="navigation"
+    aria-label="pagination"
+  >
     @if (pagination) {
-      <ul class="pagination-list">
-        <li>
-          <a
-            [ngClass]="{ disabled: activePage === 1 }"
-            (click)="onPageChange(1)"
-            class="pagination-previous"
-            >
-            <i-feather name="chevrons-left"></i-feather>
-            First
-          </a>
-        </li>
-        <li>
-          <a
-            [ngClass]="{ disabled: activePage === 1 }"
-            (click)="onPageChange(activePage - 1)"
-            class="pagination-previous"
-            >
-            <i-feather name="chevron-left"></i-feather>
-            Previous
-          </a>
-        </li>
-        <li>
-          <a
-            [ngClass]="{ disabled: activePage === pagination.noOfPages }"
-            (click)="onPageChange(activePage + 1)"
-            class="pagination-next"
-            >Next
-            <i-feather name="chevron-right"></i-feather>
-          </a>
-        </li>
-        <li>
-          <a
-            [ngClass]="{ disabled: activePage === pagination.noOfPages }"
-            (click)="onPageChange(pagination.noOfPages)"
-            class="pagination-next"
-            >Last
-            <i-feather name="chevrons-right"></i-feather>
-          </a>
-        </li>
-      </ul>
+    <ul class="pagination-list">
+      <li>
+        <a
+          [ngClass]="{ disabled: activePage === 1 }"
+          (click)="onPageChange(1)"
+          class="pagination-previous"
+        >
+          <i-feather name="chevrons-left"></i-feather>
+          First
+        </a>
+      </li>
+      <li>
+        <a
+          [ngClass]="{ disabled: activePage === 1 }"
+          (click)="onPageChange(activePage - 1)"
+          class="pagination-previous"
+        >
+          <i-feather name="chevron-left"></i-feather>
+          Previous
+        </a>
+      </li>
+      <li>
+        <a
+          [ngClass]="{
+            disabled: activePage === pagination.noOfPages
+          }"
+          (click)="onPageChange(activePage + 1)"
+          class="pagination-next"
+          >Next
+          <i-feather name="chevron-right"></i-feather>
+        </a>
+      </li>
+      <li>
+        <a
+          [ngClass]="{
+            disabled: activePage === pagination.noOfPages
+          }"
+          (click)="onPageChange(pagination.noOfPages)"
+          class="pagination-next"
+          >Last
+          <i-feather name="chevrons-right"></i-feather>
+        </a>
+      </li>
+    </ul>
     }
   </nav>
 </div>

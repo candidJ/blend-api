@@ -23,5 +23,4 @@ export class MessageBoxComponent<T, K extends keyof T> {
   onTweet(obj: T): void {
     this.tweet.emit(obj);
   }
-
 }
