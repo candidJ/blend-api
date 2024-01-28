@@ -1,11 +1,11 @@
 import { Component, OnInit, WritableSignal } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Router, NavigationEnd, Event } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 import { PaginationConfig } from '@blend-api/shared';
 import { HackerNews, HackerNewsFeed } from '../../types';
 import { HackerNewsApiService } from '../../services';
-import { HackerNewsFeedColumns } from '../../constants/metadata.const';
+import { HackerNewsFeedColumns, YCOMBINATOR_URL } from '../../constants/metadata.const';
 
 @Component({
   selector: 'ba-feed',
@@ -14,17 +14,10 @@ import { HackerNewsFeedColumns } from '../../constants/metadata.const';
 })
 export class FeedComponent implements OnInit {
   feed$: Observable<HackerNewsFeed[]>;
-  dataSource: HackerNews[];
-  feedColumns: HackerNews[];
+  feedColumns: HackerNews[] = HackerNewsFeedColumns;
   paginationConfig: WritableSignal<PaginationConfig | null>;
-  
-  constructor(
-    private hackerNewsService: HackerNewsApiService,
-    private router: Router
-  ) {
-    this.router.events.subscribe((event: Event) => {
-      this.removeDomainForAskRoute(event);
-    });
+
+  constructor(private hackerNewsService: HackerNewsApiService) {
     this.paginationConfig = this.hackerNewsService.paginationConfig;
   }
 
@@ -32,24 +25,16 @@ export class FeedComponent implements OnInit {
     this.hackerNewsService.fetchFeedByPageNumber(page);
   }
 
-  private removeDomainForAskRoute(event: Event): void {
-    if (event instanceof NavigationEnd) {
-      //  hide domain column for ask request
-      if (event.url.indexOf('ask') !== -1) {
-        this.dataSource = HackerNewsFeedColumns.slice(0, 1);
-        this.feedColumns = [
-          ...HackerNewsFeedColumns.slice(0, 1),
-          ...HackerNewsFeedColumns.slice(2),
-        ];
-      } else {
-        // show columns headline and domain
-        this.feedColumns = HackerNewsFeedColumns;
-        this.dataSource = HackerNewsFeedColumns.slice(0, 2);
-      }
-    }
-  }
-
   ngOnInit(): void {
-    this.feed$ = this.hackerNewsService.fetchNewsFeed();
+    this.feed$ = this.hackerNewsService.fetchNewsFeed()
+      .pipe(map((feed) => {
+        // console.log('feed', feed);
+        return feed.map(f => {
+          if (f.type === 'ask') {
+            f.url = `${YCOMBINATOR_URL}${f.url}`;
+          }
+          return f;
+        });
+      }))
   }
 }

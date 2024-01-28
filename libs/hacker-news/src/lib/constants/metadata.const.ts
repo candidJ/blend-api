@@ -49,3 +49,5 @@ export const HackerNewsFeedColumns: HackerNews[] = [
     isHideSm: false,
   },
 ];
+
+export const YCOMBINATOR_URL = "https://news.ycombinator.com/";

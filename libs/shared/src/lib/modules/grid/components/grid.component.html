@@ -15,11 +15,11 @@
     </thead>
 
     <tbody>
-      @if (gridData) {
-        @for (grid of gridData; track grid; let i = $index) {
-          <tr>
+      @if (gridRows) {
+        @for (gridRowData of gridRows; track gridRowData) {
+        <tr>
           <ng-template
-            *ngTemplateOutlet="items; context: { $implicit: grid }"
+            *ngTemplateOutlet="gridRowItem; context: { $implicit : gridRowData}"
           ></ng-template>
         </tr>
       }
@@ -29,4 +29,33 @@
 
   </tbody>
 </table>
+
+<ng-template #gridRowItem let-gridRowData>
+  @for (item of gridColumns; track item) {
+    <td
+      [routerLink]="['../item', gridRowData.id]"
+      [ngClass]="{ 'hide-sm': item.isHideSm }"
+      >
+      {{ gridRowData[item.property] }}
+      @if (item.hasDetails) {
+        <p class="is-size-6-tablet is-size-7-mobile mt-2 gray">
+          @for (detail of item.details; track detail) {
+            <span class="details">
+              @if (gridRowData[detail.property]) {
+                <i-feather [name]="detail.icon"></i-feather>
+                {{ gridRowData[detail.property] }}&nbsp;
+              }
+            </span>
+          }
+        </p>
+      }
+    </td>
+  }
+  <td>
+    <a [href]="gridRowData.url" target="_blank" class="flex align-center">
+      <i-feather name="external-link"></i-feather>
+    </a>
+  </td>
+</ng-template>
+
 </div>

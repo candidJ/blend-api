@@ -25,7 +25,7 @@ export interface HackerNewsFeed {
   time: number;
   time_ago: string;
   comments_count: number;
-  type: string;
+  type: 'ask' | 'link' | 'job';
   url: string;
   domain: string;
 }

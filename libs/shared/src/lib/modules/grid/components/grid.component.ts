@@ -1,13 +1,8 @@
 import {
   Component,
-  OnInit,
   Input,
-  TemplateRef,
-  ContentChild,
-  AfterContentInit,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ba-grid',
@@ -16,12 +11,9 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GridComponent {
-  @Input() gridData: Array<any>;
   @Input() gridColumns: Array<any>;
+  @Input() gridRows: Array<any>;
 
-  @ContentChild('gridItems')
-  items: TemplateRef<any>;
-
-  constructor() {}
+  constructor() { }
 
 }
