@@ -11,7 +11,7 @@ interface HackerNewsDetails {
   property: string;
 }
 
-export interface HackerNews extends GridColumns {
+export interface HackerNewsGridColumns extends GridColumns {
   hasDetails: boolean;
   details?: HackerNewsDetails[];
   isHideSm: boolean;

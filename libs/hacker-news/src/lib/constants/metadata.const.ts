@@ -1,6 +1,6 @@
-import { HackerNews } from "../types";
+import { HackerNewsGridColumns } from "../types";
 
-export const HackerNewsFeedColumns: HackerNews[] = [
+export const HackerNewsFeedColumns: HackerNewsGridColumns[] = [
   {
     header: 'Title',
     property: 'title',

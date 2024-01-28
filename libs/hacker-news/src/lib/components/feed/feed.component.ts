@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { PaginationConfig } from '@blend-api/shared';
-import { HackerNews, HackerNewsFeed } from '../../types';
+import { HackerNewsGridColumns, HackerNewsFeed } from '../../types';
 import { HackerNewsApiService } from '../../services';
 import { HackerNewsFeedColumns, YCOMBINATOR_URL } from '../../constants/metadata.const';
 
@@ -14,7 +14,7 @@ import { HackerNewsFeedColumns, YCOMBINATOR_URL } from '../../constants/metadata
 })
 export class FeedComponent implements OnInit {
   feed$: Observable<HackerNewsFeed[]>;
-  feedColumns: HackerNews[] = HackerNewsFeedColumns;
+  feedColumns: HackerNewsGridColumns[] = HackerNewsFeedColumns;
   paginationConfig: WritableSignal<PaginationConfig | null>;
 
   constructor(private hackerNewsService: HackerNewsApiService) {
@@ -28,7 +28,6 @@ export class FeedComponent implements OnInit {
   ngOnInit(): void {
     this.feed$ = this.hackerNewsService.fetchNewsFeed()
       .pipe(map((feed) => {
-        // console.log('feed', feed);
         return feed.map(f => {
           if (f.type === 'ask') {
             f.url = `${YCOMBINATOR_URL}${f.url}`;
