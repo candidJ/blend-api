@@ -1,7 +1,7 @@
 import { Directive, HostBinding, HostListener, Input } from '@angular/core';
 
 @Directive({
-  selector: '[highlighted]',
+  selector: '[blendApiAppHighlighted]',
   exportAs: 'hl',
 })
 export class HighlightedDirective {

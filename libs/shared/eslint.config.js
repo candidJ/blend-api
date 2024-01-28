@@ -32,7 +32,7 @@ module.exports = [
           'error',
           {
             type: 'element',
-            prefix: 'blend-api',
+            prefix: 'ba',
             style: 'kebab-case',
           },
         ],
