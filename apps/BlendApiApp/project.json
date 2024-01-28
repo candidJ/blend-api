@@ -98,24 +98,24 @@
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
       "options": {
-        "browserTarget": "BlendApiApp:build"
+        "buildTarget": "BlendApiApp:build"
       },
       "configurations": {
         "production": {
-          "browserTarget": "BlendApiApp:build:production"
+          "buildTarget": "BlendApiApp:build:production"
         }
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": ["apps/BlendApiApp/**/*.ts", "libs/**/*,ts"]
+        "lintFilePatterns": ["apps/BlendApiApp", "libs/**/*,ts"]
       }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "BlendApiApp:build"
+        "buildTarget": "BlendApiApp:build"
       }
     }
   }

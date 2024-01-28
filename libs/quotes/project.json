@@ -9,18 +9,11 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/quotes"],
       "options": {
-        "jestConfig": "libs/quotes/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/quotes/jest.config.ts"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "libs/quotes/src/**/*.ts",
-          "libs/quotes/src/**/*.html"
-        ]
-      }
+      "executor": "@nx/eslint:lint"
     }
   },
   "tags": []

@@ -9,18 +9,11 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/hacker-news"],
       "options": {
-        "jestConfig": "libs/hacker-news/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/hacker-news/jest.config.ts"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "libs/hacker-news/src/**/*.ts",
-          "libs/hacker-news/src/**/*.html"
-        ]
-      }
+      "executor": "@nx/eslint:lint"
     }
   },
   "tags": []

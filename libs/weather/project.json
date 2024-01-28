@@ -9,18 +9,11 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/weather"],
       "options": {
-        "jestConfig": "libs/weather/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/weather/jest.config.ts"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "libs/weather/src/**/*.ts",
-          "libs/weather/src/**/*.html"
-        ]
-      }
+      "executor": "@nx/eslint:lint"
     }
   },
   "tags": []
