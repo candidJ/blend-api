@@ -18,7 +18,8 @@
     "workspace-schematic": "nx workspace-schematic",
     "help": "nx help",
     "lint": "nx run-many --target=lint",
-    "postinstall": "node ./decorate-angular-cli.js"
+    "postinstall": "node ./decorate-angular-cli.js",
+    "pre-commit": "npm run lint && npm run format:write"
   },
   "private": true,
   "dependencies": {

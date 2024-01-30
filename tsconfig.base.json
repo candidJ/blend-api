@@ -28,8 +28,7 @@
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true,
-    "debug": true
+    "strictInjectionParameters": true
   },
   "exclude": ["node_modules", "tmp"]
 }
