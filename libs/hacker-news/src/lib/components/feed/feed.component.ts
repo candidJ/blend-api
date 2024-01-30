@@ -18,7 +18,7 @@ import {
 export class FeedComponent implements OnInit {
   feed$: Observable<HackerNewsFeed[]>;
   feedColumns: HackerNewsGridColumns[] = HackerNewsFeedColumns;
-  paginationConfig: WritableSignal<PaginationConfig | null>;
+  paginationConfig: WritableSignal<PaginationConfig>;
 
   constructor(private hackerNewsService: HackerNewsApiService) {
     this.paginationConfig = this.hackerNewsService.paginationConfig;

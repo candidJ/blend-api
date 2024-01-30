@@ -17,11 +17,16 @@ import { PaginationConfig, RecordType } from '../types/paginator.interface';
 export class PaginatorComponent implements OnInit, OnDestroy {
   record = signal<RecordType | null>(null);
   activePage = 1;
-  pagination: PaginationConfig | null = null;
+  pagination: PaginationConfig;
 
-  @Input('paginationConfig')
+  @Input()
+  get paginationConfig() {
+    return this.pagination;
+  }
+
   set paginationConfig(value: PaginationConfig) {
-    if (value && !this.pagination) {
+    if (value && value.noOfPages > 0 && !this.pagination) {
+      console.log('set once');
       this.record.update(() => {
         return {
           start: 1,
