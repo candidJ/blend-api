@@ -11,11 +11,11 @@
     "strict": true,
     "exactOptionalPropertyTypes": true,
     "strictNullChecks": true,
-    "module": "ESNext",
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2015",
-    "lib": ["es2020", "dom"],
+    "module": "ESNext",
+    "lib": ["ES2022", "dom"],
     "types": ["node", "lodash"],
     "strictPropertyInitialization": false,
     "paths": {

@@ -93,9 +93,7 @@ export class HackerNewsApiService extends FeedPubSub {
       noOfPages: configType.NO_OF_PAGES,
       pageSize: configType.PAGE_SIZE,
     };
-    console.log(this.paginationConfig());
     // set the signal to pagination from FeedPubSub
     this.paginationConfig.set(feedPaginationConfig);
-    console.log(this.paginationConfig());
   };
 }

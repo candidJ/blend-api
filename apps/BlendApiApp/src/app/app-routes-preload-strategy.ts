@@ -8,9 +8,7 @@ export class RoutePreloadStrategy implements PreloadingStrategy {
     if (route && route.data && route.data.hasOwnProperty('preload')) {
       return fn();
     } else {
-      of(null);
+      return of(null);
     }
-
-    throw new Error('No preloading strategy defined');
   }
 }
