@@ -81,8 +81,16 @@ export class HackerNewsApiService extends FeedPubSub {
   }
 
   private determineActiveUrl(): ConfigType {
-    const activeUrl = this.router.url.split('/').pop()! as ConfigType; // example: ['', 'hacker-news', 'jobs']
-    return activeUrl;
+    let path: string | undefined = this.router.url.split('/').pop(); // example: ['', 'hacker-news', 'jobs']
+    if(this.isConfigPath(path)) {
+      return path;
+    } else {
+      return 'feed';
+    }
+  }
+
+  private isConfigPath(path: string | undefined) : path is ConfigType {
+      return path === 'jobs' || path === 'feed' || path === 'show' || path === 'ask' || path === 'latest';
   }
 
   private composePaginationConfig = (): void => {
