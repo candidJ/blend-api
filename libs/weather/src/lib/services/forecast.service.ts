@@ -62,6 +62,7 @@ export class ForecastService {
       }),
       tap((weatherResponse: WeatherResponse) => {
         this.cityWeather = Object.assign({}, weatherResponse.city);
+        this.showForecastNotification();
         return weatherResponse;
       }),
       // pluck out the list property
@@ -131,9 +132,10 @@ export class ForecastService {
     );
   }
 
-  private transformWeatherItem = (
+  private transformWeatherItem = function (
+    this: ForecastService,
     weatherItem: WeatherItem,
-  ): WeatherDefinition => {
+  ): WeatherDefinition {
     let forecast: WeatherDefinition = {
       currentTemp: weatherItem.main.temp,
       feelsLike: weatherItem.main.feels_like,
@@ -152,33 +154,34 @@ export class ForecastService {
       windSpeed: weatherItem.wind.speed,
       windDeg: weatherItem.wind.deg,
       units: this.units,
+      icon: this.determineWeatherIcon(),
     };
-
-    forecast.icon = this.determineWeatherIcon(forecast);
-
-    // set showRandomCities to False
-    this.cityPublisher.next(false);
-    this.notificationService.showSuccessMessage(
-      `Forecast for ${forecast.city} fetched`,
-    );
 
     return forecast;
   };
 
-  private determineWeatherIcon = (forecast: WeatherDefinition): string => {
+  private determineWeatherIcon = function (this: ForecastService): string {
     const date = new Date();
     let weatherIcon: string;
 
     /* Get suitable icon for weather */
     if (
-      date.getHours() >= forecast.sunrise.getHours() &&
-      date.getHours() < forecast.sunset.getHours()
+      date.getHours() >= this.cityWeather.sunrise &&
+      date.getHours() < this.cityWeather.sunset
     ) {
-      weatherIcon = `wi wi-owm-day-${forecast.id}`;
+      weatherIcon = `wi wi-owm-day-${this.cityWeather.id}`;
     } else {
-      weatherIcon = `wi wi-owm-night-${forecast.id}`;
+      weatherIcon = `wi wi-owm-night-${this.cityWeather.id}`;
     }
 
     return weatherIcon;
+  };
+
+  private showForecastNotification = (): void => {
+    // set showRandomCities to False
+    this.cityPublisher.next(false);
+    this.notificationService.showSuccessMessage(
+      `Forecast for ${this.cityWeather.name} fetched`,
+    );
   };
 }

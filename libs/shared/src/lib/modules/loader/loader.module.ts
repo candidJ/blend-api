@@ -10,7 +10,6 @@ import { LoaderService } from './services/loader.service';
   imports: [CommonModule],
   exports: [LoaderComponent],
   providers: [
-    LoaderService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptorService,

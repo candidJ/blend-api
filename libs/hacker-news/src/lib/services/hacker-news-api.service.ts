@@ -53,7 +53,8 @@ export class HackerNewsApiService extends FeedPubSub {
         this.showErrorMessage();
         return throwError(err);
       }),
-      tap(this.composePaginationConfig, this.showSuccessMessage),
+      tap(this.composePaginationConfig),
+      tap(this.showSuccessMessage),
       shareReplay(1),
     );
   }
@@ -82,15 +83,21 @@ export class HackerNewsApiService extends FeedPubSub {
 
   private determineActiveUrl(): ConfigType {
     let path: string | undefined = this.router.url.split('/').pop(); // example: ['', 'hacker-news', 'jobs']
-    if(this.isConfigPath(path)) {
+    if (this.isConfigPath(path)) {
       return path;
     } else {
       return 'feed';
     }
   }
 
-  private isConfigPath(path: string | undefined) : path is ConfigType {
-      return path === 'jobs' || path === 'feed' || path === 'show' || path === 'ask' || path === 'latest';
+  private isConfigPath(path: string | undefined): path is ConfigType {
+    return (
+      path === 'jobs' ||
+      path === 'feed' ||
+      path === 'show' ||
+      path === 'ask' ||
+      path === 'latest'
+    );
   }
 
   private composePaginationConfig = (): void => {

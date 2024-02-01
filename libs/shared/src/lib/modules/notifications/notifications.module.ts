@@ -8,6 +8,5 @@ import { IconsModule } from '../feather-icons/icons.module';
   declarations: [NotificationsComponent],
   imports: [CommonModule, IconsModule],
   exports: [NotificationsComponent],
-  providers: [NotificationService],
 })
 export class NotificationsModule {}

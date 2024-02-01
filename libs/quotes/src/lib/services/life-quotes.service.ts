@@ -34,7 +34,8 @@ export class LifeQuotesService extends FeedPubSub {
         this.showErrorMessage();
         return throwError(err);
       }),
-      tap(this.composePaginationConfig, this.showSuccessMessage),
+      tap(this.composePaginationConfig),
+      tap(this.showSuccessMessage),
       map(this.mapResponse),
       shareReplay(1),
     );

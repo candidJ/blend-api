@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { INotification } from '../types/notifications.interface';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class NotificationService {
   private notificationPublisher = new Subject<INotification>();
   notification$: Observable<INotification> =

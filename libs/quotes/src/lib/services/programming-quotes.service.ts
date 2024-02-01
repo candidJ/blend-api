@@ -48,7 +48,8 @@ export class ProgrammingQuotesService extends FeedPubSub {
         this.showErrorMessage();
         return throwError(err);
       }),
-      tap(this.composePaginationConfig, this.showSuccessMessage),
+      tap(this.composePaginationConfig),
+      tap(this.showSuccessMessage),
       shareReplay(1),
     );
   }

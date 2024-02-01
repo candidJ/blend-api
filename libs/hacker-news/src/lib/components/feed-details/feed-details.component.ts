@@ -20,7 +20,7 @@ export class FeedDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const itemId = this.route.snapshot.params['id'];
+    const itemId: number = this.route.snapshot.params['id'];
     this.feedItem$ = this.hackerNewsService.loadItemDetails(itemId);
   }
 }

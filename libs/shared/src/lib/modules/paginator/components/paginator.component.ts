@@ -26,7 +26,6 @@ export class PaginatorComponent implements OnInit, OnDestroy {
 
   set paginationConfig(value: PaginationConfig) {
     if (value && value.noOfPages > 0 && !this.pagination) {
-      console.log('set once');
       this.record.update(() => {
         return {
           start: 1,

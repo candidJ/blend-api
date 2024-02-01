@@ -5,7 +5,7 @@
   (tweet)="tweet($event)"
 >
 </ba-message-box>
-} @if (paginationConfig().listLength > 0) {
+} @if (paginationConfig()) {
 <ba-paginator
   [paginationConfig]="paginationConfig()"
   (onPaginatorChange)="onPaginationChange($event)"

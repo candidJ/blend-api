@@ -10,24 +10,25 @@ import { NotificationService } from '../services/notification.service';
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.scss'],
 })
-export class NotificationsComponent implements OnInit {
-  notifications$: Observable<INotification[]>;
-
-  constructor(private notificationService: NotificationService) {}
-
-  clearNotification(notification: INotification): void {
-    this.notificationService.clearNotification(notification);
-  }
-
-  ngOnInit(): void {
-    this.notifications$ = this.notificationService.notification$.pipe(
+export class NotificationsComponent {
+  notifications$: Observable<INotification[]> =
+    this.notificationService.notification$.pipe(
       scan((messages: Array<INotification>, message: INotification) => {
         if (message.type === 'clear') {
-          return messages.filter((data) => data.id !== message.id);
+          console.log(messages);
+          messages = messages.filter((m: INotification) => m.id !== message.id);
+          console.log(messages);
+          return [...messages];
         } else {
           return [...messages, message];
         }
       }, []),
     );
+
+  constructor(private notificationService: NotificationService) {}
+
+  clearNotification(notification: INotification): void {
+    notification.type = 'clear';
+    this.notificationService.clearNotification({ ...notification });
   }
 }
