@@ -1,48 +1,58 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { INotification } from '../types/notifications.interface';
+import {
+  ClearTypeNotification,
+  ErrorTypeNotification,
+  InfoTypeNotification,
+  NotificationType,
+  ShowNotification,
+  SuccessTypeNotification,
+} from '../types/notifications.interface';
 
 @Injectable({ providedIn: 'root' })
 export class NotificationService {
-  private notificationPublisher = new Subject<INotification>();
-  notification$: Observable<INotification> =
+  private notificationPublisher = new Subject<NotificationType>();
+  notification$: Observable<NotificationType> =
     this.notificationPublisher.asObservable();
 
   constructor() {}
 
-  showSuccessMessage(message: string): void {
-    this.addMessageToQueue(message, 'success');
+  showSuccessMessage(textMessage: string): void {
+    this.addMessageToQueue<SuccessTypeNotification>({
+      textMessage,
+      type: 'success',
+      randomID: window.crypto.randomUUID(),
+    });
   }
 
-  showGeneralInfo(message: string): void {
-    this.addMessageToQueue(message, 'info');
+  showGeneralInfo(textMessage: string): void {
+    this.addMessageToQueue<InfoTypeNotification>({
+      textMessage,
+      type: 'info',
+      randomID: window.crypto.randomUUID(),
+    });
   }
 
-  showErrorMessage(message: string): void {
-    this.addMessageToQueue(message, 'error');
+  showErrorMessage(textMessage: string): void {
+    this.addMessageToQueue<ErrorTypeNotification>({
+      textMessage,
+      type: 'error',
+      randomID: window.crypto.randomUUID(),
+    });
   }
 
-  clearNotification(notification: INotification): void {
+  clearNotification(notification: ClearTypeNotification): void {
     this.notificationPublisher.next(notification);
   }
 
-  private generateRandomId(): number {
-    return Math.round(Math.random() * 100000);
-  }
-
-  private addMessageToQueue(
-    message: string,
-    type: 'success' | 'error' | 'info',
+  private addMessageToQueue<T extends ShowNotification>(
+    notificationConfig: T,
   ): void {
-    const id = this.generateRandomId();
-    this.notificationPublisher.next({
-      text: message,
-      type,
-      id,
-    });
+    const { textMessage, randomID } = notificationConfig;
+    this.notificationPublisher.next(notificationConfig);
 
     setTimeout(() => {
-      this.clearNotification({ text: message, id, type: 'clear' });
+      this.clearNotification({ textMessage, randomID, type: 'clear' });
     }, 5000);
   }
 }
