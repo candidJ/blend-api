@@ -5,18 +5,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ForecastComponent } from './components/forecast/forecast.component';
 import { ForecastDetailsComponent } from './components/forecast-details/forecast-details.component';
 import { ForecastService } from './services/forecast.service';
-import {
-  GridModule,
-  IconsModule,
-  NotificationsModule,
-} from '@blend-api/shared';
+import { GridModule, IconsModule } from '@blend-api/shared';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IconsModule,
-    NotificationsModule,
     GridModule,
     ReactiveFormsModule,
     RouterModule.forChild([

@@ -3,8 +3,8 @@ export * from './feather-icons/icons.module';
 export * from './grid/grid.module';
 export * from './loader/components/loader.component';
 export * from './message-box/message-box.module';
-export * from './navbar/navbar.module';
-export * from './notifications/notifications.module';
+export * from './navbar/components/navbar/navbar.component';
+export * from './notifications/components/notifications.component';
 export * from './paginator/components/paginator.component';
 
 // constants

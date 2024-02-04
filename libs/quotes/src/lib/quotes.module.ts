@@ -4,11 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { ProgrammingComponent } from './components/programming/programming.component';
 import { LifeComponent } from './components/life/life.component';
-import {
-  IconsModule,
-  MessageBoxModule,
-  NotificationsModule,
-} from '@blend-api/shared';
+import { IconsModule, MessageBoxModule } from '@blend-api/shared';
 
 @NgModule({
   imports: [
@@ -20,7 +16,6 @@ import {
       },
     ]),
     IconsModule,
-    NotificationsModule,
     MessageBoxModule,
     ProgrammingComponent,
     LifeComponent,

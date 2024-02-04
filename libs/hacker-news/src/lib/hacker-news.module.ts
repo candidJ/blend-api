@@ -9,7 +9,7 @@ import { HackerNewsRoutingModule } from './hacker-news-routing.module';
 import {
   GridModule,
   IconsModule,
-  NotificationsModule,
+  NotificationsComponent,
 } from '@blend-api/shared';
 import { HackerNewsApiService } from './services';
 
@@ -18,7 +18,7 @@ import { HackerNewsApiService } from './services';
     CommonModule,
     HackerNewsRoutingModule,
     IconsModule,
-    NotificationsModule,
+    NotificationsComponent,
     GridModule,
     CommentsComponent,
     FeedComponent,

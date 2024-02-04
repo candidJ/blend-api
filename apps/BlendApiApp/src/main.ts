@@ -3,9 +3,9 @@ import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { environment } from './environments/environment';
 import { AppComponent } from './app/app.component';
 import {
-  NavbarModule,
+  NavbarComponent,
   IconsModule,
-  NotificationsModule,
+  NotificationsComponent,
 } from '@blend-api/shared';
 import { AppRoutingModule } from './app/app-routing.module';
 import {
@@ -23,9 +23,9 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(
       BrowserModule,
       AppRoutingModule,
-      NavbarModule,
+      NavbarComponent,
       IconsModule,
-      NotificationsModule,
+      NotificationsComponent,
     ),
     provideHttpClient(withInterceptorsFromDi()),
   ],

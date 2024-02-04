@@ -4,8 +4,8 @@ import {
   AppLogoWithLink,
   NavbarMenu,
   NavbarMenuItems,
-  NavbarModule,
-  NotificationsModule,
+  NavbarComponent,
+  NotificationsComponent,
   LoaderComponent,
 } from '@blend-api/shared';
 
@@ -14,7 +14,12 @@ import {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [NavbarModule, RouterOutlet, LoaderComponent, NotificationsModule],
+  imports: [
+    NavbarComponent,
+    RouterOutlet,
+    LoaderComponent,
+    NotificationsComponent,
+  ],
 })
 export class AppComponent {
   title = 'Blend API';
