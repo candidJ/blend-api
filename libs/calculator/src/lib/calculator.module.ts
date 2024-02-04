@@ -6,7 +6,6 @@ import { CalculatorComponent } from './components/calculator.component';
 import { IconsModule, PipeModule } from '@blend-api/shared';
 
 @NgModule({
-  declarations: [CalculatorComponent],
   imports: [
     CommonModule,
     IconsModule,
@@ -17,6 +16,7 @@ import { IconsModule, PipeModule } from '@blend-api/shared';
         component: CalculatorComponent,
       },
     ]),
+    CalculatorComponent,
   ],
 })
 export class CalculatorModule {}
