@@ -4,7 +4,6 @@ import { environment } from './environments/environment';
 import { AppComponent } from './app/app.component';
 import {
   NavbarModule,
-  LoaderModule,
   IconsModule,
   NotificationsModule,
 } from '@blend-api/shared';
@@ -25,7 +24,6 @@ bootstrapApplication(AppComponent, {
       BrowserModule,
       AppRoutingModule,
       NavbarModule,
-      LoaderModule,
       IconsModule,
       NotificationsModule,
     ),

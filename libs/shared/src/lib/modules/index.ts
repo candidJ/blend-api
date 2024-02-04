@@ -1,7 +1,7 @@
 // modules
 export * from './feather-icons/icons.module';
 export * from './grid/grid.module';
-export * from './loader/loader.module';
+export * from './loader/components/loader.component';
 export * from './message-box/message-box.module';
 export * from './navbar/navbar.module';
 export * from './notifications/notifications.module';

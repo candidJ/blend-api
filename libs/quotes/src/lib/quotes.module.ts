@@ -6,7 +6,6 @@ import { ProgrammingComponent } from './components/programming/programming.compo
 import { LifeComponent } from './components/life/life.component';
 import {
   IconsModule,
-  LoaderModule,
   MessageBoxModule,
   NotificationsModule,
   PaginatorModule,
@@ -25,7 +24,6 @@ import {
     NotificationsModule,
     MessageBoxModule,
     PaginatorModule,
-    LoaderModule,
     ProgrammingComponent,
     LifeComponent,
   ],

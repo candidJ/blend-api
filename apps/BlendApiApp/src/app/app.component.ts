@@ -6,7 +6,7 @@ import {
   NavbarMenuItems,
   NavbarModule,
   NotificationsModule,
-  LoaderModule,
+  LoaderComponent,
 } from '@blend-api/shared';
 
 @Component({
@@ -14,7 +14,7 @@ import {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [NavbarModule, RouterOutlet, LoaderModule, NotificationsModule],
+  imports: [NavbarModule, RouterOutlet, LoaderComponent, NotificationsModule],
 })
 export class AppComponent {
   title = 'Blend API';

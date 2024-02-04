@@ -8,7 +8,6 @@ import { ForecastService } from './services/forecast.service';
 import {
   GridModule,
   IconsModule,
-  LoaderModule,
   NotificationsModule,
   PipeModule,
 } from '@blend-api/shared';
@@ -19,7 +18,6 @@ import {
     FormsModule,
     IconsModule,
     NotificationsModule,
-    LoaderModule,
     GridModule,
     ReactiveFormsModule,
     PipeModule,
