@@ -6,11 +6,7 @@ import {
   FeedDetailsComponent,
 } from './components';
 import { HackerNewsRoutingModule } from './hacker-news-routing.module';
-import {
-  GridModule,
-  IconsModule,
-  NotificationsComponent,
-} from '@blend-api/shared';
+import { IconsModule, NotificationsComponent } from '@blend-api/shared';
 import { HackerNewsApiService } from './services';
 
 @NgModule({
@@ -19,7 +15,6 @@ import { HackerNewsApiService } from './services';
     HackerNewsRoutingModule,
     IconsModule,
     NotificationsComponent,
-    GridModule,
     CommentsComponent,
     FeedComponent,
     FeedDetailsComponent,

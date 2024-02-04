@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import {
-  GridModule,
+  GridComponent,
   PaginationConfig,
   PaginatorComponent,
 } from '@blend-api/shared';
@@ -20,7 +20,7 @@ import { AsyncPipe } from '@angular/common';
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss'],
   standalone: true,
-  imports: [GridModule, PaginatorComponent, AsyncPipe],
+  imports: [GridComponent, PaginatorComponent, AsyncPipe],
 })
 export class FeedComponent implements OnInit {
   feed$: Observable<HackerNewsFeed[]>;
