@@ -14,7 +14,6 @@ import {
 } from '@blend-api/shared';
 
 @NgModule({
-  declarations: [ForecastComponent, ForecastDetailsComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -30,6 +29,8 @@ import {
         component: ForecastComponent,
       },
     ]),
+    ForecastComponent,
+    ForecastDetailsComponent,
   ],
   providers: [ForecastService],
 })

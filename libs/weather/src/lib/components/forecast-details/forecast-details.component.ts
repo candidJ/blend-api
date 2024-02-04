@@ -6,6 +6,7 @@ import { CityPayload } from '../../types/weather.interface';
   selector: 'ba-forecast-details',
   templateUrl: './forecast-details.component.html',
   styleUrls: ['./forecast-details.component.scss'],
+  standalone: true,
 })
 export class ForecastDetailsComponent implements OnInit {
   randomCities: Partial<CityPayload>[] = [];

@@ -1,25 +1,49 @@
 import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import {
+  NgClass,
+  AsyncPipe,
+  DecimalPipe,
+  TitleCasePipe,
+} from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
-import * as _ from 'lodash';
+import { first } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+
+import { PipeModule } from '@blend-api/shared';
+import * as _ from 'lodash';
 import { ForecastByCityName } from '../../class/forecast-by-cityname';
 import { ForecastByLatLong } from '../../class/forecast-by-latlong';
 import { ForecastContext } from '../../class/forecast-context';
 import { COUNTRIES } from '../../constants/country.const';
 import { ForecastService } from '../../services/forecast.service';
 import { CityPayload, WeatherDefinition } from '../../types/weather.interface';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { first } from 'rxjs/operators';
+import { ForecastDetailsComponent } from '../forecast-details/forecast-details.component';
+import { FeatherModule } from 'angular-feather';
 
 @Component({
   selector: 'ba-forecast',
   templateUrl: './forecast.component.html',
   styleUrls: ['./forecast.component.scss'],
+  standalone: true,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    FeatherModule,
+    NgClass,
+    ForecastDetailsComponent,
+    AsyncPipe,
+    DecimalPipe,
+    TitleCasePipe,
+    PipeModule,
+  ],
 })
 export class ForecastComponent extends ForecastContext implements OnInit {
   forecast$: Observable<WeatherDefinition[]>;
