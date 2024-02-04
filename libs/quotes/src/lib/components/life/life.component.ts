@@ -9,7 +9,7 @@ import {
   PaginationFunc,
   QuoteProps,
 } from '../../types/quotes.interface';
-import { PaginatorComponent, MessageBoxModule } from '@blend-api/shared';
+import { PaginatorComponent, MessageBoxComponent } from '@blend-api/shared';
 
 @Component({
   selector: 'ba-life',
@@ -17,7 +17,7 @@ import { PaginatorComponent, MessageBoxModule } from '@blend-api/shared';
   styleUrls: ['./life.component.scss'],
   providers: [LifeQuotesService],
   standalone: true,
-  imports: [MessageBoxModule, PaginatorComponent, AsyncPipe],
+  imports: [MessageBoxComponent, PaginatorComponent, AsyncPipe],
 })
 export class LifeComponent implements OnInit {
   #quotesService = inject(LifeQuotesService);

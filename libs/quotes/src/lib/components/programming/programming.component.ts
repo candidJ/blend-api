@@ -13,7 +13,7 @@ import {
   NotificationService,
   PaginationConfig,
   PaginatorComponent,
-  MessageBoxModule,
+  MessageBoxComponent,
 } from '@blend-api/shared';
 import {
   ProgrammingQuotesFactory,
@@ -39,7 +39,7 @@ import { sendTweet } from '../../utils/quote';
     },
   ],
   standalone: true,
-  imports: [MessageBoxModule, PaginatorComponent, AsyncPipe],
+  imports: [MessageBoxComponent, PaginatorComponent, AsyncPipe],
 })
 export class ProgrammingComponent implements OnInit {
   quotes$: Observable<ProgrammingQuote[]>;
