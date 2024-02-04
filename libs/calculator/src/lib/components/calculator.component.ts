@@ -1,17 +1,17 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
-import { PipeModule } from '@blend-api/shared';
 import * as _ from 'lodash';
 import { CalculatorConfig } from '../constants/calculator.const';
 import { CalculatorLayout } from '../types/calculator.interface';
 import { NgClass } from '@angular/common';
 import { FeatherModule } from 'angular-feather';
+import { NumberFormatPipe } from '@blend-api/shared';
 
 @Component({
   selector: 'ba-calculator',
   templateUrl: './calculator.component.html',
   styleUrls: ['./calculator.component.scss'],
   standalone: true,
-  imports: [FeatherModule, NgClass, PipeModule],
+  imports: [FeatherModule, NgClass, NumberFormatPipe],
 })
 export class CalculatorComponent {
   calculatorConfig = CalculatorConfig;

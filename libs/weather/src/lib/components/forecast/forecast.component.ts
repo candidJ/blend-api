@@ -17,7 +17,6 @@ import {
 import { first } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { PipeModule } from '@blend-api/shared';
 import * as _ from 'lodash';
 import { ForecastByCityName } from '../../class/forecast-by-cityname';
 import { ForecastByLatLong } from '../../class/forecast-by-latlong';
@@ -27,6 +26,7 @@ import { ForecastService } from '../../services/forecast.service';
 import { CityPayload, WeatherDefinition } from '../../types/weather.interface';
 import { ForecastDetailsComponent } from '../forecast-details/forecast-details.component';
 import { FeatherModule } from 'angular-feather';
+import { DateTimeFormatPipe } from '@blend-api/shared';
 
 @Component({
   selector: 'ba-forecast',
@@ -42,7 +42,7 @@ import { FeatherModule } from 'angular-feather';
     AsyncPipe,
     DecimalPipe,
     TitleCasePipe,
-    PipeModule,
+    DateTimeFormatPipe,
   ],
 })
 export class ForecastComponent extends ForecastContext implements OnInit {

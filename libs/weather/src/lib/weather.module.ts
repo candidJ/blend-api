@@ -9,7 +9,6 @@ import {
   GridModule,
   IconsModule,
   NotificationsModule,
-  PipeModule,
 } from '@blend-api/shared';
 
 @NgModule({
@@ -20,7 +19,6 @@ import {
     NotificationsModule,
     GridModule,
     ReactiveFormsModule,
-    PipeModule,
     RouterModule.forChild([
       {
         path: '',

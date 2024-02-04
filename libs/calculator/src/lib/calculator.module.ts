@@ -3,13 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { CalculatorComponent } from './components/calculator.component';
-import { IconsModule, PipeModule } from '@blend-api/shared';
+import { IconsModule } from '@blend-api/shared';
 
 @NgModule({
   imports: [
     CommonModule,
     IconsModule,
-    PipeModule,
     RouterModule.forChild([
       {
         path: '',
