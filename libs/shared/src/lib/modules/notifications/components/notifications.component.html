@@ -1,7 +1,7 @@
 @for (notification of notifications$ | async; track notification) {
 <div class="mb-2">
   <p
-    class="notification is-narrow is-flex is-light"
+    class="notification is-light"
     [ngClass]="{
       'is-success': notification.type === 'success',
       'is-danger': notification.type === 'error',
@@ -12,7 +12,7 @@
       class="delete"
       (click)="clearNotification(notification)"
     ></button>
-    {{ notification.textMessage | titlecase }}
+    {{ notification.textMessage }}
   </p>
 </div>
 }

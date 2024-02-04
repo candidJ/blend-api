@@ -61,8 +61,9 @@ export class ForecastService {
         });
       }),
       tap((weatherResponse: WeatherResponse) => {
-        this.cityWeather = Object.assign({}, weatherResponse.city);
+        this.cityWeather = structuredClone(weatherResponse.city);
         this.showForecastNotification();
+        this.cityPublisher.next(false);
         return weatherResponse;
       }),
       // pluck out the list property
@@ -88,46 +89,18 @@ export class ForecastService {
       return window.navigator.geolocation.getCurrentPosition(
         (position) => {
           observer.next(position.coords);
-          // this.notificationService.showSuccessMessage("Weather information fetched");
           observer.complete();
         },
         (err) => {
-          console.error('err', err);
           observer.error(err);
         },
       );
     }).pipe(
-      retry(1), // retry would re-subscribe to the observable by executing it again..
-      // here arrow function with observer argument with be re executed. hence you will get two console in case an error occurs
-      // tap(() => {
-      //     // this.notificationService.showSuccessMessage("Got your location...");
-      // }
-      // tap has 3 arguments- first is executed when next() is executed on observable
-      // second in case error occurs
-      // third when observable completes
-      // used to catch error from observable but not favored over catchError
-      // , (err) => {
-      // }
-      // ),
       catchError((err) => {
-        //  #1 Handle the error
-        if (err.code === 1) {
-          this.notificationService.showErrorMessage('Location denied...');
-          this.notificationService.showGeneralInfo(
-            'Fetching weather of Seattle, WA',
-          );
-        }
-
-        //  #2 Return a new observable -- which can maybe pass default coordinates in case user denied location
+        console.error(err.message);
+        //  Return a new observable which pass default coordinates when user denies current location
         // unlike tap operator second argument; it DOES return an observable and pass something to pipe operator
         return of(this.SEATTLE_LAT_LONG);
-
-        // throwError(err);
-
-        /* is equivalent to 
-          return new Observable((observer)=>{
-              observer.error(err);
-          }) */
       }),
     );
   }
@@ -178,10 +151,8 @@ export class ForecastService {
   };
 
   private showForecastNotification = (): void => {
-    // set showRandomCities to False
-    this.cityPublisher.next(false);
     this.notificationService.showSuccessMessage(
-      `Forecast for ${this.cityWeather.name} fetched`,
+      `Weather forecast for ${this.cityWeather.name} is fetched`,
     );
   };
 }

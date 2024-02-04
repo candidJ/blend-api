@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -13,6 +13,8 @@ import { ForecastContext } from '../../class/forecast-context';
 import { COUNTRIES } from '../../constants/country.const';
 import { ForecastService } from '../../services/forecast.service';
 import { CityPayload, WeatherDefinition } from '../../types/weather.interface';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'ba-forecast',
@@ -24,6 +26,7 @@ export class ForecastComponent extends ForecastContext implements OnInit {
   userInputForm: FormGroup;
   countries: { name: string; code: string }[] = COUNTRIES;
   forecastDetails: WeatherDefinition;
+  readonly #destroyRef = inject(DestroyRef)
 
   constructor(
     public forecastService: ForecastService,
@@ -63,7 +66,7 @@ export class ForecastComponent extends ForecastContext implements OnInit {
   }
 
   ngOnInit(): void {
-    this.forecastService.getCurrentLocation().subscribe((currentLocation) => {
+  this.forecastService.getCurrentLocation().pipe(first(), takeUntilDestroyed(this.#destroyRef)).subscribe((currentLocation) => {
       const forecastByLatLong = new ForecastByLatLong(currentLocation);
       // sets the default active strategy to forecast by latitude and longitude
       this.setForecastStrategy(forecastByLatLong);
