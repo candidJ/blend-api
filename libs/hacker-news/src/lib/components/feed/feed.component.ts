@@ -2,18 +2,25 @@ import { Component, OnInit, WritableSignal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { PaginationConfig } from '@blend-api/shared';
+import {
+  GridModule,
+  PaginationConfig,
+  PaginatorModule,
+} from '@blend-api/shared';
 import { HackerNewsGridColumns, HackerNewsFeed } from '../../types';
 import { HackerNewsApiService } from '../../services';
 import {
   HackerNewsFeedColumns,
   YCOMBINATOR_URL,
 } from '../../constants/metadata.const';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'ba-feed',
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss'],
+  standalone: true,
+  imports: [GridModule, PaginatorModule, AsyncPipe],
 })
 export class FeedComponent implements OnInit {
   feed$: Observable<HackerNewsFeed[]>;

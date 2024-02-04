@@ -26,7 +26,7 @@ export class ForecastComponent extends ForecastContext implements OnInit {
   userInputForm: FormGroup;
   countries: { name: string; code: string }[] = COUNTRIES;
   forecastDetails: WeatherDefinition;
-  readonly #destroyRef = inject(DestroyRef)
+  readonly #destroyRef = inject(DestroyRef);
 
   constructor(
     public forecastService: ForecastService,
@@ -66,11 +66,14 @@ export class ForecastComponent extends ForecastContext implements OnInit {
   }
 
   ngOnInit(): void {
-  this.forecastService.getCurrentLocation().pipe(first(), takeUntilDestroyed(this.#destroyRef)).subscribe((currentLocation) => {
-      const forecastByLatLong = new ForecastByLatLong(currentLocation);
-      // sets the default active strategy to forecast by latitude and longitude
-      this.setForecastStrategy(forecastByLatLong);
-      this.fetchWeatherForecast();
-    });
+    this.forecastService
+      .getCurrentLocation()
+      .pipe(first(), takeUntilDestroyed(this.#destroyRef))
+      .subscribe((currentLocation) => {
+        const forecastByLatLong = new ForecastByLatLong(currentLocation);
+        // sets the default active strategy to forecast by latitude and longitude
+        this.setForecastStrategy(forecastByLatLong);
+        this.fetchWeatherForecast();
+      });
   }
 }

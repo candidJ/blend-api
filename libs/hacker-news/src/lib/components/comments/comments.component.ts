@@ -5,6 +5,8 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { HackerNewsFeedComments } from '../../types';
+import { FeatherModule } from 'angular-feather';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'ba-comments',
@@ -14,6 +16,8 @@ import { HackerNewsFeedComments } from '../../types';
     './comments.component.scss',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [NgClass, FeatherModule],
 })
 export class CommentsComponent {
   @Input() comment: HackerNewsFeedComments;
