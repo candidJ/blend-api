@@ -4,8 +4,7 @@ import { IconsModule } from '..';
 import { PaginatorComponent } from './components/paginator.component';
 
 @NgModule({
-  declarations: [PaginatorComponent],
-  imports: [IconsModule, CommonModule],
+  imports: [IconsModule, CommonModule, PaginatorComponent],
   exports: [PaginatorComponent],
 })
 export class PaginatorModule {}

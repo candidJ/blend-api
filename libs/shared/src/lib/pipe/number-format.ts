@@ -1,6 +1,9 @@
 import { NgModule, Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name: 'numberFormat' })
+@Pipe({
+  name: 'numberFormat',
+  standalone: true,
+})
 export class NumberFormatPipe implements PipeTransform {
   transform(value: string): string {
     let outputNumber = value.replace(/\,/g, '');

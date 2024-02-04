@@ -3,6 +3,7 @@ import { Directive, HostBinding, HostListener, Input } from '@angular/core';
 @Directive({
   selector: '[blendApiAppHighlighted]',
   exportAs: 'hl',
+  standalone: true,
 })
 export class HighlightedDirective {
   constructor() {}

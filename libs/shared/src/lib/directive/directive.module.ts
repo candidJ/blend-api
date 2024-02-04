@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { HighlightedDirective } from '../directive/highlighted.directive';
 
 @NgModule({
-  declarations: [HighlightedDirective],
-  imports: [CommonModule],
+  imports: [CommonModule, HighlightedDirective],
   exports: [HighlightedDirective],
 })
 export class DirectiveModule {}

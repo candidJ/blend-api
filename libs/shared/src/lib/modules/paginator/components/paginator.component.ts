@@ -8,11 +8,15 @@ import {
   signal,
 } from '@angular/core';
 import { PaginationConfig, RecordType } from '../types/paginator.interface';
+import { FeatherModule } from 'angular-feather';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'ba-paginator',
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss'],
+  standalone: true,
+  imports: [NgClass, FeatherModule],
 })
 export class PaginatorComponent implements OnInit, OnDestroy {
   record = signal<RecordType | null>(null);

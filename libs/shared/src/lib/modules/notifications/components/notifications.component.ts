@@ -8,11 +8,14 @@ import {
   ShowNotification,
 } from '../types/notifications.interface';
 import { NotificationService } from '../services/notification.service';
+import { NgClass, AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'ba-notifications',
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.scss'],
+  standalone: true,
+  imports: [NgClass, AsyncPipe],
 })
 export class NotificationsComponent {
   notifications$: Observable<NotificationType[]> =

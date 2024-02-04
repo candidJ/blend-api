@@ -11,12 +11,16 @@ import {
   QueryList,
 } from '@angular/core';
 import { BlendAPILogo, NavbarMenu } from '../../types/navbar.interface';
+import { FeatherModule } from 'angular-feather';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'ba-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [RouterLink, RouterLinkActive, FeatherModule],
 })
 export class NavbarComponent implements AfterViewInit {
   @Input() navbarMenuItems: NavbarMenu[];

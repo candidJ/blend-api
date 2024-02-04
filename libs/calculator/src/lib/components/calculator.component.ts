@@ -1,9 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { PipeModule } from '@blend-api/shared';
 import * as _ from 'lodash';
 import { CalculatorConfig } from '../constants/calculator.const';

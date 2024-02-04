@@ -6,8 +6,7 @@ import { NumberFormatPipe } from './number-format';
 const Components = [DateTimeFormatPipe, NumberFormatPipe];
 
 @NgModule({
-  declarations: [...Components],
-  imports: [CommonModule],
+  imports: [CommonModule, ...Components],
   exports: [...Components],
 })
 export class PipeModule {}

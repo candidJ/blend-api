@@ -6,8 +6,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { IconsModule } from '../feather-icons/icons.module';
 
 @NgModule({
-  declarations: [NavbarComponent],
-  imports: [IconsModule, RouterModule, CommonModule],
+  imports: [IconsModule, RouterModule, CommonModule, NavbarComponent],
   exports: [NavbarComponent],
 })
 export class NavbarModule {}

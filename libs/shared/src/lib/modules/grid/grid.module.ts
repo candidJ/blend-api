@@ -6,8 +6,7 @@ import { GridComponent } from './components/grid.component';
 import { IconsModule } from '../feather-icons/icons.module';
 
 @NgModule({
-  declarations: [GridComponent],
-  imports: [CommonModule, RouterModule, IconsModule],
+  imports: [CommonModule, RouterModule, IconsModule, GridComponent],
   exports: [GridComponent],
 })
 export class GridModule {}

@@ -4,8 +4,7 @@ import { NotificationsComponent } from './components/notifications.component';
 import { IconsModule } from '../feather-icons/icons.module';
 
 @NgModule({
-  declarations: [NotificationsComponent],
-  imports: [CommonModule, IconsModule],
+  imports: [CommonModule, IconsModule, NotificationsComponent],
   exports: [NotificationsComponent],
 })
 export class NotificationsModule {}
