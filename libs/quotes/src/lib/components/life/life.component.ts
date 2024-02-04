@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
 
 import { Observable } from 'rxjs';
 import { sendTweet } from '../../utils/quote';
@@ -8,12 +9,15 @@ import {
   PaginationFunc,
   QuoteProps,
 } from '../../types/quotes.interface';
+import { PaginatorModule, MessageBoxModule } from '@blend-api/shared';
 
 @Component({
   selector: 'ba-life',
   templateUrl: './life.component.html',
   styleUrls: ['./life.component.scss'],
   providers: [LifeQuotesService],
+  standalone: true,
+  imports: [MessageBoxModule, PaginatorModule, AsyncPipe],
 })
 export class LifeComponent implements OnInit {
   #quotesService = inject(LifeQuotesService);

@@ -5,10 +5,16 @@ import {
   forwardRef,
   WritableSignal,
 } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-import { NotificationService, PaginationConfig } from '@blend-api/shared';
+import {
+  NotificationService,
+  PaginationConfig,
+  PaginatorModule,
+  MessageBoxModule,
+} from '@blend-api/shared';
 import {
   ProgrammingQuotesFactory,
   ProgrammingQuotesService,
@@ -32,6 +38,8 @@ import { sendTweet } from '../../utils/quote';
       deps: [HttpClient, NotificationService],
     },
   ],
+  standalone: true,
+  imports: [MessageBoxModule, PaginatorModule, AsyncPipe],
 })
 export class ProgrammingComponent implements OnInit {
   quotes$: Observable<ProgrammingQuote[]>;

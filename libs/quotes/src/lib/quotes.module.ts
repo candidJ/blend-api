@@ -13,7 +13,6 @@ import {
 } from '@blend-api/shared';
 
 @NgModule({
-  declarations: [ProgrammingComponent, LifeComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
@@ -27,6 +26,8 @@ import {
     MessageBoxModule,
     PaginatorModule,
     LoaderModule,
+    ProgrammingComponent,
+    LifeComponent,
   ],
 })
 export class QuotesModule {}
