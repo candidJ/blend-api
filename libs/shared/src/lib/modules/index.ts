@@ -5,7 +5,7 @@ export * from './loader/components/loader.component';
 export * from './message-box/message-box.module';
 export * from './navbar/navbar.module';
 export * from './notifications/notifications.module';
-export * from './paginator/paginator.module';
+export * from './paginator/components/paginator.component';
 
 // constants
 export * from './navbar/constants/navbar-menu-items.constant';

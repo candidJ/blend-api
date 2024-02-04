@@ -8,7 +8,6 @@ import {
   IconsModule,
   MessageBoxModule,
   NotificationsModule,
-  PaginatorModule,
 } from '@blend-api/shared';
 
 @NgModule({
@@ -23,7 +22,6 @@ import {
     IconsModule,
     NotificationsModule,
     MessageBoxModule,
-    PaginatorModule,
     ProgrammingComponent,
     LifeComponent,
   ],

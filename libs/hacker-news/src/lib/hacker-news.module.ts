@@ -10,7 +10,6 @@ import {
   GridModule,
   IconsModule,
   NotificationsModule,
-  PaginatorModule,
 } from '@blend-api/shared';
 import { HackerNewsApiService } from './services';
 
@@ -20,7 +19,6 @@ import { HackerNewsApiService } from './services';
     HackerNewsRoutingModule,
     IconsModule,
     NotificationsModule,
-    PaginatorModule,
     GridModule,
     CommentsComponent,
     FeedComponent,

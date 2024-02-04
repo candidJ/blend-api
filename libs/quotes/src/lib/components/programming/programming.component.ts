@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import {
   NotificationService,
   PaginationConfig,
-  PaginatorModule,
+  PaginatorComponent,
   MessageBoxModule,
 } from '@blend-api/shared';
 import {
@@ -39,7 +39,7 @@ import { sendTweet } from '../../utils/quote';
     },
   ],
   standalone: true,
-  imports: [MessageBoxModule, PaginatorModule, AsyncPipe],
+  imports: [MessageBoxModule, PaginatorComponent, AsyncPipe],
 })
 export class ProgrammingComponent implements OnInit {
   quotes$: Observable<ProgrammingQuote[]>;
