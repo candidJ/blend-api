@@ -1,1 +1,1 @@
-export * from './lib/quotes.module';
+export * from './lib/constants/quotes.routes';
