@@ -4,10 +4,11 @@
 
 <div class="is-flex-direction-row is-justify-content-space-between">
   @for (cityInfo of randomCities; track cityInfo) {
-  <a (click)="onCityClick(cityInfo)">
-    <span class="is-size-5-tablet is-size-6-mobile tag mr-1 is-link is-light">{{
-      cityInfo.city
-    }}</span>
-  </a>
+    <a (click)="onCityClick(cityInfo)">
+      <span
+        class="is-size-5-tablet is-size-6-mobile tag mr-1 is-link is-light"
+        >{{ cityInfo.city }}</span
+      >
+    </a>
   }
 </div>

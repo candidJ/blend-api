@@ -19,9 +19,10 @@
         <i-feather name="search"></i-feather>
       </span>
 
-      @if ( userInputForm.get('city')?.errors &&
-      userInputForm.get('city')?.touched ) {
-      <p class="help is-danger">City name is required.</p>
+      @if (
+        userInputForm.get('city')?.errors && userInputForm.get('city')?.touched
+      ) {
+        <p class="help is-danger">City name is required.</p>
       }
     </div>
     <div class="control has-icons-left has-icons-right">
@@ -35,7 +36,7 @@
       />
       <datalist id="browsers">
         @for (country of countries; track country) {
-        <option [value]="country.name"></option>
+          <option [value]="country.name"></option>
         }
       </datalist>
       <span
@@ -86,82 +87,83 @@
   </p>
 
   @if (forecast$ | async; as forecasts) {
-  <section class="forecast-header">
-    <h2>5 day Forecast</h2>
-    <b class="location">
-      <i-feather name="map-pin"></i-feather>
-      <span class="mx-1">
-        {{ forecasts[0].city }}, {{ forecasts[0].country }}
-      </span>
-    </b>
-  </section>
-  <ul class="five-day-fl">
-    @for (forecast of forecasts; track forecast) {
-    <li class="message is-primary">
-      <div class="message-body">
-        <p>
-          {{ forecast.date | dateTimeFormatPipe : 'EEEE' }}
-        </p>
-        <p>
-          <i [ngClass]="forecast.icon || ''"></i>
-        </p>
-        <p>
-          <span> {{ forecast.currentTemp | number : '1.0-0' }}</span>
-          @if (forecast.units == 'metric') {
-          <i class="wi wi-celsius"></i>
-          } @else {
-          <i class="wi wi-fahrenheit"></i>
-          }
-        </p>
-        <p>
-          {{ forecast.description | titlecase }}
-        </p>
-        <dl>
-          <dt>
-            Feels like
-            <i class="wi wi-thermometer"></i>
-          </dt>
-          <dd>{{ forecast.feelsLike }}</dd>
-          <dt>
-            Min/Max
-            <i class="wi wi-barometer"></i>
-          </dt>
-          <dd>{{ forecast.minTemp }}/{{ forecast.maxTemp }}</dd>
-          <dt>
-            Humidity
-            <i class="wi wi-humidity"></i>
-          </dt>
-          <dd>{{ forecast.humidity }}</dd>
-          <dt>
-            Sunrise
-            <i class="wi wi-sunrise"></i>
-          </dt>
-          <dd>
-            {{ forecast.sunrise | dateTimeFormatPipe : 'h:mm a' }}
-          </dd>
-          <dt>
-            Sunset
-            <i class="wi wi-sunset"></i>
-          </dt>
-          <dd>
-            {{ forecast.sunset | dateTimeFormatPipe : 'h:mm a' }}
-          </dd>
-          <dt>
-            Wind speed
-            <i class="wi wi-windy"></i>
-          </dt>
-          <dd>{{ forecast.windSpeed }}</dd>
-          <dt>
-            Wind degree
-            <i class="wi wi-degrees"></i>
-          </dt>
-          <dd>{{ forecast.windDeg }}</dd>
-        </dl>
-      </div>
-    </li>
-    }
-  </ul>
-  } @if (forecastService.showRandomCities$ | async) {
-  <ba-forecast-details (cityInfo)="onSubmit($event)"></ba-forecast-details>
+    <section class="forecast-header">
+      <h2>5 day Forecast</h2>
+      <b class="location">
+        <i-feather name="map-pin"></i-feather>
+        <span class="mx-1">
+          {{ forecasts[0].city }}, {{ forecasts[0].country }}
+        </span>
+      </b>
+    </section>
+    <ul class="five-day-fl">
+      @for (forecast of forecasts; track forecast) {
+        <li class="message is-primary">
+          <div class="message-body">
+            <p>
+              {{ forecast.date | dateTimeFormatPipe: 'EEEE' }}
+            </p>
+            <p>
+              <i [ngClass]="forecast.icon || ''"></i>
+            </p>
+            <p>
+              <span> {{ forecast.currentTemp | number: '1.0-0' }}</span>
+              @if (forecast.units == 'metric') {
+                <i class="wi wi-celsius"></i>
+              } @else {
+                <i class="wi wi-fahrenheit"></i>
+              }
+            </p>
+            <p>
+              {{ forecast.description | titlecase }}
+            </p>
+            <dl>
+              <dt>
+                Feels like
+                <i class="wi wi-thermometer"></i>
+              </dt>
+              <dd>{{ forecast.feelsLike }}</dd>
+              <dt>
+                Min/Max
+                <i class="wi wi-barometer"></i>
+              </dt>
+              <dd>{{ forecast.minTemp }}/{{ forecast.maxTemp }}</dd>
+              <dt>
+                Humidity
+                <i class="wi wi-humidity"></i>
+              </dt>
+              <dd>{{ forecast.humidity }}</dd>
+              <dt>
+                Sunrise
+                <i class="wi wi-sunrise"></i>
+              </dt>
+              <dd>
+                {{ forecast.sunrise | dateTimeFormatPipe: 'h:mm a' }}
+              </dd>
+              <dt>
+                Sunset
+                <i class="wi wi-sunset"></i>
+              </dt>
+              <dd>
+                {{ forecast.sunset | dateTimeFormatPipe: 'h:mm a' }}
+              </dd>
+              <dt>
+                Wind speed
+                <i class="wi wi-windy"></i>
+              </dt>
+              <dd>{{ forecast.windSpeed }}</dd>
+              <dt>
+                Wind degree
+                <i class="wi wi-degrees"></i>
+              </dt>
+              <dd>{{ forecast.windDeg }}</dd>
+            </dl>
+          </div>
+        </li>
+      }
+    </ul>
+  }
+  @if (forecastService.showRandomCities$ | async) {
+    <ba-forecast-details (cityInfo)="onSubmit($event)"></ba-forecast-details>
   }
 </article>

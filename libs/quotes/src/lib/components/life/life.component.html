@@ -1,14 +1,15 @@
-@if ((quotes$ | async); as quotes) {
-<ba-message-box
-  [messages]="quotes"
-  [messageKeys]="props"
-  (tweet)="tweet($event)"
->
-</ba-message-box>
-} @if (paginationConfig()) {
-<ba-paginator
-  [paginationConfig]="paginationConfig()"
-  (onPaginatorChange)="onPaginationChange($event)"
->
-</ba-paginator>
+@if (quotes$ | async; as quotes) {
+  <ba-message-box
+    [messages]="quotes"
+    [messageKeys]="props"
+    (tweet)="tweet($event)"
+  >
+  </ba-message-box>
+}
+@if (paginationConfig()) {
+  <ba-paginator
+    [paginationConfig]="paginationConfig()"
+    (onPaginatorChange)="onPaginationChange($event)"
+  >
+  </ba-paginator>
 }

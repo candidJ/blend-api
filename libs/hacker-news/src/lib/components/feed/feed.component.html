@@ -1,12 +1,13 @@
-@if ((feed$ | async); as feedRows) {
-<ba-grid
-  [gridColumns]="feedColumns"
-  [gridRows]="feedRows"
-></ba-grid>
-} @if (paginationConfig()) {
-<ba-paginator
-  [paginationConfig]="paginationConfig()"
-  (onPaginatorChange)="onPaginatorChange($event)"
->
-</ba-paginator>
+@if (feed$ | async; as feedRows) {
+  <ba-grid
+    [gridColumns]="feedColumns"
+    [gridRows]="feedRows"
+  ></ba-grid>
+}
+@if (paginationConfig()) {
+  <ba-paginator
+    [paginationConfig]="paginationConfig()"
+    (onPaginatorChange)="onPaginatorChange($event)"
+  >
+  </ba-paginator>
 }

@@ -1,18 +1,18 @@
 @for (notification of notifications$ | async; track notification) {
-<div class="mb-2">
-  <p
-    class="notification is-light"
-    [ngClass]="{
-      'is-success': notification.type === 'success',
-      'is-danger': notification.type === 'error',
-      'is-info': notification.type === 'info'
-    }"
-  >
-    <button
-      class="delete"
-      (click)="clearNotification(notification)"
-    ></button>
-    {{ notification.textMessage }}
-  </p>
-</div>
+  <div class="mb-2">
+    <p
+      class="notification is-light"
+      [ngClass]="{
+        'is-success': notification.type === 'success',
+        'is-danger': notification.type === 'error',
+        'is-info': notification.type === 'info'
+      }"
+    >
+      <button
+        class="delete"
+        (click)="clearNotification(notification)"
+      ></button>
+      {{ notification.textMessage }}
+    </p>
+  </div>
 }

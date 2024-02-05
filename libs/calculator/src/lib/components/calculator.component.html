@@ -20,12 +20,12 @@
   </section>
   <section class="calculator-wrapper message-body">
     @for (cal of calculatorConfig; track cal) {
-    <button
-      (click)="onUserInput(cal)"
-      class="button is-rounded is-size-5"
-      [textContent]="cal.viewValue"
-      [ngClass]="cal.className"
-    ></button>
+      <button
+        (click)="onUserInput(cal)"
+        class="button is-rounded is-size-5"
+        [textContent]="cal.viewValue"
+        [ngClass]="cal.className"
+      ></button>
     }
   </section>
 </article>
@@ -37,19 +37,20 @@
   <div class="modal-background"></div>
   <div class="modal-content">
     <h2 class="has-text-white is-size-2">Session History</h2>
-    @if (sessionOperationHistory.length > 0) { @for (history of
-    sessionOperationHistory; track history) {
-    <article class="is-flex my-2">
-      <b class="tag is-size-5">{{ history.operation }}</b>
-      &nbsp;
-      <span class="has-text-white mx-2 is-align-self-center">=</span>
-      &nbsp;
-      <b class="tag is-info is-light is-size-5">{{
-        history.result | numberFormat
-      }}</b>
-    </article>
-    } } @else {
-    <p class="has-text-white">No operations performed.</p>
+    @if (sessionOperationHistory.length > 0) {
+      @for (history of sessionOperationHistory; track history) {
+        <article class="is-flex my-2">
+          <b class="tag is-size-5">{{ history.operation }}</b>
+          &nbsp;
+          <span class="has-text-white mx-2 is-align-self-center">=</span>
+          &nbsp;
+          <b class="tag is-info is-light is-size-5">{{
+            history.result | numberFormat
+          }}</b>
+        </article>
+      }
+    } @else {
+      <p class="has-text-white">No operations performed.</p>
     }
   </div>
   <button

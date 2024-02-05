@@ -10,14 +10,14 @@
 
   <!-- content -->
   @if (comment.content) {
-  <p
-    class="is-family-secondary"
-    [innerHTML]="comment.content"
-  ></p>
+    <p
+      class="is-family-secondary"
+      [innerHTML]="comment.content"
+    ></p>
   }
 
   <!-- for nested comments (recursion) -->
   @for (comment of comment.comments; track comment) {
-  <ba-comments [comment]="comment"> </ba-comments>
+    <ba-comments [comment]="comment"> </ba-comments>
   }
 </article>

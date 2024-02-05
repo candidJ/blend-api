@@ -40,42 +40,43 @@
   >
     <!-- navbar start -->
     <div class="navbar-start">
-      @for (navbarMenuItem of navbarMenuItems; track $index) { @if
-      (!navbarMenuItem.hasSubMenu) {
-      <a
-        class="navbar-item"
-        #menuItem
-        [routerLink]="navbarMenuItem.routerLink"
-        routerLinkActive="is-active"
-      >
-        <i-feather [name]="navbarMenuItem.icon"></i-feather>
-        <span class="ml-2">{{ navbarMenuItem.title }}</span>
-      </a>
-      } @if (navbarMenuItem.hasSubMenu) {
-      <section class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          <i-feather [name]="navbarMenuItem.icon"></i-feather>
-          <span class="ml-2">{{ navbarMenuItem.title }}</span>
-        </a>
-
-        <div class="navbar-dropdown is-boxed">
-          @for (sub of navbarMenuItem.subMenu; track $index) {
+      @for (navbarMenuItem of navbarMenuItems; track $index) {
+        @if (!navbarMenuItem.hasSubMenu) {
           <a
             class="navbar-item"
             #menuItem
-            [routerLink]="[navbarMenuItem.routerLink, sub.routerLink]"
+            [routerLink]="navbarMenuItem.routerLink"
             routerLinkActive="is-active"
           >
-            @if (sub.icon) {
-            <i-feather [name]="sub.icon"></i-feather>
-            }
-            <span class="ml-2">{{ sub.title }}</span>
+            <i-feather [name]="navbarMenuItem.icon"></i-feather>
+            <span class="ml-2">{{ navbarMenuItem.title }}</span>
           </a>
-          }
-        </div>
-      </section>
-      }
-      <!-- hasSubMenu ends -->
+        }
+        @if (navbarMenuItem.hasSubMenu) {
+          <section class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              <i-feather [name]="navbarMenuItem.icon"></i-feather>
+              <span class="ml-2">{{ navbarMenuItem.title }}</span>
+            </a>
+
+            <div class="navbar-dropdown is-boxed">
+              @for (sub of navbarMenuItem.subMenu; track $index) {
+                <a
+                  class="navbar-item"
+                  #menuItem
+                  [routerLink]="[navbarMenuItem.routerLink, sub.routerLink]"
+                  routerLinkActive="is-active"
+                >
+                  @if (sub.icon) {
+                    <i-feather [name]="sub.icon"></i-feather>
+                  }
+                  <span class="ml-2">{{ sub.title }}</span>
+                </a>
+              }
+            </div>
+          </section>
+        }
+        <!-- hasSubMenu ends -->
       }
       <!-- navbar ends -->
     </div>

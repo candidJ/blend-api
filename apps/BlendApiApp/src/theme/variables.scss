@@ -1,9 +1,25 @@
 // font family
-$family-primary: 'Ruda', BlinkMacSystemFont, -apple-system, 'Segoe UI', 'Roboto',
-  'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  'Helvetica', 'Arial', serif;
+$family-primary:
+  'Ruda',
+  BlinkMacSystemFont,
+  -apple-system,
+  'Segoe UI',
+  'Roboto',
+  'Oxygen',
+  'Ubuntu',
+  'Cantarell',
+  'Fira Sans',
+  'Droid Sans',
+  'Helvetica Neue',
+  'Helvetica',
+  'Arial',
+  serif;
 
-$family-secondary: 'Roboto Slab', BlinkMacSystemFont, -apple-system, sans-serif;
+$family-secondary:
+  'Roboto Slab',
+  BlinkMacSystemFont,
+  -apple-system,
+  sans-serif;
 
 // Set your brand colors
 $dark-blue: #00449e;
