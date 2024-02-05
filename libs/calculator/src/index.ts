@@ -1,1 +1,1 @@
-export * from './lib/calculator.module';
+export * from './lib/constants/calculator.routes';

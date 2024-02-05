@@ -25,7 +25,7 @@ export const APP_ROUTES: Routes = [
   {
     path: 'calculator',
     loadChildren: () =>
-      import('@blend-api/calculator').then((m) => m.CalculatorModule),
+      import('@blend-api/calculator').then((m) => m.CALCULATOR_ROUTES),
   },
   {
     path: '**',
