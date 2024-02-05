@@ -20,7 +20,7 @@ export const APP_ROUTES: Routes = [
   {
     path: 'hacker-news',
     loadChildren: () =>
-      import('@blend-api/hacker-news').then((m) => m.HackerNewsModule),
+      import('@blend-api/hacker-news').then((m) => m.HACKER_NEWS_ROUTES),
   },
   {
     path: 'calculator',

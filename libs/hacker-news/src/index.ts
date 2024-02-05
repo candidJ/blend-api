@@ -1,1 +1,1 @@
-export * from './lib/hacker-news.module';
+export * from './lib/constants/hacker-news.routes';
