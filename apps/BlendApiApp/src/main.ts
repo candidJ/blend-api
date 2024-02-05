@@ -7,13 +7,13 @@ import {
   IconsModule,
   NotificationsComponent,
 } from '@blend-api/shared';
-import { AppRoutingModule } from './app/app-routing.module';
 import {
   withInterceptorsFromDi,
   provideHttpClient,
 } from '@angular/common/http';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
+import { APP_ROUTES } from './app/app.route';
 
 if (environment.production) {
   enableProdMode();
@@ -27,13 +27,7 @@ bootstrapApplication(AppComponent, {
       IconsModule,
       NotificationsComponent,
     ),
-    provideRouter([
-      {
-        path: 'weather',
-        loadChildren: () =>
-          import('@blend-api/weather').then((r) => r.WEATHER_ROUTES),
-      },
-    ]),
+    provideRouter(APP_ROUTES),
     provideHttpClient(withInterceptorsFromDi()),
   ],
 }).catch((err) => console.error(err));
