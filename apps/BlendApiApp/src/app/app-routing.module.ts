@@ -14,12 +14,6 @@ const routes: Routes = [
     data: { preload: true },
   },
   {
-    path: 'weather',
-    loadChildren: () =>
-      import('@blend-api/weather').then((m) => m.WeatherModule),
-    data: { preload: true },
-  },
-  {
     path: 'hacker-news',
     loadChildren: () =>
       import('@blend-api/hacker-news').then((m) => m.HackerNewsModule),

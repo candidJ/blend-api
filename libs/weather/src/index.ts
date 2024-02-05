@@ -1,1 +1,1 @@
-export * from './lib/weather.module';
+export * from './lib/constants/weather.routes';
