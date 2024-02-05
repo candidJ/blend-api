@@ -2,11 +2,7 @@ import { enableProdMode, importProvidersFrom } from '@angular/core';
 
 import { environment } from './environments/environment';
 import { AppComponent } from './app/app.component';
-import {
-  NavbarComponent,
-  IconsModule,
-  NotificationsComponent,
-} from '@blend-api/shared';
+import { IconsModule } from '@blend-api/shared';
 import {
   withInterceptorsFromDi,
   provideHttpClient,
@@ -21,12 +17,7 @@ if (environment.production) {
 
 bootstrapApplication(AppComponent, {
   providers: [
-    importProvidersFrom(
-      BrowserModule,
-      NavbarComponent,
-      IconsModule,
-      NotificationsComponent,
-    ),
+    importProvidersFrom(BrowserModule, IconsModule),
     provideRouter(APP_ROUTES),
     provideHttpClient(withInterceptorsFromDi()),
   ],
