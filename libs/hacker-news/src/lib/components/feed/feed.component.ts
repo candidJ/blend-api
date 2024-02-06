@@ -1,4 +1,10 @@
-import { Component, OnInit, WritableSignal, inject } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  OnInit,
+  WritableSignal,
+  inject,
+} from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -21,6 +27,7 @@ import {
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss'],
   standalone: true,
+  providers: [HackerNewsApiService],
   imports: [GridComponent, PaginatorComponent, AsyncPipe],
 })
 export class FeedComponent implements OnInit {
@@ -29,6 +36,7 @@ export class FeedComponent implements OnInit {
   feedColumnsClone = structuredClone(this.feedColumns);
   paginationConfig: WritableSignal<PaginationConfig>;
   readonly router = inject(Router);
+  readonly #destroyRef = inject(DestroyRef);
 
   constructor(private hackerNewsService: HackerNewsApiService) {
     this.paginationConfig = this.hackerNewsService.paginationConfig;
@@ -39,7 +47,6 @@ export class FeedComponent implements OnInit {
   }
 
   private configColumnsOnPageLoad(): void {
-    console.log('remove domain for ask route');
     //  hide domain column for 'ask' route
     if (this.router.url.indexOf('ask') !== -1) {
       this.feedColumns = this.feedColumns.filter(

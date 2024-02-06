@@ -4,19 +4,18 @@ interface GridColumns {
   type: 'text' | 'date' | 'template' | 'link';
 }
 
-interface HackerNewsDetails {
-  icon: string;
-  preposition: string;
-  type: string;
-  property: string;
-}
-
 export interface HackerNewsGridColumns extends GridColumns {
   hasDetails: boolean;
   details?: HackerNewsDetails[];
   isHideSm: boolean;
 }
 
+interface HackerNewsDetails {
+  icon: string;
+  preposition: string;
+  type: string;
+  property: string;
+}
 export interface HackerNewsFeed {
   id: number;
   title: string;

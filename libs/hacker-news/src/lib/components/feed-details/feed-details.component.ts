@@ -13,6 +13,7 @@ import { FeatherModule } from 'angular-feather';
   templateUrl: './feed-details.component.html',
   styleUrls: ['./feed-details.component.scss'],
   standalone: true,
+  providers: [HackerNewsApiService],
   imports: [FeatherModule, CommentsComponent, AsyncPipe],
 })
 export class FeedDetailsComponent implements OnInit {

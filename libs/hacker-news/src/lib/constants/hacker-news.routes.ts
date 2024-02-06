@@ -3,7 +3,6 @@ import { HackerNewsApiService } from '../services';
 
 export const HACKER_NEWS_ROUTES = [
   {
-    providers: [HackerNewsApiService],
     path: '',
     children: [
       {

@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { catchError, map, shareReplay, switchMap, tap } from 'rxjs/operators';
 import {
@@ -82,7 +82,7 @@ export class HackerNewsApiService extends FeedPubSub {
   }
 
   private determineActiveUrl(): ConfigType {
-    let path: string | undefined = this.router.url.split('/').pop(); // example: ['', 'hacker-news', 'jobs']
+    let path: string | undefined = this.router.url.split('/').pop();
     if (this.isConfigPath(path)) {
       return path;
     } else {
