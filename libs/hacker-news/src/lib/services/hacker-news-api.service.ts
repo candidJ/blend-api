@@ -9,16 +9,13 @@ import {
   PaginationConfig,
   NotificationService,
 } from '@blend-api/shared';
-import { HackerNewsItem, HackerNewsItemWithComments } from '../types';
-
-type ConfigType = 'jobs' | 'feed' | 'show' | 'ask' | 'latest';
-
-interface ConfigProps {
-  URL: string;
-  TOTAL_RECORDS: number;
-  PAGE_SIZE: number;
-  NO_OF_PAGES: number;
-}
+import {
+  ConfigProps,
+  ConfigType,
+  HackerNewsItem,
+  HackerNewsItemWithComments,
+} from '../types';
+import { HACKER_NEWS_BASE_URL, HACKER_NEWS_CONFIG } from '../constants/metadata.const';
 
 @Injectable()
 export class HackerNewsApiService extends FeedPubSub {
@@ -28,8 +25,8 @@ export class HackerNewsApiService extends FeedPubSub {
     listLength: 0,
   });
 
-  private readonly config = AppConfig.HACKER_NEWS;
-  private readonly baseUrl = AppConfig.HACKER_NEWS_BASE_URL;
+  private readonly config = HACKER_NEWS_CONFIG;
+  private readonly baseUrl = HACKER_NEWS_BASE_URL;
 
   constructor(
     private httpClient: HttpClient,

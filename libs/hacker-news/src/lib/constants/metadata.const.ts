@@ -1,4 +1,4 @@
-import { HackerNewsTableColumn } from '../types';
+import { HackerNewsConfig, HackerNewsTableColumn } from '../types';
 
 export const HackerNewsFeedColumns: HackerNewsTableColumn[] = [
   {
@@ -51,3 +51,38 @@ export const HackerNewsFeedColumns: HackerNewsTableColumn[] = [
 ];
 
 export const HACKER_NEWS_URL = 'https://news.ycombinator.com/';
+
+export const HACKER_NEWS_BASE_URL = 'https://api.hackerwebapp.com/';
+
+export const HACKER_NEWS_CONFIG: HackerNewsConfig = {
+  feed: {
+    URL: 'news',
+    TOTAL_RECORDS: 180,
+    PAGE_SIZE: 30,
+    NO_OF_PAGES: 6,
+  },
+  jobs: {
+    URL: 'jobs',
+    TOTAL_RECORDS: 60,
+    PAGE_SIZE: 30,
+    NO_OF_PAGES: 2,
+  },
+  latest: {
+    URL: 'newest',
+    TOTAL_RECORDS: 120,
+    PAGE_SIZE: 30,
+    NO_OF_PAGES: 4,
+  },
+  show: {
+    URL: 'show',
+    TOTAL_RECORDS: 60,
+    PAGE_SIZE: 30,
+    NO_OF_PAGES: 2,
+  },
+  ask: {
+    URL: 'ask',
+    TOTAL_RECORDS: 60,
+    PAGE_SIZE: 30,
+    NO_OF_PAGES: 2,
+  },
+};

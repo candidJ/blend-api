@@ -42,3 +42,16 @@ export interface HackerNewsItemComment {
 export interface HackerNewsItemWithComments extends HackerNewsItem {
   comments: HackerNewsItemComment[];
 }
+
+export type ConfigType = 'jobs' | 'feed' | 'show' | 'ask' | 'latest';
+
+export interface ConfigProps {
+  URL: string;
+  TOTAL_RECORDS: number;
+  PAGE_SIZE: number;
+  NO_OF_PAGES: number;
+}
+
+export type HackerNewsConfig = {
+  [k in ConfigType]: ConfigProps;
+};
