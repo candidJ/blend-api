@@ -3,6 +3,7 @@
   "cli": {
     "packageManager": "yarn"
   },
+  "defaultProject": "BlendApiApp",
   "affected": {
     "defaultBase": "master"
   },
