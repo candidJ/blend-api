@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { catchError, map, shareReplay, switchMap, tap } from 'rxjs/operators';
 import {
   FeedPubSub,
-  AppConfig,
   PaginationConfig,
   NotificationService,
 } from '@blend-api/shared';
@@ -15,7 +14,7 @@ import {
   HackerNewsItem,
   HackerNewsItemWithComments,
 } from '../types';
-import { HACKER_NEWS_BASE_URL, HACKER_NEWS_CONFIG } from '../constants/metadata.const';
+import { HACKER_NEWS_API_URL, HACKER_NEWS_CONFIG } from '../constants/metadata.const';
 
 @Injectable()
 export class HackerNewsApiService extends FeedPubSub {
@@ -25,8 +24,8 @@ export class HackerNewsApiService extends FeedPubSub {
     listLength: 0,
   });
 
-  private readonly config = HACKER_NEWS_CONFIG;
-  private readonly baseUrl = HACKER_NEWS_BASE_URL;
+  readonly #config = HACKER_NEWS_CONFIG;
+  readonly #baseUrl = HACKER_NEWS_API_URL;
 
   constructor(
     private httpClient: HttpClient,
@@ -38,7 +37,7 @@ export class HackerNewsApiService extends FeedPubSub {
 
   loadItemDetails(itemId: number): Observable<HackerNewsItemWithComments> {
     return this.httpClient
-      .get<HackerNewsItemWithComments>(`${this.baseUrl}item/${itemId}`)
+      .get<HackerNewsItemWithComments>(`${this.#baseUrl}item/${itemId}`)
       .pipe(catchError((err) => throwError(err)));
   }
 
@@ -72,7 +71,7 @@ export class HackerNewsApiService extends FeedPubSub {
 
   private composeRequestUrl(): string {
     const feedType: ConfigType = this.determineActiveUrl();
-    return this.baseUrl + this.config[feedType].URL;
+    return this.#baseUrl + this.#config[feedType].URL;
   }
 
   private determineActiveUrl(): ConfigType {
@@ -96,7 +95,7 @@ export class HackerNewsApiService extends FeedPubSub {
 
   private composePaginationConfig = (): void => {
     const feedType: ConfigType = this.determineActiveUrl();
-    const configType: ConfigProps = this.config[feedType];
+    const configType: ConfigProps = this.#config[feedType];
     const feedPaginationConfig: PaginationConfig = {
       listLength: configType.TOTAL_RECORDS,
       noOfPages: configType.NO_OF_PAGES,

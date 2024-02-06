@@ -1,5 +1,4 @@
 import { FeedComponent, FeedDetailsComponent } from '../components';
-import { HackerNewsApiService } from '../services';
 
 export const HACKER_NEWS_ROUTES = [
   {

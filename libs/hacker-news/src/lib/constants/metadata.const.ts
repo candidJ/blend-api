@@ -52,7 +52,7 @@ export const HackerNewsFeedColumns: HackerNewsTableColumn[] = [
 
 export const HACKER_NEWS_URL = 'https://news.ycombinator.com/';
 
-export const HACKER_NEWS_BASE_URL = 'https://api.hackerwebapp.com/';
+export const HACKER_NEWS_API_URL = 'https://api.hackerwebapp.com/';
 
 export const HACKER_NEWS_CONFIG: HackerNewsConfig = {
   feed: {
