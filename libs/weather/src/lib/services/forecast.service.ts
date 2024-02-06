@@ -28,11 +28,11 @@ import { AppConfig, NotificationService } from '@blend-api/shared';
 
 @Injectable()
 export class ForecastService {
-  private readonly config = AppConfig.WEATHER_API_CONFIG;
-  private cityWeather: CityWeather;
-  private cityPublisher = new Subject<boolean>();
-  private units = '';
-  private readonly SEATTLE_LAT_LONG: Pick<
+   readonly #config = AppConfig.WEATHER_API_CONFIG;
+   #cityWeather: CityWeather;
+   #cityPublisher = new Subject<boolean>();
+   #units = '';
+   readonly #SEATTLE_LAT_LONG: Pick<
     GeolocationCoordinates,
     'latitude' | 'longitude'
   > = {
@@ -40,13 +40,13 @@ export class ForecastService {
     latitude: 47.6061,
   };
 
-  showRandomCities$ = this.cityPublisher.asObservable();
+  showRandomCities$ = this.#cityPublisher.asObservable();
 
   constructor(
     private httpClient: HttpClient,
     private notificationService: NotificationService,
   ) {
-    this.cityPublisher.next(false);
+    this.#cityPublisher.next(false);
   }
 
   getForecast(
@@ -55,15 +55,14 @@ export class ForecastService {
     return forecastHttpParams.pipe(
       // create a new observable with the last emitted value from previous observable and cancel the last observable
       switchMap((params) => {
-        this.units = params.get('units') || 'metric';
-        return this.httpClient.get<WeatherResponse>(this.config.URL, {
+        this.#units = params.get('#units') || 'metric';
+        return this.httpClient.get<WeatherResponse>(this.#config.URL, {
           params,
         });
       }),
       tap((weatherResponse: WeatherResponse) => {
-        this.cityWeather = structuredClone(weatherResponse.city);
-        this.showForecastNotification();
-        this.cityPublisher.next(false);
+        this.#cityWeather = structuredClone(weatherResponse.city);
+        this.#cityPublisher.next(false);
         return weatherResponse;
       }),
       // pluck out the list property
@@ -77,7 +76,7 @@ export class ForecastService {
       shareReplay(), // single network request - even if multiple subscription
       catchError((err: HttpErrorResponse) => {
         console.error(err);
-        this.cityPublisher.next(true);
+        this.#cityPublisher.next(true);
         this.notificationService.showErrorMessage(err.error.message);
         return throwError(err);
       }),
@@ -98,9 +97,9 @@ export class ForecastService {
     }).pipe(
       catchError((err) => {
         console.error(err.message);
-        //  Return a new observable which pass default coordinates when user denies current location
-        // unlike tap operator second argument; it DOES return an observable and pass something to pipe operator
-        return of(this.SEATTLE_LAT_LONG);
+      // Return a new observable that passes default coordinates when the user denies access to their current location.
+      // Unlike the tap operator, which doesn't return an observable and doesn't pass anything to the pipe operator.
+        return of(this.#SEATTLE_LAT_LONG);
       }),
     );
   }
@@ -119,14 +118,14 @@ export class ForecastService {
       description: weatherItem.weather[0].description,
       id: weatherItem.weather[0].id,
       date: weatherItem.dt_txt,
-      city: this.cityWeather.name,
-      country: this.cityWeather.country,
+      city: this.#cityWeather.name,
+      country: this.#cityWeather.country,
       //Convert a Unix timestamp to time
-      sunrise: new Date(this.cityWeather.sunrise * 1000),
-      sunset: new Date(this.cityWeather.sunset * 1000),
+      sunrise: new Date(this.#cityWeather.sunrise * 1000),
+      sunset: new Date(this.#cityWeather.sunset * 1000),
       windSpeed: weatherItem.wind.speed,
       windDeg: weatherItem.wind.deg,
-      units: this.units,
+      units: this.#units,
       icon: this.determineWeatherIcon(),
     };
 
@@ -139,12 +138,12 @@ export class ForecastService {
 
     /* Get suitable icon for weather */
     if (
-      date.getHours() >= this.cityWeather.sunrise &&
-      date.getHours() < this.cityWeather.sunset
+      date.getHours() >= this.#cityWeather.sunrise &&
+      date.getHours() < this.#cityWeather.sunset
     ) {
-      weatherIcon = `wi wi-owm-day-${this.cityWeather.id}`;
+      weatherIcon = `wi wi-owm-day-${this.#cityWeather.id}`;
     } else {
-      weatherIcon = `wi wi-owm-night-${this.cityWeather.id}`;
+      weatherIcon = `wi wi-owm-night-${this.#cityWeather.id}`;
     }
 
     return weatherIcon;
@@ -152,7 +151,7 @@ export class ForecastService {
 
   private showForecastNotification = (): void => {
     this.notificationService.showSuccessMessage(
-      `Weather forecast for ${this.cityWeather.name} is fetched`,
+      `The weather forecast for ${this.#cityWeather.name} has been successfully retrieved.`,
     );
   };
 }

@@ -35,18 +35,13 @@ export class LifeQuotesService extends FeedPubSub {
         return throwError(err);
       }),
       tap(this.composePaginationConfig),
-      tap(this.showSuccessMessage),
       map(this.mapResponse),
       shareReplay(1),
     );
   }
 
   private showErrorMessage = () => {
-    this.notificationService.showErrorMessage('Technical error occurred');
-  };
-
-  private showSuccessMessage = () => {
-    this.notificationService.showSuccessMessage('Life quotes fetched');
+    this.notificationService.showErrorMessage('Oops! Something went wrong on our end. Please try again later.');
   };
 
   private configureParams = (page = 1): HttpParams => {

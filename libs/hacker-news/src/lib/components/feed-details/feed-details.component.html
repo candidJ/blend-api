@@ -35,7 +35,7 @@
       {{ feedItem.comments_count }}&nbsp;comments
     </h2>
   } @else {
-    <span class="is-family-secondary">No comments posted.</span>
+    <span class="is-family-secondary">Currently, there are no comments posted.</span>
   }
   @for (comment of feedItem.comments; track comment) {
     <ba-comments [comment]="comment"> </ba-comments>
