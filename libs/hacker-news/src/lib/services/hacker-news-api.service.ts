@@ -9,7 +9,7 @@ import {
   PaginationConfig,
   NotificationService,
 } from '@blend-api/shared';
-import { HackerNewsFeed, HackerNewsFeedDetails } from '../types';
+import { HackerNewsItem, HackerNewsItemWithComments } from '../types';
 
 type ConfigType = 'jobs' | 'feed' | 'show' | 'ask' | 'latest';
 
@@ -39,13 +39,13 @@ export class HackerNewsApiService extends FeedPubSub {
     super();
   }
 
-  loadItemDetails(itemId: number): Observable<HackerNewsFeedDetails> {
+  loadItemDetails(itemId: number): Observable<HackerNewsItemWithComments> {
     return this.httpClient
-      .get<HackerNewsFeedDetails>(`${this.baseUrl}item/${itemId}`)
+      .get<HackerNewsItemWithComments>(`${this.baseUrl}item/${itemId}`)
       .pipe(catchError((err) => throwError(err)));
   }
 
-  fetchNewsFeed(): Observable<HackerNewsFeed[]> {
+  fetchNewsFeed(): Observable<HackerNewsItem[]> {
     return this.feedSubscriber.pipe(
       map(this.configureParams),
       switchMap(this.fetchData),
@@ -68,9 +68,9 @@ export class HackerNewsApiService extends FeedPubSub {
     return new HttpParams().set('page', page.toString());
   };
 
-  private fetchData = (params: HttpParams): Observable<HackerNewsFeed[]> => {
+  private fetchData = (params: HttpParams): Observable<HackerNewsItem[]> => {
     const url = this.composeRequestUrl();
-    return this.httpClient.get<HackerNewsFeed[]>(url, { params });
+    return this.httpClient.get<HackerNewsItem[]>(url, { params });
   };
 
   private composeRequestUrl(): string {

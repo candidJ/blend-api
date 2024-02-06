@@ -1,22 +1,23 @@
-interface GridColumns {
+interface TableColumn {
   header: string;
   property: string;
   type: 'text' | 'date' | 'template' | 'link';
 }
 
-export interface HackerNewsGridColumns extends GridColumns {
+export interface HackerNewsTableColumn extends TableColumn {
   hasDetails: boolean;
-  details?: HackerNewsDetails[];
-  isHideSm: boolean;
+  details?: HackerNewsItemDetails[];
+  isHiddenOnSmallScreen: boolean;
 }
 
-interface HackerNewsDetails {
+interface HackerNewsItemDetails {
   icon: string;
   preposition: string;
   type: string;
   property: string;
 }
-export interface HackerNewsFeed {
+
+export interface HackerNewsItem {
   id: number;
   title: string;
   points: number;
@@ -28,16 +29,16 @@ export interface HackerNewsFeed {
   domain?: string;
 }
 
-export interface HackerNewsFeedComments {
+export interface HackerNewsItemComment {
   id: number;
   level: number;
   user: string;
   time: number;
   time_ago: string;
   content: string;
-  comments: HackerNewsFeedComments[];
+  comments: HackerNewsItemComment[];
 }
 
-export interface HackerNewsFeedDetails extends HackerNewsFeed {
-  comments: HackerNewsFeedComments[];
+export interface HackerNewsItemWithComments extends HackerNewsItem {
+  comments: HackerNewsItemComment[];
 }

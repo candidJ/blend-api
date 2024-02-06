@@ -4,7 +4,7 @@ import {
   Input,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { HackerNewsFeedComments } from '../../types';
+import { HackerNewsItemComment } from '../../types';
 import { FeatherModule } from 'angular-feather';
 import { NgClass } from '@angular/common';
 
@@ -20,5 +20,5 @@ import { NgClass } from '@angular/common';
   imports: [NgClass, FeatherModule],
 })
 export class CommentsComponent {
-  @Input() comment: HackerNewsFeedComments;
+  @Input() comment: HackerNewsItemComment;
 }

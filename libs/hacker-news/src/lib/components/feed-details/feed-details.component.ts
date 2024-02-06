@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, map } from 'rxjs';
 
 import { HackerNewsApiService } from '../../services';
-import { HackerNewsFeedDetails } from '../../types';
+import { HackerNewsItemWithComments } from '../../types';
 import { ActivatedRoute } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { CommentsComponent } from '../comments/comments.component';
@@ -18,7 +18,7 @@ import { HACKER_NEWS } from '../../constants/metadata.const';
   imports: [FeatherModule, CommentsComponent, AsyncPipe],
 })
 export class FeedDetailsComponent implements OnInit {
-  feedItem$: Observable<HackerNewsFeedDetails>;
+  feedItem$: Observable<HackerNewsItemWithComments>;
   noOfPages$: Observable<number[]>;
 
   constructor(
@@ -29,7 +29,7 @@ export class FeedDetailsComponent implements OnInit {
   ngOnInit(): void {
     const itemId: number = this.route.snapshot.params['id'];
     this.feedItem$ = this.hackerNewsService.loadItemDetails(itemId).pipe(
-      map((feedItem: HackerNewsFeedDetails) => {
+      map((feedItem: HackerNewsItemWithComments) => {
         if (!feedItem.domain) {
           feedItem.url = `${HACKER_NEWS}${feedItem.url}`;
         }

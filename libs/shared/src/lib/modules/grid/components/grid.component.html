@@ -6,7 +6,7 @@
         @for (column of gridColumns; track column) {
           <th
             class="has-background-primary-light is-capitalized"
-            [ngClass]="{ 'hide-sm': column.isHideSm }"
+            [ngClass]="{ 'hide-sm': column.isHiddenOnSmallScreen }"
           >
             {{ column.header }}
           </th>
@@ -40,7 +40,7 @@
       @if (item.type != 'template') {
         <td
           [routerLink]="['../item', gridRowData.id]"
-          [ngClass]="{ 'hide-sm': item.isHideSm }"
+          [ngClass]="{ 'hide-sm': item.isHiddenOnSmallScreen }"
         >
           {{ gridRowData[item.property] }}
           @if (item.hasDetails) {

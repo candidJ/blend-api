@@ -15,7 +15,7 @@ import {
   PaginationConfig,
   PaginatorComponent,
 } from '@blend-api/shared';
-import { HackerNewsGridColumns, HackerNewsFeed } from '../../types';
+import { HackerNewsTableColumn, HackerNewsItem } from '../../types';
 import { HackerNewsApiService } from '../../services';
 import {
   HackerNewsFeedColumns,
@@ -31,8 +31,8 @@ import {
   imports: [GridComponent, PaginatorComponent, AsyncPipe],
 })
 export class FeedComponent implements OnInit {
-  feed$: Observable<HackerNewsFeed[]>;
-  feedColumns: HackerNewsGridColumns[] = HackerNewsFeedColumns;
+  feed$: Observable<HackerNewsItem[]>;
+  feedColumns: HackerNewsTableColumn[] = HackerNewsFeedColumns;
   feedColumnsClone = structuredClone(this.feedColumns);
   paginationConfig: WritableSignal<PaginationConfig>;
   readonly router = inject(Router);
@@ -50,7 +50,7 @@ export class FeedComponent implements OnInit {
     // hide domain column for 'ask' route
     if (this.router.url.indexOf('ask') !== -1) {
       this.feedColumns = this.feedColumns.filter(
-        (feedColumn: HackerNewsGridColumns) => feedColumn.property !== 'domain',
+        (feedColumn: HackerNewsTableColumn) => feedColumn.property !== 'domain',
       );
     } else {
       // show columns headline and domain

@@ -1,12 +1,12 @@
-import { HackerNewsGridColumns } from '../types';
+import { HackerNewsTableColumn } from '../types';
 
-export const HackerNewsFeedColumns: HackerNewsGridColumns[] = [
+export const HackerNewsFeedColumns: HackerNewsTableColumn[] = [
   {
     header: 'Title',
     property: 'title',
     type: 'text',
     hasDetails: true,
-    isHideSm: false,
+    isHiddenOnSmallScreen: false,
     details: [
       {
         property: 'points',
@@ -39,14 +39,14 @@ export const HackerNewsFeedColumns: HackerNewsGridColumns[] = [
     property: 'domain',
     type: 'link',
     hasDetails: false,
-    isHideSm: true,
+    isHiddenOnSmallScreen: true,
   },
   {
     header: 'View',
     property: 'actions',
     type: 'template',
     hasDetails: false,
-    isHideSm: false,
+    isHiddenOnSmallScreen: false,
   },
 ];
 
