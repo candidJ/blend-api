@@ -24,9 +24,8 @@ export interface HackerNewsFeed {
   time: number;
   time_ago: string;
   comments_count: number;
-  type: 'ask' | 'link' | 'job';
   url: string;
-  domain: string;
+  domain?: string;
 }
 
 export interface HackerNewsFeedComments {
@@ -37,7 +36,6 @@ export interface HackerNewsFeedComments {
   time_ago: string;
   content: string;
   comments: HackerNewsFeedComments[];
-  marginLeft: string;
 }
 
 export interface HackerNewsFeedDetails extends HackerNewsFeed {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 import { HackerNewsApiService } from '../../services';
 import { HackerNewsFeedDetails } from '../../types';
@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { CommentsComponent } from '../comments/comments.component';
 import { FeatherModule } from 'angular-feather';
+import { HACKER_NEWS } from '../../constants/metadata.const';
 
 @Component({
   selector: 'ba-feed-details',
@@ -27,6 +28,13 @@ export class FeedDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     const itemId: number = this.route.snapshot.params['id'];
-    this.feedItem$ = this.hackerNewsService.loadItemDetails(itemId);
+    this.feedItem$ = this.hackerNewsService.loadItemDetails(itemId).pipe(
+      map((feedItem: HackerNewsFeedDetails) => {
+        if (!feedItem.domain) {
+          feedItem.url = `${HACKER_NEWS}${feedItem.url}`;
+        }
+        return feedItem;
+      }),
+    );
   }
 }

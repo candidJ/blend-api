@@ -54,17 +54,14 @@ export class HackerNewsApiService extends FeedPubSub {
         return throwError(err);
       }),
       tap(this.composePaginationConfig),
-      tap(this.showSuccessMessage),
       shareReplay(1),
     );
   }
 
   private showErrorMessage = () => {
-    this.notificationService.showErrorMessage('Technical error occurred');
-  };
-
-  private showSuccessMessage = () => {
-    this.notificationService.showSuccessMessage('Latest Feed fetched');
+    this.notificationService.showErrorMessage(
+      'Unable to fetch the Hacker News',
+    );
   };
 
   private configureParams = (page = 1): HttpParams => {

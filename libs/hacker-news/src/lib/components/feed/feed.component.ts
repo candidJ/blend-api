@@ -19,7 +19,7 @@ import { HackerNewsGridColumns, HackerNewsFeed } from '../../types';
 import { HackerNewsApiService } from '../../services';
 import {
   HackerNewsFeedColumns,
-  YCOMBINATOR_URL,
+  HACKER_NEWS,
 } from '../../constants/metadata.const';
 
 @Component({
@@ -47,7 +47,7 @@ export class FeedComponent implements OnInit {
   }
 
   private configColumnsOnPageLoad(): void {
-    //  hide domain column for 'ask' route
+    // hide domain column for 'ask' route
     if (this.router.url.indexOf('ask') !== -1) {
       this.feedColumns = this.feedColumns.filter(
         (feedColumn: HackerNewsGridColumns) => feedColumn.property !== 'domain',
@@ -63,8 +63,8 @@ export class FeedComponent implements OnInit {
     this.feed$ = this.hackerNewsService.fetchNewsFeed().pipe(
       map((feed) => {
         return feed.map((f) => {
-          if (f.type === 'ask') {
-            f.url = `${YCOMBINATOR_URL}${f.url}`;
+          if (!f.domain) {
+            f.url = `${HACKER_NEWS}${f.url}`;
           }
           return f;
         });
