@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { CommentsComponent } from '../comments/comments.component';
 import { FeatherModule } from 'angular-feather';
-import { HACKER_NEWS_URL } from '../../constants/metadata.const';
+import { HACKER_NEWS_URL } from '../../constants/hacker-news.const';
 
 @Component({
   selector: 'ba-feed-details',

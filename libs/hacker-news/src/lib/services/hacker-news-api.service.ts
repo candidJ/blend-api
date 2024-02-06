@@ -14,7 +14,10 @@ import {
   HackerNewsItem,
   HackerNewsItemWithComments,
 } from '../types';
-import { HACKER_NEWS_API_URL, HACKER_NEWS_CONFIG } from '../constants/metadata.const';
+import {
+  HACKER_NEWS_API_URL,
+  HACKER_NEWS_CONFIG,
+} from '../constants/hacker-news.const';
 
 @Injectable()
 export class HackerNewsApiService extends FeedPubSub {

@@ -45,7 +45,7 @@ export interface HackerNewsItemWithComments extends HackerNewsItem {
 
 export type ConfigType = 'jobs' | 'feed' | 'show' | 'ask' | 'latest';
 
-type UrlType = 'news' | 'jobs' |  'newest' | 'show' | 'ask';
+type UrlType = 'news' | 'jobs' | 'newest' | 'show' | 'ask';
 export interface ConfigProps {
   URL: UrlType;
   TOTAL_RECORDS: number;

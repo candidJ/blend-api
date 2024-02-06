@@ -20,5 +20,5 @@ export const AppConfig = {
   TWITTER: {
     URL: 'https://www.twitter.com/intent/tweet?hashtags',
     HASHTAGS: 'quote',
-  }
+  },
 };

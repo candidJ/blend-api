@@ -13,7 +13,7 @@ import { HackerNewsApiService } from '../../services';
 import {
   HackerNewsFeedColumns,
   HACKER_NEWS_URL,
-} from '../../constants/metadata.const';
+} from '../../constants/hacker-news.const';
 
 @Component({
   selector: 'ba-feed',
