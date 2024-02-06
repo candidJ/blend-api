@@ -1,12 +1,5 @@
-import {
-  Component,
-  DestroyRef,
-  OnInit,
-  WritableSignal,
-  inject,
-} from '@angular/core';
+import { Component, OnInit, WritableSignal } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -19,7 +12,7 @@ import { HackerNewsTableColumn, HackerNewsItem } from '../../types';
 import { HackerNewsApiService } from '../../services';
 import {
   HackerNewsFeedColumns,
-  HACKER_NEWS,
+  HACKER_NEWS_URL,
 } from '../../constants/metadata.const';
 
 @Component({
@@ -35,8 +28,6 @@ export class FeedComponent implements OnInit {
   feedColumns: HackerNewsTableColumn[] = HackerNewsFeedColumns;
   feedColumnsClone = structuredClone(this.feedColumns);
   paginationConfig: WritableSignal<PaginationConfig>;
-  readonly router = inject(Router);
-  readonly #destroyRef = inject(DestroyRef);
 
   constructor(private hackerNewsService: HackerNewsApiService) {
     this.paginationConfig = this.hackerNewsService.paginationConfig;
@@ -46,25 +37,13 @@ export class FeedComponent implements OnInit {
     this.hackerNewsService.fetchFeedByPageNumber(page);
   }
 
-  private configColumnsOnPageLoad(): void {
-    // hide domain column for 'ask' route
-    if (this.router.url.indexOf('ask') !== -1) {
-      this.feedColumns = this.feedColumns.filter(
-        (feedColumn: HackerNewsTableColumn) => feedColumn.property !== 'domain',
-      );
-    } else {
-      // show columns headline and domain
-      this.feedColumns = this.feedColumnsClone;
-    }
-  }
-
   ngOnInit(): void {
-    this.configColumnsOnPageLoad();
     this.feed$ = this.hackerNewsService.fetchNewsFeed().pipe(
       map((feed) => {
         return feed.map((f) => {
           if (!f.domain) {
-            f.url = `${HACKER_NEWS}${f.url}`;
+            f.url = `${HACKER_NEWS_URL}${f.url}`;
+            f.domain = HACKER_NEWS_URL.split('/')[2];
           }
           return f;
         });

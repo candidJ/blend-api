@@ -50,4 +50,4 @@ export const HackerNewsFeedColumns: HackerNewsTableColumn[] = [
   },
 ];
 
-export const HACKER_NEWS = 'https://news.ycombinator.com/';
+export const HACKER_NEWS_URL = 'https://news.ycombinator.com/';

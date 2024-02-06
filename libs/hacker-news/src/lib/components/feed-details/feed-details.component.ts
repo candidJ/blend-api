@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { CommentsComponent } from '../comments/comments.component';
 import { FeatherModule } from 'angular-feather';
-import { HACKER_NEWS } from '../../constants/metadata.const';
+import { HACKER_NEWS_URL } from '../../constants/metadata.const';
 
 @Component({
   selector: 'ba-feed-details',
@@ -31,7 +31,9 @@ export class FeedDetailsComponent implements OnInit {
     this.feedItem$ = this.hackerNewsService.loadItemDetails(itemId).pipe(
       map((feedItem: HackerNewsItemWithComments) => {
         if (!feedItem.domain) {
-          feedItem.url = `${HACKER_NEWS}${feedItem.url}`;
+          feedItem.url = `${HACKER_NEWS_URL}${feedItem.url}`;
+          // remove URL meta data
+          feedItem.domain = HACKER_NEWS_URL.split('/')[2];
         }
         return feedItem;
       }),
