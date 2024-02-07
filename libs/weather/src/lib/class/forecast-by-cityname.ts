@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ForecastStrategy } from '../types/forecast-strategy.interface';
 import { CityPayload } from '../types/weather.interface';
-import { AppConfig } from '@blend-api/shared';
+import { WEATHER_API_CONFIG } from '../constants/weather.const';
 
 /**
  * Concrete implementation of ForecastStrategy
@@ -18,8 +18,8 @@ export class ForecastByCityName implements ForecastStrategy {
       map((data) => {
         return new HttpParams()
           .set('q', data.city)
-          .set('units', data.unit || AppConfig.WEATHER_API_CONFIG.UNITS)
-          .set('appid', AppConfig.WEATHER_API_CONFIG.API_KEY);
+          .set('units', data.unit || WEATHER_API_CONFIG.UNITS)
+          .set('appid', WEATHER_API_CONFIG.API_KEY);
       }),
     );
   }

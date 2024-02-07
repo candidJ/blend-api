@@ -2,7 +2,7 @@ import { of, Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { ForecastStrategy } from '../types/forecast-strategy.interface';
-import { AppConfig } from '@blend-api/shared';
+import { WEATHER_API_CONFIG } from '../constants/weather.const';
 
 // Implementation of strategy
 export class ForecastByLatLong implements ForecastStrategy {
@@ -17,8 +17,8 @@ export class ForecastByLatLong implements ForecastStrategy {
         return new HttpParams()
           .set('lat', String(coords.latitude))
           .set('lon', String(coords.longitude))
-          .set('units', AppConfig.WEATHER_API_CONFIG.UNITS)
-          .set('appid', AppConfig.WEATHER_API_CONFIG.API_KEY);
+          .set('units', WEATHER_API_CONFIG.UNITS)
+          .set('appid', WEATHER_API_CONFIG.API_KEY);
       }),
     );
   }

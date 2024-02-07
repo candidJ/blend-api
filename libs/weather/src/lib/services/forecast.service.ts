@@ -7,10 +7,8 @@ import {
   mergeMap,
   filter,
   toArray,
-  share,
   tap,
   catchError,
-  retry,
   shareReplay,
 } from 'rxjs/operators';
 import {
@@ -24,11 +22,12 @@ import {
   WeatherDefinition,
   WeatherItem,
 } from '../types/weather.interface';
-import { AppConfig, NotificationService } from '@blend-api/shared';
+import { NotificationService } from '@blend-api/shared';
+import { WEATHER_API_CONFIG } from '../constants/weather.const';
 
 @Injectable()
 export class ForecastService {
-  readonly #config = AppConfig.WEATHER_API_CONFIG;
+  readonly #config = WEATHER_API_CONFIG;
   #cityWeather: CityWeather;
   #cityPublisher = new Subject<boolean>();
   #units = '';
