@@ -1,8 +1,7 @@
-import { AppConfig } from '../../../constant';
 import { BlendAPILogo, NavbarMenu } from '../types/navbar.interface';
 
 export const AppLogoWithLink: BlendAPILogo = {
-  logo: AppConfig.IMAGES.LOGO,
+  logo: '../../assets/images/blend-api-logo.png',
   routerLink: '/hacker-news',
 };
 
