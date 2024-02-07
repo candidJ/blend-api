@@ -18,7 +18,6 @@ import { first } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import { DateTimeFormatPipe } from '@blend-api/shared';
-import * as _ from 'lodash';
 import { ForecastByCityName } from '../../class/forecast-by-cityname';
 import { ForecastByLatLong } from '../../class/forecast-by-latlong';
 import { ForecastContext } from '../../class/forecast-context';
@@ -52,17 +51,8 @@ export class ForecastComponent extends ForecastContext implements OnInit {
   forecastDetails: WeatherDefinition;
   readonly #destroyRef = inject(DestroyRef);
 
-  constructor(
-    public forecastService: ForecastService,
-    private fg: FormBuilder,
-  ) {
-    super();
-    this.userInputForm = this.fg.group({
-      city: new FormControl(null, Validators.required),
-      country: new FormControl(''),
-      unit: new FormControl('metric'),
-    });
-  }
+  forecastService: ForecastService = inject(ForecastService);
+  #fg: FormBuilder = inject(FormBuilder);
 
   private fetchWeatherForecast(): void {
     this.forecast$ = this.forecastService.getForecast(this.performForecast());
@@ -72,7 +62,7 @@ export class ForecastComponent extends ForecastContext implements OnInit {
     const { country, city, unit } = cityInfo;
     let countryCode: string | null = '';
     if (country) {
-      const filteredCountry = _.filter(this.countries, country);
+      const filteredCountry = this.countries.filter((c) => c.code === country);
       countryCode = filteredCountry.length ? country[0] : null;
     }
     return {
@@ -90,6 +80,11 @@ export class ForecastComponent extends ForecastContext implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userInputForm = this.#fg.group({
+      city: new FormControl(null, Validators.required),
+      country: new FormControl(''),
+      unit: new FormControl('metric'),
+    });
     this.forecastService
       .getCurrentLocation()
       .pipe(first(), takeUntilDestroyed(this.#destroyRef))

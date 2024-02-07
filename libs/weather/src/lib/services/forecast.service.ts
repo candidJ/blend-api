@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Observable, of, throwError, Subject } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import { Observable, of, throwError, BehaviorSubject } from 'rxjs';
 import {
   map,
   switchMap,
@@ -29,7 +29,7 @@ import { WEATHER_API_CONFIG } from '../constants/weather.const';
 export class ForecastService {
   readonly #config = WEATHER_API_CONFIG;
   #cityWeather: CityWeather;
-  #cityPublisher = new Subject<boolean>();
+  #cityPublisher = new BehaviorSubject<boolean>(false);
   #units = '';
   readonly #SEATTLE_LAT_LONG: Pick<
     GeolocationCoordinates,
@@ -41,12 +41,9 @@ export class ForecastService {
 
   showRandomCities$ = this.#cityPublisher.asObservable();
 
-  constructor(
-    private httpClient: HttpClient,
-    private notificationService: NotificationService,
-  ) {
-    this.#cityPublisher.next(false);
-  }
+  readonly #httpClient: HttpClient = inject(HttpClient);
+  readonly #notificationService: NotificationService =
+    inject(NotificationService);
 
   getForecast(
     forecastHttpParams: Observable<HttpParams>,
@@ -55,7 +52,7 @@ export class ForecastService {
       // create a new observable with the last emitted value from previous observable and cancel the last observable
       switchMap((params) => {
         this.#units = params.get('#units') || 'metric';
-        return this.httpClient.get<WeatherResponse>(this.#config.URL, {
+        return this.#httpClient.get<WeatherResponse>(this.#config.URL, {
           params,
         });
       }),
@@ -76,7 +73,7 @@ export class ForecastService {
       catchError((err: HttpErrorResponse) => {
         console.error(err);
         this.#cityPublisher.next(true);
-        this.notificationService.showErrorMessage(err.error.message);
+        this.#notificationService.showErrorMessage(err.error.message);
         return throwError(err);
       }),
     );
@@ -149,7 +146,7 @@ export class ForecastService {
   };
 
   private showForecastNotification = (): void => {
-    this.notificationService.showSuccessMessage(
+    this.#notificationService.showSuccessMessage(
       `The weather forecast for ${this.#cityWeather.name} has been successfully retrieved.`,
     );
   };

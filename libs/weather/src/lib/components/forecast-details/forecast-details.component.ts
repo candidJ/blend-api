@@ -10,30 +10,28 @@ import { CityPayload } from '../../types/weather.interface';
 })
 export class ForecastDetailsComponent implements OnInit {
   randomCities: Partial<CityPayload>[] = [];
-  private cities = CITIES;
-  private cityHashMap: Map<number, boolean> = new Map();
+  #cities = CITIES;
+  #cityHashMap: Map<number, boolean> = new Map();
 
   @Output('cityInfo') sendCityInfo = new EventEmitter();
-
-  constructor() {}
 
   private generateRandomCities() {
     for (let i = 0; i < 5; i++) {
       let randomHash = this.generateRandomHash();
-      if (!this.cityHashMap.has(randomHash)) {
-        this.cityHashMap.set(randomHash, true);
+      if (!this.#cityHashMap.has(randomHash)) {
+        this.#cityHashMap.set(randomHash, true);
       } else {
-        while (this.cityHashMap.has(randomHash)) {
+        while (this.#cityHashMap.has(randomHash)) {
           randomHash = this.generateRandomHash();
         }
       }
-      const randomCity = this.cities[randomHash];
+      const randomCity = this.#cities[randomHash];
       this.randomCities.push(randomCity);
     }
   }
 
   private generateRandomHash(): number {
-    return Math.round(Math.random() * (this.cities.length - 1));
+    return Math.round(Math.random() * (this.#cities.length - 1));
   }
 
   onCityClick(cityInfo: Partial<CityPayload>): void {
