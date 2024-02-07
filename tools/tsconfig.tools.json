@@ -4,7 +4,7 @@
     "outDir": "../dist/out-tsc/tools",
     "rootDir": ".",
     "module": "ES",
-    "target": "ES2015",
+    "target": "ES2022",
     "types": ["node"],
     "importHelpers": false
   },

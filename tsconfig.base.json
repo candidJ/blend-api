@@ -13,7 +13,7 @@
     "strictNullChecks": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "ES2015",
+    "target": "ES2022",
     "module": "ESNext",
     "lib": ["ES2022", "dom"],
     "types": ["node", "lodash"],
