@@ -1,7 +1,7 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { Router } from '@angular/router';
+import { Observable, throwError } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 import { catchError, map, shareReplay, switchMap, tap } from 'rxjs/operators';
 import {
   FeedPubSub,
@@ -29,11 +29,11 @@ export class HackerNewsApiService extends FeedPubSub {
 
   readonly #config = HACKER_NEWS_CONFIG;
   readonly #baseUrl = HACKER_NEWS_API_URL;
+  readonly #activatedRoute =  inject(ActivatedRoute);
 
   constructor(
     private httpClient: HttpClient,
     private notificationService: NotificationService,
-    private router: Router,
   ) {
     super();
   }
@@ -78,7 +78,7 @@ export class HackerNewsApiService extends FeedPubSub {
   }
 
   private determineActiveUrl(): ConfigType {
-    let path: string | undefined = this.router.url.split('/').pop();
+    const path: string | undefined = this.#activatedRoute.snapshot.url[0].path;
     if (this.isConfigPath(path)) {
       return path;
     } else {

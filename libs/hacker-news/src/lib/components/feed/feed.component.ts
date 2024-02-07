@@ -26,7 +26,6 @@ import {
 export class FeedComponent implements OnInit {
   feed$: Observable<HackerNewsItem[]>;
   feedColumns: HackerNewsTableColumn[] = HackerNewsFeedColumns;
-  feedColumnsClone = structuredClone(this.feedColumns);
   paginationConfig: WritableSignal<PaginationConfig>;
 
   constructor(private hackerNewsService: HackerNewsApiService) {
