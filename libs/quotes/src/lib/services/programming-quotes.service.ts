@@ -1,4 +1,4 @@
-import { Injectable, InjectionToken, signal } from '@angular/core';
+import { Injectable, InjectionToken, inject, signal } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, switchMap, tap, shareReplay, catchError } from 'rxjs/operators';
@@ -11,11 +11,8 @@ import {
 } from '@blend-api/shared';
 import { ProgrammingQuote } from '../types/quotes.interface';
 
-export function ProgrammingQuotesFactory(
-  http: HttpClient,
-  notificationService: NotificationService,
-): ProgrammingQuotesService {
-  return new ProgrammingQuotesService(http, notificationService);
+export function ProgrammingQuotesFactory(): ProgrammingQuotesService {
+  return new ProgrammingQuotesService();
 }
 
 export const QUOTES_SERVICE_TOKEN =
@@ -23,7 +20,9 @@ export const QUOTES_SERVICE_TOKEN =
 
 @Injectable()
 export class ProgrammingQuotesService extends FeedPubSub {
-  private httpClient: HttpClient;
+  readonly #httpClient: HttpClient = inject(HttpClient);
+  readonly #notificationService: NotificationService =
+    inject(NotificationService);
   private readonly QUOTES = AppConfig.PROGRAMMING_QUOTES;
 
   paginationConfig = signal<PaginationConfig>({
@@ -32,13 +31,6 @@ export class ProgrammingQuotesService extends FeedPubSub {
     pageSize: 0,
   });
 
-  constructor(
-    httpClient: HttpClient,
-    private notificationService: NotificationService,
-  ) {
-    super();
-    this.httpClient = httpClient;
-  }
 
   fetchQuotesFeed(): Observable<ProgrammingQuote[]> {
     return this.feedSubscriber.pipe(
@@ -54,7 +46,7 @@ export class ProgrammingQuotesService extends FeedPubSub {
   }
 
   private showErrorMessage = (): void => {
-    this.notificationService.showErrorMessage(
+    this.#notificationService.showErrorMessage(
       'Oops! Something went wrong on our end. Please try again later.',
     );
   };
@@ -66,7 +58,7 @@ export class ProgrammingQuotesService extends FeedPubSub {
   };
 
   private fetchData = (): Observable<ProgrammingQuote[]> => {
-    return this.httpClient.get<ProgrammingQuote[]>(this.QUOTES.URL);
+    return this.#httpClient.get<ProgrammingQuote[]>(this.QUOTES.URL);
   };
 
   private composePaginationConfig(): void {

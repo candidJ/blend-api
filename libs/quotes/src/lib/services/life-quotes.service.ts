@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable, signal } from '@angular/core';
-import { Observable, Subject, throwError } from 'rxjs';
+import { Injectable, inject, signal } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
 import {
   FeedPubSub,
   AppConfig,
@@ -19,12 +19,9 @@ export class LifeQuotesService extends FeedPubSub {
     pageSize: 0,
   });
 
-  constructor(
-    private httpClient: HttpClient,
-    private notificationService: NotificationService,
-  ) {
-    super();
-  }
+  readonly #httpClient: HttpClient = inject(HttpClient);
+  readonly #notificationService: NotificationService =
+    inject(NotificationService);
 
   fetchQuotesFeed(): Observable<LifeQuote[]> {
     return this.feedSubscriber.pipe(
@@ -41,7 +38,7 @@ export class LifeQuotesService extends FeedPubSub {
   }
 
   private showErrorMessage = () => {
-    this.notificationService.showErrorMessage(
+    this.#notificationService.showErrorMessage(
       'Oops! Something went wrong on our end. Please try again later.',
     );
   };
@@ -53,7 +50,7 @@ export class LifeQuotesService extends FeedPubSub {
   };
 
   private fetchData = (params: HttpParams): Observable<LifeQuoteResponse> => {
-    return this.httpClient.get<LifeQuoteResponse>(AppConfig.LIFE_QUOTES.URL, {
+    return this.#httpClient.get<LifeQuoteResponse>(AppConfig.LIFE_QUOTES.URL, {
       params,
     });
   };
