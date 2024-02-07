@@ -5,32 +5,28 @@ import { map, switchMap, tap, shareReplay, catchError } from 'rxjs/operators';
 
 import {
   FeedPubSub,
-  AppConfig,
   PaginationConfig,
   NotificationService,
 } from '@blend-api/shared';
 import { ProgrammingQuote } from '../types/quotes.interface';
+import { PROGRAMMING_QUOTES } from '../constants/quotes.const';
 
 export function ProgrammingQuotesFactory(): ProgrammingQuotesService {
   return new ProgrammingQuotesService();
 }
-
-export const QUOTES_SERVICE_TOKEN =
-  new InjectionToken<ProgrammingQuotesService>('QUOTES_SERVICE_TOKEN');
 
 @Injectable()
 export class ProgrammingQuotesService extends FeedPubSub {
   readonly #httpClient: HttpClient = inject(HttpClient);
   readonly #notificationService: NotificationService =
     inject(NotificationService);
-  private readonly QUOTES = AppConfig.PROGRAMMING_QUOTES;
+  private readonly QUOTES = PROGRAMMING_QUOTES;
 
   paginationConfig = signal<PaginationConfig>({
     listLength: 0,
     noOfPages: 0,
     pageSize: 0,
   });
-
 
   fetchQuotesFeed(): Observable<ProgrammingQuote[]> {
     return this.feedSubscriber.pipe(

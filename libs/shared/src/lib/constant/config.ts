@@ -8,17 +8,4 @@ export const AppConfig = {
     API_KEY: 'eff556784983bcac5c6d749bad8e1090',
     UNITS: 'metric',
   },
-  LIFE_QUOTES: {
-    URL: 'https://quote-garden.onrender.com/api/v3/quotes/',
-    LIMIT: 20,
-  },
-  PROGRAMMING_QUOTES: {
-    URL: 'https://programming-quotes-api.herokuapp.com/quotes/',
-    PAGE_SIZE: 20,
-    TOTAL_RECORDS: 501,
-  },
-  TWITTER: {
-    URL: 'https://www.twitter.com/intent/tweet?hashtags',
-    HASHTAGS: 'quote',
-  },
 };

@@ -3,13 +3,13 @@ import { Injectable, inject, signal } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import {
   FeedPubSub,
-  AppConfig,
   NotificationService,
   PaginationConfig,
 } from '@blend-api/shared';
 import { map, switchMap, tap, shareReplay, catchError } from 'rxjs/operators';
 
 import { LifeQuote, LifeQuoteResponse } from '../types/quotes.interface';
+import { LIFE_QUOTES } from '../constants/quotes.const';
 
 @Injectable()
 export class LifeQuotesService extends FeedPubSub {
@@ -46,11 +46,11 @@ export class LifeQuotesService extends FeedPubSub {
   private configureParams = (page = 1): HttpParams => {
     return new HttpParams()
       .set('page', String(page))
-      .set('limit', String(AppConfig.LIFE_QUOTES.LIMIT));
+      .set('limit', String(LIFE_QUOTES.LIMIT));
   };
 
   private fetchData = (params: HttpParams): Observable<LifeQuoteResponse> => {
-    return this.#httpClient.get<LifeQuoteResponse>(AppConfig.LIFE_QUOTES.URL, {
+    return this.#httpClient.get<LifeQuoteResponse>(LIFE_QUOTES.URL, {
       params,
     });
   };
@@ -61,7 +61,7 @@ export class LifeQuotesService extends FeedPubSub {
       this.paginationConfig.set({
         listLength: data.totalQuotes,
         noOfPages: pagination.totalPages,
-        pageSize: AppConfig.LIFE_QUOTES.LIMIT,
+        pageSize: LIFE_QUOTES.LIMIT,
       });
     }
   };
