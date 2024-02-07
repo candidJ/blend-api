@@ -54,7 +54,9 @@ export class ProgrammingQuotesService extends FeedPubSub {
   }
 
   private showErrorMessage = (): void => {
-    this.notificationService.showErrorMessage('Oops! Something went wrong on our end. Please try again later.');
+    this.notificationService.showErrorMessage(
+      'Oops! Something went wrong on our end. Please try again later.',
+    );
   };
 
   private configureParams = (page = 1): HttpParams => {

@@ -28,11 +28,11 @@ import { AppConfig, NotificationService } from '@blend-api/shared';
 
 @Injectable()
 export class ForecastService {
-   readonly #config = AppConfig.WEATHER_API_CONFIG;
-   #cityWeather: CityWeather;
-   #cityPublisher = new Subject<boolean>();
-   #units = '';
-   readonly #SEATTLE_LAT_LONG: Pick<
+  readonly #config = AppConfig.WEATHER_API_CONFIG;
+  #cityWeather: CityWeather;
+  #cityPublisher = new Subject<boolean>();
+  #units = '';
+  readonly #SEATTLE_LAT_LONG: Pick<
     GeolocationCoordinates,
     'latitude' | 'longitude'
   > = {
@@ -97,8 +97,8 @@ export class ForecastService {
     }).pipe(
       catchError((err) => {
         console.error(err.message);
-      // Return a new observable that passes default coordinates when the user denies access to their current location.
-      // Unlike the tap operator, which doesn't return an observable and doesn't pass anything to the pipe operator.
+        // Return a new observable that passes default coordinates when the user denies access to their current location.
+        // Unlike the tap operator, which doesn't return an observable and doesn't pass anything to the pipe operator.
         return of(this.#SEATTLE_LAT_LONG);
       }),
     );

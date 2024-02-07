@@ -9,7 +9,6 @@ import {
   NotificationService,
 } from '@blend-api/shared';
 import {
-  ConfigProps,
   ConfigType,
   HackerNewsItem,
   HackerNewsItemWithComments,
@@ -29,7 +28,7 @@ export class HackerNewsApiService extends FeedPubSub {
 
   readonly #config = HACKER_NEWS_CONFIG;
   readonly #baseUrl = HACKER_NEWS_API_URL;
-  readonly #activatedRoute =  inject(ActivatedRoute);
+  #activeUrl: ConfigType;
 
   constructor(
     private httpClient: HttpClient,
@@ -44,7 +43,8 @@ export class HackerNewsApiService extends FeedPubSub {
       .pipe(catchError((err) => throwError(err)));
   }
 
-  fetchNewsFeed(): Observable<HackerNewsItem[]> {
+  fetchNewsFeed(activeUrl: ConfigType): Observable<HackerNewsItem[]> {
+    this.#activeUrl = activeUrl;
     return this.feedSubscriber.pipe(
       map(this.configureParams),
       switchMap(this.fetchData),
@@ -52,7 +52,6 @@ export class HackerNewsApiService extends FeedPubSub {
         this.showErrorMessage();
         return throwError(err);
       }),
-      tap(this.composePaginationConfig),
       shareReplay(1),
     );
   }
@@ -68,43 +67,7 @@ export class HackerNewsApiService extends FeedPubSub {
   };
 
   private fetchData = (params: HttpParams): Observable<HackerNewsItem[]> => {
-    const url = this.composeRequestUrl();
+    const url = this.#baseUrl + this.#config[this.#activeUrl].URL;
     return this.httpClient.get<HackerNewsItem[]>(url, { params });
-  };
-
-  private composeRequestUrl(): string {
-    const feedType: ConfigType = this.determineActiveUrl();
-    return this.#baseUrl + this.#config[feedType].URL;
-  }
-
-  private determineActiveUrl(): ConfigType {
-    const path: string | undefined = this.#activatedRoute.snapshot.url[0].path;
-    if (this.isConfigPath(path)) {
-      return path;
-    } else {
-      return 'feed';
-    }
-  }
-
-  private isConfigPath(path: string | undefined): path is ConfigType {
-    return (
-      path === 'jobs' ||
-      path === 'feed' ||
-      path === 'show' ||
-      path === 'ask' ||
-      path === 'latest'
-    );
-  }
-
-  private composePaginationConfig = (): void => {
-    const feedType: ConfigType = this.determineActiveUrl();
-    const configType: ConfigProps = this.#config[feedType];
-    const feedPaginationConfig: PaginationConfig = {
-      listLength: configType.TOTAL_RECORDS,
-      noOfPages: configType.NO_OF_PAGES,
-      pageSize: configType.PAGE_SIZE,
-    };
-    // set the signal to pagination from FeedPubSub
-    this.paginationConfig.set(feedPaginationConfig);
   };
 }
