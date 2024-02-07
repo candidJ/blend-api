@@ -22,11 +22,7 @@ export class LoaderInterceptorService implements HttpInterceptor {
     this.setLoadingState(true);
     return next.handle(req).pipe(
       tap((event: HttpEvent<any>) => {
-        if (event instanceof HttpResponse) {
-          this.setLoadingState(false);
-        }
-
-        if (event instanceof HttpErrorResponse) {
+        if (event instanceof HttpResponse || event instanceof HttpErrorResponse) {
           this.setLoadingState(false);
         }
       }),
