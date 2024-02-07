@@ -1,5 +1,4 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
-import * as _ from 'lodash';
 import { CalculatorConfig } from '../constants/calculator.const';
 import { CalculatorLayout } from '../types/calculator.interface';
 import { NgClass } from '@angular/common';
@@ -106,7 +105,7 @@ export class CalculatorComponent {
   private storeOperationHistoryInCurrentSession(currentOutput: number): void {
     let previousOperations: { operation: string; result: string }[] = [];
 
-    if (!_.isEmpty(sessionStorage.getItem('operationHistory'))) {
+    if (sessionStorage.getItem('operationHistory')) {
       previousOperations = JSON.parse(
         sessionStorage.getItem('operationHistory') || '{}',
       );
@@ -115,7 +114,7 @@ export class CalculatorComponent {
       operation: String(`${this.operation} ${currentOutput}`),
       result: this.output,
     };
-    if (!_.isEmpty(previousOperations)) {
+    if (previousOperations) {
       previousOperations.push(currentOperationHistory);
       sessionStorage.setItem(
         'operationHistory',
