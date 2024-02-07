@@ -1,7 +1,6 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
 import { catchError, map, shareReplay, switchMap, tap } from 'rxjs/operators';
 import {
   FeedPubSub,
@@ -26,19 +25,15 @@ export class HackerNewsApiService extends FeedPubSub {
     listLength: 0,
   });
 
+  readonly #httpClient: HttpClient = inject(HttpClient);
+  readonly #notificationService: NotificationService =
+    inject(NotificationService);
   readonly #config = HACKER_NEWS_CONFIG;
   readonly #baseUrl = HACKER_NEWS_API_URL;
   #activeUrl: ConfigType;
 
-  constructor(
-    private httpClient: HttpClient,
-    private notificationService: NotificationService,
-  ) {
-    super();
-  }
-
   loadItemDetails(itemId: number): Observable<HackerNewsItemWithComments> {
-    return this.httpClient
+    return this.#httpClient
       .get<HackerNewsItemWithComments>(`${this.#baseUrl}item/${itemId}`)
       .pipe(catchError((err) => throwError(err)));
   }
@@ -57,7 +52,7 @@ export class HackerNewsApiService extends FeedPubSub {
   }
 
   private showErrorMessage = () => {
-    this.notificationService.showErrorMessage(
+    this.#notificationService.showErrorMessage(
       'Unable to fetch the Hacker News',
     );
   };
@@ -68,6 +63,6 @@ export class HackerNewsApiService extends FeedPubSub {
 
   private fetchData = (params: HttpParams): Observable<HackerNewsItem[]> => {
     const url = this.#baseUrl + this.#config[this.#activeUrl].URL;
-    return this.httpClient.get<HackerNewsItem[]>(url, { params });
+    return this.#httpClient.get<HackerNewsItem[]>(url, { params });
   };
 }
