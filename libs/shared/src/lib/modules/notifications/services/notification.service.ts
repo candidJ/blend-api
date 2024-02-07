@@ -11,11 +11,9 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class NotificationService {
-  private notificationPublisher = new Subject<NotificationType>();
+  #notificationPublisher = new Subject<NotificationType>();
   notification$: Observable<NotificationType> =
-    this.notificationPublisher.asObservable();
-
-  constructor() {}
+    this.#notificationPublisher.asObservable();
 
   showSuccessMessage(textMessage: string): void {
     this.addMessageToQueue<SuccessTypeNotification>({
@@ -42,14 +40,14 @@ export class NotificationService {
   }
 
   clearNotification(notification: ClearTypeNotification): void {
-    this.notificationPublisher.next(notification);
+    this.#notificationPublisher.next(notification);
   }
 
   private addMessageToQueue<T extends ShowNotification>(
     notificationConfig: T,
   ): void {
     const { textMessage, randomID } = notificationConfig;
-    this.notificationPublisher.next(notificationConfig);
+    this.#notificationPublisher.next(notificationConfig);
 
     setTimeout(() => {
       this.clearNotification({ textMessage, randomID, type: 'clear' });

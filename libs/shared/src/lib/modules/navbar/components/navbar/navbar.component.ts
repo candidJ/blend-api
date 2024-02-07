@@ -9,8 +9,9 @@ import {
   Renderer2,
   ViewChildren,
   QueryList,
+  inject,
 } from '@angular/core';
-import { BlendAPILogo, NavbarMenu } from '../../types/navbar.interface';
+import { LogoLink, NavbarMenu } from '../../types/navbar.interface';
 import { FeatherModule } from 'angular-feather';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -24,7 +25,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class NavbarComponent implements AfterViewInit {
   @Input() navbarMenuItems: NavbarMenu[];
-  @Input() appLogoWithLink: BlendAPILogo;
+  @Input() appLogoWithLink: LogoLink;
   @ViewChild('navbarBurger') navbarBurger: ElementRef = new ElementRef(
     'navbarBurger',
   );
@@ -35,24 +36,24 @@ export class NavbarComponent implements AfterViewInit {
     true,
   );
 
-  constructor(private renderer: Renderer2) {}
+  #renderer: Renderer2 = inject(Renderer2);
 
   private toggleActiveClassOnNavbarBurgerClick() {
     if (this.navbarBurger.nativeElement.className.includes('is-active')) {
-      this.renderer.removeClass(this.navbarBurger.nativeElement, 'is-active');
-      this.renderer.removeClass(this.appNavBarMenu.nativeElement, 'is-active');
+      this.#renderer.removeClass(this.navbarBurger.nativeElement, 'is-active');
+      this.#renderer.removeClass(this.appNavBarMenu.nativeElement, 'is-active');
     } else {
-      this.renderer.addClass(this.navbarBurger.nativeElement, 'is-active');
-      this.renderer.addClass(this.appNavBarMenu.nativeElement, 'is-active');
+      this.#renderer.addClass(this.navbarBurger.nativeElement, 'is-active');
+      this.#renderer.addClass(this.appNavBarMenu.nativeElement, 'is-active');
     }
   }
 
   ngAfterViewInit(): void {
-    this.renderer.listen(this.navbarBurger.nativeElement, 'click', () =>
+    this.#renderer.listen(this.navbarBurger.nativeElement, 'click', () =>
       this.toggleActiveClassOnNavbarBurgerClick(),
     );
     this.menuItem.forEach((el) => {
-      this.renderer.listen(el.nativeElement, 'click', () =>
+      this.#renderer.listen(el.nativeElement, 'click', () =>
         this.toggleActiveClassOnNavbarBurgerClick(),
       );
     });

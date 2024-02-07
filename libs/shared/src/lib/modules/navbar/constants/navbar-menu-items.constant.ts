@@ -1,11 +1,11 @@
-import { BlendAPILogo, NavbarMenu } from '../types/navbar.interface';
+import { LogoLink, NavbarMenu } from '../types/navbar.interface';
 
-export const AppLogoWithLink: BlendAPILogo = {
+export const LOGO_WITH_LINK: LogoLink = {
   logo: '../../assets/images/blend-api-logo.png',
   routerLink: '/hacker-news',
 };
 
-export const NavbarMenuItems: Array<NavbarMenu> = [
+export const NAVBAR_MENU_ITEMS: Array<NavbarMenu> = [
   {
     title: 'Hacker News',
     icon: 'book-open',

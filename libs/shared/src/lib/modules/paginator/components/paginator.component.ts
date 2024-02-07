@@ -43,8 +43,6 @@ export class PaginatorComponent implements OnInit, OnDestroy {
   @Output() onPaginatorChange: EventEmitter<number> =
     new EventEmitter<number>();
 
-  constructor() {}
-
   /**
    * Calculate the range of activeRecords
    * @param page

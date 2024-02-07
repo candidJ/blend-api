@@ -14,6 +14,4 @@ import { NgClass, NgTemplateOutlet } from '@angular/common';
 export class GridComponent {
   @Input() gridColumns: Array<any>;
   @Input() gridRows: Array<any>;
-
-  constructor() {}
 }

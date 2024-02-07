@@ -21,8 +21,6 @@ export class MessageBoxComponent<T, K extends keyof T> {
   @Input() messageKeys: K[];
   @Output() tweet = new EventEmitter();
 
-  constructor() {}
-
   onTweet(obj: T): void {
     this.tweet.emit(obj);
   }

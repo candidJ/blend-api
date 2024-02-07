@@ -1,6 +1,6 @@
 import { SafeStyle } from '@angular/platform-browser';
 
-export interface BlendAPILogo {
+export interface LogoLink {
   logo: SafeStyle;
   routerLink: string;
 }

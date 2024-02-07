@@ -1,4 +1,4 @@
-import { Component, OnInit, Directive } from '@angular/core';
+import { Component, Directive, inject } from '@angular/core';
 import { LoaderService } from '../services/loader.service';
 import { AsyncPipe } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -19,10 +19,5 @@ import { LoaderInterceptorService } from '../services/loader-interceptor.service
   ],
 })
 export class LoaderComponent {
-  constructor(public loaderService: LoaderService) {}
-}
-
-@Directive()
-export class LoaderComponentWithState {
-  constructor(public loaderService: LoaderService) {}
+  readonly loaderService: LoaderService = inject(LoaderService);
 }

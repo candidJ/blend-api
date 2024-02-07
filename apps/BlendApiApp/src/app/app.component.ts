@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {
-  AppLogoWithLink,
+  LOGO_WITH_LINK,
   NavbarMenu,
-  NavbarMenuItems,
+  NAVBAR_MENU_ITEMS,
   NavbarComponent,
   NotificationsComponent,
   LoaderComponent,
@@ -23,6 +23,6 @@ import {
 })
 export class AppComponent {
   title = 'Blend API';
-  appLogoWithLink = AppLogoWithLink;
-  navbarMenuItems: Array<NavbarMenu> = NavbarMenuItems;
+  appLogoWithLink = LOGO_WITH_LINK;
+  navbarMenuItems: Array<NavbarMenu> = NAVBAR_MENU_ITEMS;
 }
