@@ -19,9 +19,5 @@ import { FeatherModule } from 'angular-feather';
 export class MessageBoxComponent<T, K extends keyof T> {
   @Input() messages: T[];
   @Input() messageKeys: K[];
-  @Output() tweet = new EventEmitter();
 
-  onTweet(obj: T): void {
-    this.tweet.emit(obj);
-  }
 }

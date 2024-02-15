@@ -18,14 +18,13 @@ import {
 import {
   ProgrammingQuotesFactory,
   ProgrammingQuotesService,
-  QUOTES_SERVICE_TOKEN,
 } from '../../services/programming-quotes.service';
 import {
   ProgrammingQuote,
   PaginationFunc,
   QuoteProps,
 } from '../../types/quotes.interface';
-import { sendTweet } from '../../utils/quote';
+import { QUOTES_SERVICE_TOKEN } from '../../constants/quotes.const';
 
 @Component({
   selector: 'ba-programming',
@@ -56,10 +55,6 @@ export class ProgrammingComponent implements OnInit {
   onPaginationChange: PaginationFunc = (page: number) => {
     this.programmingQuotesService.fetchFeedByPageNumber(page);
   };
-
-  tweet(obj: ProgrammingQuote): void {
-    sendTweet(obj, ['author', 'en']);
-  }
 
   ngOnInit(): void {
     this.quotes$ = this.programmingQuotesService.fetchQuotesFeed();

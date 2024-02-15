@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 
 import { Observable } from 'rxjs';
-import { sendTweet } from '../../utils/quote';
 import { LifeQuotesService } from '../../services/life-quotes.service';
 import {
   LifeQuote,
@@ -31,10 +30,6 @@ export class LifeComponent implements OnInit {
   onPaginationChange: PaginationFunc = (page: number) => {
     this.#quotesService.fetchFeedByPageNumber(page);
   };
-
-  tweet(obj: LifeQuote): void {
-    sendTweet(obj, ['quoteAuthor', 'quoteText']);
-  }
 
   ngOnInit(): void {
     this.quotes$ = this.#quotesService.fetchQuotesFeed();

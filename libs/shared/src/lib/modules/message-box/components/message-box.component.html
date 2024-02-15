@@ -5,18 +5,8 @@
     >
       <li class="message h-100 is-primary">
         <blockquote class="message-body h-100">
-          <p>
+          <p class="mb-4">
             {{ message[messageKeys[0]] }}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Send tweet"
-            >
-              <i-feather
-                name="twitter"
-                (click)="onTweet(message)"
-              ></i-feather>
-            </a>
           </p>
           <p class="is-family-secondary mv3">
             {{ message[messageKeys[1]] }}
