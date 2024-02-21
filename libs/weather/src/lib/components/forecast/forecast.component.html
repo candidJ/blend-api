@@ -80,12 +80,6 @@
     </button>
   </form>
 
-  <p
-    class="search-guideline is-size-7 is-family-secondary has-text-weight-light"
-  >
-    Search for city name. For more accurate results, choose country as well.
-  </p>
-
   @if (forecast$ | async; as forecasts) {
     <section class="forecast-header">
       <h2>5 day Forecast</h2>
@@ -96,7 +90,7 @@
         </span>
       </b>
     </section>
-    <ul class="five-day-fl">
+    <ul class="five-day-fl box">
       @for (forecast of forecasts; track forecast) {
         <li class="message is-primary">
           <div class="message-body">

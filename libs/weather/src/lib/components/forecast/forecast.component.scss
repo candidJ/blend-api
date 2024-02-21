@@ -2,7 +2,6 @@
   article.container-fluid {
     display: grid;
     grid-template-areas:
-      'guideline'
       'search'
       'forecast-header'
       // "location"
@@ -11,9 +10,6 @@
     grid-gap: 2vw 0;
   }
 
-  p.search-guideline {
-    grid-area: guideline;
-  }
 
   #search {
     grid-area: search;
