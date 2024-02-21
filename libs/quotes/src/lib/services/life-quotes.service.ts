@@ -29,6 +29,7 @@ export class LifeQuotesService extends FeedPubSub {
       switchMap(this.fetchData),
       catchError((err) => {
         this.showErrorMessage();
+        console.log('show error message');
         return throwError(err);
       }),
       tap(this.composePaginationConfig),

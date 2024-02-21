@@ -1,11 +1,11 @@
-<article class="message is-info">
+<article class="message is-info box px-6">
   <section
-    class="h-3 px-4 py-2 has-text-grey has-text-right has-text-weight-light is-family-code"
+    class="h-3 px-4 py-2 has-text-right has-text-weight-light is-family-code"
   >
     {{ operation }}
   </section>
   <section
-    class="h-3 px-4 py-2 has-text-info is-align-items-center is-flex is-justify-content-space-between"
+    class="h-3 px-4 py-2 message is-dark is-align-items-center is-flex is-justify-content-space-between"
   >
     <article
       aria-label="history"
@@ -18,7 +18,7 @@
       {{ output | numberFormat }}
     </article>
   </section>
-  <section class="calculator-wrapper message-body">
+  <section class="calculator-wrapper">
     @for (cal of calculatorConfig; track cal) {
       <button
         (click)="onUserInput(cal)"

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { CITIES } from '../../constants/cities.const';
 import { CityPayload } from '../../types/weather.interface';
 
