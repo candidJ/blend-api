@@ -1,5 +1,5 @@
 ::selection {
-  background: aquamarine;
+  background: lightgreen;
   color: black;
 }
 
@@ -13,29 +13,28 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #00449e;
+  background-color: $blue;
   border-radius: 0.5rem;
   height: 0.3rem;
 }
 
 ::-webkit-input-placeholder {
-  color: #333333;
+  color: $body-color;
   font-size: 12px;
 }
 
 ::-moz-placeholder {
-  color: #333333;
+  color: $body-color;
   font-size: 12px;
 }
 
 :-o-input-placeholder {
-  color: #333333;
+  color: $body-color;
   font-size: 12px;
 }
 
-html,
 body {
-  height: 100vh;
+  margin-bottom: 3vh;
 }
 
 h1 {
