@@ -35,27 +35,29 @@
   class="modal"
 >
   <div class="modal-background"></div>
-  <div class="modal-content">
-    <h2 class="has-text-white is-size-2">Session History</h2>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Previous operations</p>
+      <button class="delete" aria-label="close" (click)="hideOperationHistory()"></button>
+    </header>
     @if (sessionOperationHistory.length > 0) {
-      @for (history of sessionOperationHistory; track history) {
-        <article class="is-flex my-2">
-          <b class="tag is-size-5">{{ history.operation }}</b>
-          &nbsp;
-          <span class="has-text-white mx-2 is-align-self-center">=</span>
-          &nbsp;
-          <b class="tag is-info is-light is-size-5">{{
-            history.result | numberFormat
-          }}</b>
-        </article>
-      }
+      <section class="modal-card-body">
+        @for (history of sessionOperationHistory; track history) {
+          <article class="is-flex my-2">
+            <b class="tag is-size-5">{{ history.operation }}</b>
+            &nbsp;
+            <span class="mx-2 is-align-self-center">=</span>
+            &nbsp;
+            <b class="tag is-info is-light is-size-5">{{
+              history.result | numberFormat
+            }}</b>
+          </article>
+        }
+      </section>
     } @else {
       <p class="has-text-white">No operations performed.</p>
     }
+    <footer class="modal-card-foot h-3">
+    </footer>
   </div>
-  <button
-    class="modal-close is-large"
-    aria-label="close"
-    (click)="hideOperationHistory()"
-  ></button>
 </div>
