@@ -1,7 +1,6 @@
 .spinner-wrapper {
   pointer-events: none;
-  cursor: not-allowed;
-  background-color: rgba(33, 33, 33, 0.48);
+  background-color: rgba(33, 33, 33, 0.15);
   position: fixed;
   top: 0;
   left: 0;
@@ -14,15 +13,11 @@
 }
 
 .spinner {
-  width: 75px;
-  height: 75px;
-  margin: 0;
+  width: 5rem;
+  height: 5rem;
   background: transparent;
-  border-top: 4px solid #dd7535;
-  border-right: 4px solid transparent;
-  border-radius: 50%;
-  -webkit-animation: 1s spin linear infinite;
-  animation: 1s spin linear infinite;
+  -webkit-animation: 1s spin ease infinite;
+  animation: 1s spin ease infinite;
 }
 
 @-webkit-keyframes spin {
