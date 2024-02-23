@@ -1,8 +1,9 @@
-import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { enableProdMode, importProvidersFrom, Provider } from '@angular/core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { environment } from './environments/environment';
 import { AppComponent } from './app/app.component';
-import { IconsModule } from '@blend-api/shared';
+import { IconsModule, LoaderInterceptorService } from '@blend-api/shared';
 import {
   withInterceptorsFromDi,
   provideHttpClient,
@@ -15,9 +16,16 @@ if (environment.production) {
   enableProdMode();
 }
 
+const loaderInterceptorProvider : Provider =    {
+  provide: HTTP_INTERCEPTORS,
+  useClass: LoaderInterceptorService,
+  multi: true,
+};
+
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(BrowserModule, IconsModule),
+    loaderInterceptorProvider,
     provideRouter(APP_ROUTES),
     provideHttpClient(withInterceptorsFromDi()),
   ],
