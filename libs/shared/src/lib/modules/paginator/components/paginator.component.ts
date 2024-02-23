@@ -6,10 +6,11 @@ import {
   Output,
   OnDestroy,
   signal,
+  inject,
 } from '@angular/core';
 import { PaginationConfig, RecordType } from '../types/paginator.interface';
 import { FeatherModule } from 'angular-feather';
-import { NgClass } from '@angular/common';
+import { NgClass, ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'ba-paginator',
@@ -23,6 +24,8 @@ export class PaginatorComponent implements OnInit, OnDestroy {
   activePage = 1;
   pagination: PaginationConfig;
 
+  readonly #viewportScroller: ViewportScroller = inject(ViewportScroller);
+  
   @Input()
   get paginationConfig() {
     return this.pagination;
@@ -59,6 +62,7 @@ export class PaginatorComponent implements OnInit, OnDestroy {
     this.activePage = page;
     this.onPaginatorChange.emit(page);
     this.showActiveRecordsRange(page);
+    this.#viewportScroller.scrollToPosition([0,0]);
   }
 
   ngOnInit(): void {}

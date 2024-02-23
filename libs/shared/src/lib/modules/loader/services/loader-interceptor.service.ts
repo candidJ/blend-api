@@ -21,13 +21,18 @@ export class LoaderInterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     this.setLoadingState(true);
     return next.handle(req).pipe(
-      tap((event: HttpEvent<any>) => {
-        if (
-          event instanceof HttpResponse ||
-          event instanceof HttpErrorResponse
-        ) {
-          this.setLoadingState(false);
-        }
+      tap({
+        next: (event: HttpEvent<any>) => {
+          if (event instanceof HttpResponse) {
+            this.setLoadingState(false);
+          }
+        },
+        error:
+          (err: HttpErrorResponse) => {
+            if (err) {
+              this.setLoadingState(false);
+            }
+          },
       }),
     );
   }
