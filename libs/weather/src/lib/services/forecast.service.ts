@@ -74,7 +74,7 @@ export class ForecastService {
         console.error(err);
         this.#cityPublisher.next(true);
         this.#notificationService.showErrorMessage(err.error.message);
-        return throwError(err);
+        return throwError(() => err);
       }),
     );
   }

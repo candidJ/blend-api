@@ -35,7 +35,7 @@ export class HackerNewsApiService extends FeedPubSub {
   loadItemDetails(itemId: number): Observable<HackerNewsItemWithComments> {
     return this.#httpClient
       .get<HackerNewsItemWithComments>(`${this.#baseUrl}item/${itemId}`)
-      .pipe(catchError((err) => throwError(err)));
+      .pipe(catchError((err) => throwError(() => err)));
   }
 
   fetchNewsFeed(activeUrl: ConfigType): Observable<HackerNewsItem[]> {
@@ -45,7 +45,7 @@ export class HackerNewsApiService extends FeedPubSub {
       switchMap(this.fetchData),
       catchError((err) => {
         this.showErrorMessage();
-        return throwError(err);
+        return throwError(() => err);
       }),
       shareReplay(1),
     );

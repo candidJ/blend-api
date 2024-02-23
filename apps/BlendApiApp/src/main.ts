@@ -16,7 +16,7 @@ if (environment.production) {
   enableProdMode();
 }
 
-const loaderInterceptorProvider : Provider =    {
+const loaderInterceptorProvider: Provider = {
   provide: HTTP_INTERCEPTORS,
   useClass: LoaderInterceptorService,
   multi: true,

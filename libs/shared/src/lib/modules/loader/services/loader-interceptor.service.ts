@@ -27,12 +27,11 @@ export class LoaderInterceptorService implements HttpInterceptor {
             this.setLoadingState(false);
           }
         },
-        error:
-          (err: HttpErrorResponse) => {
-            if (err) {
-              this.setLoadingState(false);
-            }
-          },
+        error: (err: HttpErrorResponse) => {
+          if (err) {
+            this.setLoadingState(false);
+          }
+        },
       }),
     );
   }

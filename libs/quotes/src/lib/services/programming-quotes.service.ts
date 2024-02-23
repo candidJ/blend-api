@@ -34,7 +34,7 @@ export class ProgrammingQuotesService extends FeedPubSub {
       switchMap(this.fetchData),
       catchError((err) => {
         this.showErrorMessage();
-        return throwError(err);
+        return throwError(() => err);
       }),
       tap(this.composePaginationConfig),
       shareReplay(1),

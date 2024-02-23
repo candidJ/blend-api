@@ -38,7 +38,11 @@
   <div class="modal-card">
     <header class="modal-card-head">
       <p class="modal-card-title">Previous operations</p>
-      <button class="delete" aria-label="close" (click)="hideOperationHistory()"></button>
+      <button
+        class="delete"
+        aria-label="close"
+        (click)="hideOperationHistory()"
+      ></button>
     </header>
     @if (sessionOperationHistory.length > 0) {
       <section class="modal-card-body">
@@ -57,7 +61,6 @@
     } @else {
       <p class="has-text-white">No operations performed.</p>
     }
-    <footer class="modal-card-foot h-3">
-    </footer>
+    <footer class="modal-card-foot h-3"></footer>
   </div>
 </div>

@@ -25,7 +25,7 @@ export class PaginatorComponent implements OnInit, OnDestroy {
   pagination: PaginationConfig;
 
   readonly #viewportScroller: ViewportScroller = inject(ViewportScroller);
-  
+
   @Input()
   get paginationConfig() {
     return this.pagination;
@@ -62,7 +62,7 @@ export class PaginatorComponent implements OnInit, OnDestroy {
     this.activePage = page;
     this.onPaginatorChange.emit(page);
     this.showActiveRecordsRange(page);
-    this.#viewportScroller.scrollToPosition([0,0]);
+    this.#viewportScroller.scrollToPosition([0, 0]);
   }
 
   ngOnInit(): void {}
