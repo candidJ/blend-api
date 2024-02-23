@@ -4,7 +4,6 @@
     grid-template-areas:
       'search'
       'forecast-header'
-      // "location"
       'five-day-fl'
       'ba-forecast-details';
     grid-gap: 2vw 0;
@@ -45,8 +44,7 @@
   }
 
   input {
-    // box-shadow: 0 10px 35px rgba(0, 0, 0, .1);
-    color: #6c757d;
+    color: #565656;
   }
 
   .h-hover {
@@ -118,16 +116,14 @@
       dl {
         grid-row: 4;
         grid-column: 1/3;
-        color: #888888;
+        color: #565656;
         margin-top: 3vh;
         display: grid;
         grid-template-areas: 'dt dd';
         grid-gap: 1rem 0;
 
-        dt {
-          i {
-            // font-size: 1.5vw;
-          }
+        dd {
+          text-align: right;
         }
       }
     }
@@ -136,10 +132,10 @@
   @supports (grid-area: auto) {
     @media screen and (min-width: 50em) {
       ul.five-day-fl {
-        grid-gap: 5vw 2vw;
+        grid-gap: 3vw 1.5vw;
 
         li {
-          padding: 2vw;
+          padding: 1.5vw;
           margin: 0;
 
           // weather icon
@@ -183,3 +179,4 @@
     }
   }
 }
+
