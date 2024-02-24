@@ -9,7 +9,16 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/calculator"],
       "options": {
-        "jestConfig": "libs/calculator/jest.config.ts"
+        "jestConfig": "libs/calculator/jest.config.ts",
+        "passWithNoTests": true,
+        "color": true,
+        "colors": true,
+        "codeCoverage": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true
+        }
       }
     },
     "lint": {

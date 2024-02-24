@@ -10,6 +10,7 @@
     <article
       aria-label="history"
       class="is-clickable is-flex"
+      data-testid="historyIcon"
       (click)="displayOperationsHistory()"
     >
       <i-feather name="clock"></i-feather>
@@ -31,7 +32,8 @@
 </article>
 
 <div
-  #modal
+  #previousOperationsModal
+  data-testid="previousOperations"
   class="modal"
 >
   <div class="modal-background"></div>
@@ -41,6 +43,7 @@
       <button
         class="delete"
         aria-label="close"
+        data-testid="closeModal"
         (click)="hideOperationHistory()"
       ></button>
     </header>

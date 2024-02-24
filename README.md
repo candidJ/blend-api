@@ -26,7 +26,7 @@ My primary focus during development has always been on crafting code that is **m
 
 - JS Framework:
 
-  - [Angular](https://angular.io/):muscle:
+  - [Angular 17+](https://angular.io/docs):muscle:
 
 - CSS libraries:
 

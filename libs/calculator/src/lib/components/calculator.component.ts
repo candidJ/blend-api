@@ -1,4 +1,10 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Renderer2,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { CalculatorConfig } from '../constants/calculator.const';
 import { CalculatorLayout } from '../types/calculator.interface';
 import { NgClass } from '@angular/common';
@@ -19,11 +25,12 @@ export class CalculatorComponent {
   operation = '';
   currentOperator = '';
   sessionOperationHistory: { operation: string; result: string }[] = [];
-  @ViewChild('modal', { static: false }) modal!: ElementRef;
+  @ViewChild('previousOperationsModal', { static: false })
+  previousOperationsModal!: ElementRef;
 
   private isComputationDone = false;
 
-  constructor(private renderer: Renderer2) {}
+  #renderer = inject(Renderer2);
 
   onUserInput(userInput: CalculatorLayout): void {
     switch (userInput.className) {
@@ -53,11 +60,17 @@ export class CalculatorComponent {
     this.sessionOperationHistory = JSON.parse(
       sessionStorage.getItem('operationHistory') || '{}',
     );
-    this.renderer.addClass(this.modal.nativeElement, 'is-active');
+    this.#renderer.addClass(
+      this.previousOperationsModal.nativeElement,
+      'is-active',
+    );
   }
 
   hideOperationHistory(): void {
-    this.renderer.removeClass(this.modal.nativeElement, 'is-active');
+    this.#renderer.removeClass(
+      this.previousOperationsModal.nativeElement,
+      'is-active',
+    );
   }
 
   private onlyAllowOneDecimal(userInput: CalculatorLayout): void {
