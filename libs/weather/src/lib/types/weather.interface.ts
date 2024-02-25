@@ -13,7 +13,7 @@ export type TemperatureMeasurementUnits = 'imperial' | 'metric' | 'standard';
 
 export interface CityPayload {
   city: string;
-  unit: TemperatureMeasurementUnits;
+  units: TemperatureMeasurementUnits;
   country: string;
 }
 

@@ -59,7 +59,7 @@ export class ForecastComponent extends ForecastContext implements OnInit {
   }
 
   private userPayload(cityInfo: CityPayload): CityPayload {
-    const { country, city, unit } = cityInfo;
+    const { country, city, units } = cityInfo;
     let countryCode: string | null = '';
     if (country) {
       const filteredCountry = this.countries.filter((c) => c.code === country);
@@ -68,7 +68,7 @@ export class ForecastComponent extends ForecastContext implements OnInit {
     return {
       city: country ? `${city},${countryCode}` : city,
       country: '',
-      unit: unit,
+      units: units,
     };
   }
 
@@ -83,7 +83,7 @@ export class ForecastComponent extends ForecastContext implements OnInit {
     this.userInputForm = this.#fg.group({
       city: new FormControl(null, Validators.required),
       country: new FormControl(''),
-      unit: new FormControl('imperial', Validators.required),
+      units: new FormControl('imperial', Validators.required),
     });
     this.forecastService
       .getCurrentLocation()

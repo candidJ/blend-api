@@ -18,7 +18,7 @@ export class ForecastByCityName implements ForecastStrategy {
       map((data) => {
         return new HttpParams()
           .set('q', data.city)
-          .set('units', data.unit || WEATHER_API_CONFIG.UNITS)
+          .set('units', data.units || WEATHER_API_CONFIG.UNITS)
           .set('appid', WEATHER_API_CONFIG.API_KEY);
       }),
     );

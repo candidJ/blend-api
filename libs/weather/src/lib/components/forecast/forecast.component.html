@@ -53,8 +53,8 @@
       <label class="radio">
         <input
           type="radio"
-          name="unit"
-          formControlName="unit"
+          name="units"
+          formControlName="units"
           value="imperial"
         />
         Fahrenheit&nbsp;<i class="wi wi-fahrenheit"></i>
@@ -62,8 +62,8 @@
       <label class="radio">
         <input
           type="radio"
-          name="unit"
-          formControlName="unit"
+          name="units"
+          formControlName="units"
           value="metric"
         />
         Celsius&nbsp;<i class="wi wi-celsius"></i>
@@ -102,7 +102,7 @@
             </p>
             <p>
               <span> {{ forecast.currentTemp | number: '1.0-0' }}</span>
-              @if (userInputForm.get('unit')?.value == 'metric') {
+              @if (userInputForm.get('units')?.value == 'metric') {
                 <i class="wi wi-celsius"></i>
               } @else {
                 <i class="wi wi-fahrenheit"></i>
