@@ -1,12 +1,12 @@
 <p class="mb-4 has-text-weight-light is-family-secondary">
-  City not found? Click on any of the below cities to get forecast:
+  If the city is not found, please click on any of the cities below to view the forecast:
 </p>
 
 <div class="is-flex-direction-row is-justify-content-space-between">
   @for (cityInfo of randomCities; track cityInfo) {
     <a (click)="onCityClick(cityInfo)">
       <span
-        class="is-size-5-tablet is-size-6-mobile tag mr-1 is-link is-light"
+        class="is-size-5-tablet is-size-6-mobile tag mr-2 is-link is-light"
         >{{ cityInfo.city }}</span
       >
     </a>
