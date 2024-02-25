@@ -102,7 +102,7 @@
             </p>
             <p>
               <span> {{ forecast.currentTemp | number: '1.0-0' }}</span>
-              @if (forecast.units == 'metric') {
+              @if (userInputForm.get('unit')?.value == 'metric') {
                 <i class="wi wi-celsius"></i>
               } @else {
                 <i class="wi wi-fahrenheit"></i>

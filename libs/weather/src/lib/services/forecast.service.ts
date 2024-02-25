@@ -3,7 +3,6 @@ import { Observable, of, throwError, BehaviorSubject } from 'rxjs';
 import {
   map,
   switchMap,
-  pluck,
   mergeMap,
   filter,
   toArray,
@@ -30,7 +29,6 @@ export class ForecastService {
   readonly #config = WEATHER_API_CONFIG;
   #cityWeather: CityWeather;
   #cityPublisher = new BehaviorSubject<boolean>(false);
-  #units = '';
   readonly #SEATTLE_LAT_LONG: Pick<
     GeolocationCoordinates,
     'latitude' | 'longitude'
@@ -51,7 +49,6 @@ export class ForecastService {
     return forecastHttpParams.pipe(
       // create a new observable with the last emitted value from previous observable and cancel the last observable
       switchMap((params) => {
-        this.#units = params.get('#units') || 'metric';
         return this.#httpClient.get<WeatherResponse>(this.#config.URL, {
           params,
         });
@@ -62,13 +59,13 @@ export class ForecastService {
         return weatherResponse;
       }),
       // pluck out the list property
-      pluck('list'),
+      map(res => res.list),
       mergeMap((weatherList: WeatherItem[]) => of(...weatherList)),
       // total records count = 40. to show weather forecast for next 5 day, take out every 8th record from the list
       filter((value: WeatherItem, index: number) => (index + 1) % 8 === 0),
       // transform each weather item to weather definition
       map((weatherItem: WeatherItem) => this.transformWeatherItem(weatherItem)),
-      toArray(), // convert individual weather item to an Array of WeatherLists
+      toArray(), // convert individual weather item to WeatherLists array
       shareReplay(), // single network request - even if multiple subscription
       catchError((err: HttpErrorResponse) => {
         console.error(err);
@@ -116,12 +113,11 @@ export class ForecastService {
       date: weatherItem.dt_txt,
       city: this.#cityWeather.name,
       country: this.#cityWeather.country,
-      //Convert a Unix timestamp to time
+      // Convert a Unix timestamp to milliseconds ( by multiplying by 1000) and construct a date object
       sunrise: new Date(this.#cityWeather.sunrise * 1000),
       sunset: new Date(this.#cityWeather.sunset * 1000),
       windSpeed: weatherItem.wind.speed,
       windDeg: weatherItem.wind.deg,
-      units: this.#units,
       icon: this.determineWeatherIcon(),
     };
 

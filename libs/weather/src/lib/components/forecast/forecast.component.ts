@@ -83,7 +83,7 @@ export class ForecastComponent extends ForecastContext implements OnInit {
     this.userInputForm = this.#fg.group({
       city: new FormControl(null, Validators.required),
       country: new FormControl(''),
-      unit: new FormControl('metric'),
+      unit: new FormControl('imperial', Validators.required),
     });
     this.forecastService
       .getCurrentLocation()

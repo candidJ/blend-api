@@ -1,6 +1,19 @@
+/**
+ * Units of measurement
+ * Imperial - Fahrenheit
+ * Metric - Celsius
+ * Standard - Kelvin
+ *
+ * The mathematical formulas to convert temperature are:
+ * Fahrenheit to Celsius: (F – 32) ÷ 1.8 = C.
+ * Celsius to Fahrenheit: (C × 1.8) + 32 = F.
+ */
+
+export type TemperatureMeasurementUnits = 'imperial' | 'metric' | 'standard';
+
 export interface CityPayload {
   city: string;
-  unit: 'imperial' | 'metric' | 'standard';
+  unit: TemperatureMeasurementUnits;
   country: string;
 }
 
@@ -70,5 +83,4 @@ export interface WeatherDefinition {
   windSpeed: number;
   windDeg: number;
   icon?: string;
-  units: string;
 }
