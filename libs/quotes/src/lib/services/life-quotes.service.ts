@@ -6,7 +6,7 @@ import {
   NotificationService,
   PaginationConfig,
 } from '@blend-api/shared';
-import { map, switchMap, tap, shareReplay, catchError } from 'rxjs/operators';
+import { map, switchMap, tap, catchError } from 'rxjs/operators';
 
 import { LifeQuote, LifeQuoteResponse } from '../types/quotes.interface';
 import { LIFE_QUOTES } from '../constants/quotes.const';
@@ -33,7 +33,6 @@ export class LifeQuotesService extends FeedPubSub {
       }),
       tap(this.composePaginationConfig),
       map(this.mapResponse),
-      shareReplay(1),
     );
   }
 

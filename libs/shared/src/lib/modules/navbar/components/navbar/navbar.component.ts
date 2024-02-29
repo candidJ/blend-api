@@ -53,11 +53,10 @@ export class NavbarComponent implements AfterViewInit {
       this.toggleActiveClassOnNavbarBurgerClick(),
     );
     this.menuItem.forEach((el) => {
-      this.#renderer.listen(el.nativeElement, 'click', () =>{
+      this.#renderer.listen(el.nativeElement, 'click', () => {
         this.toggleActiveClassOnNavbarBurgerClick();
         el.nativeElement.blur();
-      }
-      );
+      });
     });
   }
 }

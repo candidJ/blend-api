@@ -54,7 +54,11 @@
         }
         @if (navbarMenuItem.hasSubMenu) {
           <section class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link" routerLinkActive="is-active" [routerLink]="[navbarMenuItem.routerLink]">
+            <a
+              class="navbar-link"
+              routerLinkActive="is-active"
+              [routerLink]="[navbarMenuItem.routerLink]"
+            >
               <i-feather [name]="navbarMenuItem.icon"></i-feather>
               <span class="ml-2">{{ navbarMenuItem.title }}</span>
             </a>

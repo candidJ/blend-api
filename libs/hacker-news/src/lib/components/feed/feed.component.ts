@@ -58,7 +58,7 @@ export class FeedComponent implements OnInit {
           return f;
         });
       }),
-      tap(this.composePaginationConfig),
+      tap(() => this.composePaginationConfig(activeUrl)),
     );
   }
 
@@ -81,8 +81,7 @@ export class FeedComponent implements OnInit {
     );
   }
 
-  private composePaginationConfig = (): void => {
-    const feedType: ConfigType = this.determineActiveUrl();
+  private composePaginationConfig = (feedType: ConfigType): void => {
     const configType: ConfigProps = this.#config[feedType];
     const feedPaginationConfig: PaginationConfig = {
       listLength: configType.TOTAL_RECORDS,

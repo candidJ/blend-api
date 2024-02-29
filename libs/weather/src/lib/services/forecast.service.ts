@@ -8,7 +8,6 @@ import {
   toArray,
   tap,
   catchError,
-  shareReplay,
 } from 'rxjs/operators';
 import {
   HttpParams,
@@ -59,14 +58,13 @@ export class ForecastService {
         return weatherResponse;
       }),
       // pluck out the list property
-      map(res => res.list),
+      map((res) => res.list),
       mergeMap((weatherList: WeatherItem[]) => of(...weatherList)),
       // total records count = 40. to show weather forecast for next 5 day, take out every 8th record from the list
       filter((value: WeatherItem, index: number) => (index + 1) % 8 === 0),
       // transform each weather item to weather definition
       map((weatherItem: WeatherItem) => this.transformWeatherItem(weatherItem)),
       toArray(), // convert individual weather item to WeatherLists array
-      shareReplay(), // single network request - even if multiple subscription
       catchError((err: HttpErrorResponse) => {
         console.error(err);
         this.#cityPublisher.next(true);
@@ -79,7 +77,7 @@ export class ForecastService {
   getCurrentLocation() {
     return new Observable<GeolocationCoordinates>((observer) => {
       return window.navigator.geolocation.getCurrentPosition(
-        (position) => {
+        (position: GeolocationPosition) => {
           observer.next(position.coords);
           observer.complete();
         },

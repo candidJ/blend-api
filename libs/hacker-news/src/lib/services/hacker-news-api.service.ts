@@ -1,7 +1,7 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import {
   FeedPubSub,
   PaginationConfig,
@@ -47,7 +47,6 @@ export class HackerNewsApiService extends FeedPubSub {
         this.showErrorMessage();
         return throwError(() => err);
       }),
-      shareReplay(1),
     );
   }
 

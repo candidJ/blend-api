@@ -1,7 +1,7 @@
 import { Injectable, InjectionToken, inject, signal } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { map, switchMap, tap, shareReplay, catchError } from 'rxjs/operators';
+import { map, switchMap, tap, catchError } from 'rxjs/operators';
 
 import {
   FeedPubSub,
@@ -37,7 +37,6 @@ export class ProgrammingQuotesService extends FeedPubSub {
         return throwError(() => err);
       }),
       tap(this.composePaginationConfig),
-      shareReplay(1),
     );
   }
 
