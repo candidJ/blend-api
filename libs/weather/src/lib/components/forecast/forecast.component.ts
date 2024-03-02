@@ -23,7 +23,11 @@ import { ForecastByLatLong } from '../../class/forecast-by-latlong';
 import { ForecastContext } from '../../class/forecast-context';
 import { COUNTRIES } from '../../constants/country.const';
 import { ForecastService } from '../../services/forecast.service';
-import { CityPayload, WeatherDefinition } from '../../types/weather.interface';
+import {
+  CityPayload,
+  LatitudeAndLongitude,
+  WeatherDefinition,
+} from '../../types/weather.interface';
 import { ForecastDetailsComponent } from '../forecast-details/forecast-details.component';
 import { FeatherModule } from 'angular-feather';
 
@@ -88,8 +92,10 @@ export class ForecastComponent extends ForecastContext implements OnInit {
     this.forecastService
       .getCurrentLocation()
       .pipe(first(), takeUntilDestroyed(this.#destroyRef))
-      .subscribe((currentLocation) => {
-        const forecastByLatLong = new ForecastByLatLong(currentLocation);
+      .subscribe((cityGeographicCoordinate: LatitudeAndLongitude) => {
+        const forecastByLatLong = new ForecastByLatLong(
+          cityGeographicCoordinate,
+        );
         // sets the default active strategy to forecast by latitude and longitude
         this.setForecastStrategy(forecastByLatLong);
         this.fetchWeatherForecast();

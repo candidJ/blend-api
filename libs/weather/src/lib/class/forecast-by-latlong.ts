@@ -3,17 +3,19 @@ import { HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { ForecastStrategy } from '../types/forecast-strategy.interface';
 import { WEATHER_API_CONFIG } from '../constants/weather.const';
+import { LatitudeAndLongitude } from '../types/weather.interface';
 
 // Implementation of strategy
 export class ForecastByLatLong implements ForecastStrategy {
-  constructor(
-    private coords: Pick<GeolocationCoordinates, 'latitude' | 'longitude'>,
-  ) {}
+  readonly #currentGeographicCoordinate: LatitudeAndLongitude;
+  constructor(cityGeographicCoordinate: LatitudeAndLongitude) {
+    this.#currentGeographicCoordinate = cityGeographicCoordinate;
+  }
 
   forecast(): Observable<HttpParams> {
-    return of(this.coords).pipe(
-      map((coords) => {
-        // use to convert the coords to query params : -api.openweathermap.org/data/2.5/forecast?lat=25&long=125
+    return of(this.#currentGeographicCoordinate).pipe(
+      map((coords: LatitudeAndLongitude) => {
+        // use to convert the coords to query params : openweathermap.org/data/2.5/forecast?lat=25&long=125
         return new HttpParams()
           .set('lat', String(coords.latitude))
           .set('lon', String(coords.longitude))

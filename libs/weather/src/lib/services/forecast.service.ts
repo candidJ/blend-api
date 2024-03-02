@@ -19,22 +19,19 @@ import {
   WeatherResponse,
   WeatherDefinition,
   WeatherItem,
+  LatitudeAndLongitude,
 } from '../types/weather.interface';
 import { NotificationService } from '@blend-api/shared';
 import { WEATHER_API_CONFIG } from '../constants/weather.const';
+import { GeographicCoordinate } from '../class/geographic-coordinate';
 
 @Injectable()
 export class ForecastService {
   readonly #config = WEATHER_API_CONFIG;
   #cityWeather: CityWeather;
   #cityPublisher = new BehaviorSubject<boolean>(false);
-  readonly #SEATTLE_LAT_LONG: Pick<
-    GeolocationCoordinates,
-    'latitude' | 'longitude'
-  > = {
-    longitude: -122.332,
-    latitude: 47.6061,
-  };
+  readonly #SEATTLE_GEOGRAPHIC_COORDINATE: LatitudeAndLongitude =
+    new GeographicCoordinate(47.6061, -122.332).location();
 
   showRandomCities$ = this.#cityPublisher.asObservable();
 
@@ -75,10 +72,14 @@ export class ForecastService {
   }
 
   getCurrentLocation() {
-    return new Observable<GeolocationCoordinates>((observer) => {
+    return new Observable<LatitudeAndLongitude>((observer) => {
       return window.navigator.geolocation.getCurrentPosition(
         (position: GeolocationPosition) => {
-          observer.next(position.coords);
+          const geographicCoordinate = new GeographicCoordinate(
+            position.coords.latitude,
+            position.coords.longitude,
+          );
+          observer.next(geographicCoordinate.location());
           observer.complete();
         },
         (err) => {
@@ -90,7 +91,7 @@ export class ForecastService {
         console.error(err.message);
         // Return a new observable that passes default coordinates when the user denies access to their current location.
         // Unlike the tap operator, which doesn't return an observable and doesn't pass anything to the pipe operator.
-        return of(this.#SEATTLE_LAT_LONG);
+        return of(this.#SEATTLE_GEOGRAPHIC_COORDINATE);
       }),
     );
   }

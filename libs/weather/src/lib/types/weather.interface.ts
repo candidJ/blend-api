@@ -17,16 +17,6 @@ export interface CityPayload {
   country: string;
 }
 
-export interface GeolocationCoordinates {
-  readonly accuracy: number;
-  readonly altitude: number | null;
-  readonly altitudeAccuracy: number | null;
-  readonly heading: number | null;
-  readonly latitude: number;
-  readonly longitude: number;
-  readonly speed: number | null;
-}
-
 type ForecastDateFormat = 'YYYY-MM-DD hh:mm:ss';
 
 export interface CityWeather {
@@ -83,4 +73,9 @@ export interface WeatherDefinition {
   windSpeed: number;
   windDeg: number;
   icon?: string;
+}
+
+export interface LatitudeAndLongitude {
+  latitude: number;
+  longitude: number;
 }
