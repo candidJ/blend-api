@@ -30,6 +30,7 @@ import {
 } from '../../types/weather.interface';
 import { ForecastDetailsComponent } from '../forecast-details/forecast-details.component';
 import { FeatherModule } from 'angular-feather';
+import { GeographicCoordinate } from '../../class/geographic-coordinate';
 
 @Component({
   selector: 'ba-forecast',
@@ -92,7 +93,7 @@ export class ForecastComponent extends ForecastContext implements OnInit {
     this.forecastService
       .getCurrentLocation()
       .pipe(first(), takeUntilDestroyed(this.#destroyRef))
-      .subscribe((cityGeographicCoordinate: LatitudeAndLongitude) => {
+      .subscribe((cityGeographicCoordinate: GeographicCoordinate) => {
         const forecastByLatLong = new ForecastByLatLong(
           cityGeographicCoordinate,
         );

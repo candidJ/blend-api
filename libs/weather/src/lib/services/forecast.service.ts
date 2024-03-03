@@ -19,7 +19,6 @@ import {
   WeatherResponse,
   WeatherDefinition,
   WeatherItem,
-  LatitudeAndLongitude,
 } from '../types/weather.interface';
 import { NotificationService } from '@blend-api/shared';
 import { WEATHER_API_CONFIG } from '../constants/weather.const';
@@ -30,8 +29,8 @@ export class ForecastService {
   readonly #config = WEATHER_API_CONFIG;
   #cityWeather: CityWeather;
   #cityPublisher = new BehaviorSubject<boolean>(false);
-  readonly #SEATTLE_GEOGRAPHIC_COORDINATE: LatitudeAndLongitude =
-    new GeographicCoordinate(47.6061, -122.332).location();
+  readonly #seattleGeographicCoordinate: GeographicCoordinate =
+    new GeographicCoordinate(47.6061, -122.332);
 
   showRandomCities$ = this.#cityPublisher.asObservable();
 
@@ -72,14 +71,14 @@ export class ForecastService {
   }
 
   getCurrentLocation() {
-    return new Observable<LatitudeAndLongitude>((observer) => {
+    return new Observable<GeographicCoordinate>((observer) => {
       return window.navigator.geolocation.getCurrentPosition(
         (position: GeolocationPosition) => {
           const geographicCoordinate = new GeographicCoordinate(
             position.coords.latitude,
             position.coords.longitude,
           );
-          observer.next(geographicCoordinate.location());
+          observer.next(geographicCoordinate);
           observer.complete();
         },
         (err) => {
@@ -91,7 +90,7 @@ export class ForecastService {
         console.error(err.message);
         // Return a new observable that passes default coordinates when the user denies access to their current location.
         // Unlike the tap operator, which doesn't return an observable and doesn't pass anything to the pipe operator.
-        return of(this.#SEATTLE_GEOGRAPHIC_COORDINATE);
+        return of(this.#seattleGeographicCoordinate);
       }),
     );
   }
