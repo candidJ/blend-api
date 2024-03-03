@@ -6,7 +6,7 @@ import { WEATHER_API_CONFIG } from '../constants/weather.const';
 import { GeographicCoordinate } from './geographic-coordinate';
 
 // Implementation of strategy
-export class ForecastByLatLong implements ForecastStrategy {
+export class CoordinateForecastStrategy implements ForecastStrategy {
   readonly #geographicCoordinate: GeographicCoordinate;
 
   constructor(cityGeographicCoordinate: GeographicCoordinate) {

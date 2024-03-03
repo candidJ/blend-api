@@ -10,7 +10,7 @@ import { WEATHER_API_CONFIG } from '../constants/weather.const';
  * Concrete implementation of ForecastStrategy
  * API : api.openweathermap.org/data/2.5/forecast?q={cityName}
  */
-export class ForecastByCityName implements ForecastStrategy {
+export class CityNameForecastStrategy implements ForecastStrategy {
   constructor(private config: CityPayload) {}
 
   getForecastParams(): Observable<HttpParams> {

@@ -18,8 +18,8 @@ import { first } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import { DateTimeFormatPipe } from '@blend-api/shared';
-import { ForecastByCityName } from '../../class/forecast-by-cityname';
-import { ForecastByLatLong } from '../../class/forecast-by-latlong';
+import { CityNameForecastStrategy } from '../../class/city-name-forecast-strategy';
+import { CoordinateForecastStrategy } from '../../class/coordinate-forecast-strategy';
 import { ForecastContext } from '../../class/forecast-context';
 import { COUNTRIES } from '../../constants/country.const';
 import { ForecastService } from '../../services/forecast.service';
@@ -85,9 +85,8 @@ export class ForecastComponent implements OnInit {
 
   onSubmit(userCityNameInput: CityPayload): void {
     const cityPayload: CityPayload = this.userPayload(userCityNameInput);
-    const cityNameForecastStrategy: ForecastStrategy = new ForecastByCityName(
-      cityPayload,
-    );
+    const cityNameForecastStrategy: ForecastStrategy =
+      new CityNameForecastStrategy(cityPayload);
     this.fetchWeatherForecastUsingStrategy(cityNameForecastStrategy);
   }
 
@@ -101,9 +100,8 @@ export class ForecastComponent implements OnInit {
       .getCurrentLocation()
       .pipe(first(), takeUntilDestroyed(this.#destroyRef))
       .subscribe((coordinate: GeographicCoordinate) => {
-        const coordinateForecastStrategy: ForecastStrategy = new ForecastByLatLong(
-          coordinate,
-        );
+        const coordinateForecastStrategy: ForecastStrategy =
+          new CoordinateForecastStrategy(coordinate);
         this.fetchWeatherForecastUsingStrategy(coordinateForecastStrategy);
       });
   }
