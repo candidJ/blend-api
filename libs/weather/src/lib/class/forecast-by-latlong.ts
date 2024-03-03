@@ -13,7 +13,7 @@ export class ForecastByLatLong implements ForecastStrategy {
     this.#geographicCoordinate = cityGeographicCoordinate;
   }
 
-  forecast(): Observable<HttpParams> {
+  getForecastParams(): Observable<HttpParams> {
     return of(this.#geographicCoordinate).pipe(
       map((coords: GeographicCoordinate) => {
         // use to convert the coords to query params : openweathermap.org/data/2.5/forecast?lat=25&long=125

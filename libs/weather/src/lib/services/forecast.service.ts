@@ -38,10 +38,10 @@ export class ForecastService {
   readonly #notificationService: NotificationService =
     inject(NotificationService);
 
-  getForecast(
-    forecastHttpParams: Observable<HttpParams>,
+  fetchFiveDayWeatherForecast(
+    queryParams$: Observable<HttpParams>,
   ): Observable<WeatherDefinition[]> {
-    return forecastHttpParams.pipe(
+    return queryParams$.pipe(
       // create a new observable with the last emitted value from previous observable and cancel the last observable
       switchMap((params) => {
         return this.#httpClient.get<WeatherResponse>(this.#config.URL, {

@@ -61,10 +61,12 @@ export class ForecastComponent implements OnInit {
   readonly #destroyRef = inject(DestroyRef);
   #fg: FormBuilder = inject(FormBuilder);
 
-  private fetchWeatherForecast(forecastStrategy: ForecastStrategy): void {
-    const forecastContext = new ForecastContext(forecastStrategy);
-    const requestParams$: Observable<HttpParams> = forecastContext.performForecast();
-    this.forecast$ = this.forecastService.getForecast(requestParams$);
+  private fetchWeatherForecastUsingStrategy(strategy: ForecastStrategy): void {
+    const context = new ForecastContext(strategy);
+    const queryParams$: Observable<HttpParams> =
+      context.constructForecastQueryParams();
+    this.forecast$ =
+      this.forecastService.fetchFiveDayWeatherForecast(queryParams$);
   }
 
   private userPayload(cityInfo: CityPayload): CityPayload {
@@ -83,8 +85,10 @@ export class ForecastComponent implements OnInit {
 
   onSubmit(userCityNameInput: CityPayload): void {
     const cityPayload: CityPayload = this.userPayload(userCityNameInput);
-    const forecastByCityName: ForecastStrategy = new ForecastByCityName(cityPayload);
-    this.fetchWeatherForecast(forecastByCityName);
+    const cityNameForecastStrategy: ForecastStrategy = new ForecastByCityName(
+      cityPayload,
+    );
+    this.fetchWeatherForecastUsingStrategy(cityNameForecastStrategy);
   }
 
   ngOnInit(): void {
@@ -97,10 +101,10 @@ export class ForecastComponent implements OnInit {
       .getCurrentLocation()
       .pipe(first(), takeUntilDestroyed(this.#destroyRef))
       .subscribe((coordinate: GeographicCoordinate) => {
-        const forecastByLatLong: ForecastStrategy = new ForecastByLatLong(
-          coordinate
+        const coordinateForecastStrategy: ForecastStrategy = new ForecastByLatLong(
+          coordinate,
         );
-        this.fetchWeatherForecast(forecastByLatLong);
+        this.fetchWeatherForecastUsingStrategy(coordinateForecastStrategy);
       });
   }
 }

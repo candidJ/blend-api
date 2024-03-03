@@ -13,7 +13,7 @@ import { WEATHER_API_CONFIG } from '../constants/weather.const';
 export class ForecastByCityName implements ForecastStrategy {
   constructor(private config: CityPayload) {}
 
-  forecast(): Observable<HttpParams> {
+  getForecastParams(): Observable<HttpParams> {
     return of(this.config).pipe(
       map((data) => {
         return new HttpParams()

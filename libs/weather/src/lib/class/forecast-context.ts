@@ -8,8 +8,7 @@ export class ForecastContext {
     this.#forecastStrategy = forecastStrategy;
   }
 
-  performForecast() {
-    return this.#forecastStrategy.forecast();
+  constructForecastQueryParams() {
+    return this.#forecastStrategy.getForecastParams();
   }
-
 }
