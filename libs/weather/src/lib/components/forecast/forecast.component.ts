@@ -31,6 +31,8 @@ import {
 import { ForecastDetailsComponent } from '../forecast-details/forecast-details.component';
 import { FeatherModule } from 'angular-feather';
 import { GeographicCoordinate } from '../../class/geographic-coordinate';
+import { ForecastStrategy } from '../../types/forecast-strategy.interface';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'ba-forecast',
@@ -49,18 +51,20 @@ import { GeographicCoordinate } from '../../class/geographic-coordinate';
     DateTimeFormatPipe,
   ],
 })
-export class ForecastComponent extends ForecastContext implements OnInit {
+export class ForecastComponent implements OnInit {
   forecast$: Observable<WeatherDefinition[]>;
   userInputForm: FormGroup;
   countries: { name: string; code: string }[] = COUNTRIES;
   forecastDetails: WeatherDefinition;
-  readonly #destroyRef = inject(DestroyRef);
 
   forecastService: ForecastService = inject(ForecastService);
+  readonly #destroyRef = inject(DestroyRef);
   #fg: FormBuilder = inject(FormBuilder);
 
-  private fetchWeatherForecast(): void {
-    this.forecast$ = this.forecastService.getForecast(this.performForecast());
+  private fetchWeatherForecast(forecastStrategy: ForecastStrategy): void {
+    const forecastContext = new ForecastContext(forecastStrategy);
+    const requestParams$: Observable<HttpParams> = forecastContext.performForecast();
+    this.forecast$ = this.forecastService.getForecast(requestParams$);
   }
 
   private userPayload(cityInfo: CityPayload): CityPayload {
@@ -79,9 +83,8 @@ export class ForecastComponent extends ForecastContext implements OnInit {
 
   onSubmit(userCityNameInput: CityPayload): void {
     const cityPayload: CityPayload = this.userPayload(userCityNameInput);
-    let forecastByCityName = new ForecastByCityName(cityPayload);
-    this.setForecastStrategy(forecastByCityName);
-    this.fetchWeatherForecast();
+    const forecastByCityName: ForecastStrategy = new ForecastByCityName(cityPayload);
+    this.fetchWeatherForecast(forecastByCityName);
   }
 
   ngOnInit(): void {
@@ -93,13 +96,11 @@ export class ForecastComponent extends ForecastContext implements OnInit {
     this.forecastService
       .getCurrentLocation()
       .pipe(first(), takeUntilDestroyed(this.#destroyRef))
-      .subscribe((cityGeographicCoordinate: GeographicCoordinate) => {
-        const forecastByLatLong = new ForecastByLatLong(
-          cityGeographicCoordinate,
+      .subscribe((coordinate: GeographicCoordinate) => {
+        const forecastByLatLong: ForecastStrategy = new ForecastByLatLong(
+          coordinate
         );
-        // sets the default active strategy to forecast by latitude and longitude
-        this.setForecastStrategy(forecastByLatLong);
-        this.fetchWeatherForecast();
+        this.fetchWeatherForecast(forecastByLatLong);
       });
   }
 }
