@@ -25,7 +25,6 @@ import { COUNTRIES } from '../../constants/country.const';
 import { ForecastService } from '../../services/forecast.service';
 import {
   CityPayload,
-  LatitudeAndLongitude,
   WeatherDefinition,
 } from '../../types/weather.interface';
 import { ForecastDetailsComponent } from '../forecast-details/forecast-details.component';

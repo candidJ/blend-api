@@ -74,8 +74,3 @@ export interface WeatherDefinition {
   windDeg: number;
   icon?: string;
 }
-
-export interface LatitudeAndLongitude {
-  latitude: number;
-  longitude: number;
-}
