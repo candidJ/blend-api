@@ -11,6 +11,7 @@ export const PROGRAMMING_QUOTES = {
   PAGE_SIZE: 20,
   TOTAL_RECORDS: 501,
 };
+
 export const TWITTER = {
   URL: 'https://www.twitter.com/intent/tweet?hashtags',
   HASHTAGS: 'quote',

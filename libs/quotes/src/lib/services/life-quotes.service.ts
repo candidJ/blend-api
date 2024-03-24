@@ -3,13 +3,15 @@ import { Injectable, inject, signal } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import {
   FeedPubSub,
+  LoaderService,
   NotificationService,
   PaginationConfig,
 } from '@blend-api/shared';
-import { map, switchMap, tap, catchError } from 'rxjs/operators';
+import { map, switchMap, tap, catchError, timeout } from 'rxjs/operators';
 
 import { LifeQuote, LifeQuoteResponse } from '../types/quotes.interface';
 import { LIFE_QUOTES } from '../constants/quotes.const';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class LifeQuotesService extends FeedPubSub {
@@ -22,13 +24,21 @@ export class LifeQuotesService extends FeedPubSub {
   readonly #httpClient: HttpClient = inject(HttpClient);
   readonly #notificationService: NotificationService =
     inject(NotificationService);
+  readonly #loaderService: LoaderService = inject(LoaderService);
+  readonly #router: Router = inject(Router);
+  readonly #FIVE_SECONDS = 5_000;
 
   fetchQuotesFeed(): Observable<LifeQuote[]> {
     return this.feedSubscriber.pipe(
       map(this.configureParams),
       switchMap(this.fetchData),
+      timeout({
+        each: this.#FIVE_SECONDS
+      }),
       catchError((err) => {
         this.showErrorMessage();
+        this.#loaderService.showLoader(false);
+        this.#router.navigateByUrl('/hacker-news');
         return throwError(() => err);
       }),
       tap(this.composePaginationConfig),

@@ -20,3 +20,4 @@ export * from './paginator/types/paginator.interface';
 // service
 export * from './notifications/services/notification.service';
 export * from './loader/services/loader-interceptor.service';
+export * from './loader/services/loader.service';
